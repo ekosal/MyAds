@@ -219,10 +219,10 @@ public class PostingDao {
 				ResultSet rs1=null;
 				ps1.setInt(1, Integer.valueOf(productId));
 				rs1=ps1.executeQuery();
-				Image image=new Image();
+				
 				List<Image> imageList=new ArrayList<>();
 				while(rs1.next()){
-					System.out.println(rs1.getString("image"));
+					Image image=new Image();
 					image.setImage(rs1.getString("image"));
 					imageList.add(image);
 				}
