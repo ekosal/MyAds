@@ -14,7 +14,7 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 
-<jsp:directive.include file="ads_header.jsp" />
+     <jsp:directive.include file="ads_header.jsp" />
      
 	<!-- body_section -->
 	<div class="body_section">
@@ -485,8 +485,8 @@
 													if (rst.get(j).getId()==content.get(index).getMainCategory().getId()){
 											%>
 											<li>
-												<a href="#none">
-													<img src="uploads/<%=content.get(index).getImage().getImage() %>" alt="" style="width:203px;height:210px;"/>
+												<a href="product_details.ads?id=<%=AESCrypt.encrypt(String.valueOf(rst.get(j).getId())) %>&subid=<%=AESCrypt.encrypt(String.valueOf(content.get(index).getMainCategory().getId())) %>&proid=<%=AESCrypt.encrypt(String.valueOf(content.get(index).getPostingId())) %>">
+													<img src="uploads/<%=content.get(index).getImage().getImage() %>" alt="" style="width:203px;height:210px;">
 													<dl>
 														<dt><%=content.get(index).getTitle() %>	</dt>
 														<dd><%=content.get(index).getKey() %></dd>

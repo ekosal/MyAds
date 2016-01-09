@@ -28,6 +28,8 @@
 <link rel="stylesheet" href="css/pc_ban.css">
 <link rel="stylesheet" href="css/pc_slider.css">
 <link rel="stylesheet" href="css/pc_com.css">
+<link rel="stylesheet" href="css/mode.css">
+<link rel="stylesheet" href="css/mode_animate.css">
 
 <script src="js/lib.js"></script>
 <script src="js/jssor.js"></script>
@@ -40,6 +42,9 @@
 <script src="js/jquery.touchSwipe.min.js"></script>
 <script src="js/jquery.easing.1.3.min.js"></script>
 <script src="js/infinite-slider-min.js"></script>
+<script src="js/jquery.cxslide.js"></script>
+<script src="js/jquery.cxslide.min.js"></script>
+<script src="js/jquery_related.js"></script>
 
 <style type="text/css">
 	.product-views{
@@ -77,10 +82,6 @@
 
 </head>
 
-<body>
-
-<!-- wrap -->
-<div class="wrap">
 
 	<!-- head_section -->
 	<div class="head_section">

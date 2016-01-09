@@ -20,6 +20,7 @@ import myads.controller.action.member.*;
 import myads.controller.action.posting.AddPosting;
 import myads.controller.action.posting.AddPostingAction;
 import myads.controller.action.posting.MyAdsAction;
+import myads.controller.action.posting.details.ViewPostingDetails;
 import myads.controller.action.profile.ProfileAction;
 import myads.controller.action.user.LoginUser;
 import myads.controller.action.user.ViewUsers;
@@ -206,6 +207,14 @@ public class ControllerUser extends HttpServlet {
 			 System.out.println(forward.getPath());
 		 }else if (command.equals("/step2/myregister.ads")){
 			 action=new ViewUsers();
+			 try{
+					forward=action.execute(request, response);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			 System.out.println(forward.getPath());
+		 }else if (command.equals("/product_details.ads")){
+			 action=new ViewPostingDetails();
 			 try{
 					forward=action.execute(request, response);
 				}catch(Exception e){
