@@ -1,7 +1,7 @@
 <!-- saved from url=(0014)about:internet -->
 <!doctype html>
      
-     <%@page import="myads.model.dto.PostingDto"%>
+<%@page import="myads.model.dto.PostingDto"%>
 <%@page import="myads.model.util.AESCrypt"%>
 <%@include file="ads_header.jsp" %>
     <%-- <%
