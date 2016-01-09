@@ -173,7 +173,7 @@
 												<div class="box">
 													<ul class="list">
 													    <%
-													        out.print("Image size : "+postingDto.getImageList().size());
+													      
 													    
 													    	for(int i=0;i<postingDto.getImageList().size();i++){													    	
 													    %>
