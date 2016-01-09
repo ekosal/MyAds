@@ -14,6 +14,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import myads.model.dto.Image;
+import myads.model.dto.MainCategoryDto;
 import myads.model.dto.PostingDto;
 import myads.model.dto.PostingListDto;
 import myads.model.dto.SubCategoryDto;
@@ -124,7 +125,7 @@ public class PostingDao {
 	public List<PostingDto> readProductByCategory(String category_id){
 		List<PostingDto> productList=new ArrayList<>();
 		try{			
-			String sql="select i.Image,p.PostingId,p.ProductName,p.Price,p.Discount,p.KeyNotice from tbl_posting "
+			String sql="select sc.SubCateId,c.CateId,i.Image,p.PostingId,p.ProductName,p.Price,p.Discount,p.KeyNotice from tbl_posting "
 					+ "p INNER JOIN tbl_sub_category sc on p.SubCateId=sc.SubCateId "
 					+ "INNER JOIN tbl_category c on c.CateId=sc.CateId INNER JOIN tbl_image "
 					+ "i on p.PostingId=i.PostingId WHERE c.CateId=? and p.Active=1 and i.order=1";
@@ -135,12 +136,18 @@ public class PostingDao {
 			while(rs.next()){
 				PostingDto posting=new PostingDto();
 				Image image=new Image();
-				image.setImage(rs.getString("Image"));
+				MainCategoryDto mainCategory=new MainCategoryDto();
+				SubCategoryDto subcategory=new SubCategoryDto();
+				image.setImage(rs.getString("Image"));				
 				posting.setTitle(rs.getString("ProductName"));
 				posting.setKey(rs.getString("KeyNotice"));
 				posting.setPostingId(rs.getInt("PostingId"));
 				posting.setPrice(rs.getInt("Price"));
 				posting.setDiscount(rs.getString("Discount"));
+				mainCategory.setId(rs.getInt("CateId"));
+				subcategory.setId(rs.getInt("SubCateId"));
+				posting.setMainCategory(mainCategory);
+				posting.setSubCategory(subcategory);
 				posting.setImage(image);
 				productList.add(posting);
 			}
@@ -154,7 +161,7 @@ public class PostingDao {
 	public List<PostingDto> readProductByCategoryAndSubCategory(String category_id,String subCategoryId){
 		List<PostingDto> productList=new ArrayList<>();
 		try{
-			String sql="select i.Image,p.PostingId,p.ProductName,p.Price,p.Discount,p.KeyNotice from tbl_posting "
+			String sql="select sc.SubCateId,c.CateId,i.Image,p.PostingId,p.ProductName,p.Price,p.Discount,p.KeyNotice from tbl_posting "
 					+ "p INNER JOIN tbl_sub_category sc on p.SubCateId=sc.SubCateId "
 					+ "INNER JOIN tbl_category c on c.CateId=sc.CateId INNER JOIN tbl_image "
 					+ "i on p.PostingId=i.PostingId WHERE c.CateId=? and p.Active=1 and i.order=1 and sc.SubCateId=?";
@@ -165,16 +172,69 @@ public class PostingDao {
 			while(rs.next()){
 				PostingDto posting=new PostingDto();
 				Image image=new Image();
+				MainCategoryDto mainCategory=new MainCategoryDto();
+				SubCategoryDto subcategory=new SubCategoryDto();
 				image.setImage(rs.getString("Image"));
 				posting.setTitle(rs.getString("ProductName"));
 				posting.setPostingId(rs.getInt("PostingId"));
 				posting.setPrice(rs.getInt("Price"));
 				posting.setKey(rs.getString("KeyNotice"));
 				posting.setDiscount(rs.getString("Discount"));
+				mainCategory.setId(rs.getInt("CateId"));
+				subcategory.setId(rs.getInt("SubCateId"));
+				posting.setMainCategory(mainCategory);
+				posting.setSubCategory(subcategory);
 				posting.setImage(image);
 				productList.add(posting);
 			}
 			return productList;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public PostingDto readProductByCategoryAndSubCategory(String category_id,String subCategoryId,String productId){
+		PostingDto posting=new PostingDto();	
+		try{
+			String sql="select p.PostingId,p.ProductName,p.Price,p.Discount,p.KeyNotice from tbl_posting "
+					+ "p INNER JOIN tbl_sub_category sc on p.SubCateId=sc.SubCateId "
+					+ "INNER JOIN tbl_category c on c.CateId=sc.CateId "
+					+ " WHERE c.CateId=? and p.Active=1 and sc.SubCateId=? and p.PostingId=?";
+			String sql1 = "select i.image from tbl_image i INNER JOIN tbl_posting p "
+					+ "on i.PostingId=p.PostingId where "
+					+ "p.PostingId=? ORDER BY i.`order`";
+			ps=ds.getConnection().prepareStatement(sql);
+			ps.setInt(1,Integer.valueOf(category_id));
+			ps.setInt(2,Integer.valueOf(subCategoryId));
+			ps.setInt(3, Integer.valueOf(productId));
+			rs=ps.executeQuery();
+			System.out.println(" Posting Dto "+category_id + "Sub "+subCategoryId+" pro "+productId);	
+			while(rs.next()){
+			    /*System.out.println(" Posting Dto 123");	*/
+				/*MainCategoryDto mainCategory=new MainCategoryDto();
+				SubCategoryDto subcategory=new SubCategoryDto();*/			
+				
+				PreparedStatement ps1=ds.getConnection().prepareStatement(sql1);
+				ResultSet rs1=null;
+				ps1.setInt(1, Integer.valueOf(productId));
+				rs1=ps1.executeQuery();
+				Image image=new Image();
+				List<Image> imageList=new ArrayList<>();
+				while(rs1.next()){
+					System.out.println(rs1.getString("image"));
+					image.setImage(rs1.getString("image"));
+					imageList.add(image);
+				}
+				posting.setTitle(rs.getString("ProductName"));
+				posting.setPostingId(rs.getInt("PostingId"));
+				posting.setPrice(rs.getInt("Price"));
+				posting.setKey(rs.getString("KeyNotice"));
+				posting.setDiscount(rs.getString("Discount"));
+				posting.setImageList(imageList);
+				
+			}
+			return posting;
 		}catch(Exception e){
 			e.printStackTrace();
 		}

@@ -143,7 +143,7 @@
 										for(int i=0;i<listProdict.size();i++){
 									%>
 									<li>
-										<a href="#none">
+										<a href="product_details.ads?id=<%=AESCrypt.encrypt(String.valueOf(listProdict.get(i).getMainCategory().getId())) %>&subid=<%=AESCrypt.encrypt(String.valueOf(listProdict.get(i).getSubCategory().getId())) %>&proid=<%=AESCrypt.encrypt(String.valueOf(listProdict.get(i).getPostingId())) %>">
 											<img src="uploads/<%=listProdict.get(i).getImage().getImage() %>" alt="" style="width:236px;height:250px;">
 											<p class="title"><%=listProdict.get(i).getTitle() %></p>
 											<p><%=listProdict.get(i).getKey() %></p>

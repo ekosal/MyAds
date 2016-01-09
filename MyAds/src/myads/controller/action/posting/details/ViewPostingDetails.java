@@ -30,6 +30,10 @@ public class ViewPostingDetails implements Action {
 			listCategory=category.readSubCategoryByCategory(AESCrypt.decrypt(categoryId));
 			request.getSession().setAttribute("CategoryList1", listCategory);			
 			
+			PostingDto prostingDto=new PostingDto();
+			PostingDao postingDao=new PostingDao();
+			prostingDto=postingDao.readProductByCategoryAndSubCategory(AESCrypt.decrypt(categoryId),AESCrypt.decrypt(subCateryId) ,AESCrypt.decrypt(proId) );
+			request.getSession().setAttribute("productDto", prostingDto);
 	
 			forward.setRedirect(false);
 			forward.setPath("ads_product_detail.jsp");

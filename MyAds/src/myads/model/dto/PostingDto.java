@@ -18,7 +18,9 @@ public class PostingDto {
 	private String dsc;
 	private String postdate;
 	private Image image;
+	private List<Image> imageList;
 	private MainCategoryDto mainCategory;
+	private SubCategoryDto subCategory;
 	private String discount;
 	
 	
@@ -116,11 +118,19 @@ public class PostingDto {
 	public void setPostdate(String postdate) {
 		this.postdate = postdate;
 	}
+	
+	
 	public Image getImage() {
 		return image;
 	}
 	public void setImage(Image image) {
 		this.image = image;
+	}
+	public List<Image> getImageList() {
+		return imageList;
+	}
+	public void setImageList(List<Image> imageList) {
+		this.imageList = imageList;
 	}
 	public MainCategoryDto getMainCategory() {
 		return mainCategory;
@@ -133,6 +143,12 @@ public class PostingDto {
 	}
 	public void setDiscount(String discount) {
 		this.discount = discount;
+	}
+	public SubCategoryDto getSubCategory() {
+		return subCategory;
+	}
+	public void setSubCategory(SubCategoryDto subCategory) {
+		this.subCategory = subCategory;
 	}
 	
 

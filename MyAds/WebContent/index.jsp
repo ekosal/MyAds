@@ -485,7 +485,7 @@
 													if (rst.get(j).getId()==content.get(index).getMainCategory().getId()){
 											%>
 											<li>
-												<a href="product_details.ads?id=<%=AESCrypt.encrypt(String.valueOf(rst.get(j).getId())) %>&subid=<%=AESCrypt.encrypt(String.valueOf(content.get(index).getMainCategory().getId())) %>&proid=<%=AESCrypt.encrypt(String.valueOf(content.get(index).getPostingId())) %>">
+												<a href="product_details.ads?id=<%=AESCrypt.encrypt(String.valueOf(rst.get(j).getId())) %>&subid=<%=AESCrypt.encrypt(String.valueOf(content.get(index).getSubCateId())) %>&proid=<%=AESCrypt.encrypt(String.valueOf(content.get(index).getPostingId())) %>">
 													<img src="uploads/<%=content.get(index).getImage().getImage() %>" alt="" style="width:203px;height:210px;">
 													<dl>
 														<dt><%=content.get(index).getTitle() %>	</dt>

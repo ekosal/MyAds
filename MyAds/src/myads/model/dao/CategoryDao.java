@@ -269,7 +269,7 @@ public class CategoryDao {
 			
 			List<PostingDto> ContentBody=new ArrayList<>();
 			try{
-			    String sql="SELECT c.CateId,p.PostingId,p.ProductName,p.KeyNotice,i.Image FROM tbl_category c "
+			    String sql="SELECT sc.SubCateId,c.CateId,p.PostingId,p.ProductName,p.KeyNotice,i.Image FROM tbl_category c "
 					+ "INNER JOIN tbl_sub_category sc on c.CateId=sc.CateId INNER JOIN "
 					+ "tbl_posting p on p.SubCateId=sc.SubCateId INNER JOIN tbl_image i "
 					+ "on p.PostingId=i.PostingId "
@@ -290,6 +290,7 @@ public class CategoryDao {
 								postingDto.setPostingId(rsBody.getInt("PostingId"));
 								postingDto.setTitle(rsBody.getString("ProductName"));
 								postingDto.setKey(rsBody.getString("KeyNotice"));
+								postingDto.setSubCateId(rsBody.getInt("SubCateId"));								
 							    image.setImage(rsBody.getString("Image"));						  
 								postingDto.setImage(image);
 								postingDto.setMainCategory(mainCategory);

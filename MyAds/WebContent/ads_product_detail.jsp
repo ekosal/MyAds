@@ -1,8 +1,14 @@
 <!-- saved from url=(0014)about:internet -->
 <!doctype html>
-    <%@include file="ads_header.jsp" %>
+    <%@page import="myads.model.dto.PostingDto"%>
+<%@page import="myads.model.util.AESCrypt"%>
+<%@include file="ads_header.jsp" %>
     <%@include file="ads_help2.jsp" %>
-
+    <%
+    	List<MainCategoryDto> listSubCategory=(List<MainCategoryDto>) request.getSession().getAttribute("CategoryList1");
+   		PostingDto postingDto=(PostingDto)request.getSession().getAttribute("productDto");
+   		
+    %>
 	<!-- body_section -->
 	<div class="body_section">
 		<!-- cnt_wrap -->
@@ -45,146 +51,47 @@
 									<div class="lbn">
 										<dl>
 											<dt><strong>CATEGORIES</strong>&nbsp;See all ></dt>
-											<dd>
-												<a href="#none" class="womenclothes">Clothes</a>
-												<div class="more">
-													<ul>
-														<li><a href="#none">Women’s clothing</a></li>
-														<li><a href="#none">Men’s clothing</a></li>
-														<li><a href="#none">Baby’s clothing</a></li>
-													</ul>
-												</div>
-											</dd>
-											<dd>
-												<a href="#none" class="computeroffice">Computer & Office</a>
-												<div class="more">
-													<ul>
-														<li><a href="#none">Laptops</a></li>
-														<li><a href="#none">Desktops</a></li>
-														<li><a href="#none">Accessories & parts</a></li>
-														<li><a href="#none">Storage Devices</a></li>
-													</ul>
-												</div>
-											</dd>
-											<dd>
-												<a href="#none" class="telephone">Phone and accessories</a>
-												<div class="more">
-													<ul>
-														<li><a href="#none">Mobile Phones</a></li>
-														<li><a href="#none">Tablets</a></li>
-														<li><a href="#none">Phone’s accessories & Parts</a></li>
-													</ul>
-												</div>
-											</dd>
-											<dd>
-												<a href="#none" class="consummerelectronic">Electronics</a>
-												<div class="more">
-													<ul>
-														<li><a href="#none">Office Electronics</a></li>
-														<li><a href="#none">Accessories & Parts</a></li>
-														<li><a href="#none">Camera & Photos</a></li>
-														<li><a href="#none">Music Device & instrument</a></li>
-														<li><a href="#none">Home & Security</a></li>
-													</ul>
-												</div>
-											</dd>
-											<dd>
-												<a href="#none" class="jewelery">Jewelries & Watches</a>
-												<div class="more">
-													<ul>
-														<li><a href="#none">Jewelries</a></li>
-														<li><a href="#none">Watches</a></li>
-													</ul>
-												</div>
-											</dd>
-											<dd>
-												<a href="#none" class="bagsandshoes">Bags & Shoes</a>
-												<div class="more">
-													<ul>
-														<li><a href="#none">Women's Luggage & Bags</a></li>
-														<li><a href="#none">Men's Luggage & Bags</a></li>
-														<li><a href="#none">School & Travel Bags</a></li>
-														<li><a href="#none">Women’s Shoes</a></li>
-														<li><a href="#none">Men’s Shoes</a></li>
-													</ul>
-												</div>
-											</dd>
-											<dd>
-												<a href="#none" class="healthbeauty">Health & Beauty</a>
-												<div class="more">
-													<ul>
-														<li><a href="#none">Make Up</a></li>
-														<li><a href="#none">Hair & Accessories</a></li>
-														<li><a href="#none">Skin Care</a></li>
-														<li><a href="#none">Nails & Tools</a></li>
-													</ul>
-												</div>
-											</dd>
-											<dd>
-												<a href="#none" class="toykidbaby">Toys, Kid & Babies</a>
-												<div class="more">
-													<ul>
-														<li><a href="#none">Toys & Hobbies</a></li>
-														<li><a href="#none">Baby Girls Cares</a></li>
-														<li><a href="#none">Baby Boy Cares</a></li>
-													</ul>
-												</div>
-											</dd>
-											<dd>
-												<a href="#none" class="sportoudoor">Sports & Outdoors</a>
-												<div class="more">
-													<ul>
-														<li><a href="#none">Sport Clothes & Shoes</a></li>
-														<li><a href="#none">Outdoor Sports</a></li>
-														<li><a href="#none">Sport Cares</a></li>
-													</ul>
-												</div>
-											</dd>
-											<dd>
-												<a href="#none" class="homeimproment">Home & Equipment</a>
-												<div class="more">
-													<ul>
-														<li><a href="#none">Home Décor & Supplies</a></li>
-														<li><a href="#none">Lighting</a></li>
-														<li><a href="#none">Securities Protection</a></li>
-														<li><a href="#none">Equipment</a></li>
-													</ul>
-												</div>
-											</dd>
-											<dd>
-												<a href="#none" class="automobile">Cars, Motorbike & Bicycle</a>
-												<div class="more">
-													<ul>
-														<li><a href="#none">Cars for Sale & Rent</a></li>
-														<li><a href="#none">Motorbikes for Sale</a></li>
-														<li><a href="#none">Bicycle for sale</a></li>
-														<li><a href="#none">Tools, Part & Maintenance</a></li>
-													</ul>
-												</div>
-											</dd>
-											<dd>
-												<a href="#none" class="realestates">Real Estates</a>
-												<div class="more">
-													<ul>
-														<li><a href="#none">Office for Sale & Rent</a></li>
-														<li><a href="#none">Apartment for Sale & Rent</a></li>
-														<li><a href="#none">Land for sale & Rent</a></li>
-														<li><a href="#none">Condo for sale & Rent</a></li>
-														<li><a href="#none">Villa for sale & Rent</a></li>
-													</ul>
-												</div>
-											</dd>
+											<%
+													/* List<MainCategoryDto> rst=CategoryDao.getCategory();
+												    List<SubCategoryDto> rst1=CategoryDao.getSubCategory(); */
+													for(int j=0;j<rst.size();j++){
+												%>
+													<dd><a href="mycategory.ads?id=<%=AESCrypt.encrypt(String.valueOf(rst.get(j).getId())) %>" class="<%= rst.get(j).getIco_cls_name() %>"><%= rst.get(j).getName() %></a>
+														<div class="more">
+															<ul>
+																<%
+												                	for(int i=0;i<rst1.size();i++)  {  
+												                		if (rst.get(j).getId()==rst1.get(i).getId()){
+																%>
+																	<li><a href="mycategory.ads?id=<%=AESCrypt.encrypt(String.valueOf(rst.get(j).getId())) %>&subid=<%=AESCrypt.encrypt(String.valueOf(rst1.get(i).getId())) %>" target="_blank"><%= rst1.get(i).getName() %></a></li>
+																<%
+																     }
+												                	}
+																 %>
+															</ul>
+														</div>
+													</dd>
+												<%
+													}
+												%>        
 										</dl>
 									</div>
 								</h3>
 								<div class="item">
 									<dl>
-										<dt><a href="#none">Clothes</a></dt>
+										<dt><a href="./mycategory.ads?id=<%=AESCrypt.encrypt(String.valueOf(listSubCategory.get(0).getId())) %>" role="<%=listSubCategory.get(0).getId() %>">
+											<%=listSubCategory.get(0).getName() %>
+											
+										</a></dt>
 										<dd>
 											<ul>
-												<li><a href="#none">Women’s clothing</a></li>
-												<li><a href="#none">Men’s clothing</a></li>
-												<li><a href="#none">Baby’s clothing</a></li>
+												<%
+													for(int i=0;i<listSubCategory.size();i++){
+												%>
+													<li><a href="./mycategory.ads?id=<%=AESCrypt.encrypt(String.valueOf(listSubCategory.get(0).getId())) %>&subid=<%=AESCrypt.encrypt(String.valueOf(listSubCategory.get(i).getSubcategory().getId())) %>" role="<%=listSubCategory.get(i).getSubcategory().getId()%>"><%=listSubCategory.get(i).getSubcategory().getName() %></a></li>
+												<%
+													}
+												%>
 											</ul>
 										</dd>
 									</dl>
@@ -254,135 +161,55 @@
 
 									<!-- sub_cnt -->
 									<div class="sub_cnt">
-										<p class="dsc">New arrival products of clothes from thai........ New arrival products of clothes from thai........ New arrival products of clothes from thai........</p>
-										<p>
+										<p class="dsc"><%=postingDto.getTitle() %></p>
+										<!-- <p>
 											<span class="fav"s><a href="#none"></a><a href="#none"></a><a href="#none"></a><a href="#none"></a><a href="#none"></a></span>
 											<span><strong>100.0%</strong> of buyers enjoyed this products (2 votes) &nbsp;&nbsp; | &nbsp;&nbsp; <strong>50</strong> orders</span>
-										</p>
+										</p> -->
 
 										<div class="mode">
-											<h2>自定义按钮内容</h2>
+											<!-- <h2>Key notice</h2> -->
 											<div id="cxslide_fade" class="cxslide_fade">
 												<div class="box">
 													<ul class="list">
+													    <%
+													        out.print("Image size : "+postingDto.getImageList().size());
+													    
+													    	for(int i=0;i<postingDto.getImageList().size();i++){													    	
+													    %>
 														<li>
+														   <%=postingDto.getImageList().get(i).getImage() %>
 															<a href="#none">
-																<img src="img/_pic/custom-button/1.jpg">
-																<div class="txt">
+																<img src="uploads/<%=postingDto.getImageList().get(i).getImage() %>">
+																
+																<!-- <div class="txt">
 																	<h4>玩转早春自驾游</h4>
 																	<p>春暖花开，万物复苏；</p>
 																	<p>到处洋溢着花香的气息；</p>
 																	<p>连上七天班的心蠢蠢欲动；</p>
 																	<p>不如趁着清明小长假，来次放松心情的自驾游吧！</p>
-																</div>
+																</div> -->
+																
 															</a>
 														</li>
-														<li>
-															<a href="#none">
-																<img src="img/_pic/custom-button/2.jpg">
-																<div class="txt">
-																	<h4	style="color:#9E6452;">十二星座屌丝男把妹秘籍</h4>
-																	<p style="color:#9E6452;">窈窕淑女，屌丝好逑。</p>
-																	<p style="color:#9E6452;">那么多美好的妹子，为什么一个都不是你的？</p>
-																	<p style="color:#9E6452;">全速武装起来，妹子和机会一样，都喜欢有准备的人。</p>
-																	<p style="color:#9E6452;">十二星座的单身男人们，发福利啦！</p>
-																</div>
-															</a>
-														</li>
-														<li>
-															<a href="#none">
-																<img src="img/_pic/custom-button/3.jpg">
-																<div class="txt">
-																	<h4>风调日和清明天</h4>
-																	<p>气清景明，万物皆显，春意正浓</p>
-																	<p>包含了扫墓祭祀的悼念哀思</p>
-																	<p>和踏青游玩的欢笑嬉戏</p>
-																	<p>好一派风调日和清明天~</p>
-																</div>
-															</a>
-														</li>
-														<li>
-															<a href="#none">
-																<img src="img/_pic/custom-button/4.jpg">
-																<div class="txt">
-																	<h4	style="color:#68262C;">愚人节玩具大作战</h4>
-																	<p style="color:#333333;">每年的愚人节都是整蛊搞笑玩具纷纷现身的时候，</p>
-																	<p style="color:#333333;">今年又有哪些意想不到的玩意呢？</p>
-																	<p style="color:#333333;">小编为你搜罗了本年度大热的整蛊玩具，</p>
-																	<p style="color:#333333;">在愚人节这天选上几样，"愚"乐一下你的朋友们吧~</p>
-																</div>
-															</a>
-														</li>
-														<li>
-															<a href="#none">
-																<img src="img/_pic/custom-button/5.jpg">
-																<div class="txt">
-																	<h4	style="color:#8D5930;">家居大换装</h4>
-																	<p style="color:#8D5930;">春天已经姗姗而来</p>
-																	<p style="color:#8D5930;">青青小草破土而出，花儿争奇斗放</p>
-																	<p style="color:#8D5930;">大自然到处都换上了春装</p>
-																	<p style="color:#8D5930;">是不是该给家居也换个装了呢！</p>
-																</div>
-															</a>
-														</li>
-														<li>
-															<a href="#none">
-																<img src="img/_pic/custom-button/6.jpg">
-																<div class="txt">
-																	<h4	style="color:#0C6796;">正是赏花好时节</h4>
-																	<p style="color:#0C6796;">天气逐渐回暖，花朵开始绽放</p>
-																	<p style="color:#0C6796;">或素雅，或娇艳，斑斓自若</p>
-																	<p style="color:#0C6796;">春风暖意花香，直把游人熏醉</p>
-																	<p style="color:#0C6796;">烟花三月下江南，正是赏花好时节。</p>
-																</div>
-															</a>
-														</li>
+														<%
+													    	}
+														%>
 													</ul>
 												</div>
 											
 												<ul class="btn clearfix">
+												     <%
+													    	for(int i=0;i<postingDto.getImageList().size();i++){													    	
+													    %>
 													<li>
 														<a href="#none">
-															<img src="img/_pic/custom-button/1.jpg" width="79" height="42">
-															<h4>玩转早春自驾游</h4>
+															<img src="uploads/<%=postingDto.getImageList().get(i).getImage() %>" width="79" height="42">
 														</a>
-														<p>by <a href="#none">不二周助</a></p>
 													</li>
-													<li>
-														<a href="#none">
-														<img src="img/_pic/custom-button/2.jpg" width="79" height="42">
-														<h4>十二星座屌丝男把妹秘籍</h4>
-														</a>
-														<p>by <a href="#none">阿布大人</a></p>
-													</li>
-													<li>
-														<a href="#none">
-														<img src="img/_pic/custom-button/3.jpg" width="79" height="42">
-														<h4>风调日和清明天</h4>
-														</a>
-														<p>by <a href="#none">伊丽莎白酱</a></p>
-													</li>
-													<li>
-														<a href="#none">
-														<img src="img/_pic/custom-button/4.jpg" width="79" height="42">
-														<h4>愚人节玩具大作战</h4>
-														</a>
-														<p>by <a href="#none">不二周助</a></p>
-													</li>
-													<li>
-														<a href="#none">
-														<img src="img/_pic/custom-button/5.jpg" width="79" height="42">
-														<h4>家居大换装</h4>
-														</a>
-														<p>by <a href="#none">樱桃小丸子</a></p>
-													</li>
-													<li>
-														<a href="#none">
-														<img src="img/_pic/custom-button/6.jpg" width="79" height="42">
-														<h4>正是赏花好时节</h4>
-														</a>
-														<p>by <a href="#none">伊丽莎白酱</a></p>
-													</li>
+													<%
+													    	}
+													%>
 												</ul>
 											</div>
 											<script>
