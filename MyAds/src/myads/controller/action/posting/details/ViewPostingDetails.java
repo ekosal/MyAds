@@ -32,7 +32,7 @@ public class ViewPostingDetails implements Action {
 			
 	
 			forward.setRedirect(false);
-			forward.setPath("ads_product.jsp");
+			forward.setPath("ads_product_detail.jsp");
 			return forward;
 		}catch(Exception e){
 			e.printStackTrace();

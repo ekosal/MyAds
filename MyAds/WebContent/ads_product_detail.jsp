@@ -1,13 +1,8 @@
 <!-- saved from url=(0014)about:internet -->
 <!doctype html>
-     
-<%@page import="myads.model.dto.PostingDto"%>
-<%@page import="myads.model.util.AESCrypt"%>
-<%@include file="ads_header.jsp" %>
-    <%-- <%
-		List<MainCategoryDto> listSubCategory=(List<MainCategoryDto>) request.getSession().getAttribute("CategoryList");
-		out.print("List Sub Category : "+listSubCategory);
-	%> --%>
+    <%@include file="ads_header.jsp" %>
+    <%@include file="ads_help2.jsp" %>
+
 	<!-- body_section -->
 	<div class="body_section">
 		<!-- cnt_wrap -->
@@ -50,51 +45,149 @@
 									<div class="lbn">
 										<dl>
 											<dt><strong>CATEGORIES</strong>&nbsp;See all ></dt>
-												
-												<%
-													/* List<MainCategoryDto> rst=CategoryDao.getCategory();
-												    List<SubCategoryDto> rst1=CategoryDao.getSubCategory(); */
-													for(int j=0;j<rst.size();j++){
-												%>
-													<dd><a href="mycategory.ads?id=<%=AESCrypt.encrypt(String.valueOf(rst.get(j).getId())) %>" class="<%= rst.get(j).getIco_cls_name() %>"><%= rst.get(j).getName() %></a>
-														<div class="more">
-															<ul>
-																<%
-												                	for(int i=0;i<rst1.size();i++)  {  
-												                		if (rst.get(j).getId()==rst1.get(i).getId()){
-																%>
-																	<li><a href="mycategory.ads?id=<%=AESCrypt.encrypt(String.valueOf(rst.get(j).getId())) %>&subid=<%=AESCrypt.encrypt(String.valueOf(rst1.get(i).getId())) %>" target="_blank"><%= rst1.get(i).getName() %></a></li>
-																<%
-																     }
-												                	}
-																 %>
-															</ul>
-														</div>
-													</dd>
-												<%
-													}
-												%>        
+											<dd>
+												<a href="#none" class="womenclothes">Clothes</a>
+												<div class="more">
+													<ul>
+														<li><a href="#none">Women’s clothing</a></li>
+														<li><a href="#none">Men’s clothing</a></li>
+														<li><a href="#none">Baby’s clothing</a></li>
+													</ul>
+												</div>
+											</dd>
+											<dd>
+												<a href="#none" class="computeroffice">Computer & Office</a>
+												<div class="more">
+													<ul>
+														<li><a href="#none">Laptops</a></li>
+														<li><a href="#none">Desktops</a></li>
+														<li><a href="#none">Accessories & parts</a></li>
+														<li><a href="#none">Storage Devices</a></li>
+													</ul>
+												</div>
+											</dd>
+											<dd>
+												<a href="#none" class="telephone">Phone and accessories</a>
+												<div class="more">
+													<ul>
+														<li><a href="#none">Mobile Phones</a></li>
+														<li><a href="#none">Tablets</a></li>
+														<li><a href="#none">Phone’s accessories & Parts</a></li>
+													</ul>
+												</div>
+											</dd>
+											<dd>
+												<a href="#none" class="consummerelectronic">Electronics</a>
+												<div class="more">
+													<ul>
+														<li><a href="#none">Office Electronics</a></li>
+														<li><a href="#none">Accessories & Parts</a></li>
+														<li><a href="#none">Camera & Photos</a></li>
+														<li><a href="#none">Music Device & instrument</a></li>
+														<li><a href="#none">Home & Security</a></li>
+													</ul>
+												</div>
+											</dd>
+											<dd>
+												<a href="#none" class="jewelery">Jewelries & Watches</a>
+												<div class="more">
+													<ul>
+														<li><a href="#none">Jewelries</a></li>
+														<li><a href="#none">Watches</a></li>
+													</ul>
+												</div>
+											</dd>
+											<dd>
+												<a href="#none" class="bagsandshoes">Bags & Shoes</a>
+												<div class="more">
+													<ul>
+														<li><a href="#none">Women's Luggage & Bags</a></li>
+														<li><a href="#none">Men's Luggage & Bags</a></li>
+														<li><a href="#none">School & Travel Bags</a></li>
+														<li><a href="#none">Women’s Shoes</a></li>
+														<li><a href="#none">Men’s Shoes</a></li>
+													</ul>
+												</div>
+											</dd>
+											<dd>
+												<a href="#none" class="healthbeauty">Health & Beauty</a>
+												<div class="more">
+													<ul>
+														<li><a href="#none">Make Up</a></li>
+														<li><a href="#none">Hair & Accessories</a></li>
+														<li><a href="#none">Skin Care</a></li>
+														<li><a href="#none">Nails & Tools</a></li>
+													</ul>
+												</div>
+											</dd>
+											<dd>
+												<a href="#none" class="toykidbaby">Toys, Kid & Babies</a>
+												<div class="more">
+													<ul>
+														<li><a href="#none">Toys & Hobbies</a></li>
+														<li><a href="#none">Baby Girls Cares</a></li>
+														<li><a href="#none">Baby Boy Cares</a></li>
+													</ul>
+												</div>
+											</dd>
+											<dd>
+												<a href="#none" class="sportoudoor">Sports & Outdoors</a>
+												<div class="more">
+													<ul>
+														<li><a href="#none">Sport Clothes & Shoes</a></li>
+														<li><a href="#none">Outdoor Sports</a></li>
+														<li><a href="#none">Sport Cares</a></li>
+													</ul>
+												</div>
+											</dd>
+											<dd>
+												<a href="#none" class="homeimproment">Home & Equipment</a>
+												<div class="more">
+													<ul>
+														<li><a href="#none">Home Décor & Supplies</a></li>
+														<li><a href="#none">Lighting</a></li>
+														<li><a href="#none">Securities Protection</a></li>
+														<li><a href="#none">Equipment</a></li>
+													</ul>
+												</div>
+											</dd>
+											<dd>
+												<a href="#none" class="automobile">Cars, Motorbike & Bicycle</a>
+												<div class="more">
+													<ul>
+														<li><a href="#none">Cars for Sale & Rent</a></li>
+														<li><a href="#none">Motorbikes for Sale</a></li>
+														<li><a href="#none">Bicycle for sale</a></li>
+														<li><a href="#none">Tools, Part & Maintenance</a></li>
+													</ul>
+												</div>
+											</dd>
+											<dd>
+												<a href="#none" class="realestates">Real Estates</a>
+												<div class="more">
+													<ul>
+														<li><a href="#none">Office for Sale & Rent</a></li>
+														<li><a href="#none">Apartment for Sale & Rent</a></li>
+														<li><a href="#none">Land for sale & Rent</a></li>
+														<li><a href="#none">Condo for sale & Rent</a></li>
+														<li><a href="#none">Villa for sale & Rent</a></li>
+													</ul>
+												</div>
+											</dd>
 										</dl>
 									</div>
 								</h3>
 								<div class="item">
-									<%-- <dl>
-										<dt><a href="./mycategory.ads?id=<%=AESCrypt.encrypt(String.valueOf(listSubCategory.get(0).getId())) %>" role="<%=listSubCategory.get(0).getId() %>">
-											<%=listSubCategory.get(0).getName() %>
-											
-										</a></dt>
+									<dl>
+										<dt><a href="#none">Clothes</a></dt>
 										<dd>
 											<ul>
-												<%
-													for(int i=0;i<listSubCategory.size();i++){
-												%>
-													<li><a href="./mycategory.ads?id=<%=AESCrypt.encrypt(String.valueOf(listSubCategory.get(0).getId())) %>&subid=<%=AESCrypt.encrypt(String.valueOf(listSubCategory.get(i).getSubcategory().getId())) %>" role="<%=listSubCategory.get(i).getSubcategory().getId()%>"><%=listSubCategory.get(i).getSubcategory().getName() %></a></li>
-												<%
-													}
-												%>
+												<li><a href="#none">Women’s clothing</a></li>
+												<li><a href="#none">Men’s clothing</a></li>
+												<li><a href="#none">Baby’s clothing</a></li>
 											</ul>
 										</dd>
-									</dl> --%>
+									</dl>
 								</div>
 							</div>
 							<!-- //navigation -->
