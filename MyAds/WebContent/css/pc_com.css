@@ -45,6 +45,14 @@
 .logged a{display:block;font-size:11px;height:49px;padding:5px 5px;text-align:center;text-transform:capitalize;}
 .logged img{width:35px;height:35px;display:block;margin-left:8px;}
 
+/* 2016-01-22 */
+.btn_user, .btn_user > span{display:inline-block;vertical-align:top;background-image:url(../img/ico/ico_btn_usrsetting.png);}
+.btn_user, .btn_user > span{color:#128609 !important;}
+.btn_user{height:42px;padding:0 60px 0 0;background-position:100% 0;}
+.btn_user > span{height:39px;padding:3px 0 0 15px;line-height:39px;}
+.profile_setting{display:none !important;border:1px solid;}
+
+
 /* banner */
 .banner_wrap{width:1200px;margin:0 auto;border-bottom:2px solid #007bcb;}
 .banner_wrap .banner_cnt{padding-left:238px;}

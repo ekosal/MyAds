@@ -169,15 +169,11 @@
 					 	<p>
 					 		<% if(session.getAttribute("user") == null ){ %>
 								<span class="welcome"></span>
-								<a href="#none">Free Join</a> |
-							 	<a href="#none">Free Sale</a> |
-							 	<a href="#none">Free Buy</a>
 							 <% } else {%>
-							 	<a href="lay_myadsprofile.ads" style="color:#128609;"><strong>Hi</strong> <%= member.getName() %></a>|
-							 	<a href="logout.ads" class="btn_logout" style="color:#f91339;">Log Out</a>|
-							 	<a href="#none">Free Join</a> |
-							 	<a href="#none">Free Sale</a> |
-							 	<a href="#none">Free Buy</a>
+							 	<a href="lay_myadsprofile.ads" class="btn_user" ><span><strong>Hi</strong> <%= member.getName() %></span></a>
+							 	<div class="profile_setting">
+							 		<a href="logout.ads" class="btn_logout" style="color:#f91339;">Log Out</a>
+							 	</div>
 							 <%} %>
 					 	</p>
 					 </div>
