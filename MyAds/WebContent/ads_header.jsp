@@ -170,9 +170,13 @@
 					 		<% if(session.getAttribute("user") == null ){ %>
 								<span class="welcome"></span>
 							 <% } else {%>
-							 	<a href="lay_myadsprofile.ads" class="btn_user" ><span><strong>Hi</strong> <%= member.getName() %></span></a>
+							 	<strong style="display:inline-block;padding:3px 0 0;font-size:16px;font-weight:bold;">Hi</strong> <a href="#none" class="btn_user" ><span><%= member.getName() %></span></a>
 							 	<div class="profile_setting">
-							 		<a href="logout.ads" class="btn_logout" style="color:#f91339;">Log Out</a>
+							 		<ol>
+							 			<li><a href="#none" class="btn_name"><img src="img/ico/user_img.png"  alt=""> <%= member.getName() %></a></li>
+							 			<li><a href="lay_myadsprofile.ads" class="btn_acc_setting">Account settings</a></li>
+							 			<li><a href="logout.ads" class="btn_logout" style="color:#f91339;">Log out</a></li>
+							 		</ol>
 							 	</div>
 							 <%} %>
 					 	</p>
