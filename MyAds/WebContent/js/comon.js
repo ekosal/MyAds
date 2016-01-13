@@ -52,7 +52,6 @@ $(document).ready(function(e) {
 	 
 	 /* 2016-01-13 */
 	 $('.btn_user').click(function(e) {
-		 	alert(1);
 			$('.profile_setting').toggleClass('on');
 	 });
 	
