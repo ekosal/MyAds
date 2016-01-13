@@ -117,43 +117,37 @@
 										<form>
 											<legend>Order Form</legend>
 											<div class="frm_order">
-												<table summary="">
-													<caption></caption>
-													<colgroup>
-													<col style="width:100px;">
-													<col>
-													</colgroup>
-													<tbody>
-														<tr>
-															<th><div>Price</div></th>
-															<td><div><strong>US $ 99.58</strong>/price</div></td>
-														</tr>
-														<tr>
-															<th><div>Sallers</div></th>
-															<td><div>Sreng Bunthorn</div></td>
-														</tr>
-														<tr>
-															<th><div>Contact</div></th>
-															<td><div><a href="070372639">070 37 26 39</a></div></td>
-														</tr>
-														<tr>
-															<th><div>Email</div></th>
-															<td><div>srengbunthorn@gmail.com</div></td>
-														</tr>
-														<tr>
-															<th><div>Address</div></th>
-															<td><div>Phnom Penh</div></td>
-														</tr>
-														<tr>
-															<th><div>Quanlity</div></th>
-															<td><div>Depends on the product properties you select</div></td>
-														</tr>
-														<tr>
-															<th><div>Total Price</div></th>
-															<td><div><strong>US $ 99.58</strong>/price</div></td>
-														</tr>
-													</tbody>
-												</table>
+												<div style="height:100%;background-color:#fff;">
+													<table summary="">
+														<caption></caption>
+														<colgroup>
+														<col style="width:100px;">
+														<col>
+														</colgroup>
+														<tbody>
+															<tr>
+																<th><div>Price</div></th>
+																<td><div><strong>US $ 99.58</strong>/price</div></td>
+															</tr>
+															<tr>
+																<th><div>Sallers</div></th>
+																<td><div>Sreng Bunthorn</div></td>
+															</tr>
+															<tr>
+																<th><div>Contact</div></th>
+																<td><div style="color:blue;">070 37 26 39</div></td>
+															</tr>
+															<tr>
+																<th><div>Email</div></th>
+																<td><div style="color:blue;text-decoration:underline;">srengbunthorn@gmail.com</div></td>
+															</tr>
+															<tr>
+																<th><div>Address</div></th>
+																<td><div>Phnom Penh</div></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
 											</div>
 										</form>
 									</div>
@@ -167,29 +161,20 @@
 											<span><strong>100.0%</strong> of buyers enjoyed this products (2 votes) &nbsp;&nbsp; | &nbsp;&nbsp; <strong>50</strong> orders</span>
 										</p> -->
 
-										<div class="mode">
+										<div class="mode" style="border:1px solid #eee;">
 											<!-- <h2>Key notice</h2> -->
-											<div id="cxslide_fade" class="cxslide_fade">
-												<div class="box">
+											<div id="cxslide_fade" class="cxslide_fade" style="background-color:#fff;">
+												<div class="box" style="height:320px;">
 													<ul class="list">
 													    <%
 													      
 													    
 													    	for(int i=0;i<postingDto.getImageList().size();i++){													    	
 													    %>
-														<li>
-														   <%=postingDto.getImageList().get(i).getImage() %>
+														<li style="width:535px;height:320px;background-color:#fff;">
 															<a href="#none">
-																<img src="uploads/<%=postingDto.getImageList().get(i).getImage() %>">
-																
-																<!-- <div class="txt">
-																	<h4>玩转早春自驾游</h4>
-																	<p>春暖花开，万物复苏；</p>
-																	<p>到处洋溢着花香的气息；</p>
-																	<p>连上七天班的心蠢蠢欲动；</p>
-																	<p>不如趁着清明小长假，来次放松心情的自驾游吧！</p>
-																</div> -->
-																
+																<img src="uploads/<%=postingDto.getImageList().get(i).getImage() %>" style="width:auto;height:320px;">
+																<!-- can add more text here -->
 															</a>
 														</li>
 														<%
@@ -198,13 +183,13 @@
 													</ul>
 												</div>
 											
-												<ul class="btn clearfix">
+												<ul class="btn clearfix" style="height:50px;">
 												     <%
 													    	for(int i=0;i<postingDto.getImageList().size();i++){													    	
 													    %>
 													<li>
 														<a href="#none">
-															<img src="uploads/<%=postingDto.getImageList().get(i).getImage() %>" width="79" height="42">
+															<img src="uploads/<%=postingDto.getImageList().get(i).getImage() %>" style="width:79px;height:50px;">
 														</a>
 													</li>
 													<%
@@ -240,10 +225,9 @@
 								<div class="share">
 									<h4>Share To</h4>
 									<p>
-										<a href="#none"><img src="img/share/share01.png" alt=""></a>
-										<a href="#none"><img src="img/share/share01.png" alt=""></a>
-										<a href="#none"><img src="img/share/share01.png" alt=""></a>
-										<a href="#none"><img src="img/share/share01.png" alt=""></a>
+										<a href="http://twitter.com/home?status=" title="Share on Twitter" target="_blank"><img src="img/share/twitter.png" alt="" style="width:40px;height:40px;"></a>
+										<a href="https://www.facebook.com/sharer/sharer.php?u=" title="Share on Facebook" target="_blank"><img src="img/share/facebook.jpg" alt="" style="width:40px;height:30px;"></a>
+										<a href="https://plus.google.com/share?url=" title="Share on Google+" target="_blank"><img src="img/share/google-plus.png" alt="" style="width:40px;height:40px;"></a>
 									</p>
 									<p>Please shar everything here to you friends to get closely life ................</p>
 								</div>
@@ -270,15 +254,8 @@
 									<p>text1 text1 text1 text1 text1 text1 text1v text1 text1v text1 text1v</p>
 									<p>text1 text1 text1 text1 text1 text1 text1v text1 text1v text1 text1v</p>
 									<p>text1 text1 text1 text1 text1 text1 text1v text1 text1v text1 text1v</p>
-									<div class="img"><img src="img/mode/mode_clothe01.png" alt=""></div>
-									<div class="mgt10">
-										<dl>
-											<dt>Shipping</dt>
-											<dd>text skfsldfslfksl</dd>
-											<dd>text skfsldfslfksl</dd>
-											<dt>Shipping</dt>
-											<dd>text skfsldfslfksl</dd>
-										</dl>
+									<div class="img">
+										<img src="img/mode/mode_clothe01.png" alt="">
 									</div>
 									<div class="adv mgt30">
 										<img src="img/adv/adv08.png" alt="">

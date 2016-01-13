@@ -273,7 +273,7 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .sub_rbn1{padding-right:400px;}
 .sub_rbn1 .sub_rbn_cnt{float:right;display:block;width:400px;margin-right:-400px;}
 .sub_rbn1 .sub_cnt{padding:0 5px 0 0;}
-.sub_rbn1 .sub_cnt .dsc{font-size:14px;font-weight:bold;color:#444;}
+.sub_rbn1 .sub_cnt .dsc{font-size:18px;font-weight:bold;color:#444;}
 .sub_rbn1 .sub_cnt > p{color:#000;}
 .sub_rbn1 .sub_cnt > p strong{font-size:16px;}
 .sub_rbn1 .sub_cnt > .mode{padding:10px 0;}
@@ -812,12 +812,12 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .container .lbn_cnt .adv, .container .lbn_cnt .adv img{width:218px;height:240px;}
 .container .lbn_cnt .adv{border:1px solid #ddd;}
 
-.frm_order{padding:0 15px 15px 15px;background:#f8ce94;}
-.frm_order table{height:450px;border-top:2px solid #fb031b;background:#fff;}
+.frm_order{padding:0 15px 15px 15px;height:398px;font-size:14px;background:#f8ce94;}
+.frm_order table{border-top:5px solid #fb031b;}
 .frm_order table tr{}
 .frm_order table tr th div, .frm_order table tr td div{text-align:left;padding:0 15px;}
-.frm_order table tr:first-child{height:50px;}
-.frm_order table tr:first-child strong{font-size:18px;color:#ff6408;}
+.frm_order table tr:first-child{height:60px;}
+.frm_order table tr:first-child strong{font-size:20px;color:#ff6408;}
 .frm_order table td{height:30px;}
 .frm_order > div > img{width:370px;height:250px;}
 
