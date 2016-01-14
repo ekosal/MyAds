@@ -1,5 +1,6 @@
 
-	<%@page import="myads.model.util.AESCrypt"%>
+	<%@page import="myads.model.util.Pagination"%>
+<%@page import="myads.model.util.AESCrypt"%>
 <%@page import="myads.model.dto.PostingDto"%>
 <jsp:directive.include file="ads_header.jsp" />
 	<jsp:directive.include file="ads_help2.jsp" />
@@ -167,7 +168,15 @@
 								<div class="paging"><!-- 비활성상태는 on class 제거 -->
 									<a href="#none" class="btn_pag_cntr first"><span class="blind">first</span></a><a href="#none" class="btn_pag_cntr prev"><span class="blind">previous</span></a>
 									<span class="pag_num">
-										<a href="#none" class="on">1</a><a href="#none">2</a><a href="#none">3</a><a href="#none">4</a><a href="#none">5</a><a href="#none">6</a><a href="#none">7</a><a href="#none">8</a><a href="#none">9</a><a href="#none">10</a>
+									    <a href="#none" class="on">1</a>
+										<%
+											for(int i=2;i<Pagination.totalpage;i++){
+										%>
+											<a href="#none" class="on"><%=i %></a>
+										<%
+											}
+										%>
+										<a href="#none" class="on"><%=Pagination.totalpage %></a>
 									</span>
 									<a href="#none" class="btn_pag_cntr next on"><span class="blind">next</span></a><a href="#none" class="btn_pag_cntr last on"><span class="blind">last</span></a>
 								</div> 

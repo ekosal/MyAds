@@ -121,17 +121,38 @@ public class PostingDao {
 		return postinglist;
 	}
 	
-	
-	public List<PostingDto> readProductByCategory(String category_id){
+	public int readCountPage(String category_id){
+		int count=0;
+		try{
+			String sql="select count(*) as total from tbl_posting "
+					+ "p INNER JOIN tbl_sub_category sc on p.SubCateId=sc.SubCateId "
+					+ "INNER JOIN tbl_category c on c.CateId=sc.CateId INNER JOIN tbl_image "
+					+ "i on p.PostingId=i.PostingId WHERE c.CateId=? and p.Active=1 and i.order=1";
+		
+			ps=ds.getConnection().prepareStatement(sql);
+			ps.setInt(1,Integer.valueOf(category_id));
+			rs=ps.executeQuery();
+			while(rs.next()){
+				count=rs.getInt("total");
+			}
+			return count;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	public List<PostingDto> readProductByCategory(String category_id,int start,int end){
 		List<PostingDto> productList=new ArrayList<>();
 		try{			
 			String sql="select sc.SubCateId,c.CateId,i.Image,p.PostingId,p.ProductName,p.Price,p.Discount,p.KeyNotice from tbl_posting "
 					+ "p INNER JOIN tbl_sub_category sc on p.SubCateId=sc.SubCateId "
 					+ "INNER JOIN tbl_category c on c.CateId=sc.CateId INNER JOIN tbl_image "
-					+ "i on p.PostingId=i.PostingId WHERE c.CateId=? and p.Active=1 and i.order=1";
+					+ "i on p.PostingId=i.PostingId WHERE c.CateId=? and p.Active=1 and i.order=1  LIMIT ? OFFSET ?";
 			
 			ps=ds.getConnection().prepareStatement(sql);
 			ps.setInt(1,Integer.valueOf(category_id));
+			ps.setInt(2, start);
+			ps.setInt(3, end);
 			rs=ps.executeQuery();
 			while(rs.next()){
 				PostingDto posting=new PostingDto();

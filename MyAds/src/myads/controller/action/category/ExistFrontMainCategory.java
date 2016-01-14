@@ -14,6 +14,7 @@ import myads.model.dao.PostingDao;
 import myads.model.dto.MainCategoryDto;
 import myads.model.dto.PostingDto;
 import myads.model.util.AESCrypt;
+import myads.model.util.Pagination;
 
 public class ExistFrontMainCategory implements Action {
 
@@ -34,7 +35,8 @@ public class ExistFrontMainCategory implements Action {
 			PostingDao positing=new PostingDao();
 			List<PostingDto> productList=new ArrayList<>();
 			if (subCateryId==null || subCateryId==""){
-				productList=positing.readProductByCategory(AESCrypt.decrypt(categoryId));
+				Pagination.countPage(positing.readCountPage(AESCrypt.decrypt(categoryId)));
+				productList=positing.readProductByCategory(AESCrypt.decrypt(categoryId),Pagination.startpage,Pagination.endpage);
 			}else{
 				productList=positing.readProductByCategoryAndSubCategory(AESCrypt.decrypt(categoryId), AESCrypt.decrypt(subCateryId));
 			}
