@@ -125,6 +125,28 @@ public class PostingDao {
 		return postinglist;
 	}
 	
+	public int countPostingByUser(MemberDto memberDto){
+		ResultSet rs=null;
+		String sql="select count(*) total from tbl_posting p INNER JOIN tbl_image i "+
+		"on p.PostingId=i.PostingId INNER JOIN tbl_sub_category sc "+
+		"on p.SubCateId=sc.SubCateId where p.MemId=? ";
+		int count=0;
+		try {
+			ps=SqlConnection.getConnection().prepareStatement(sql);
+			ps.setInt(1, memberDto.getId());
+			rs=ps.executeQuery();
+		    while(rs.next()){
+		    	count=rs.getInt("total");
+		    }
+			return count;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		return 0;
+	}
+	
 	public List<PostingListDto> getSearchPostingList(MemberDto memberDto,String search,int start,int ent){
 		ResultSet rs=null;
 		String sql="select p.PostingId,p.MemId,p.ProductName,p.Price,p.Phone,"+

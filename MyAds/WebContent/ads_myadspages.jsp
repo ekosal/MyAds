@@ -1,4 +1,5 @@
 	
+<%@page import="myads.model.util.Pagination"%>
 <%@page import="myads.model.dao.PostingDao"%>
 <%@page import="myads.model.dto.PostingListDto"%>
 <jsp:directive.include file="ads_header.jsp" />
@@ -26,7 +27,7 @@
 						</div>
 						<div class="f_right mypost_srch">
 							<label><input type="text" placeholder="Find your posts...!" style="width:400px;" id="txtSearch"></label>
-							<a href="#none" class="btn_create_acc btn_mypost" id="btnSearch">Search</a>&nbsp;&nbsp;&nbsp;&nbsp;
+							<a href="javascript:" class="btn_create_acc btn_mypost" id="btnSearch">Search</a>&nbsp;&nbsp;&nbsp;&nbsp;
 							<a href="lay_newposting.ads" class="btn_create_acc btn_mypost">Add New Post</a>
 						</div>
 					</div>
@@ -34,15 +35,13 @@
 					
 					<!-- mypost content -->
 					<div class="mypost_cnt mgt20">
-						<ul>
+						<ul id="productList">
 						
 							<%
-								MemberDto memberDto=new MemberDto();
-							    member=(MemberDto)session.getAttribute("user");
-							    PostingDao postingDao=new PostingDao();
-								List<PostingListDto> postinglist=postingDao.getPostingList(member);
+							    int countPage=Pagination.totalpage;
+								List<PostingListDto> postinglist=(List<PostingListDto>)request.getSession().getAttribute("postingList");
 								for(int i=0;i<postinglist.size();i++){
-							
+							    
 							%>
 							<li>
 								<div class="img"><a href="#none"><img src="uploads/<%=postinglist.get(i).getImg() %>" alt=""></a></div>
@@ -55,9 +54,9 @@
 									<dd>Your Address: <%=postinglist.get(i).getAdr() %></dd>
 								</dl>
 								<div class="btn_wrap">
-									<a href="#none" class="btn_post disable_post">Disable Post</a>
-									<a href="#none" class="btn_post enabl_post">Enable Post</a>
-									<a href="#none" class="btn_post edit_post">Edit Post</a>
+									<a href="javascript:" class="btn_post disable_post">Disable Post</a>
+									<a href="javascript:" class="btn_post enabl_post">Enable Post</a>
+									<a href="javascript:" class="btn_post edit_post">Edit Post</a>
 								</div>
 							</li>
 							<%
@@ -71,11 +70,19 @@
 					<div class="paging_wrap mgt30">
 						<!-- pagination -->
 						<div class="paging"><!-- 비활성상태는 on class 제거 -->
-							<a href="#none" class="btn_pag_cntr first"><span class="blind">first</span></a><a href="#none" class="btn_pag_cntr prev"><span class="blind">previous</span></a>
+						    <input type="text" value="0" id="txtcurrentpage">
+							<a href="javascript:" class="btn_pag_cntr first" rel="1"><span class="blind">first</span></a><a href="javascript:" class="btn_pag_cntr prev"><span class="blind">previous</span></a>
 							<span class="pag_num">
-								<a href="#none" class="on">1</a><a href="#none">2</a><a href="#none">3</a><a href="#none">4</a><a href="#none">5</a><a href="#none">6</a><a href="#none">7</a><a href="#none">8</a><a href="#none">9</a><a href="#none">10</a>
+							    <a href="javascript:" class="on indexPage" >1</a>
+							    <%
+							       for(int i=2;i<=countPage;i++){
+							    %>
+									<a href="javascript:" rel="<%=i %>" class="indexPage"><%=i %></a>
+								<%
+							       }
+								%>
 							</span>
-							<a href="#none" class="btn_pag_cntr next on"><span class="blind">next</span></a><a href="#none" class="btn_pag_cntr last on"><span class="blind">last</span></a>
+							<a href="javascript:" class="btn_pag_cntr next on"><span class="blind">next</span></a><a href="javascript:" class="btn_pag_cntr last on indexPage" rel="<%=countPage %>"><span class="blind">last</span></a>
 						</div> 
 						<!-- //pagination -->
 						
@@ -102,6 +109,26 @@
 	    			data : "txtSearch="+$("#txtSearch").val(),
 	    			success : function(dat) {    				
 	    				console.log(dat);
+	    				var html='';
+	    				for(var i=0;i<dat.length;i++){
+	    					html+='<li>'
+	    					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[i]["img"]+'" alt=""></a></div>'
+	    					      +'<dl>'
+	    					      +'<dt>Product Name:<a href="#none">'+dat[i]["ProductName"]+'</a></dt>'
+	    					      +'<dd>Category Type: '+dat[i]["SubCateName"]+'</dd>'
+	    					      +'<dd><strong>Price: '+dat[i]["Price"]+'</strong></dd>'
+	    					      +'<dd><strong>Discount: '+dat[i]["discount"]+'</strong></dd>'
+	    					      +'<dd>Phone Number: '+dat[i]["Phone"]+'</dd>'
+							      +'<dd>Your Address: '+dat[i]["Adr"]+'</dd>'
+							      +'</dl>'
+								  +'<div class="btn_wrap"><a href="#none" class="btn_post disable_post">Disable Post</a>'
+								  +'<a href="#none" class="btn_post enabl_post">Enable Post</a><a href="#none" class="btn_post edit_post">Edit Post</a>'
+								  +'</div></li>';							
+
+	    				}
+	    				$("#productList").empty();
+	    				$("#productList").append(html);
+	    				
 	    			},
 	    			error : function(e) {
 	    				console.log("ERROR: ", e);
@@ -112,6 +139,15 @@
 	    			}
 	    		});
 				
+			});
+			$( "#txtSearch" ).keypress(function() {
+				$( "#btnSearch" ).trigger( "click" ); 
+			});
+			$( "#txtSearch" ).keyup(function() {
+				$( "#btnSearch" ).trigger( "click" ); 
+			});
+			$( "#txtSearch" ).keydown(function() {
+				$( "#btnSearch" ).trigger( "click" ); 
 			});
 		});
     </script>

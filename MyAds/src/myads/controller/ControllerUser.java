@@ -108,14 +108,15 @@ public class ControllerUser extends HttpServlet {
 		 }else if (command.equals("/lay_search_myadspages.ads")){
 			
 			 action=new SearchAdsAction();
-			 if (request.getSession().getAttribute("postingList")!=null){
-				 response.setContentType("application/json");
-				 response.setCharacterEncoding("UTF-8");
-				 response.getWriter().write(new Gson().toJson(request.getSession().getAttribute("postingList")));
-				 return ;
-			 }
+		
 			 try{
 					forward=action.execute(request, response);
+					 if (request.getSession().getAttribute("postingList")!=null){
+						 response.setContentType("application/json");
+						 response.setCharacterEncoding("UTF-8");
+						 response.getWriter().write(new Gson().toJson(request.getSession().getAttribute("postingList")));
+						 return ;
+				    }
 				}catch(Exception e){
 					e.printStackTrace();
 				}
