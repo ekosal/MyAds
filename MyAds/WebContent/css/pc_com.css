@@ -3,7 +3,7 @@
 .wrap{display:block;min-width:1220px;}
 
 /* head_section */
-.head_section{position:relative;height:126px;background-color:#fce303;border-bottom:2px solid #007bcb;z-index:9999;}
+.head_section{position:relative;height:126px;background-color:#fce303;border-bottom:2px solid #007bcb;z-index:999;}
 .head_section .head_cnt{width:1200px;height:126px;margin:0 auto;}
 
 /* logo */

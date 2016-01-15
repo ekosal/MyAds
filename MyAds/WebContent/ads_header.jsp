@@ -171,7 +171,7 @@
 								<span class="welcome"></span>
 							 <% } else {%>
 							 	<strong style="display:inline-block;padding:3px 0 0;font-size:16px;font-weight:bold;">Hi</strong> <a href="#none" class="btn_user" ><span><%= member.getName() %></span></a>
-							 	<div class="profile_setting">
+							 	<div class="profile_setting" style="display:block;">
 							 		<ol>
 							 			<li><a href="#none" class="btn_name"><img src="img/ico/user_img.png"  alt=""> <%= member.getName() %></a></li>
 							 			<li><a href="lay_myadsprofile.ads" class="btn_acc_setting">Account settings</a></li>

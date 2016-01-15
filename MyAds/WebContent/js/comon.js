@@ -49,10 +49,6 @@ $(document).ready(function(e) {
 	  reader.readAsDataURL(files[0]);
 	 });
 	 
-	 
-	 /* 2016-01-13 */
-	 $('.btn_user').click(function(e) {
-			$('.profile_setting').toggleClass('on');
-	 });
 	
+	 
 });
