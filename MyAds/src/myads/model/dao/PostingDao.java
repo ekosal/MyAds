@@ -12,9 +12,11 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+import javax.websocket.Session;
 
 import myads.model.dto.Image;
 import myads.model.dto.MainCategoryDto;
+import myads.model.dto.MemberDto;
 import myads.model.dto.PostingDto;
 import myads.model.dto.PostingListDto;
 import myads.model.dto.SubCategoryDto;
@@ -84,18 +86,20 @@ public class PostingDao {
 	
 	///   list posting
 	
-	public List<PostingListDto> getPostingList(){
+	public List<PostingListDto> getPostingList(MemberDto memberDto){
 		ResultSet rs=null;
 		String sql="select p.PostingId,p.MemId,p.ProductName,p.Price,p.Phone,"+
 		"p.Address,p.Description,p.Discount ,i.Image,sc.Name from tbl_posting p INNER JOIN tbl_image i "+
 		"on p.PostingId=i.PostingId INNER JOIN tbl_sub_category sc "+
-		"on p.SubCateId=sc.SubCateId where i.order=1 GROUP BY p.PostingId ORDER BY p.PostDate DESC";
+		"on p.SubCateId=sc.SubCateId where i.order=1 and p.MemId=? "		
+		+ "GROUP BY p.PostingId ORDER BY p.PostDate DESC";
  
 		List<PostingListDto> postinglist=new ArrayList<>();
 		
 		try {
-			
+			System.out.println(" Member Id : "+memberDto.getId());
 			ps=SqlConnection.getConnection().prepareStatement(sql);
+			ps.setInt(1, memberDto.getId());
 			rs=ps.executeQuery();
 		    while(rs.next()){
 		    	
@@ -120,6 +124,54 @@ public class PostingDao {
 		}
 		return postinglist;
 	}
+	
+	public List<PostingListDto> getSearchPostingList(MemberDto memberDto,String search,int start,int ent){
+		ResultSet rs=null;
+		String sql="select p.PostingId,p.MemId,p.ProductName,p.Price,p.Phone,"+
+		"p.Address,p.Description,p.Discount ,i.Image,sc.Name from tbl_posting p INNER JOIN tbl_image i "+
+		"on p.PostingId=i.PostingId INNER JOIN tbl_sub_category sc "+
+		"on p.SubCateId=sc.SubCateId where i.order=1 and p.MemId=? "
+		+ "and p.ProductName like ? or p.Price like ? OR "
+		+ "p.phone like ? OR p.Address like ? OR p.Description like ? "		
+		+ "GROUP BY p.PostingId ORDER BY p.PostDate DESC";
+ 
+		List<PostingListDto> postinglist=new ArrayList<>();
+		
+		try {
+			System.out.println(" Member Id : "+memberDto.getId() + "search : "+search);
+			ps=SqlConnection.getConnection().prepareStatement(sql);
+			ps.setInt(1, memberDto.getId());
+			ps.setString(2, "%"+search+"%");
+			ps.setString(3, "%"+search+"%");
+			ps.setString(4, "%"+search+"%");
+			ps.setString(5, "%"+search+"%");
+			ps.setString(6, "%"+search+"%");
+			//System.out.println("PS : "+ps);
+			rs=ps.executeQuery();
+		    while(rs.next()){
+		    	
+		    	PostingListDto posintdto=new PostingListDto();
+		    	posintdto.setPostingId(rs.getInt("PostingId"));
+		    	posintdto.setMemId(rs.getInt("MemId"));
+		    	posintdto.setProductName(rs.getString("ProductName"));
+		    	posintdto.setPrice(rs.getInt("Price"));
+		    	posintdto.setPhone(rs.getString("Phone"));
+		    	posintdto.setAdr(rs.getString("Address"));
+		    	posintdto.setDsc(rs.getString("Description"));
+		    	posintdto.setDiscount(rs.getString("Discount"));
+		    	posintdto.setImg(rs.getString("Image"));
+		    	posintdto.setSubCateName(rs.getString("Name"));
+		    	postinglist.add(posintdto);
+		    }
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			postinglist=null;
+		}
+		return postinglist;
+	}
+	
 	
 	public int readCountPage(String category_id){
 		int count=0;

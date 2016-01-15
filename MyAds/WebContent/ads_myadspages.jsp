@@ -25,8 +25,8 @@
 							<h1 class="f_left"><span style="color:#0174b3;">MyAds's</span> <span style="color:#f7153a;">Posting</span></h1>
 						</div>
 						<div class="f_right mypost_srch">
-							<label><input type="text" placeholder="Find your posts...!" style="width:400px;"></label>
-							<a href="#none" class="btn_create_acc btn_mypost">Search</a>&nbsp;&nbsp;&nbsp;&nbsp;
+							<label><input type="text" placeholder="Find your posts...!" style="width:400px;" id="txtSearch"></label>
+							<a href="#none" class="btn_create_acc btn_mypost" id="btnSearch">Search</a>&nbsp;&nbsp;&nbsp;&nbsp;
 							<a href="lay_newposting.ads" class="btn_create_acc btn_mypost">Add New Post</a>
 						</div>
 					</div>
@@ -35,9 +35,12 @@
 					<!-- mypost content -->
 					<div class="mypost_cnt mgt20">
 						<ul>
+						
 							<%
+								MemberDto memberDto=new MemberDto();
+							    member=(MemberDto)session.getAttribute("user");
 							    PostingDao postingDao=new PostingDao();
-								List<PostingListDto> postinglist=postingDao.getPostingList();
+								List<PostingListDto> postinglist=postingDao.getPostingList(member);
 								for(int i=0;i<postinglist.size();i++){
 							
 							%>
@@ -90,3 +93,25 @@
 	<!-- //body_section -->
 
 	<jsp:directive.include file="ads_footer.jsp" />
+	<script type="text/javascript">
+		$(document).ready(function(e){
+			$("#btnSearch").click(function(e){
+				$.ajax({
+	    			type : "POST",
+	       			url : "${pageContext.request.contextPath }/lay_search_myadspages.ads",
+	    			data : "txtSearch="+$("#txtSearch").val(),
+	    			success : function(dat) {    				
+	    				console.log(dat);
+	    			},
+	    			error : function(e) {
+	    				console.log("ERROR: ", e);
+	    				
+	    			},
+	    			done : function(e) {
+	    				console.log("DONE");
+	    			}
+	    		});
+				
+			});
+		});
+    </script>

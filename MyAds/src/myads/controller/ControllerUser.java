@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
 import myads.controller.action.Action;
 import myads.controller.action.ActionForward;
 import myads.controller.action.category.AddCompany;
@@ -20,6 +22,7 @@ import myads.controller.action.member.*;
 import myads.controller.action.posting.AddPosting;
 import myads.controller.action.posting.AddPostingAction;
 import myads.controller.action.posting.MyAdsAction;
+import myads.controller.action.posting.SearchAdsAction;
 import myads.controller.action.posting.details.ViewPostingDetails;
 import myads.controller.action.profile.ProfileAction;
 import myads.controller.action.user.LoginUser;
@@ -101,6 +104,22 @@ public class ControllerUser extends HttpServlet {
 					e.printStackTrace();
 				}
 			 }
+			 System.out.println(forward.getPath());
+		 }else if (command.equals("/lay_search_myadspages.ads")){
+			
+			 action=new SearchAdsAction();
+			 if (request.getSession().getAttribute("postingList")!=null){
+				 response.setContentType("application/json");
+				 response.setCharacterEncoding("UTF-8");
+				 response.getWriter().write(new Gson().toJson(request.getSession().getAttribute("postingList")));
+				 return ;
+			 }
+			 try{
+					forward=action.execute(request, response);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			 
 			 System.out.println(forward.getPath());
 		 }else if (command.equals("/lay_newposting.ads")){
 			 
