@@ -255,7 +255,7 @@
 			$("#next-page").click(function(e){
 				var total = $("#paging a:last-child").attr("rel");
 				var current=parseInt($("#txtcurrentpage").val())+1;
-				if (total>current) return;
+				if (total<current) return;
 				$.ajax({
 	    			type : "POST",
 	       			url : "${pageContext.request.contextPath }/lay_search_myadspages.ads",
