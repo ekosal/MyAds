@@ -73,7 +73,7 @@
 						    <input type="text" value="0" id="txtcurrentpage">
 							<a href="javascript:" class="btn_pag_cntr first" rel="1"><span class="blind">first</span></a><a href="javascript:" class="btn_pag_cntr prev"><span class="blind">previous</span></a>
 							<span class="pag_num">
-							    <a href="javascript:" class="on indexPage" >1</a>
+							    <a href="javascript:" class="on indexPage" rel="1">1</a>
 							    <%
 							       for(int i=2;i<=countPage;i++){
 							    %>
@@ -163,35 +163,38 @@
 				$( "#btnSearch" ).trigger( "click" ); 
 			});
 			
-			$(".paging a.indexPage").click(function(e){
+			$(".paging a").click(function(e){
 				$.ajax({
 	    			type : "POST",
 	       			url : "${pageContext.request.contextPath }/lay_search_myadspages.ads",
-	    			data : "cp="+$(".paging a.indexPage").attr("rel"),
+	    			data : "cp="+$(this).attr("rel"),
 	    			success : function(dat) {    				
 	    				console.log(dat);
 	    				var html='';
 	    				var page='';
-	    				for(var i=0;i<dat.length;i++){
+	    				for(var i=0;i<dat[1].length;i++){
 	    					html+='<li>'
-	    					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[i]["img"]+'" alt=""></a></div>'
+	    					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["img"]+'" alt=""></a></div>'
 	    					      +'<dl>'
-	    					      +'<dt>Product Name:<a href="#none">'+dat[i]["ProductName"]+'</a></dt>'
-	    					      +'<dd>Category Type: '+dat[i]["SubCateName"]+'</dd>'
-	    					      +'<dd><strong>Price: '+dat[i]["Price"]+'</strong></dd>'
-	    					      +'<dd><strong>Discount: '+dat[i]["discount"]+'</strong></dd>'
-	    					      +'<dd>Phone Number: '+dat[i]["Phone"]+'</dd>'
-							      +'<dd>Your Address: '+dat[i]["Adr"]+'</dd>'
+	    					      +'<dt>Product Name:<a href="#none">'+dat[1][i]["ProductName"]+'</a></dt>'
+	    					      +'<dd>Category Type: '+dat[1][i]["SubCateName"]+'</dd>'
+	    					      +'<dd><strong>Price: '+dat[1][i]["Price"]+'</strong></dd>'
+	    					      +'<dd><strong>Discount: '+dat[1][i]["discount"]+'</strong></dd>'
+	    					      +'<dd>Phone Number: '+dat[1][i]["Phone"]+'</dd>'
+							      +'<dd>Your Address: '+dat[1][i]["Adr"]+'</dd>'
 							      +'</dl>'
 								  +'<div class="btn_wrap"><a href="#none" class="btn_post disable_post">Disable Post</a>'
 								  +'<a href="#none" class="btn_post enabl_post">Enable Post</a><a href="#none" class="btn_post edit_post">Edit Post</a>'
 								  +'</div></li>';							
 
 	    				}
-	    				
-	    				
+
 	    				$("#productList").empty();
 	    				$("#productList").append(html);
+	    				$('.paging a').click(function(e) {
+	    					$(this).siblings('a').removeClass('on');
+	    					$(this).addClass('on');
+	    				});
 	    				
 	    			},
 	    			error : function(e) {
@@ -203,5 +206,6 @@
 	    			}
 	    		});
 			});
+			
 		});
     </script>

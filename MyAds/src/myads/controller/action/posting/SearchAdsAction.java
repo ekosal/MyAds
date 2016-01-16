@@ -26,22 +26,23 @@ public class SearchAdsAction implements Action{
 		PostingDao postingDao=new PostingDao();
 		String search=request.getParameter("txtSearch");
 		String cp=request.getParameter("cp");
-		System.out.println(" Search : "+search +"Cp "+cp);
+
 		
 		try{
-		    System.out.println(" Search : "+search);
+		    
 			memberDto=(MemberDto) request.getSession().getAttribute("user");
 			Pagination.startpage=1;
-			Pagination.endpage=5;
+			Pagination.currentpage=1;
 			if (cp!=null || cp!= ""){
 				Pagination.startpage=(Pagination.rowperpage*Integer.valueOf(cp))-Pagination.rowperpage;
-				Pagination.endpage=Pagination.rowperpage*Integer.valueOf(cp);
+				Pagination.currentpage=Integer.valueOf(cp);
 			}
 			
 			if (search==null) search="";
+			if (Pagination.startpage==0) Pagination.startpage=1;
 			
 			if (memberDto!=null){
-				postinList= postingDao.getSearchPostingList(memberDto, search, Pagination.startpage, Pagination.endpage);
+				postinList= postingDao.getSearchPostingList(memberDto, search, Pagination.startpage, Pagination.rowperpage);
 				Pagination.countPage(postingDao.countPostingByUser(memberDto,search));
 				request.getSession().setAttribute("postingList", postinList);
 			}

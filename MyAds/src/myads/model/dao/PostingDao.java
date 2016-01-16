@@ -156,7 +156,7 @@ public class PostingDao {
 		return 0;
 	}
 	
-	public List<PostingListDto> getSearchPostingList(MemberDto memberDto,String search,int start,int ent){
+	public List<PostingListDto> getSearchPostingList(MemberDto memberDto,String search,int start,int row){
 		ResultSet rs=null;
 		String sql="select p.PostingId,p.MemId,p.ProductName,p.Price,p.Phone,"+
 		"p.Address,p.Description,p.Discount ,i.Image,sc.Name from tbl_posting p INNER JOIN tbl_image i "+
@@ -164,12 +164,12 @@ public class PostingDao {
 		"on p.SubCateId=sc.SubCateId where i.order=1 and p.MemId=? "
 		+ "and p.ProductName like ? or p.Price like ? OR "
 		+ "p.phone like ? OR p.Address like ? OR p.Description like ? "		
-		+ "GROUP BY p.PostingId ORDER BY p.PostDate DESC";
+		+ "GROUP BY p.PostingId ORDER BY p.PostDate DESC LIMIT ?,?";
  
 		List<PostingListDto> postinglist=new ArrayList<>();
 		
 		try {
-			System.out.println(" Member Id : "+memberDto.getId() + "search : "+search);
+			System.out.println(" Start : "+start + "end : "+row);
 			ps=SqlConnection.getConnection().prepareStatement(sql);
 			ps.setInt(1, memberDto.getId());
 			ps.setString(2, "%"+search+"%");
@@ -177,6 +177,8 @@ public class PostingDao {
 			ps.setString(4, "%"+search+"%");
 			ps.setString(5, "%"+search+"%");
 			ps.setString(6, "%"+search+"%");
+			ps.setInt(7, start );
+			ps.setInt(8, row);
 			//System.out.println("PS : "+ps);
 			rs=ps.executeQuery();
 		    while(rs.next()){

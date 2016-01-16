@@ -24,17 +24,17 @@ public class MyAdsAction implements Action{
 		try{
 			MemberDto memberDto=new MemberDto();
 			memberDto=(MemberDto)request.getSession().getAttribute("user");
-		    PostingDao postingDao=new PostingDao();
-			List<PostingListDto> postinglist=postingDao.getPostingList(memberDto);
-			request.getSession().setAttribute("postingList", postinglist);
+		    PostingDao postingDao=new PostingDao();	
+		    Pagination.startpage=1;
 			if (current=="" || current==null){
 				Pagination.currentpage=1;
 			}else{
 				Pagination.currentpage=Integer.valueOf(current);
 			}
 			if (search==null) search="";
-			//System.out.println("Count Page :"+postingDao.countPostingByUser(memberDto,search));
-			Pagination.countPage(postingDao.countPostingByUser(memberDto,search));		
+			List<PostingListDto> postinglist=postingDao.getSearchPostingList(memberDto, search, Pagination.startpage, Pagination.rowperpage);			
+			Pagination.countPage(postingDao.countPostingByUser(memberDto,search));	
+			request.getSession().setAttribute("postingList", postinglist);
 			
 			forward.setRedirect(false);
 			forward.setPath("ads_myadspages.jsp");
