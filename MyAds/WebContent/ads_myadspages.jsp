@@ -70,8 +70,8 @@
 					<div class="paging_wrap mgt30">
 						<!-- pagination -->
 						<div class="paging" id="paging"><!-- 비활성상태는 on class 제거 -->
-						    <input type="text" value="0" id="txtcurrentpage">
-							<a href="javascript:" class="btn_pag_cntr first" rel="1"><span class="blind">first</span></a><a href="javascript:" class="btn_pag_cntr prev"><span class="blind">previous</span></a>
+						    <input type="text" value="1" id="txtcurrentpage">
+							<a href="javascript:" class="btn_pag_cntr first" rel="1"><span class="blind">first</span></a><a href="javascript:" class="btn_pag_cntr prev" id="pre-page"><span class="blind">previous</span></a>
 							<span class="pag_num">
 							    <a href="javascript:" class="on indexPage" rel="1">1</a>
 							    <%
@@ -82,7 +82,7 @@
 							       }
 								%>
 							</span>
-							<a href="javascript:" class="btn_pag_cntr next on"><span class="blind">next</span></a><a href="javascript:" class="btn_pag_cntr last on indexPage" rel="<%=countPage %>"><span class="blind">last</span></a>
+							<a href="javascript:" class="btn_pag_cntr next on" id="next-page"><span class="blind">next</span></a><a href="javascript:" class="btn_pag_cntr last on indexPage" rel="<%=countPage %>"><span class="blind">last</span></a>
 						</div> 
 						<!-- //pagination -->
 						
@@ -134,7 +134,7 @@
 	    				for(var i=2;i<=dat[0];i++){
 	    					       paging+='<a href="javascript:" rel="'+i+'" class="indexPage">'+i+'</a>'	;						
 	    				}
-	    				paging+='</span><a href="javascript:" class="btn_pag_cntr next on"><span class="blind">next</span></a><a href="javascript:" class="btn_pag_cntr last on indexPage" rel=""><span class="blind">last</span></a>'
+	    				paging+='</span><a href="javascript:" class="btn_pag_cntr next on"><span class="blind">next</span></a><a href="javascript:" class="btn_pag_cntr last on indexPage" rel="'+dat[0]+'"><span class="blind">last</span></a>'
 	    				console.log(paging);
 	    				$("#productList").empty();
 	    				$("#productList").append(html);
@@ -163,11 +163,12 @@
 				$( "#btnSearch" ).trigger( "click" ); 
 			});
 			
-			$(".paging a").click(function(e){
+			$(".paging a.indexPage").click(function(e){
+				$("#txtcurrentpage").val($(this).attr("rel"));
 				$.ajax({
 	    			type : "POST",
 	       			url : "${pageContext.request.contextPath }/lay_search_myadspages.ads",
-	    			data : "cp="+$(this).attr("rel"),
+	    			data : "txtSearch="+$("#txtSearch").val()+"&cp="+$(this).attr("rel"),
 	    			success : function(dat) {    				
 	    				console.log(dat);
 	    				var html='';
@@ -188,7 +189,6 @@
 								  +'</div></li>';							
 
 	    				}
-
 	    				$("#productList").empty();
 	    				$("#productList").append(html);
 	    				$('.paging a').click(function(e) {
@@ -207,5 +207,92 @@
 	    		});
 			});
 			
+			$("#pre-page").click(function(e){
+				if($("#txtcurrentpage").val()==1){
+					return;
+				}
+				$("#txtcurrentpage").val($("#txtcurrentpage").val()-1);
+				$.ajax({
+	    			type : "POST",
+	       			url : "${pageContext.request.contextPath }/lay_search_myadspages.ads",
+	    			data : "txtSearch="+$("#txtSearch").val()+"&cp="+$("#txtcurrentpage").val(),
+	    			success : function(dat) {    				
+	    				console.log(dat);
+	    				var html='';
+	    				var page='';
+	    				for(var i=0;i<dat[1].length;i++){
+	    					html+='<li>'
+	    					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["img"]+'" alt=""></a></div>'
+	    					      +'<dl>'
+	    					      +'<dt>Product Name:<a href="#none">'+dat[1][i]["ProductName"]+'</a></dt>'
+	    					      +'<dd>Category Type: '+dat[1][i]["SubCateName"]+'</dd>'
+	    					      +'<dd><strong>Price: '+dat[1][i]["Price"]+'</strong></dd>'
+	    					      +'<dd><strong>Discount: '+dat[1][i]["discount"]+'</strong></dd>'
+	    					      +'<dd>Phone Number: '+dat[1][i]["Phone"]+'</dd>'
+							      +'<dd>Your Address: '+dat[1][i]["Adr"]+'</dd>'
+							      +'</dl>'
+								  +'<div class="btn_wrap"><a href="#none" class="btn_post disable_post">Disable Post</a>'
+								  +'<a href="#none" class="btn_post enabl_post">Enable Post</a><a href="#none" class="btn_post edit_post">Edit Post</a>'
+								  +'</div></li>';							
+
+	    				}
+	    				$("#productList").empty();
+	    				$("#productList").append(html);
+	    				
+	    				
+	    			},
+	    			error : function(e) {
+	    				console.log("ERROR: ", e);
+	    				
+	    			},
+	    			done : function(e) {
+	    				console.log("DONE");
+	    			}
+	    			
+	    		});
+
+			});
+			$("#next-page").click(function(e){
+				var total = $("#paging a:last-child").attr("rel");
+				var current=parseInt($("#txtcurrentpage").val())+1;
+				if (total>current) return;
+				$.ajax({
+	    			type : "POST",
+	       			url : "${pageContext.request.contextPath }/lay_search_myadspages.ads",
+	    			data : "txtSearch="+$("#txtSearch").val()+"&cp="+current,
+	    			success : function(dat) {    				
+	    				console.log(dat);
+	    				var html='';
+	    				var page='';
+	    				for(var i=0;i<dat[1].length;i++){
+	    					html+='<li>'
+	    					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["img"]+'" alt=""></a></div>'
+	    					      +'<dl>'
+	    					      +'<dt>Product Name:<a href="#none">'+dat[1][i]["ProductName"]+'</a></dt>'
+	    					      +'<dd>Category Type: '+dat[1][i]["SubCateName"]+'</dd>'
+	    					      +'<dd><strong>Price: '+dat[1][i]["Price"]+'</strong></dd>'
+	    					      +'<dd><strong>Discount: '+dat[1][i]["discount"]+'</strong></dd>'
+	    					      +'<dd>Phone Number: '+dat[1][i]["Phone"]+'</dd>'
+							      +'<dd>Your Address: '+dat[1][i]["Adr"]+'</dd>'
+							      +'</dl>'
+								  +'<div class="btn_wrap"><a href="#none" class="btn_post disable_post">Disable Post</a>'
+								  +'<a href="#none" class="btn_post enabl_post">Enable Post</a><a href="#none" class="btn_post edit_post">Edit Post</a>'
+								  +'</div></li>';							
+
+	    				}
+	    				$("#productList").empty();
+	    				$("#productList").append(html);
+	    				$("#txtcurrentpage").val(current);
+	    				
+	    			},
+	    			error : function(e) {
+	    				console.log("ERROR: ", e);
+	    				
+	    			},
+	    			done : function(e) {
+	    				console.log("DONE");
+	    			}
+	    		});
+			});
 		});
     </script>
