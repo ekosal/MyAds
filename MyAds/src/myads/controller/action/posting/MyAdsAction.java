@@ -20,21 +20,19 @@ public class MyAdsAction implements Action{
 
 		ActionForward forward=new ActionForward();
 		String current=request.getParameter("cp");
+		String search=request.getParameter("txtSearch");
 		try{
 			MemberDto memberDto=new MemberDto();
 			memberDto=(MemberDto)request.getSession().getAttribute("user");
 		    PostingDao postingDao=new PostingDao();
 			List<PostingListDto> postinglist=postingDao.getPostingList(memberDto);
 			request.getSession().setAttribute("postingList", postinglist);
-			Pagination.startpage=1;
-			Pagination.endpage=5;
-			Pagination.rowperpage=5;
 			if (current=="" || current==null){
 				Pagination.currentpage=1;
 			}else{
 				Pagination.currentpage=Integer.valueOf(current);
 			}
-			Pagination.countPage(postingDao.countPostingByUser(memberDto));		
+			Pagination.countPage(postingDao.countPostingByUser(memberDto,search));		
 			
 			forward.setRedirect(false);
 			forward.setPath("ads_myadspages.jsp");

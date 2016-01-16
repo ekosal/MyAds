@@ -1,6 +1,8 @@
 package myads.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,6 +29,7 @@ import myads.controller.action.posting.details.ViewPostingDetails;
 import myads.controller.action.profile.ProfileAction;
 import myads.controller.action.user.LoginUser;
 import myads.controller.action.user.ViewUsers;
+import myads.model.util.Pagination;
 
 /**
  * Servlet implementation class ControllerAdmin
@@ -112,9 +115,12 @@ public class ControllerUser extends HttpServlet {
 			 try{
 					forward=action.execute(request, response);
 					 if (request.getSession().getAttribute("postingList")!=null){
+						 List<Object> data=new ArrayList<Object>();
+						 data.add(String.valueOf(Pagination.totalpage));
+						 data.add(request.getSession().getAttribute("postingList"));
 						 response.setContentType("application/json");
 						 response.setCharacterEncoding("UTF-8");
-						 response.getWriter().write(new Gson().toJson(request.getSession().getAttribute("postingList")));
+						 response.getWriter().write(new Gson().toJson(data));
 						 return ;
 				    }
 				}catch(Exception e){

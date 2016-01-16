@@ -125,15 +125,22 @@ public class PostingDao {
 		return postinglist;
 	}
 	
-	public int countPostingByUser(MemberDto memberDto){
+	public int countPostingByUser(MemberDto memberDto,String search){
 		ResultSet rs=null;
-		String sql="select count(*) total from tbl_posting p INNER JOIN tbl_image i "+
-		"on p.PostingId=i.PostingId INNER JOIN tbl_sub_category sc "+
-		"on p.SubCateId=sc.SubCateId where p.MemId=? ";
+		String sql="select count(*) total from tbl_posting p INNER JOIN tbl_image i "
+					 +"on p.PostingId=i.PostingId INNER JOIN tbl_sub_category sc "
+					 +"on p.SubCateId=sc.SubCateId where i.order=1 and p.MemId=?  "
+					 + "and p.ProductName like ? or p.Price like ? OR "
+					 + "p.phone like ? OR p.Address like ? OR p.Description like ? "	;
 		int count=0;
 		try {
 			ps=SqlConnection.getConnection().prepareStatement(sql);
 			ps.setInt(1, memberDto.getId());
+			ps.setString(2, "%"+search+"%");
+			ps.setString(3, "%"+search+"%");
+			ps.setString(4, "%"+search+"%");
+			ps.setString(5, "%"+search+"%");
+			ps.setString(6, "%"+search+"%");
 			rs=ps.executeQuery();
 		    while(rs.next()){
 		    	count=rs.getInt("total");

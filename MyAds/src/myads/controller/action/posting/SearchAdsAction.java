@@ -12,6 +12,7 @@ import myads.controller.action.ActionForward;
 import myads.model.dao.PostingDao;
 import myads.model.dto.MemberDto;
 import myads.model.dto.PostingListDto;
+import myads.model.util.Pagination;
 
 public class SearchAdsAction implements Action{
 
@@ -24,14 +25,23 @@ public class SearchAdsAction implements Action{
 		MemberDto memberDto=new MemberDto();
 		PostingDao postingDao=new PostingDao();
 		String search=request.getParameter("txtSearch");
-		System.out.println(" Search : "+search);
+		String cp=request.getParameter("cp");
+		System.out.println(" Search : "+search +"Cp "+cp);
+		
 		try{
 		    System.out.println(" Search : "+search);
 			memberDto=(MemberDto) request.getSession().getAttribute("user");
-			System.out.println("Member : "+memberDto);
+			Pagination.startpage=1;
+			Pagination.endpage=5;
+			if (cp!=null || cp!= ""){
+				Pagination.startpage=(Pagination.rowperpage*Integer.valueOf(cp))-Pagination.rowperpage;
+				Pagination.endpage=Pagination.rowperpage*Integer.valueOf(cp);
+			}
+			
+			
 			if (memberDto!=null){
-				postinList= postingDao.getSearchPostingList(memberDto, search, 1, 2);
-				System.out.println(" List "+postinList);
+				postinList= postingDao.getSearchPostingList(memberDto, search, Pagination.startpage, Pagination.endpage);
+				Pagination.countPage(postingDao.countPostingByUser(memberDto,search));
 				request.getSession().setAttribute("postingList", postinList);
 			}
 			
