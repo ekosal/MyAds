@@ -32,6 +32,8 @@ public class MyAdsAction implements Action{
 			}else{
 				Pagination.currentpage=Integer.valueOf(current);
 			}
+			if (search==null) search="";
+			//System.out.println("Count Page :"+postingDao.countPostingByUser(memberDto,search));
 			Pagination.countPage(postingDao.countPostingByUser(memberDto,search));		
 			
 			forward.setRedirect(false);

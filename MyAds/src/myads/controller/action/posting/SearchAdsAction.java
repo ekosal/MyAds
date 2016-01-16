@@ -38,6 +38,7 @@ public class SearchAdsAction implements Action{
 				Pagination.endpage=Pagination.rowperpage*Integer.valueOf(cp);
 			}
 			
+			if (search==null) search="";
 			
 			if (memberDto!=null){
 				postinList= postingDao.getSearchPostingList(memberDto, search, Pagination.startpage, Pagination.endpage);

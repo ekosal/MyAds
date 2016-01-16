@@ -69,7 +69,7 @@
 					<!-- Paging wrap -->
 					<div class="paging_wrap mgt30">
 						<!-- pagination -->
-						<div class="paging"><!-- 비활성상태는 on class 제거 -->
+						<div class="paging" id="paging"><!-- 비활성상태는 on class 제거 -->
 						    <input type="text" value="0" id="txtcurrentpage">
 							<a href="javascript:" class="btn_pag_cntr first" rel="1"><span class="blind">first</span></a><a href="javascript:" class="btn_pag_cntr prev"><span class="blind">previous</span></a>
 							<span class="pag_num">
@@ -108,7 +108,7 @@
 	       			url : "${pageContext.request.contextPath }/lay_search_myadspages.ads",
 	    			data : "txtSearch="+$("#txtSearch").val()+"&cp=1",
 	    			success : function(dat) {    				
-	    				console.log(dat[0]);
+	    				console.log(dat);
 	    				var html='';
 	    				for(var i=0;i<dat[1].length;i++){
 	    					html+='<li>'
@@ -121,13 +121,25 @@
 	    					      +'<dd>Phone Number: '+dat[1][i]["Phone"]+'</dd>'
 							      +'<dd>Your Address: '+dat[1][i]["Adr"]+'</dd>'
 							      +'</dl>'
-								  +'<div class="btn_wrap"><a href="#none" class="btn_post disable_post">Disable Post</a>'
+								  +'<div class="btn_wrap"><a href="javascript:" class="btn_post disable_post">Disable Post</a>'
 								  +'<a href="#none" class="btn_post enabl_post">Enable Post</a><a href="#none" class="btn_post edit_post">Edit Post</a>'
 								  +'</div></li>';							
 
 	    				}
+	    				var paging="";
+	    				paging+='<input type="text" value="0" id="txtcurrentpage">'
+					       +'<a href="javascript:" class="btn_pag_cntr first" rel="1"><span class="blind">first</span></a><a href="javascript:" class="btn_pag_cntr prev"><span class="blind">previous</span></a>'
+					       +'<span class="pag_num">'
+	    				   +'<a href="javascript:" class="on indexPage" >1</a>';
+	    				for(var i=2;i<=dat[0];i++){
+	    					       paging+='<a href="javascript:" rel="'+i+'" class="indexPage">'+i+'</a>'	;						
+	    				}
+	    				paging+='</span><a href="javascript:" class="btn_pag_cntr next on"><span class="blind">next</span></a><a href="javascript:" class="btn_pag_cntr last on indexPage" rel=""><span class="blind">last</span></a>'
+	    				console.log(paging);
 	    				$("#productList").empty();
 	    				$("#productList").append(html);
+	    				$("#paging").empty();
+	    				$("#paging").append(paging);
 	    				
 	    				
 	    			},

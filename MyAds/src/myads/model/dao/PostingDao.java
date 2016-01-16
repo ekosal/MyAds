@@ -127,14 +127,16 @@ public class PostingDao {
 	
 	public int countPostingByUser(MemberDto memberDto,String search){
 		ResultSet rs=null;
-		String sql="select count(*) total from tbl_posting p INNER JOIN tbl_image i "
+		String sql="select count(*) total from  (select p.PostingId from tbl_posting p INNER JOIN tbl_image i  "
 					 +"on p.PostingId=i.PostingId INNER JOIN tbl_sub_category sc "
 					 +"on p.SubCateId=sc.SubCateId where i.order=1 and p.MemId=?  "
-					 + "and p.ProductName like ? or p.Price like ? OR "
-					 + "p.phone like ? OR p.Address like ? OR p.Description like ? "	;
+					 + "and p.ProductName like ? or p.Price like ? OR  "
+					 + "p.phone like ? OR p.Address like ? OR p.Description like ?	"
+					 + " GROUP BY p.PostingId) as product "	;
 		int count=0;
+		//System.out.println("Search :"+search);
 		try {
-			ps=SqlConnection.getConnection().prepareStatement(sql);
+			ps=ds.getConnection().prepareStatement(sql);
 			ps.setInt(1, memberDto.getId());
 			ps.setString(2, "%"+search+"%");
 			ps.setString(3, "%"+search+"%");
