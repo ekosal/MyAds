@@ -222,6 +222,22 @@ public class ControllerUser extends HttpServlet {
 				}
 			 
 			 System.out.println(forward.getPath());
+		 }else if (command.equals("/paging_mycategory.ads")){
+			 action=new ExistFrontMainCategory();
+			 try{
+					forward=action.execute(request, response);
+					if (request.getSession().getAttribute("productByCategory")!=null){
+						 response.setContentType("application/json");
+						 response.setCharacterEncoding("UTF-8");
+						 response.getWriter().write(new Gson().toJson(request.getSession().getAttribute("productByCategory")));
+						 return ;
+				    }
+					
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			 
+			 System.out.println(forward.getPath());
 		 }else if (command.equals("/step2/myhome.ads")){
 			 action=new LoginUser();
 			 try{

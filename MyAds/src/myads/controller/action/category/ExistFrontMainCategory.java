@@ -24,8 +24,14 @@ public class ExistFrontMainCategory implements Action {
 		ActionForward forward=new ActionForward();
 		String categoryId= request.getParameter("id");
 		String subCateryId=request.getParameter("subid");
-		System.out.println("Sub Category Id:"+subCateryId);
+		String cp=request.getParameter("cp");
+		
 		try{
+			
+			if (subCateryId == null || subCateryId=="") subCateryId="";
+			System.out.println("Sub Category "+AESCrypt.decrypt(subCateryId));
+			Pagination.category=categoryId;
+			Pagination.subcategory=subCateryId;
 			
 			CategoryDao category=new CategoryDao();
 			List<MainCategoryDto> listCategory=new ArrayList<>();
@@ -34,13 +40,25 @@ public class ExistFrontMainCategory implements Action {
 			
 			PostingDao positing=new PostingDao();
 			List<PostingDto> productList=new ArrayList<>();
-			if (subCateryId==null || subCateryId==""){
-				Pagination.countPage(positing.readCountPage(AESCrypt.decrypt(categoryId)));
-				productList=positing.readProductByCategory(AESCrypt.decrypt(categoryId),Pagination.startpage,Pagination.endpage);
-			}else{
-				productList=positing.readProductByCategoryAndSubCategory(AESCrypt.decrypt(categoryId), AESCrypt.decrypt(subCateryId));
+			
+			Pagination.startpage=0;
+			Pagination.currentpage=1;
+			Pagination.rowperpage=5;
+
+			if (cp != null && cp != ""){
+				Pagination.startpage=(Pagination.rowperpage*Integer.valueOf(cp))-Pagination.rowperpage;
+				Pagination.currentpage=Integer.valueOf(cp);
 			}
 			
+			
+			if (subCateryId==null || subCateryId==""){				
+				Pagination.countPage(positing.readCountPage(AESCrypt.decrypt(categoryId)));
+				productList=positing.readProductByCategory(AESCrypt.decrypt(categoryId),Pagination.startpage,Pagination.rowperpage);
+			}else{
+				Pagination.countPage(positing.readCountPage(AESCrypt.decrypt(categoryId),AESCrypt.decrypt(subCateryId)));
+				productList=positing.readProductByCategoryAndSubCategory(AESCrypt.decrypt(categoryId), AESCrypt.decrypt(subCateryId),Pagination.startpage,Pagination.rowperpage);
+			}
+				
 			request.getSession().setAttribute("productByCategory", productList);
 	
 			forward.setRedirect(false);

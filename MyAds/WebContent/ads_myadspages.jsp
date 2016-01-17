@@ -70,7 +70,7 @@
 					<div class="paging_wrap mgt30">
 						<!-- pagination -->
 						<div class="paging" id="paging"><!-- 비활성상태는 on class 제거 -->
-						    <input type="text" value="1" id="txtcurrentpage">
+						    <input type="hidden" value="1" id="txtcurrentpage">
 							<a href="javascript:" class="btn_pag_cntr first indexPage" rel="1"><span class="blind">first</span></a><a href="javascript:" class="btn_pag_cntr prev" id="pre-page"><span class="blind">previous</span></a>
 							<span class="pag_num">
 							    <a href="javascript:" class="on indexPage" rel="1">1</a>
@@ -127,7 +127,7 @@
 
 	    				}
 	    				var paging="";
-	    				paging+='<input type="text" value="0" id="txtcurrentpage">'
+	    				paging+='<input type="hidden" value="0" id="txtcurrentpage">'
 					       +'<a href="javascript:" class="btn_pag_cntr first" rel="1"><span class="blind">first</span></a><a href="javascript:" class="btn_pag_cntr prev"><span class="blind">previous</span></a>'
 					       +'<span class="pag_num">'
 	    				   +'<a href="javascript:" class="on indexPage" >1</a>';

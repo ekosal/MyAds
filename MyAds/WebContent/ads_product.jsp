@@ -139,7 +139,7 @@
 							<!-- table product3 -->
 							<div class="tbl_product3">
 								<!------------------------------------------- open ----------------------------------------------------------------------------- -->
-								<ul>
+								<ul id="productsList">
 									<%
 										for(int i=0;i<listProdict.size();i++){
 									%>
@@ -165,20 +165,22 @@
 							<!-- Paging wrap -->
 							<div class="paging_wrap mgt30">
 								<!-- pagination -->
-								<div class="paging"><!-- 비활성상태는 on class 제거 -->
-									<a href="#none" class="btn_pag_cntr first"><span class="blind">first</span></a><a href="#none" class="btn_pag_cntr prev"><span class="blind">previous</span></a>
+								<div class="paging" id="paging"><!-- 비활성상태는 on class 제거 -->
+								    <input type="hidden" value="1" id="txtcurrentpage">
+								    <input type="hidden" value="<%=Pagination.category %>" id="url-catetory">
+								    <input type="hidden" value="<%=Pagination.subcategory %>" id="url-subcatetory">
+									<a href="javascript:" class="btn_pag_cntr first pagingIndex" rel="1"><span class="blind">first</span></a><a href="javascript:" class="btn_pag_cntr prev" id="Pre-page"><span class="blind">previous</span></a>
 									<span class="pag_num">
-									    <a href="#none" class="on">1</a>
+									    <a href="javascript:" class="on pagingIndex" rel="1">1<input type="hidden" value="1" class="index"></a>
 										<%
-											for(int i=2;i<Pagination.totalpage;i++){
+											for(int i=2;i<=Pagination.totalpage;i++){
 										%>
-											<a href="#none" class="on"><%=i %></a>
+											<a href="javascript:" class="pagingIndex" rel="<%=i %>"><%=i %></a>
 										<%
 											}
 										%>
-										<a href="#none" class="on"><%=Pagination.totalpage %></a>
 									</span>
-									<a href="#none" class="btn_pag_cntr next on"><span class="blind">next</span></a><a href="#none" class="btn_pag_cntr last on"><span class="blind">last</span></a>
+									<a href="javascript:" class="btn_pag_cntr next on" id="Next-page"><span class="blind">next</span></a><a href="javascript:" class="btn_pag_cntr last on pagingIndex" rel="<%=Pagination.totalpage %>"><span class="blind" >last</span></a>
 								</div> 
 								<!-- //pagination -->
 								
@@ -299,6 +301,120 @@
 				var subcategoryId=$(this).attr("role");
 			});
 			
+			$(".paging a.pagingIndex").click(function(e){				
+ 				$("#txtcurrentpage").val($(this).attr("rel")); 		
+				$.ajax({
+	    			type : "POST",
+	       			url : "${pageContext.request.contextPath }/paging_mycategory.ads",
+	    			data :"id="+$("#url-catetory").val()+"&subid="+$("#url-subcatetory").val()+"&cp="+$(this).attr("rel"),
+	    			success : function(dat) {    				
+	    				console.log(dat);
+	    				var html='';
+	    				var page='';
+	    				for(var i=0;i<dat.length;i++){
+	    					html+='<li>'
+	    					      +'<a href="product_details.ads?id='+dat[i]["mainCategory"].id+'&subid='+dat[i]["subCategory"].id+'&pid='+dat[i]["PostingId"]+'">'
+	    					      +'<img src="uploads/'+dat[i]["image"].image+'" alt="" style="width:236px;height:250px;">'
+	    					      +'<p class="title">'+dat[i]["Title"]+'</p>'
+	    					      +'<p>'+dat[i]["Key"]+'</p>'
+	    					      +'</a><dl>'
+	    					      +'<dd><strong>US $'+dat[i]["Price"]+'</strong>/price</dd>'
+	    					      +'</dl></li>';	
+
+	    				}
+	    				$("#productsList").empty();
+	    				$("#productsList").append(html);
+	    				
+	    				
+	    			},
+	    			error : function(e) {
+	    				console.log("ERROR: ", e);
+	    				
+	    			},
+	    			done : function(e) {
+	    				console.log("DONE");
+	    			}
+	    		}); 
+			});
+			
+			$("#Next-page").click(function(e){
+				var total = $("#paging a:last-child").attr("rel");
+				var current=parseInt($("#txtcurrentpage").val())+1;
+				if (total<current) return;
+				$.ajax({
+	    			type : "POST",
+	       			url : "${pageContext.request.contextPath }/paging_mycategory.ads",
+	    			data : "id="+$("#url-catetory").val()+"&subid="+$("#url-subcatetory").val()+"&cp="+current,
+	    			success : function(dat) {    				
+	    				console.log(dat);
+	    				var html='';
+	    				for(var i=0;i<dat.length;i++){
+	    					html+='<li>'
+	    					      +'<a href="product_details.ads?id='+dat[i]["mainCategory"].id+'&subid='+dat[i]["subCategory"].id+'&pid='+dat[i]["PostingId"]+'">'
+	    					      +'<img src="uploads/'+dat[i]["image"].image+'" alt="" style="width:236px;height:250px;">'
+	    					      +'<p class="title">'+dat[i]["Title"]+'</p>'
+	    					      +'<p>'+dat[i]["Key"]+'</p>'
+	    					      +'</a><dl>'
+	    					      +'<dd><strong>US $'+dat[i]["Price"]+'</strong>/price</dd>'
+	    					      +'</dl></li>';							
+
+	    				}
+	    				$("#productsList").empty();
+	    				$("#productsList").append(html);
+	    				$("#txtcurrentpage").val(current);
+	    				
+	    			},
+	    			error : function(e) {
+	    				console.log("ERROR: ", e);
+	    				
+	    			},
+	    			done : function(e) {
+	    				console.log("DONE");
+	    			}
+	    		});
+			});
+			
+			$("#Pre-page").click(function(e){
+				if($("#txtcurrentpage").val()==1){
+					return;
+				}
+				$("#txtcurrentpage").val($("#txtcurrentpage").val()-1);
+				$.ajax({
+	    			type : "POST",
+	       			url : "${pageContext.request.contextPath }/paging_mycategory.ads",
+	    			data : "id="+$("#url-catetory").val()+"&subid="+$("#url-subcatetory").val()+"&cp="+$("#txtcurrentpage").val(),
+	    			success : function(dat) {    				
+	    				console.log(dat);
+	    				var html='';
+	    				var page='';
+	    				for(var i=0;i<dat.length;i++){
+	    					html+='<li>'
+	    					      +'<a href="product_details.ads?id='+dat[i]["mainCategory"].id+'&subid='+dat[i]["subCategory"].id+'&pid='+dat[i]["PostingId"]+'">'
+	    					      +'<img src="uploads/'+dat[i]["image"].image+'" alt="" style="width:236px;height:250px;">'
+	    					      +'<p class="title">'+dat[i]["Title"]+'</p>'
+	    					      +'<p>'+dat[i]["Key"]+'</p>'
+	    					      +'</a><dl>'
+	    					      +'<dd><strong>US $'+dat[i]["Price"]+'</strong>/price</dd>'
+	    					      +'</dl></li>';							
+						
+
+	    				}
+	    				$("#productsList").empty();
+	    				$("#productsList").append(html);
+	    				
+	    				
+	    			},
+	    			error : function(e) {
+	    				console.log("ERROR: ", e);
+	    				
+	    			},
+	    			done : function(e) {
+	    				console.log("DONE");
+	    			}
+	    			
+	    		});
+
+			});
 		});
 	</script>
 	<jsp:directive.include file="ads_footer.jsp" />

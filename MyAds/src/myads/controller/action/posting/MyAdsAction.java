@@ -32,6 +32,7 @@ public class MyAdsAction implements Action{
 				Pagination.currentpage=Integer.valueOf(current);
 			}
 			if (search==null) search="";
+			
 			List<PostingListDto> postinglist=postingDao.getSearchPostingList(memberDto, search, Pagination.startpage, Pagination.rowperpage);			
 			Pagination.countPage(postingDao.countPostingByUser(memberDto,search));	
 			request.getSession().setAttribute("postingList", postinglist);

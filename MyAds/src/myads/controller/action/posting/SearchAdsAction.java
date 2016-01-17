@@ -31,7 +31,7 @@ public class SearchAdsAction implements Action{
 		try{
 		    
 			memberDto=(MemberDto) request.getSession().getAttribute("user");
-			Pagination.startpage=1;
+			Pagination.startpage=0;
 			Pagination.currentpage=1;
 			if (cp!=null || cp!= ""){
 				Pagination.startpage=(Pagination.rowperpage*Integer.valueOf(cp))-Pagination.rowperpage;

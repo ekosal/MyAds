@@ -25,7 +25,6 @@ public class CategoryDao {
 	
 	
 	public CategoryDao(){
-		System.out.println("New!!!!!!!!!!1");
 		try{
 			Context init = new InitialContext();
 	  	    ds = (DataSource) init.lookup("java:comp/env/jdbc/OracleDB");
@@ -41,7 +40,7 @@ public class CategoryDao {
 		String sql = "insert into tbl_category values(?,?,?,?,?)";
 		
 		try{
-			ps =SqlConnection.getConnection().prepareStatement(sql);  
+			ps =ds.getConnection().prepareStatement(sql);  
 			ps.setInt(1, dto.getId());
 			ps.setString(2, dto.getIco_cls_name());
 			ps.setString(3, dto.getName());
@@ -67,7 +66,7 @@ public class CategoryDao {
 		
 		try {
 			
-			ps=SqlConnection.getConnection().prepareStatement(sql);
+			ps=ds.getConnection().prepareStatement(sql);
 			rs=ps.executeQuery();
 			
 			if(rs!=null && rs.next()){
@@ -93,7 +92,7 @@ public class CategoryDao {
 		String sql="update tbl_category set Ico_class_name=?,Name=?,Description=?,Active=? where CateId="+dto.getId();
 		
 		try {
-			ps=SqlConnection.getConnection().prepareStatement(sql);
+			ps=ds.getConnection().prepareStatement(sql);
 			ps.setString(1, dto.getIco_cls_name());
 			ps.setString(2, dto.getName());
 			ps.setString(3, dto.getDsc());
@@ -118,7 +117,7 @@ public class CategoryDao {
 		
 		try {
 			
-			ps=SqlConnection.getConnection().prepareStatement(sql);
+			ps=ds.getConnection().prepareStatement(sql);
 			ps.executeQuery();
 			
 			return true;
@@ -135,7 +134,7 @@ public class CategoryDao {
 		String sql = "insert into tbl_sub_category values(?,?,?,?,?,?)";
 
 		try{
-			ps =SqlConnection.getConnection().prepareStatement(sql);  
+			ps =ds.getConnection().prepareStatement(sql);  
 			ps.setInt(1, dto.getId());
 			ps.setInt(2, dto.getSubid());
 			ps.setString(3, dto.getClass_name());
@@ -162,7 +161,7 @@ public class CategoryDao {
 		
 		try {
 			
-			ps=SqlConnection.getConnection().prepareStatement(sql);
+			ps=ds.getConnection().prepareStatement(sql);
 			rs=ps.executeQuery();
 			
 			if(rs!=null && rs.next()){
@@ -190,7 +189,7 @@ public class CategoryDao {
 			String sql="update tbl_sub_category set CateId=?,Cls_Icon=?,Name=?,Description=?,Active=? where SubCateId="+dto.getId();
 			
 			try {
-				ps=SqlConnection.getConnection().prepareStatement(sql);
+				ps=ds.getConnection().prepareStatement(sql);
 				
 				ps.setInt(1, dto.getSubid());
 				ps.setString(2, dto.getClass_name());

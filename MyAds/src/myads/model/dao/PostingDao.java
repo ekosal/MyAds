@@ -30,7 +30,6 @@ public class PostingDao {
 	static ResultSet rs;
 	
 	public PostingDao(){
-		System.out.println("New!!!!!!!!!!1");
 		try{
 			Context init = new InitialContext();
 	  	    ds = (DataSource) init.lookup("java:comp/env/jdbc/OracleDB");
@@ -50,8 +49,8 @@ public class PostingDao {
 		String sql = "insert into tbl_posting values(?,?,?,?,?,?,?,?,?,?,?,?)";
 		String sqlimage="insert into tbl_image values(?,?,?,?)";
 		try{
-			SqlConnection.getConnection().setAutoCommit(false);
-			ps =SqlConnection.getConnection().prepareStatement(sql);
+			ds.getConnection().setAutoCommit(false);
+			ps =ds.getConnection().prepareStatement(sql);
 			psimg =SqlConnection.getConnection().prepareStatement(sqlimage);
 			ps.setInt(1, dto.getPostingId());
 			ps.setInt(2, dto.getMemId());
@@ -98,7 +97,7 @@ public class PostingDao {
 		
 		try {
 			System.out.println(" Member Id : "+memberDto.getId());
-			ps=SqlConnection.getConnection().prepareStatement(sql);
+			ps=ds.getConnection().prepareStatement(sql);
 			ps.setInt(1, memberDto.getId());
 			rs=ps.executeQuery();
 		    while(rs.next()){
@@ -170,7 +169,7 @@ public class PostingDao {
 		
 		try {
 			System.out.println(" Start : "+start + "end : "+row);
-			ps=SqlConnection.getConnection().prepareStatement(sql);
+			ps=ds.getConnection().prepareStatement(sql);
 			ps.setInt(1, memberDto.getId());
 			ps.setString(2, "%"+search+"%");
 			ps.setString(3, "%"+search+"%");
@@ -226,13 +225,35 @@ public class PostingDao {
 		}
 		return 0;
 	}
+	public int readCountPage(String category_id,String subcategory){
+		int count=0;
+		try{
+			String sql="select count(*) as total from tbl_posting "
+					+ "p INNER JOIN tbl_sub_category sc on p.SubCateId=sc.SubCateId "
+					+ "INNER JOIN tbl_category c on c.CateId=sc.CateId INNER JOIN tbl_image "
+					+ "i on p.PostingId=i.PostingId WHERE c.CateId=? and sc.SubCateId=? and p.Active=1 and i.order=1";
+		
+			ps=ds.getConnection().prepareStatement(sql);
+			ps.setInt(1,Integer.valueOf(category_id));
+			ps.setInt(2,Integer.valueOf(subcategory));
+			rs=ps.executeQuery();
+			while(rs.next()){
+				count=rs.getInt("total");
+			}
+			return count;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return 0;
+	}
 	public List<PostingDto> readProductByCategory(String category_id,int start,int end){
 		List<PostingDto> productList=new ArrayList<>();
+		System.out.println(start +  "    "+end);
 		try{			
 			String sql="select sc.SubCateId,c.CateId,i.Image,p.PostingId,p.ProductName,p.Price,p.Discount,p.KeyNotice from tbl_posting "
 					+ "p INNER JOIN tbl_sub_category sc on p.SubCateId=sc.SubCateId "
 					+ "INNER JOIN tbl_category c on c.CateId=sc.CateId INNER JOIN tbl_image "
-					+ "i on p.PostingId=i.PostingId WHERE c.CateId=? and p.Active=1 and i.order=1  LIMIT ? OFFSET ?";
+					+ "i on p.PostingId=i.PostingId WHERE c.CateId=? and p.Active=1 and i.order=1  LIMIT ?,?";
 			
 			ps=ds.getConnection().prepareStatement(sql);
 			ps.setInt(1,Integer.valueOf(category_id));
@@ -257,6 +278,7 @@ public class PostingDao {
 				posting.setImage(image);
 				productList.add(posting);
 			}
+			System.out.println("Category ID "+productList);
 			return productList;
 		}catch(Exception e){
 			e.printStackTrace();
@@ -264,16 +286,18 @@ public class PostingDao {
 		return null;
 	}
 	
-	public List<PostingDto> readProductByCategoryAndSubCategory(String category_id,String subCategoryId){
+	public List<PostingDto> readProductByCategoryAndSubCategory(String category_id,String subCategoryId,int start,int row){
 		List<PostingDto> productList=new ArrayList<>();
 		try{
 			String sql="select sc.SubCateId,c.CateId,i.Image,p.PostingId,p.ProductName,p.Price,p.Discount,p.KeyNotice from tbl_posting "
 					+ "p INNER JOIN tbl_sub_category sc on p.SubCateId=sc.SubCateId "
 					+ "INNER JOIN tbl_category c on c.CateId=sc.CateId INNER JOIN tbl_image "
-					+ "i on p.PostingId=i.PostingId WHERE c.CateId=? and p.Active=1 and i.order=1 and sc.SubCateId=?";
+					+ "i on p.PostingId=i.PostingId WHERE c.CateId=? and p.Active=1 and i.order=1 and sc.SubCateId=? LIMIT ?,?";
 			ps=ds.getConnection().prepareStatement(sql);
 			ps.setInt(1,Integer.valueOf(category_id));
 			ps.setInt(2,Integer.valueOf(subCategoryId));
+			ps.setInt(3,start);
+			ps.setInt(4,row);
 			rs=ps.executeQuery();
 			while(rs.next()){
 				PostingDto posting=new PostingDto();
