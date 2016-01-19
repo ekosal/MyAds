@@ -69,7 +69,7 @@
 					<!-- Paging wrap -->
 					<div class="paging_wrap mgt30">
 						<!-- pagination -->
-						<div class="paging" id="paging"><!-- 비활성상태는 on class 제거 -->
+						<div class="paging" id="paging"><!-- ë¹íì±ìíë on class ì ê±° -->
 						    <input type="hidden" value="1" id="txtcurrentpage">
 							<a href="javascript:" class="btn_pag_cntr first indexPage" rel="1"><span class="blind">first</span></a><a href="javascript:" class="btn_pag_cntr prev" id="pre-page"><span class="blind">previous</span></a>
 							<span class="pag_num">

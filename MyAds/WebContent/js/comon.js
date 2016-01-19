@@ -49,6 +49,64 @@ $(document).ready(function(e) {
 	  reader.readAsDataURL(files[0]);
 	 });
 	 
+	 
+	 //pagination
+	 var page_num	=	$('.pag_num').children('a').length;
+
+		// next one by one
+		$('body').delegate('.next','click',function(){
+			var page_act	=	parseInt($('.pag_num').find('a.on').text());
+			if(page_act!=0){$('.first, .prev').addClass('on');}
+			if(page_act==(page_num-1)){$('.last, .next').removeClass('on');}
+			if(page_act==page_num){page_act=(page_num-1);}
+			$(this).prev('.pag_num').find('a').removeClass('on');
+			$('.pag_num').find("a:eq("+page_act+")").addClass('on');
+		});
+
+		// next to last
+		$('body').delegate('.last','click',function(){
+			$('.first, .prev').addClass('on');
+			$('.last, .next').removeClass('on');
+			$(this).prevAll('.pag_num').find('a').removeClass('on');
+			page_act	=	page_num-1;
+			$('.pag_num').find("a:eq("+page_act+")").addClass('on');
+		});
+
+		// Prev one by one
+		$('body').delegate('.prev','click',function(){
+			var page_act	=	parseInt($('.pag_num').find('a.on').text())-2;
+			if(page_act!=(page_num-1)){
+				$('.last, .next').addClass('on');	
+			}
+			if(page_act==0){
+				$('.first, .prev').removeClass('on');	
+			}
+			if(page_act==-1){
+				page_act=0;	
+			}
+			$(this).next('.pag_num').find('a').removeClass('on');
+			$('.pag_num').find("a:eq("+page_act+")").addClass('on');
+		});
+
+		// First All
+		$('body').delegate('.first','click',function(){
+			$('.last, .next').addClass('on');
+			$('.first, .prev').removeClass('on');
+			$(this).nextAll('.pag_num').find('a').removeClass('on');
+			$('.pag_num').find("a:eq(0)").addClass('on');
+		});
+		
+		$('body').delegate('.pag_num > a','click',function(){
+			$(this).siblings('a').removeClass('on');
+			$(this).addClass('on');
+			$('.btn_pag_cntr').addClass('on');
+			if($(this).text()==1){
+				$('.first, .prev').removeClass('on');
+			}else if($(this).text()==page_num){
+				$('.last, .next').removeClass('on');
+			}
+		});
+	 
 	
 	 
 });
