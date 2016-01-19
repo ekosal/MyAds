@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 
 import myads.controller.action.Action;
 import myads.controller.action.ActionForward;
@@ -13,7 +13,6 @@ import myads.model.dao.CategoryDao;
 import myads.model.dao.PostingDao;
 import myads.model.dto.MainCategoryDto;
 import myads.model.dto.PostingDto;
-import myads.model.util.AESCrypt_20160119;
 import myads.model.util.EncryptionUtil;
 import myads.model.util.Pagination;
 
