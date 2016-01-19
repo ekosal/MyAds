@@ -12,7 +12,7 @@ import myads.model.dao.CategoryDao;
 import myads.model.dao.PostingDao;
 import myads.model.dto.MainCategoryDto;
 import myads.model.dto.PostingDto;
-import myads.model.util.AESCrypt;
+import myads.model.util.AESCrypt_20160119;
 import myads.model.util.EncryptionUtil;
 
 public class ViewPostingDetails implements Action {

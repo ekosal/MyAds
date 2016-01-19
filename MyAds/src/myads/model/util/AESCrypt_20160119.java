@@ -5,14 +5,14 @@ import javax.crypto.spec.SecretKeySpec;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
-public class AESCrypt {
+public class AESCrypt_20160119 {
 	private static final String ALGORITHM = "AES";
     private static final String KEY = "1Hbfh667adfDEJ78";
     
     public static String encrypt(String value) throws Exception
     {
         Key key = generateKey();
-        Cipher cipher = Cipher.getInstance(AESCrypt.ALGORITHM);
+        Cipher cipher = Cipher.getInstance(AESCrypt_20160119.ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, key);
         byte [] encryptedByteValue = cipher.doFinal(value.getBytes("utf-8"));
         String encryptedValue64 = new BASE64Encoder().encode(encryptedByteValue);
@@ -24,7 +24,7 @@ public class AESCrypt {
     {
     	try{
     		 Key key = generateKey();
-    	        Cipher cipher = Cipher.getInstance(AESCrypt.ALGORITHM);
+    	        Cipher cipher = Cipher.getInstance(AESCrypt_20160119.ALGORITHM);
     	        cipher.init(Cipher.DECRYPT_MODE, key);
     	        byte [] decryptedValue64 = new BASE64Decoder().decodeBuffer(value);
     	        byte [] decryptedByteValue = cipher.doFinal(decryptedValue64);
@@ -40,7 +40,7 @@ public class AESCrypt {
     
     private static Key generateKey() throws Exception 
     {
-        Key key = new SecretKeySpec(AESCrypt.KEY.getBytes(),AESCrypt.ALGORITHM);
+        Key key = new SecretKeySpec(AESCrypt_20160119.KEY.getBytes(),AESCrypt_20160119.ALGORITHM);
         return key;
     }
 }
