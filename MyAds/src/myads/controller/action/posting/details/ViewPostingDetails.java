@@ -13,6 +13,7 @@ import myads.model.dao.PostingDao;
 import myads.model.dto.MainCategoryDto;
 import myads.model.dto.PostingDto;
 import myads.model.util.AESCrypt;
+import myads.model.util.EncryptionUtil;
 
 public class ViewPostingDetails implements Action {
 
@@ -27,12 +28,12 @@ public class ViewPostingDetails implements Action {
 			
 			CategoryDao category=new CategoryDao();
 			List<MainCategoryDto> listCategory=new ArrayList<>();
-			listCategory=category.readSubCategoryByCategory(AESCrypt.decrypt(categoryId));
+			listCategory=category.readSubCategoryByCategory(EncryptionUtil.decode(categoryId));
 			request.getSession().setAttribute("CategoryList1", listCategory);			
 			
 			PostingDto prostingDto=new PostingDto();
 			PostingDao postingDao=new PostingDao();
-			prostingDto=postingDao.readProductByCategoryAndSubCategory(AESCrypt.decrypt(categoryId),AESCrypt.decrypt(subCateryId) ,AESCrypt.decrypt(proId) );
+			prostingDto=postingDao.readProductByCategoryAndSubCategory(EncryptionUtil.decode(categoryId),EncryptionUtil.decode(subCateryId) ,EncryptionUtil.decode(proId) );
 			request.getSession().setAttribute("productDto", prostingDto);
 	
 			forward.setRedirect(false);

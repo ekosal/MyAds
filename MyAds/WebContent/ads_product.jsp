@@ -1,5 +1,6 @@
 
-	<%@page import="myads.model.util.Pagination"%>
+	<%@page import="myads.model.util.EncryptionUtil"%>
+<%@page import="myads.model.util.Pagination"%>
 <%@page import="myads.model.util.AESCrypt"%>
 <%@page import="myads.model.dto.PostingDto"%>
 <jsp:directive.include file="ads_header.jsp" />
@@ -56,14 +57,14 @@
 												    List<SubCategoryDto> rst1=CategoryDao.getSubCategory(); */
 													for(int j=0;j<rst.size();j++){
 												%>
-													<dd><a href="mycategory.ads?id=<%=AESCrypt.encrypt(String.valueOf(rst.get(j).getId())) %>" class="<%= rst.get(j).getIco_cls_name() %>"><%= rst.get(j).getName() %></a>
+													<dd><a href="mycategory.ads?id=<%=EncryptionUtil.encode(String.valueOf(rst.get(j).getId())) %>" class="<%= rst.get(j).getIco_cls_name() %>"><%= rst.get(j).getName() %></a>
 														<div class="more">
 															<ul>
 																<%
 												                	for(int i=0;i<rst1.size();i++)  {  
 												                		if (rst.get(j).getId()==rst1.get(i).getId()){
 																%>
-																	<li><a href="mycategory.ads?id=<%=AESCrypt.encrypt(String.valueOf(rst.get(j).getId())) %>&subid=<%=AESCrypt.encrypt(String.valueOf(rst1.get(i).getId())) %>" target="_blank"><%= rst1.get(i).getName() %></a></li>
+																	<li><a href="mycategory.ads?id=<%=EncryptionUtil.encode(String.valueOf(rst.get(j).getId())) %>&subid=<%=EncryptionUtil.encode(String.valueOf(rst1.get(i).getId())) %>" target="_blank"><%= rst1.get(i).getName() %></a></li>
 																<%
 																     }
 												                	}
@@ -80,7 +81,7 @@
 								</h3>
 								<div class="item" id="subCategoryList">
 									<dl>
-										<dt><a href="./mycategory.ads?id=<%=AESCrypt.encrypt(String.valueOf(listSubCategory.get(0).getId())) %>" role="<%=listSubCategory.get(0).getId() %>">
+										<dt><a href="./mycategory.ads?id=<%=EncryptionUtil.encode(String.valueOf(listSubCategory.get(0).getId())) %>" role="<%=listSubCategory.get(0).getId() %>">
 											<%=listSubCategory.get(0).getName() %>
 											
 										</a></dt>
@@ -89,7 +90,7 @@
 												<%
 													for(int i=0;i<listSubCategory.size();i++){
 												%>
-													<li><a href="./mycategory.ads?id=<%=AESCrypt.encrypt(String.valueOf(listSubCategory.get(0).getId())) %>&subid=<%=AESCrypt.encrypt(String.valueOf(listSubCategory.get(i).getSubcategory().getId())) %>" role="<%=listSubCategory.get(i).getSubcategory().getId()%>"><%=listSubCategory.get(i).getSubcategory().getName() %></a></li>
+													<li><a href="./mycategory.ads?id=<%=EncryptionUtil.encode(String.valueOf(listSubCategory.get(0).getId())) %>&subid=<%=EncryptionUtil.encode(String.valueOf(listSubCategory.get(i).getSubcategory().getId())) %>" role="<%=listSubCategory.get(i).getSubcategory().getId()%>"><%=listSubCategory.get(i).getSubcategory().getName() %></a></li>
 												<%
 													}
 												%>
@@ -144,7 +145,7 @@
 										for(int i=0;i<listProdict.size();i++){
 									%>
 									<li>
-										<a href="product_details.ads?id=<%=AESCrypt.encrypt(String.valueOf(listProdict.get(i).getMainCategory().getId())) %>&subid=<%=AESCrypt.encrypt(String.valueOf(listProdict.get(i).getSubCategory().getId())) %>&proid=<%=AESCrypt.encrypt(String.valueOf(listProdict.get(i).getPostingId())) %>">
+										<a href="product_details.ads?id=<%=EncryptionUtil.encode(String.valueOf(listProdict.get(i).getMainCategory().getId())) %>&subid=<%=EncryptionUtil.encode(String.valueOf(listProdict.get(i).getSubCategory().getId())) %>&proid=<%=EncryptionUtil.encode(String.valueOf(listProdict.get(i).getPostingId())) %>">
 											<img src="uploads/<%=listProdict.get(i).getImage().getImage() %>" alt="" style="width:236px;height:250px;">
 											<p class="title"><%=listProdict.get(i).getTitle() %></p>
 											<p><%=listProdict.get(i).getKey() %></p>

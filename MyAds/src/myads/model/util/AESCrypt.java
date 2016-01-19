@@ -22,14 +22,20 @@ public class AESCrypt {
     
     public static String decrypt(String value) throws Exception
     {
-        Key key = generateKey();
-        Cipher cipher = Cipher.getInstance(AESCrypt.ALGORITHM);
-        cipher.init(Cipher.DECRYPT_MODE, key);
-        byte [] decryptedValue64 = new BASE64Decoder().decodeBuffer(value);
-        byte [] decryptedByteValue = cipher.doFinal(decryptedValue64);
-        String decryptedValue = new String(decryptedByteValue,"utf-8");
-        return decryptedValue;
-                
+    	try{
+    		 Key key = generateKey();
+    	        Cipher cipher = Cipher.getInstance(AESCrypt.ALGORITHM);
+    	        cipher.init(Cipher.DECRYPT_MODE, key);
+    	        byte [] decryptedValue64 = new BASE64Decoder().decodeBuffer(value);
+    	        byte [] decryptedByteValue = cipher.doFinal(decryptedValue64);
+    	        String decryptedValue = new String(decryptedByteValue,"utf-8");
+    	        return decryptedValue;
+    	}catch(Exception e){
+    		e.printStackTrace();
+    		
+    	}
+       
+         return "";     
     }
     
     private static Key generateKey() throws Exception 

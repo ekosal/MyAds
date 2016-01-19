@@ -14,6 +14,7 @@ import myads.model.dao.PostingDao;
 import myads.model.dto.MainCategoryDto;
 import myads.model.dto.PostingDto;
 import myads.model.util.AESCrypt;
+import myads.model.util.EncryptionUtil;
 import myads.model.util.Pagination;
 
 public class ExistFrontMainCategory implements Action {
@@ -23,19 +24,19 @@ public class ExistFrontMainCategory implements Action {
 	
 		ActionForward forward=new ActionForward();
 		String categoryId= request.getParameter("id");
-		String subCateryId=request.getParameter("subid");
+		String subCateryId=  request.getParameter("subid");
 		String cp=request.getParameter("cp");
-		
+		System.out.println("Encript : "+subCateryId);
 		try{
 			
 			if (subCateryId == null || subCateryId=="") subCateryId="";
-			System.out.println("Sub Category "+AESCrypt.decrypt(subCateryId));
+			System.out.println("Sub Category "+EncryptionUtil.decode(subCateryId));
 			Pagination.category=categoryId;
 			Pagination.subcategory=subCateryId;
 			
 			CategoryDao category=new CategoryDao();
 			List<MainCategoryDto> listCategory=new ArrayList<>();
-			listCategory=category.readSubCategoryByCategory(AESCrypt.decrypt(categoryId));
+			listCategory=category.readSubCategoryByCategory(EncryptionUtil.decode(categoryId));
 			request.getSession().setAttribute("CategoryList", listCategory);
 			
 			PostingDao positing=new PostingDao();
@@ -52,11 +53,11 @@ public class ExistFrontMainCategory implements Action {
 			
 			
 			if (subCateryId==null || subCateryId==""){				
-				Pagination.countPage(positing.readCountPage(AESCrypt.decrypt(categoryId)));
-				productList=positing.readProductByCategory(AESCrypt.decrypt(categoryId),Pagination.startpage,Pagination.rowperpage);
+				Pagination.countPage(positing.readCountPage(EncryptionUtil.decode(categoryId)));
+				productList=positing.readProductByCategory(EncryptionUtil.decode(categoryId),Pagination.startpage,Pagination.rowperpage);
 			}else{
-				Pagination.countPage(positing.readCountPage(AESCrypt.decrypt(categoryId),AESCrypt.decrypt(subCateryId)));
-				productList=positing.readProductByCategoryAndSubCategory(AESCrypt.decrypt(categoryId), AESCrypt.decrypt(subCateryId),Pagination.startpage,Pagination.rowperpage);
+				Pagination.countPage(positing.readCountPage(EncryptionUtil.decode(categoryId),EncryptionUtil.decode(subCateryId)));
+				productList=positing.readProductByCategoryAndSubCategory(EncryptionUtil.decode(categoryId), EncryptionUtil.decode(subCateryId),Pagination.startpage,Pagination.rowperpage);
 			}
 				
 			request.getSession().setAttribute("productByCategory", productList);

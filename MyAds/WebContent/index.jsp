@@ -1,4 +1,6 @@
 
+<%@page import="myads.model.util.EncryptionUtil"%>
+<%@page import="java.net.URLEncoder"%>
 <%@page import="myads.model.util.AESCrypt"%>
 <%@page import="myads.model.dto.PostingDto"%>
 <%@page import="myads.model.dao.CategoryDao"%>
@@ -36,14 +38,14 @@
 								    
 									for(int j=0;j<rst.size();j++){
 								%>
-									<dd><a href="mycategory.ads?id=<%=AESCrypt.encrypt(String.valueOf(rst.get(j).getId()))%>" class="<%= rst.get(j).getIco_cls_name() %>"><%= rst.get(j).getName() %></a>
+									<dd><a href="mycategory.ads?id=<%=EncryptionUtil.encode(String.valueOf(rst.get(j).getId()))%>" class="<%= rst.get(j).getIco_cls_name() %>"><%= rst.get(j).getName() %></a>
 										<div class="more">
 											<ul>
 												<%
 								                	for(int i=0;i<rst1.size();i++)  {  
 								                		if (rst.get(j).getId()==rst1.get(i).getId()){
 												%>
-													<li><a href="mycategory.ads?id=<%=AESCrypt.encrypt(String.valueOf(rst.get(j).getId())) %>&subid=<%=AESCrypt.encrypt(String.valueOf(rst1.get(i).getSubid())) %>" target="_blank"><%= rst1.get(i).getName() %></a></li>
+													<li><a href="mycategory.ads?id=<%=EncryptionUtil.encode(String.valueOf(rst.get(j).getId())) %>&subid=<%=EncryptionUtil.encode(String.valueOf(rst1.get(i).getSubid())) %>" target="_blank"><%= rst1.get(i).getName() %></a></li>
 												<%
 												     }
 								                	}
@@ -444,7 +446,7 @@
 							<div class="tbl_myproducts <%= rst.get(j).getIco_cls_name()%> mgt30">
 								<!-- category closthes -->
 								<div class="womenclothes">
-									<h2 class="title" style="padding:0 5px 0 1px;"><a href="mycategory.ads?id=<%=AESCrypt.encrypt(String.valueOf(rst.get(j).getId())) %>"><%= rst.get(j).getName() %></a></h2>
+									<h2 class="title" style="padding:0 5px 0 1px;"><a href="mycategory.ads?id=<%=EncryptionUtil.encode(String.valueOf(rst.get(j).getId())) %>"><%= rst.get(j).getName() %></a></h2>
 							
 									<div class="sub_cat">
 										<ul>
@@ -452,7 +454,7 @@
 							                     for(int i=0;i<rst1.size();i++){
 							                    	 if (rst.get(j).getId()==rst1.get(i).getId()){
 											%>
-														<li><a href="mycategory.ads?id=<%=AESCrypt.encrypt(String.valueOf(rst.get(j).getId())) %>&subid=<%=AESCrypt.encrypt(String.valueOf(rst1.get(i).getSubid())) %>" class="<%= rst1.get(i).getClass_name() %>" target="_blank"><%= rst1.get(i).getName() %></a></li>
+														<li><a href="mycategory.ads?id=<%=EncryptionUtil.encode(String.valueOf(rst.get(j).getId())) %>&subid=<%=EncryptionUtil.encode(String.valueOf(rst1.get(i).getSubid())) %>" class="<%= rst1.get(i).getClass_name() %>" target="_blank"><%= rst1.get(i).getName() %></a></li>
 											<%
 											     }
 							                     }
@@ -485,7 +487,7 @@
 													if (rst.get(j).getId()==content.get(index).getMainCategory().getId()){
 											%>
 											<li>
-												<a href="product_details.ads?id=<%=AESCrypt.encrypt(String.valueOf(rst.get(j).getId())) %>&subid=<%=AESCrypt.encrypt(String.valueOf(content.get(index).getSubCateId())) %>&proid=<%=AESCrypt.encrypt(String.valueOf(content.get(index).getPostingId())) %>">
+												<a href="product_details.ads?id=<%=EncryptionUtil.encode(String.valueOf(rst.get(j).getId())) %>&subid=<%=EncryptionUtil.encode(String.valueOf(content.get(index).getSubCateId())) %>&proid=<%=EncryptionUtil.encode(String.valueOf(content.get(index).getPostingId())) %>">
 													<img src="uploads/<%=content.get(index).getImage().getImage() %>" alt="" style="width:203px;height:210px;">
 													<dl>
 														<dt><%=content.get(index).getTitle() %>	</dt>
