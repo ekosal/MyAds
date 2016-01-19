@@ -1,7 +1,6 @@
 
 	<%@page import="myads.model.util.EncryptionUtil"%>
 <%@page import="myads.model.util.Pagination"%>
-<%@page import="myads.model.util.AESCrypt"%>
 <%@page import="myads.model.dto.PostingDto"%>
 <jsp:directive.include file="ads_header.jsp" />
 	<jsp:directive.include file="ads_help2.jsp" />

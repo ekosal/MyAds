@@ -1,7 +1,6 @@
 
 <%@page import="myads.model.util.EncryptionUtil"%>
 <%@page import="java.net.URLEncoder"%>
-<%@page import="myads.model.util.AESCrypt"%>
 <%@page import="myads.model.dto.PostingDto"%>
 <%@page import="myads.model.dao.CategoryDao"%>
 <%@page import="myads.model.dto.SubCategoryDto"%>
