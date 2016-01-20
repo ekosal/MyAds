@@ -28,11 +28,16 @@ public class ViewPostingDetails implements Action {
 			
 			CategoryDao category=new CategoryDao();
 			List<MainCategoryDto> listCategory=new ArrayList<>();
-			listCategory=category.readSubCategoryByCategory(EncryptionUtil.decode(categoryId));
-			request.getSession().setAttribute("CategoryList1", listCategory);			
-			
+			List<PostingDto> listRelativeProduct=new ArrayList<>();
 			PostingDto prostingDto=new PostingDto();
 			PostingDao postingDao=new PostingDao();
+			
+			listCategory=category.readSubCategoryByCategory(EncryptionUtil.decode(categoryId));
+			request.getSession().setAttribute("CategoryList1", listCategory);	
+			
+			listRelativeProduct=postingDao.readProductByCategoryAndSubCategory(EncryptionUtil.decode(categoryId),EncryptionUtil.decode(subCateryId));
+			request.getSession().setAttribute("listRelativeProduct", listRelativeProduct);
+			
 			prostingDto=postingDao.readProductByCategoryAndSubCategory(EncryptionUtil.decode(categoryId),EncryptionUtil.decode(subCateryId) ,EncryptionUtil.decode(proId) );
 			request.getSession().setAttribute("productDto", prostingDto);
 	

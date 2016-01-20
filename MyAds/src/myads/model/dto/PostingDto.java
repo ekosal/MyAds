@@ -22,6 +22,8 @@ public class PostingDto {
 	private MainCategoryDto mainCategory;
 	private SubCategoryDto subCategory;
 	private String discount;
+	private MemberDto memberDto;
+	
 	
 	
 	public int getPostingId() {
@@ -149,6 +151,12 @@ public class PostingDto {
 	}
 	public void setSubCategory(SubCategoryDto subCategory) {
 		this.subCategory = subCategory;
+	}
+	public MemberDto getMemberDto() {
+		return memberDto;
+	}
+	public void setMemberDto(MemberDto memberDto) {
+		this.memberDto = memberDto;
 	}
 	
 

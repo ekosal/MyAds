@@ -7,6 +7,7 @@
     <%
     	List<MainCategoryDto> listSubCategory=(List<MainCategoryDto>) request.getSession().getAttribute("CategoryList1");
    		PostingDto postingDto=(PostingDto)request.getSession().getAttribute("productDto");
+   		List<PostingDto> listRelativeProduct=(List<PostingDto>) request.getSession().getAttribute("listRelativeProduct");
    		
     %>
 	<!-- body_section -->
@@ -33,10 +34,10 @@
 				<!-- container -->
 				<div class="container">
 					<div class="step">
-						<span><a href="#none">Home</a> > </span>
-						<span><a href="#none">Store Home</a> > </span>
-						<span><a href="#none">Products</a> > </span>
-						<span><a href="#none">May</a></span>
+						<span><a href="./">Home</a> > </span>
+						<span><a href="./mycategory.ads?id=<%=EncryptionUtil.encode(String.valueOf(postingDto.getMainCategory().getId())) %>"><%=postingDto.getMainCategory().getName() %></a> > </span>
+						<span><a href="./mycategory.ads?id=<%=EncryptionUtil.encode(String.valueOf(postingDto.getMainCategory().getId())) %>&subid=<%=EncryptionUtil.encode(String.valueOf(postingDto.getSubCategory().getSubid())) %>"><%=postingDto.getSubCategory().getName() %></a> > </span> 
+						<span><a href="javascript:"><%=postingDto.getTitle() %></a></span>
 					</div>
 					<!-- cnt -->
 					<div class="cnt cboth" style="padding-left:220px;padding-right:0;">
@@ -88,7 +89,7 @@
 												<%
 													for(int i=0;i<listSubCategory.size();i++){
 												%>
-													<li><a href="./mycategory.ads?id=<%=EncryptionUtil.encode(String.valueOf(listSubCategory.get(0).getId())) %>&subid=<%=EncryptionUtil.encode(String.valueOf(listSubCategory.get(i).getSubcategory().getId())) %>" role="<%=listSubCategory.get(i).getSubcategory().getId()%>"><%=listSubCategory.get(i).getSubcategory().getName() %></a></li>
+													<li><a href="./mycategory.ads?id=<%=EncryptionUtil.encode(String.valueOf(listSubCategory.get(0).getId())) %>&subid=<%=EncryptionUtil.encode(String.valueOf(listSubCategory.get(i).getSubcategory().getId())) %>" role="<%=listSubCategory.get(i).getSubcategory().getId() %>"><%=listSubCategory.get(i).getSubcategory().getName() %></a></li>
 												<%
 													}
 												%>
@@ -127,23 +128,23 @@
 														<tbody>
 															<tr>
 																<th><div>Price</div></th>
-																<td><div><strong>US $ 99.58</strong>/price</div></td>
+																<td><div><strong>US $ <%=postingDto.getPrice() %></strong>/price</div></td>
 															</tr>
 															<tr>
 																<th><div>Sallers</div></th>
-																<td><div>Sreng Bunthorn</div></td>
+																<td><div><%=postingDto.getMemberDto().getName() %></div></td>
 															</tr>
 															<tr>
 																<th><div>Contact</div></th>
-																<td><div style="color:blue;">070 37 26 39</div></td>
+																<td><div style="color:blue;"><%=postingDto.getMemberDto().getPhone() %></div></td>
 															</tr>
 															<tr>
 																<th><div>Email</div></th>
-																<td><div style="color:blue;text-decoration:underline;">srengbunthorn@gmail.com</div></td>
+																<td><div style="color:blue;text-decoration:underline;"><%=postingDto.getMemberDto().getEmail() %></div></td>
 															</tr>
 															<tr>
 																<th><div>Address</div></th>
-																<td><div>Phnom Penh</div></td>
+																<td><div><%=postingDto.getMemberDto().getAddress() %></div></td>
 															</tr>
 														</tbody>
 													</table>
@@ -251,9 +252,10 @@
 
 								<!-- product_description -->
 								<div class="pro_dsc">
-									<p>text1 text1 text1 text1 text1 text1 text1v text1 text1v text1 text1v</p>
-									<p>text1 text1 text1 text1 text1 text1 text1v text1 text1v text1 text1v</p>
-									<p>text1 text1 text1 text1 text1 text1 text1v text1 text1v text1 text1v</p>
+									<p>
+										<%=postingDto.getDsc() %>
+									</p>
+									
 									<div class="img">
 										<img src="img/mode/mode_clothe01.png" alt="">
 									</div>
@@ -291,66 +293,24 @@
 											<div id="container-slider-carousel-2" class="container">
 												<div id="content-silder-carousel-2"	class="content">
 													<div class="wrapper-itens">
-														<div class="item_related">
-															<a href="#none">
-																<span><img src="img/com/lorempixel.jpg" alt="" class="img-responsive"></span>
-																<dl>
-																	<dt>Saling</dt>
-																	<dd>10$</dd>
-																	<dd>Dresses Office Wear Women Work Outfits Women Work Outfits</dd>
-																</dl>
-															</a>
-														</div>
-														<div class="item_related">
-															<a href="#none">
-																<span><img src="img/com/lorempixel-1.jpg" alt="" class="img-responsive"></span>
-																<dl>
-																	<dt>Saling</dt>
-																	<dd>10$</dd>
-																	<dd>Dresses Office Wear Women Work Outfits Women Work Outfits</dd>
-																</dl>
-															</a>
-														</div>
-														<div class="item_related">
-															<a href="#none">
-																<span><img src="img/com/lorempixel-2.jpg" alt="" class="img-responsive"></span>
-																<dl>
-																	<dt>Saling</dt>
-																	<dd>10$</dd>
-																	<dd>Dresses Office Wear Women Work Outfits Women Work Outfits</dd>
-																</dl>
-															</a>
-														</div>
-														<div class="item_related">
-															<a href="#none">
-																<span><img src="img/com/lorempixel-3.jpg" alt="" class="img-responsive"></span>
-																<dl>
-																	<dt>Saling</dt>
-																	<dd>10$</dd>
-																	<dd>Dresses Office Wear Women Work Outfits Women Work Outfits</dd>
-																</dl>
-															</a>
-														</div>
-														<div class="item_related">
-															<a href="#none">
-																<span><img src="img/com/com_pro3.png" alt="" class="img-responsive"></span>
-																<dl>
-																	<dt>Saling</dt>
-																	<dd>10$</dd>
-																	<dd>Dresses Office Wear Women Work Outfits Women Work Outfits</dd>
-																</dl>
-															</a>
-														</div>
-														<div class="item_related">
-															<a href="#none">
-																<span><img src="img/com/com_pro3.png" alt="" class="img-responsive"></span>
-																<dl>
-																	<dt>Saling</dt>
-																	<dd>10$</dd>
-																	<dd>Dresses Office Wear Women Work Outfits Women Work Outfits</dd>
-																</dl>
-															</a>
-														</div>
+													    <%													       
+													       for(int i=0;i<listRelativeProduct.size();i++){
+													    	   out.print("index "+i);
+													    %>
+															<div class="item_related">
+																<a href="#none">
+																	<span><img src="uploads/<%=listRelativeProduct.get(i).getImage().getImage() %>" alt="" class="img-responsive"></span>
+																	<dl>
+																		<dt><%=listRelativeProduct.get(i).getTitle() %></dt>
+																		<dd><%=listRelativeProduct.get(i).getPrice() %></dd>
+																		<dd><%=listRelativeProduct.get(i).getKey() %></dd>
+																	</dl>
+																</a>
+															</div>
+															
+														<%
+													       }
+														%>
 													</div>
 												</div>
 											</div>

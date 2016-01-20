@@ -58,9 +58,9 @@ public class ExistFrontMainCategory implements Action {
 				Pagination.countPage(positing.readCountPage(EncryptionUtil.decode(categoryId),EncryptionUtil.decode(subCateryId)));
 				productList=positing.readProductByCategoryAndSubCategory(EncryptionUtil.decode(categoryId), EncryptionUtil.decode(subCateryId),Pagination.startpage,Pagination.rowperpage);
 			}
-				
+							
 			request.getSession().setAttribute("productByCategory", productList);
-	
+				
 			forward.setRedirect(false);
 			forward.setPath("ads_product.jsp");
 			return forward;

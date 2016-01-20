@@ -1,5 +1,6 @@
 
-	<%@page import="myads.model.util.EncryptionUtil"%>
+	<%@page import="java.awt.print.Paper"%>
+<%@page import="myads.model.util.EncryptionUtil"%>
 <%@page import="myads.model.util.Pagination"%>
 <%@page import="myads.model.dto.PostingDto"%>
 <jsp:directive.include file="ads_header.jsp" />
@@ -7,6 +8,7 @@
 	<%
 		List<PostingDto> listProdict=(List<PostingDto>) request.getSession().getAttribute("productByCategory");
 		List<MainCategoryDto> listSubCategory=(List<MainCategoryDto>) request.getSession().getAttribute("CategoryList");
+		
 	%>
 	<!-- body_section -->
 	<div class="body_section">
@@ -32,10 +34,20 @@
 				<!-- container -->
 				<div class="container">
 					<div class="step">
-						<span><a href="#none">Home</a> > </span>
-						<span><a href="#none">Store Home</a> > </span>
-						<span><a href="#none">Products</a> > </span>
-						<span><a href="#none">May</a></span>
+						<span><a href="./">Home</a> > </span>
+						<span><a href="./mycategory.ads?id=<%=Pagination.category %>"><%=listSubCategory.get(0).getName() %></a> > </span>
+						<%
+							for (int i=0;i<listSubCategory.size();i++){
+								String subcate=EncryptionUtil.encode(String.valueOf(listSubCategory.get(i).getSubcategory().getId()));
+								String subCateName=listSubCategory.get(i).getSubcategory().getName();
+							if (Pagination.subcategory.trim().equals(subcate.trim())){
+
+						%>
+							<span><a href="./mycategory.ads?id=<%=Pagination.category %>&subid=<%=Pagination.subcategory %>"><%=subCateName %></a> > </span>
+						<%
+							}
+						 }
+						%>
 					</div>
 					<!-- cnt -->
 					<div class="cnt cboth" style="padding-left:220px;padding-right:200px;">
