@@ -44,7 +44,7 @@
 								                	for(int i=0;i<rst1.size();i++)  {  
 								                		if (rst.get(j).getId()==rst1.get(i).getId()){
 												%>
-													<li><a href="mycategory.ads?id=<%=EncryptionUtil.encode(String.valueOf(rst.get(j).getId())) %>&subid=<%=EncryptionUtil.encode(String.valueOf(rst1.get(i).getSubid())) %>" target="_blank"><%= rst1.get(i).getName() %></a></li>
+													<li><a href="mycategory.ads?id=<%=rst.get(j).getId_security() %>&subid=<%=rst1.get(i).getSubid_security() %>" target="_blank"><%= rst1.get(i).getName() %></a></li>
 												<%
 												     }
 								                	}
@@ -453,7 +453,7 @@
 							                     for(int i=0;i<rst1.size();i++){
 							                    	 if (rst.get(j).getId()==rst1.get(i).getId()){
 											%>
-														<li><a href="mycategory.ads?id=<%=EncryptionUtil.encode(String.valueOf(rst.get(j).getId())) %>&subid=<%=EncryptionUtil.encode(String.valueOf(rst1.get(i).getSubid())) %>" class="<%= rst1.get(i).getClass_name() %>" target="_blank"><%= rst1.get(i).getName() %></a></li>
+														<li><a href="mycategory.ads?id=<%=rst.get(j).getId_security() %>&subid=<%=rst1.get(i).getSubid_security() %>" class="<%= rst1.get(i).getClass_name() %>" target="_blank"><%= rst1.get(i).getName() %></a></li>
 											<%
 											     }
 							                     }
@@ -486,7 +486,7 @@
 													if (rst.get(j).getId()==content.get(index).getMainCategory().getId()){
 											%>
 											<li>
-												<a href="product_details.ads?id=<%=EncryptionUtil.encode(String.valueOf(rst.get(j).getId())) %>&subid=<%=EncryptionUtil.encode(String.valueOf(content.get(index).getSubCateId())) %>&proid=<%=EncryptionUtil.encode(String.valueOf(content.get(index).getPostingId())) %>">
+												<a href="product_details.ads?id=<%=rst.get(j).getId_security() %>&subid=<%=content.get(index).getSubCategory().getSubid_security() %>&proid=<%=content.get(index).getPostingId_security() %>">
 													<img src="uploads/<%=content.get(index).getImage().getImage() %>" alt="" style="width:203px;height:210px;">
 													<dl>
 														<dt><%=content.get(index).getTitle() %>	</dt>

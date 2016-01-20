@@ -5,6 +5,8 @@ import java.util.List;
 
 public class PostingDto {
 	private int PostingId;
+	// Store posting Security
+	private String postingId_security;
 	private int MemId;
 	private String Title;
 	private String Key;
@@ -157,6 +159,12 @@ public class PostingDto {
 	}
 	public void setMemberDto(MemberDto memberDto) {
 		this.memberDto = memberDto;
+	}
+	public String getPostingId_security() {
+		return postingId_security;
+	}
+	public void setPostingId_security(String postingId_security) {
+		this.postingId_security = postingId_security;
 	}
 	
 

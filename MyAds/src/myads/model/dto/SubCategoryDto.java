@@ -4,6 +4,8 @@ public class SubCategoryDto {
 	
 	private int id;
 	private int subid;
+	//store subid Encryption
+	private String subid_security;
 	private String Catename;
 	private String class_name;
 	private String name;
@@ -60,6 +62,12 @@ public class SubCategoryDto {
 	}
 	public void setCatename(String catename) {
 		Catename = catename;
+	}
+	public String getSubid_security() {
+		return subid_security;
+	}
+	public void setSubid_security(String subid_security) {
+		this.subid_security = subid_security;
 	}
 
 }

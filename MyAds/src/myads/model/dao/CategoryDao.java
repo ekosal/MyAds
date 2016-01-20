@@ -16,6 +16,7 @@ import myads.model.dto.MainCategoryDto;
 import myads.model.dto.PostingDto;
 import myads.model.dto.SubCategoryDto;
 import myads.model.sqlConnection.SqlConnection;
+import myads.model.util.EncryptionUtil;
 
 public class CategoryDao {
 	DataSource ds;
@@ -224,6 +225,7 @@ public class CategoryDao {
 			    while(rs.next()){
 			    	MainCategoryDto maincategory=new MainCategoryDto();
 			    	maincategory.setId(rs.getInt("CateId"));
+			    	maincategory.setId_security(EncryptionUtil.encode(rs.getString("CateId")));
 			    	maincategory.setName(rs.getString("Name"));
 			    	maincategory.setIco_cls_name(rs.getString("Ico_class_name"));
 			    	mainCategory.add(maincategory);
@@ -251,6 +253,7 @@ public class CategoryDao {
 			    	SubCategoryDto category=new SubCategoryDto();
 			    	category.setId(rs.getInt("CateId"));
 			    	category.setSubid(rs.getInt("SubCateId"));
+			    	category.setSubid_security(EncryptionUtil.encode(rs.getString("SubCateId")));
 			    	category.setClass_name(rs.getString("Cls_Icon"));
 			    	category.setName(rs.getString("Name"));
 			    	subCategory.add(category);
@@ -283,16 +286,26 @@ public class CategoryDao {
 						while(rsBody.next()){
 							if (index<=6){
 								PostingDto postingDto=new PostingDto();
+								
 								Image image=new Image();
+								image.setImage(rsBody.getString("Image"));
+								 
 								MainCategoryDto mainCategory=new MainCategoryDto();
 								mainCategory.setId(rsBody.getInt("CateId"));
+								mainCategory.setId_security(EncryptionUtil.encode(rsBody.getString("CateId")));
+								
+								SubCategoryDto subcategoryDto=new SubCategoryDto();
+								subcategoryDto.setSubid(rsBody.getInt("SubCateId"));
+								subcategoryDto.setSubid_security(EncryptionUtil.encode(rsBody.getString("SubCateId")));
+									
 								postingDto.setPostingId(rsBody.getInt("PostingId"));
+								postingDto.setPostingId_security(EncryptionUtil.encode(rsBody.getString("PostingId")));
 								postingDto.setTitle(rsBody.getString("ProductName"));
 								postingDto.setKey(rsBody.getString("KeyNotice"));
-								postingDto.setSubCateId(rsBody.getInt("SubCateId"));								
-							    image.setImage(rsBody.getString("Image"));						  
+							   						  
 								postingDto.setImage(image);
 								postingDto.setMainCategory(mainCategory);
+								postingDto.setSubCategory(subcategoryDto);;
 								ContentBody.add(postingDto);
 								index+=1;
 							}
@@ -320,9 +333,11 @@ public class CategoryDao {
 					MainCategoryDto mainCategory=new MainCategoryDto();
 					SubCategoryDto subcategory=new SubCategoryDto();
 					mainCategory.setId(rs.getInt("CateId"));
+					mainCategory.setId_security(EncryptionUtil.encode(rs.getString("CateId")));
 					mainCategory.setName(rs.getString("Name"));
 					mainCategory.setIco_cls_name(rs.getString("Ico_class_name"));
 					subcategory.setId(rs.getInt("SubCateId"));
+					subcategory.setSubid_security(EncryptionUtil.encode(rs.getString("SubCateId")));
 					subcategory.setName(rs.getString("subName"));
 					subcategory.setClass_name(rs.getString("Cls_Icon"));
 					mainCategory.setSubcategory(subcategory);

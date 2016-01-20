@@ -40,6 +40,7 @@ public class ExistFrontMainCategory implements Action {
 			
 			PostingDao positing=new PostingDao();
 			List<PostingDto> productList=new ArrayList<>();
+			List<PostingDto> productRelativeList=new ArrayList<>();
 			
 			Pagination.startpage=0;
 			Pagination.currentpage=1;
@@ -50,6 +51,7 @@ public class ExistFrontMainCategory implements Action {
 				Pagination.currentpage=Integer.valueOf(cp);
 			}
 			
+			productRelativeList=positing.readProductByCategory(EncryptionUtil.decode(categoryId));			
 			
 			if (subCateryId==null || subCateryId==""){				
 				Pagination.countPage(positing.readCountPage(EncryptionUtil.decode(categoryId)));
@@ -58,8 +60,9 @@ public class ExistFrontMainCategory implements Action {
 				Pagination.countPage(positing.readCountPage(EncryptionUtil.decode(categoryId),EncryptionUtil.decode(subCateryId)));
 				productList=positing.readProductByCategoryAndSubCategory(EncryptionUtil.decode(categoryId), EncryptionUtil.decode(subCateryId),Pagination.startpage,Pagination.rowperpage);
 			}
-							
+			
 			request.getSession().setAttribute("productByCategory", productList);
+			request.getSession().setAttribute("listRelative", productRelativeList);
 				
 			forward.setRedirect(false);
 			forward.setPath("ads_product.jsp");

@@ -167,19 +167,31 @@
 											<div id="cxslide_fade" class="cxslide_fade" style="background-color:#fff;">
 												<div class="box" style="height:320px;">
 													<ul class="list">
+													
 													    <%
-													      
-													    
+													        if (postingDto.getImageList().size()<=6){
 													    	for(int i=0;i<postingDto.getImageList().size();i++){													    	
 													    %>
-														<li style="width:535px;height:320px;background-color:#fff;">
-															<a href="#none">
-																<img src="uploads/<%=postingDto.getImageList().get(i).getImage() %>" style="width:auto;height:320px;">
-																<!-- can add more text here -->
-															</a>
-														</li>
+																<li style="width:535px;height:320px;background-color:#fff;">
+																	<a href="#none">
+																		<img src="uploads/<%=postingDto.getImageList().get(i).getImage() %>" style="width:auto;height:320px;">
+																		<!-- can add more text here -->
+																	</a>
+																</li>
 														<%
-													    	}
+													    		}
+													        }else{
+						       									for(int i=0;i<6;i++){
+														%>
+															<li style="width:535px;height:320px;background-color:#fff;">
+																	<a href="#none">
+																		<img src="uploads/<%=postingDto.getImageList().get(i).getImage() %>" style="width:auto;height:320px;">
+																		<!-- can add more text here -->
+																	</a>
+															</li>
+														<%	
+						       									}
+													        }
 														%>
 													</ul>
 												</div>
@@ -255,10 +267,16 @@
 									<p>
 										<%=postingDto.getDsc() %>
 									</p>
-									
+									<%
+										for(int i=0;i<postingDto.getImageList().size();i++){
+										
+									%>
 									<div class="img">
-										<img src="img/mode/mode_clothe01.png" alt="">
+										<img src="uploads/<%=postingDto.getImageList().get(i).getImage() %>" alt="">
 									</div>
+									<%
+										}
+									%>
 									<div class="adv mgt30">
 										<img src="img/adv/adv08.png" alt="">
 									</div>
@@ -297,20 +315,19 @@
 													       for(int i=0;i<listRelativeProduct.size();i++){
 													    	   out.print("index "+i);
 													    %>
-															<div class="item_related">
+														 	<div class="item_related">
 																<a href="#none">
-																	<span><img src="uploads/<%=listRelativeProduct.get(i).getImage().getImage() %>" alt="" class="img-responsive"></span>
+																	<span><img src="img/com/lorempixel.jpg" alt="" class="img-responsive"></span>
 																	<dl>
-																		<dt><%=listRelativeProduct.get(i).getTitle() %></dt>
-																		<dd><%=listRelativeProduct.get(i).getPrice() %></dd>
-																		<dd><%=listRelativeProduct.get(i).getKey() %></dd>
+																		<dt>Saling</dt>
+																		<dd>10$</dd>
+																		<dd>Dresses Office Wear Women Work Outfits Women Work Outfits</dd>
 																	</dl>
 																</a>
-															</div>
-															
+														    </div> 
 														<%
 													       }
-														%>
+														%> 
 													</div>
 												</div>
 											</div>

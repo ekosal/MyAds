@@ -21,6 +21,7 @@ import myads.model.dto.PostingDto;
 import myads.model.dto.PostingListDto;
 import myads.model.dto.SubCategoryDto;
 import myads.model.sqlConnection.SqlConnection;
+import myads.model.util.EncryptionUtil;
 
 public class PostingDao {
 	DataSource ds;
@@ -253,7 +254,7 @@ public class PostingDao {
 			String sql="select sc.SubCateId,c.CateId,i.Image,p.PostingId,p.ProductName,p.Price,p.Discount,p.KeyNotice from tbl_posting "
 					+ "p INNER JOIN tbl_sub_category sc on p.SubCateId=sc.SubCateId "
 					+ "INNER JOIN tbl_category c on c.CateId=sc.CateId INNER JOIN tbl_image "
-					+ "i on p.PostingId=i.PostingId WHERE c.CateId=? and p.Active=1 and i.order=1  LIMIT ?,?";
+					+ "i on p.PostingId=i.PostingId WHERE c.CateId=? and p.Active=1 and i.order=1 ORDER BY p.PostDate DESC  LIMIT ?,?";
 			
 			ps=ds.getConnection().prepareStatement(sql);
 			ps.setInt(1,Integer.valueOf(category_id));
@@ -265,14 +266,68 @@ public class PostingDao {
 				Image image=new Image();
 				MainCategoryDto mainCategory=new MainCategoryDto();
 				SubCategoryDto subcategory=new SubCategoryDto();
-				image.setImage(rs.getString("Image"));				
+				
+				image.setImage(rs.getString("Image"));	
+				
 				posting.setTitle(rs.getString("ProductName"));
 				posting.setKey(rs.getString("KeyNotice"));
 				posting.setPostingId(rs.getInt("PostingId"));
+				posting.setPostingId_security(EncryptionUtil.encode(rs.getString("PostingId")));				
 				posting.setPrice(rs.getInt("Price"));
 				posting.setDiscount(rs.getString("Discount"));
+				
 				mainCategory.setId(rs.getInt("CateId"));
-				subcategory.setId(rs.getInt("SubCateId"));
+				mainCategory.setId_security(EncryptionUtil.encode(rs.getString("CateId")));
+				
+				subcategory.setSubid(rs.getInt("SubCateId"));
+				subcategory.setSubid_security(EncryptionUtil.encode(rs.getString("SubCateId")));
+				
+				posting.setMainCategory(mainCategory);
+				posting.setSubCategory(subcategory);
+				posting.setImage(image);
+				productList.add(posting);
+			}
+			System.out.println("Category ID "+productList);
+			return productList;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	// Relative Product 
+	public List<PostingDto> readProductByCategory(String category_id){
+		List<PostingDto> productList=new ArrayList<>();
+		try{			
+			String sql="select sc.SubCateId,c.CateId,i.Image,p.PostingId,p.ProductName,p.Price,p.Discount,p.KeyNotice from tbl_posting "
+					+ "p INNER JOIN tbl_sub_category sc on p.SubCateId=sc.SubCateId "
+					+ "INNER JOIN tbl_category c on c.CateId=sc.CateId INNER JOIN tbl_image "
+					+ "i on p.PostingId=i.PostingId WHERE c.CateId=? and p.Active=1 and i.order=1 ORDER BY p.PostDate DESC";
+			
+			ps=ds.getConnection().prepareStatement(sql);
+			ps.setInt(1,Integer.valueOf(category_id));
+			rs=ps.executeQuery();
+			while(rs.next()){
+				PostingDto posting=new PostingDto();
+				Image image=new Image();
+				MainCategoryDto mainCategory=new MainCategoryDto();
+				SubCategoryDto subcategory=new SubCategoryDto();
+				
+				image.setImage(rs.getString("Image"));	
+				
+				posting.setTitle(rs.getString("ProductName"));
+				posting.setKey(rs.getString("KeyNotice"));
+				posting.setPostingId(rs.getInt("PostingId"));
+				posting.setPostingId_security(EncryptionUtil.encode(rs.getString("PostingId")));				
+				posting.setPrice(rs.getInt("Price"));
+				posting.setDiscount(rs.getString("Discount"));
+				
+				mainCategory.setId(rs.getInt("CateId"));
+				mainCategory.setId_security(EncryptionUtil.encode(rs.getString("CateId")));
+				
+				subcategory.setSubid(rs.getInt("SubCateId"));
+				subcategory.setSubid_security(EncryptionUtil.encode(rs.getString("SubCateId")));
+				
 				posting.setMainCategory(mainCategory);
 				posting.setSubCategory(subcategory);
 				posting.setImage(image);
@@ -292,7 +347,7 @@ public class PostingDao {
 			String sql="select sc.SubCateId,c.CateId,i.Image,p.PostingId,p.ProductName,p.Price,p.Discount,p.KeyNotice from tbl_posting "
 					+ "p INNER JOIN tbl_sub_category sc on p.SubCateId=sc.SubCateId "
 					+ "INNER JOIN tbl_category c on c.CateId=sc.CateId INNER JOIN tbl_image "
-					+ "i on p.PostingId=i.PostingId WHERE c.CateId=? and p.Active=1 and i.order=1 and sc.SubCateId=? LIMIT ?,?";
+					+ "i on p.PostingId=i.PostingId WHERE c.CateId=? and p.Active=1 and i.order=1 and sc.SubCateId=? ORDER BY p.PostDate DESC LIMIT ?,?";
 			ps=ds.getConnection().prepareStatement(sql);
 			ps.setInt(1,Integer.valueOf(category_id));
 			ps.setInt(2,Integer.valueOf(subCategoryId));
@@ -304,14 +359,22 @@ public class PostingDao {
 				Image image=new Image();
 				MainCategoryDto mainCategory=new MainCategoryDto();
 				SubCategoryDto subcategory=new SubCategoryDto();
+				
 				image.setImage(rs.getString("Image"));
+				
 				posting.setTitle(rs.getString("ProductName"));
 				posting.setPostingId(rs.getInt("PostingId"));
+				posting.setPostingId_security(EncryptionUtil.encode(rs.getString("PostingId")));
 				posting.setPrice(rs.getInt("Price"));
 				posting.setKey(rs.getString("KeyNotice"));
 				posting.setDiscount(rs.getString("Discount"));
+				
 				mainCategory.setId(rs.getInt("CateId"));
+				mainCategory.setId_security(EncryptionUtil.encode(rs.getString("CateId")));
+				
 				subcategory.setId(rs.getInt("SubCateId"));
+				subcategory.setSubid_security(EncryptionUtil.encode(rs.getString("SubCateId")));
+				
 				posting.setMainCategory(mainCategory);
 				posting.setSubCategory(subcategory);
 				posting.setImage(image);

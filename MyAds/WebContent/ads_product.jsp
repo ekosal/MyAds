@@ -8,7 +8,7 @@
 	<%
 		List<PostingDto> listProdict=(List<PostingDto>) request.getSession().getAttribute("productByCategory");
 		List<MainCategoryDto> listSubCategory=(List<MainCategoryDto>) request.getSession().getAttribute("CategoryList");
-		
+		List<PostingDto> listRelativeProduct=(List<PostingDto>) request.getSession().getAttribute("listRelative");
 	%>
 	<!-- body_section -->
 	<div class="body_section">
@@ -38,7 +38,7 @@
 						<span><a href="./mycategory.ads?id=<%=Pagination.category %>"><%=listSubCategory.get(0).getName() %></a> > </span>
 						<%
 							for (int i=0;i<listSubCategory.size();i++){
-								String subcate=EncryptionUtil.encode(String.valueOf(listSubCategory.get(i).getSubcategory().getId()));
+								String subcate=listSubCategory.get(i).getSubcategory().getSubid_security();
 								String subCateName=listSubCategory.get(i).getSubcategory().getName();
 							if (Pagination.subcategory.trim().equals(subcate.trim())){
 
@@ -68,14 +68,14 @@
 												    List<SubCategoryDto> rst1=CategoryDao.getSubCategory(); */
 													for(int j=0;j<rst.size();j++){
 												%>
-													<dd><a href="mycategory.ads?id=<%=EncryptionUtil.encode(String.valueOf(rst.get(j).getId())) %>" class="<%= rst.get(j).getIco_cls_name() %>"><%= rst.get(j).getName() %></a>
+													<dd><a href="mycategory.ads?id=<%=rst.get(j).getId_security() %>" class="<%= rst.get(j).getIco_cls_name() %>"><%= rst.get(j).getName() %></a>
 														<div class="more">
 															<ul>
 																<%
 												                	for(int i=0;i<rst1.size();i++)  {  
 												                		if (rst.get(j).getId()==rst1.get(i).getId()){
 																%>
-																	<li><a href="mycategory.ads?id=<%=EncryptionUtil.encode(String.valueOf(rst.get(j).getId())) %>&subid=<%=EncryptionUtil.encode(String.valueOf(rst1.get(i).getId())) %>" target="_blank"><%= rst1.get(i).getName() %></a></li>
+																	<li><a href="mycategory.ads?id=<%=rst.get(j).getId_security() %>&subid=<%=rst1.get(i).getSubid_security() %>" target="_blank"><%= rst1.get(i).getName() %></a></li>
 																<%
 																     }
 												                	}
@@ -92,7 +92,7 @@
 								</h3>
 								<div class="item" id="subCategoryList">
 									<dl>
-										<dt><a href="./mycategory.ads?id=<%=EncryptionUtil.encode(String.valueOf(listSubCategory.get(0).getId())) %>" role="<%=listSubCategory.get(0).getId() %>">
+										<dt><a href="./mycategory.ads?id=<%=listSubCategory.get(0).getId_security() %>" role="<%=listSubCategory.get(0).getId() %>">
 											<%=listSubCategory.get(0).getName() %>
 											
 										</a></dt>
@@ -101,7 +101,7 @@
 												<%
 													for(int i=0;i<listSubCategory.size();i++){
 												%>
-													<li><a href="./mycategory.ads?id=<%=EncryptionUtil.encode(String.valueOf(listSubCategory.get(0).getId())) %>&subid=<%=EncryptionUtil.encode(String.valueOf(listSubCategory.get(i).getSubcategory().getId())) %>" role="<%=listSubCategory.get(i).getSubcategory().getId()%>"><%=listSubCategory.get(i).getSubcategory().getName() %></a></li>
+													<li><a href="./mycategory.ads?id=<%=listSubCategory.get(0).getId_security() %>&subid=<%=listSubCategory.get(i).getSubcategory().getSubid_security() %>" role="<%=listSubCategory.get(i).getSubcategory().getId()%>"><%=listSubCategory.get(i).getSubcategory().getName() %></a></li>
 												<%
 													}
 												%>
@@ -156,7 +156,7 @@
 										for(int i=0;i<listProdict.size();i++){
 									%>
 									<li>
-										<a href="product_details.ads?id=<%=EncryptionUtil.encode(String.valueOf(listProdict.get(i).getMainCategory().getId())) %>&subid=<%=EncryptionUtil.encode(String.valueOf(listProdict.get(i).getSubCategory().getId())) %>&proid=<%=EncryptionUtil.encode(String.valueOf(listProdict.get(i).getPostingId())) %>">
+										<a href="product_details.ads?id=<%=listProdict.get(i).getMainCategory().getId_security() %>&subid=<%=listProdict.get(i).getSubCategory().getSubid_security() %>&proid=<%=listProdict.get(i).getPostingId_security() %>">
 											<img src="uploads/<%=listProdict.get(i).getImage().getImage() %>" alt="" style="width:236px;height:250px;">
 											<p class="title"><%=listProdict.get(i).getTitle() %></p>
 											<p><%=listProdict.get(i).getKey() %></p>
@@ -225,66 +225,25 @@
 											<div id="container-slider-carousel-2" class="container">
 												<div id="content-silder-carousel-2"	class="content">
 													<div class="wrapper-itens">
+													<%
+													    
+														for(int i=0;i<listRelativeProduct.size();i++){
+															
+													%>
 														<div class="item_related">
 															<a href="#none">
 																<span><img src="img/com/lorempixel.jpg" alt="" class="img-responsive"></span>
 																<dl>
-																	<dt>Saling</dt>
-																	<dd>10$</dd>
-																	<dd>Dresses Office Wear Women Work Outfits Women Work Outfits</dd>
+																	<dt><%=listRelativeProduct.get(i).getTitle() %></dt>
+																	<dd><%=listRelativeProduct.get(i).getPrice() %>$</dd>
+																	<dd><%=listRelativeProduct.get(i).getKey() %></dd>
 																</dl>
 															</a>
 														</div>
-														<div class="item_related">
-															<a href="#none">
-																<span><img src="img/com/lorempixel-1.jpg" alt="" class="img-responsive"></span>
-																<dl>
-																	<dt>Saling</dt>
-																	<dd>10$</dd>
-																	<dd>Dresses Office Wear Women Work Outfits Women Work Outfits</dd>
-																</dl>
-															</a>
-														</div>
-														<div class="item_related">
-															<a href="#none">
-																<span><img src="img/com/lorempixel-2.jpg" alt="" class="img-responsive"></span>
-																<dl>
-																	<dt>Saling</dt>
-																	<dd>10$</dd>
-																	<dd>Dresses Office Wear Women Work Outfits Women Work Outfits</dd>
-																</dl>
-															</a>
-														</div>
-														<div class="item_related">
-															<a href="#none">
-																<span><img src="img/com/lorempixel-3.jpg" alt="" class="img-responsive"></span>
-																<dl>
-																	<dt>Saling</dt>
-																	<dd>10$</dd>
-																	<dd>Dresses Office Wear Women Work Outfits Women Work Outfits</dd>
-																</dl>
-															</a>
-														</div>
-														<div class="item_related">
-															<a href="#none">
-																<span><img src="img/com/com_pro3.png" alt="" class="img-responsive"></span>
-																<dl>
-																	<dt>Saling</dt>
-																	<dd>10$</dd>
-																	<dd>Dresses Office Wear Women Work Outfits Women Work Outfits</dd>
-																</dl>
-															</a>
-														</div>
-														<div class="item_related">
-															<a href="#none">
-																<span><img src="img/com/com_pro3.png" alt="" class="img-responsive"></span>
-																<dl>
-																	<dt>Saling</dt>
-																	<dd>10$</dd>
-																	<dd>Dresses Office Wear Women Work Outfits Women Work Outfits</dd>
-																</dl>
-															</a>
-														</div>
+														
+													<%
+														}
+													%>														
 													</div>
 												</div>
 											</div>
@@ -325,7 +284,7 @@
 	    				var page='';
 	    				for(var i=0;i<dat.length;i++){
 	    					html+='<li>'
-	    					      +'<a href="product_details.ads?id='+dat[i]["mainCategory"].id+'&subid='+dat[i]["subCategory"].id+'&pid='+dat[i]["PostingId"]+'">'
+	    					      +'<a href="product_details.ads?id='+dat[i]["mainCategory"].id_security+'&subid='+dat[i]["subCategory"].subid_security+'&pid='+dat[i]["postingId_security"]+'">'
 	    					      +'<img src="uploads/'+dat[i]["image"].image+'" alt="" style="width:236px;height:250px;">'
 	    					      +'<p class="title">'+dat[i]["Title"]+'</p>'
 	    					      +'<p>'+dat[i]["Key"]+'</p>'
@@ -362,7 +321,7 @@
 	    				var html='';
 	    				for(var i=0;i<dat.length;i++){
 	    					html+='<li>'
-	    					      +'<a href="product_details.ads?id='+dat[i]["mainCategory"].id+'&subid='+dat[i]["subCategory"].id+'&pid='+dat[i]["PostingId"]+'">'
+	    					      +'<a href="product_details.ads?id='+dat[i]["mainCategory"].id_security+'&subid='+dat[i]["subCategory"].subid_security+'&pid='+dat[i]["postingId_security"]+'">'
 	    					      +'<img src="uploads/'+dat[i]["image"].image+'" alt="" style="width:236px;height:250px;">'
 	    					      +'<p class="title">'+dat[i]["Title"]+'</p>'
 	    					      +'<p>'+dat[i]["Key"]+'</p>'
@@ -401,7 +360,7 @@
 	    				var page='';
 	    				for(var i=0;i<dat.length;i++){
 	    					html+='<li>'
-	    					      +'<a href="product_details.ads?id='+dat[i]["mainCategory"].id+'&subid='+dat[i]["subCategory"].id+'&pid='+dat[i]["PostingId"]+'">'
+	    					      +'<a href="product_details.ads?id='+dat[i]["mainCategory"].id_security+'&subid='+dat[i]["subCategory"].subid_security+'&pid='+dat[i]["postingId_security"]+'">'
 	    					      +'<img src="uploads/'+dat[i]["image"].image+'" alt="" style="width:236px;height:250px;">'
 	    					      +'<p class="title">'+dat[i]["Title"]+'</p>'
 	    					      +'<p>'+dat[i]["Key"]+'</p>'

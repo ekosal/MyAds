@@ -115,7 +115,7 @@
 											                	for(int i=0;i<rst1.size();i++)  {  
 											                		if (rst.get(j).getId()==rst1.get(i).getId()){
 															%>
-															<option value="<%= rst1.get(i).getSubid() %>"><%= rst1.get(i).getName() %></option>
+															   <option value="<%= rst1.get(i).getSubid() %>"><%= rst1.get(i).getName() %></option>
 															<%
 															     }
 											                	}

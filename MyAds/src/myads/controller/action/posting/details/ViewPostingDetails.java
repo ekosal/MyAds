@@ -29,7 +29,7 @@ public class ViewPostingDetails implements Action {
 			CategoryDao category=new CategoryDao();
 			List<MainCategoryDto> listCategory=new ArrayList<>();
 			List<PostingDto> listRelativeProduct=new ArrayList<>();
-			PostingDto prostingDto=new PostingDto();
+			PostingDto postingDto=new PostingDto();
 			PostingDao postingDao=new PostingDao();
 			
 			listCategory=category.readSubCategoryByCategory(EncryptionUtil.decode(categoryId));
@@ -38,8 +38,9 @@ public class ViewPostingDetails implements Action {
 			listRelativeProduct=postingDao.readProductByCategoryAndSubCategory(EncryptionUtil.decode(categoryId),EncryptionUtil.decode(subCateryId));
 			request.getSession().setAttribute("listRelativeProduct", listRelativeProduct);
 			
-			prostingDto=postingDao.readProductByCategoryAndSubCategory(EncryptionUtil.decode(categoryId),EncryptionUtil.decode(subCateryId) ,EncryptionUtil.decode(proId) );
-			request.getSession().setAttribute("productDto", prostingDto);
+			postingDto=postingDao.readProductByCategoryAndSubCategory(EncryptionUtil.decode(categoryId),EncryptionUtil.decode(subCateryId) ,EncryptionUtil.decode(proId) );
+			System.out.println("Category : "+postingDto.getMainCategory().getId());
+			request.getSession().setAttribute("productDto", postingDto);
 	
 			forward.setRedirect(false);
 			forward.setPath("ads_product_detail.jsp");

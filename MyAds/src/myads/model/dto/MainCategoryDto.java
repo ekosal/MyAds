@@ -3,6 +3,8 @@ package myads.model.dto;
 public class MainCategoryDto {
 	
 	private int id;
+	//store encryption id
+	private String id_security;
 	private String ico_cls_name;
 	private String name;
 	private String dsc;
@@ -53,6 +55,12 @@ public class MainCategoryDto {
 	}
 	public void setSubcategory(SubCategoryDto subcategory) {
 		this.subcategory = subcategory;
+	}
+	public String getId_security() {
+		return id_security;
+	}
+	public void setId_security(String id_security) {
+		this.id_security = id_security;
 	}
 
 }
