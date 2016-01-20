@@ -293,7 +293,7 @@
 									{
 										//-----------------------------------------
 										$("#slider-carousel").carousel({activate: function(){},	timerAnimSlide:400,	infinite:true, resizeItem:{width:100}, responsive:{minWidth:645}});
-										$("#slider-carousel-2").carousel({activate:	function(){}, timerAnimSlide:400, infinite:true, resizeItem:{width:50},	responsive:{minWidth:645}});
+										//$("#slider-carousel-2").carousel({activate:	function(){}, timerAnimSlide:400, infinite:true, resizeItem:{width:50},	responsive:{minWidth:645}});
 										
 										//-----------------------------------------
 									});
@@ -313,15 +313,14 @@
 													<div class="wrapper-itens">
 													    <%													       
 													       for(int i=0;i<listRelativeProduct.size();i++){
-													    	   out.print("index "+i);
 													    %>
 														 	<div class="item_related">
 																<a href="#none">
-																	<span><img src="img/com/lorempixel.jpg" alt="" class="img-responsive"></span>
+																	<span><img src="uploads/<%=listRelativeProduct.get(i).getImage().getImage() %>" alt="" class="img-responsive"></span>
 																	<dl>
-																		<dt>Saling</dt>
-																		<dd>10$</dd>
-																		<dd>Dresses Office Wear Women Work Outfits Women Work Outfits</dd>
+																		<dt><%=listRelativeProduct.get(i).getTitle() %></dt>
+																		<dd><%=listRelativeProduct.get(i).getPrice() %>$</dd>
+																		<dd><%=listRelativeProduct.get(i).getKey() %></dd>
 																	</dl>
 																</a>
 														    </div> 
