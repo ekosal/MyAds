@@ -1,5 +1,4 @@
 <!-- saved from url=(0014)about:internet -->
-<!doctype html>
     <%@page import="myads.model.util.EncryptionUtil"%>
 <%@page import="myads.model.dto.PostingDto"%>
 <%@include file="ads_header.jsp" %>
@@ -271,7 +270,7 @@
 										for(int i=0;i<postingDto.getImageList().size();i++){
 										
 									%>
-									<div class="img">
+									<div class="img" style="max-width:670px;height:auto;">
 										<img src="uploads/<%=postingDto.getImageList().get(i).getImage() %>" alt="">
 									</div>
 									<%

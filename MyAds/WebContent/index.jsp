@@ -486,11 +486,12 @@
 													if (rst.get(j).getId()==content.get(index).getMainCategory().getId()){
 											%>
 											<li>
-												<a href="product_details.ads?id=<%=rst.get(j).getId_security() %>&subid=<%=content.get(index).getSubCategory().getSubid_security() %>&proid=<%=content.get(index).getPostingId_security() %>">
+												<a href="product_details.ads?id=<%=rst.get(j).getId_security() %>&subid=<%=content.get(index).getSubCategory().getSubid_security() %>&proid=<%=content.get(index).getPostingId_security() %>" target="_blank">
 													<img src="uploads/<%=content.get(index).getImage().getImage() %>" alt="" style="width:203px;height:210px;">
 													<dl>
-														<dt><%=content.get(index).getTitle() %>	</dt>
-														<dd><%=content.get(index).getKey() %></dd>
+													<dt style="white-space:nowrap;overflow:hidden;" ><%=content.get(index).getTitle() %>
+													</dt>
+													<dd style="text-overflow: ellipsis;white-space:nowrap;overflow:hidden;"><%=content.get(index).getKey() %></dd>
 													</dl>
 												</a>
 											</li>	

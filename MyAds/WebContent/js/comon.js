@@ -106,7 +106,6 @@ $(document).ready(function(e) {
 				$('.last, .next').removeClass('on');
 			}
 		});
-	 
 	
 	 
 });

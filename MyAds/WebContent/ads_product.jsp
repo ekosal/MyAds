@@ -1,4 +1,4 @@
-
+<!-- saved from url=(0014)about:internet -->
 	<%@page import="java.awt.print.Paper"%>
 <%@page import="myads.model.util.EncryptionUtil"%>
 <%@page import="myads.model.util.Pagination"%>
@@ -131,23 +131,11 @@
 							<div class="adv mgt20">
 								<img src="img/com/com_pro3.png" alt="" style="width:200px;">
 							</div>
-							<div class="adv mgt20">
-								<img src="img/com/com_pro3.png" alt="" style="width:200px;">
-							</div>
-							<div class="adv mgt20">
-								<img src="img/com/com_pro3.png" alt="" style="width:200px;">
-							</div>
-							<div class="adv mgt20">
-								<img src="img/com/com_pro3.png" alt="" style="width:200px;">
-							</div>
-							<div class="adv mgt20">
-								<img src="img/com/com_pro3.png" alt="" style="width:200px;">
-							</div>
 						</div>
 						<!-- lbn_cnt -->
 
 						<!-- ccnt_cnt -->
-						<div class="cbn_cnt">
+						<div class="cbn_cnt mgb15">
 							<!-- table product3 -->
 							<div class="tbl_product3">
 								<!------------------------------------------- open ----------------------------------------------------------------------------- -->
@@ -156,7 +144,7 @@
 										for(int i=0;i<listProdict.size();i++){
 									%>
 									<li>
-										<a href="product_details.ads?id=<%=listProdict.get(i).getMainCategory().getId_security() %>&subid=<%=listProdict.get(i).getSubCategory().getSubid_security() %>&proid=<%=listProdict.get(i).getPostingId_security() %>">
+										<a href="product_details.ads?id=<%=listProdict.get(i).getMainCategory().getId_security() %>&subid=<%=listProdict.get(i).getSubCategory().getSubid_security() %>&proid=<%=listProdict.get(i).getPostingId_security() %>" target="_blank">
 											<img src="uploads/<%=listProdict.get(i).getImage().getImage() %>" alt="" style="width:236px;height:250px;">
 											<p class="title"><%=listProdict.get(i).getTitle() %></p>
 											<p><%=listProdict.get(i).getKey() %></p>
