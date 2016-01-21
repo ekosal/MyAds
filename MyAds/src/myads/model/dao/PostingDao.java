@@ -130,8 +130,8 @@ public class PostingDao {
 		String sql="select count(*) total from  (select p.PostingId from tbl_posting p INNER JOIN tbl_image i  "
 					 +"on p.PostingId=i.PostingId INNER JOIN tbl_sub_category sc "
 					 +"on p.SubCateId=sc.SubCateId where i.order=1 and p.MemId=?  "
-					 + "and p.ProductName like ? or p.Price like ? OR  "
-					 + "p.phone like ? OR p.Address like ? OR p.Description like ?	"
+					 + "and (p.ProductName like ? or p.Price like ? OR  "
+					 + "p.phone like ? OR p.Address like ? OR p.Description like ?)	"
 					 + " GROUP BY p.PostingId) as product "	;
 		int count=0;
 		//System.out.println("Search :"+search);
@@ -162,14 +162,14 @@ public class PostingDao {
 		"p.Address,p.Description,p.Discount ,i.Image,sc.Name from tbl_posting p INNER JOIN tbl_image i "+
 		"on p.PostingId=i.PostingId INNER JOIN tbl_sub_category sc "+
 		"on p.SubCateId=sc.SubCateId where i.order=1 and p.MemId=? "
-		+ "and p.ProductName like ? or p.Price like ? OR "
-		+ "p.phone like ? OR p.Address like ? OR p.Description like ? "		
+		+ "and (p.ProductName like ? or p.Price like ? OR "
+		+ "p.phone like ? OR p.Address like ? OR p.Description like ?) "		
 		+ "GROUP BY p.PostingId ORDER BY p.PostDate DESC LIMIT ?,?";
  
 		List<PostingListDto> postinglist=new ArrayList<>();
 		
 		try {
-			System.out.println(" Start : "+start + "end : "+row);
+			System.out.println(" Start : "+start + "end : "+ memberDto.getId());
 			ps=ds.getConnection().prepareStatement(sql);
 			ps.setInt(1, memberDto.getId());
 			ps.setString(2, "%"+search+"%");
@@ -492,7 +492,30 @@ public class PostingDao {
 		return null;
 	}
 	
-	/*Relative Product*/
+	/*delete Product*/
+	public boolean deleteProduct(int id,int user_id){
+		System.out.println(id + "   "+user_id);
+		try{
+			String sql="delete from tbl_posting  where PostingId=? and MemId=?";
+			String sql1="delete from tbl_image where PostingId=?";
+			ps=ds.getConnection().prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.setInt(2, user_id);
+			int i=ps.executeUpdate();
+			System.out.println("I "+i);
+			if (i>0){
+				PreparedStatement ps1=ds.getConnection().prepareStatement(sql1);
+				ps1.setInt(1, id);
+				int j=ps1.executeUpdate();
+				if (j>0)	return true;
+			}
+			return false;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+       
+	}
 	
 	
 

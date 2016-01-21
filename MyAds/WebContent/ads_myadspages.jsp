@@ -55,8 +55,8 @@
 								</dl>
 								<div class="btn_wrap">
 									<a href="javascript:" class="btn_post disable_post">Disable Post</a>
-									<a href="javascript:" class="btn_post enabl_post">Enable Post</a>
-									<a href="javascript:" class="btn_post edit_post">Edit Post</a>
+									<a href="javascript:" class="btn_post enabl_post" rel="<%=postinglist.get(i).getPostingId() %>" onclick="deleteProduct(this)">Delete Post</a>
+									<a href="javascript:" class="btn_post edit_post" rel="<%=postinglist.get(i).getPostingId() %>">Edit Post</a>
 								</div>
 							</li>
 							<%
@@ -71,18 +71,18 @@
 						<!-- pagination -->
 						<div class="paging" id="paging"><!-- ë¹íì±ìíë on class ì ê±° -->
 						    <input type="hidden" value="1" id="txtcurrentpage">
-							<a href="javascript:" class="btn_pag_cntr first indexPage" rel="1"><span class="blind">first</span></a><a href="javascript:" class="btn_pag_cntr prev" id="pre-page"><span class="blind">previous</span></a>
+							<a href="javascript:" class="btn_pag_cntr first indexPage" rel="1" onclick="clickNextPage(this)"><span class="blind">first</span></a><a href="javascript:" class="btn_pag_cntr prev" id="pre-page" onclick="prePerPage()"><span class="blind">previous</span></a>
 							<span class="pag_num">
-							    <a href="javascript:" class="on indexPage" rel="1">1</a>
+							  <!--   <a href="javascript:" class="on indexPage" onclick="clickNextPage(this)" rel="1">1</a> -->
 							    <%
-							       for(int i=2;i<=countPage;i++){
+							       for(int i=1;i<=countPage;i++){
 							    %>
-									<a href="javascript:" rel="<%=i %>" class="indexPage"><%=i %></a>
+									<a href="javascript:" rel="<%=i %>" class="indexPage" onclick="clickNextPage(this)"><%=i %></a>
 								<%
 							       }
 								%>
 							</span>
-							<a href="javascript:" class="btn_pag_cntr next on" id="next-page"><span class="blind">next</span></a><a href="javascript:" class="btn_pag_cntr last on indexPage" rel="<%=countPage %>"><span class="blind">last</span></a>
+							<a href="javascript:" class="btn_pag_cntr next on" id="next-page" onclick="nextPerPage()"><span class="blind">next</span></a><a href="javascript:" class="btn_pag_cntr last on indexPage" rel="<%=countPage %>" onclick="clickNextPage(this)"><span class="blind">last</span></a>
 						</div> 
 						<!-- //pagination -->
 						
@@ -102,6 +102,67 @@
 	<jsp:directive.include file="ads_footer.jsp" />
 	<script type="text/javascript">
 		$(document).ready(function(e){
+			/* $("#productList li .btn_wrap a.enabl_post").click(function(e){
+				if(!confirm('Do You to Delete Product ID='+$(this).attr("rel"))){
+					return ;
+				}
+					
+				$.ajax({
+				type : "POST",
+       			url : "${pageContext.request.contextPath }/delete_product.ads",
+    			data : "id="+$(this).attr("rel")+"&txtSearch="+$("#txtSearch").val()+"&cp=1",
+    			success : function(dat) {    
+    				console.log(dat);
+    				if (dat==false){
+    					alert("Delete Product Not Successfull");
+    					return ;
+    				}else{
+    					alert("Delete Product successfull");
+    				}
+    				var html='';
+    				for(var i=0;i<dat[1].length;i++){
+    					html+='<li>'
+    					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["img"]+'" alt=""></a></div>'
+    					      +'<dl>'
+    					      +'<dt>Product Name:<a href="#none">'+dat[1][i]["ProductName"]+'</a></dt>'
+    					      +'<dd>Category Type: '+dat[1][i]["SubCateName"]+'</dd>'
+    					      +'<dd><strong>Price: '+dat[1][i]["Price"]+'</strong></dd>'
+    					      +'<dd><strong>Discount: '+dat[1][i]["discount"]+'</strong></dd>'
+    					      +'<dd>Phone Number: '+dat[1][i]["Phone"]+'</dd>'
+						      +'<dd>Your Address: '+dat[1][i]["Adr"]+'</dd>'
+						      +'</dl>'
+							  +'<div class="btn_wrap"><a href="javascript:" class="btn_post disable_post">Disable Post</a>'
+							  +'<a href="javascript:" class="btn_post enabl_post" rel="'+dat[1][i]["PostingId"]+'">Delete Post</a><a href="./edit_product.ads?"'+dat[1][i]["PostingId"]+'"" class="btn_post edit_post" rel="'+dat[1][i]["PostingId"]+'">Edit Post</a>'
+							  +'</div></li>';							
+
+    				}
+    				var paging="";
+    				paging+='<input type="hidden" value="0" id="txtcurrentpage">'
+				       +'<a href="javascript:" class="btn_pag_cntr first" rel="1"><span class="blind">first</span></a><a href="javascript:" class="btn_pag_cntr prev"><span class="blind">previous</span></a>'
+				       +'<span class="pag_num">'
+    				   +'<a href="javascript:" class="on indexPage" >1</a>';
+    				for(var i=2;i<=dat[0];i++){
+    					       paging+='<a href="javascript:" rel="'+i+'" class="indexPage">'+i+'</a>'	;						
+    				}
+    				paging+='</span><a href="javascript:" class="btn_pag_cntr next on"><span class="blind">next</span></a><a href="javascript:" class="btn_pag_cntr last on indexPage" rel="'+dat[0]+'"><span class="blind">last</span></a>'
+    				console.log(paging);
+    				$("#productList").empty();
+    				$("#productList").append(html);
+    				$("#paging").empty();
+    				$("#paging").append(paging);
+    				$("#txtcurrentpage").val(1);
+    				
+    				
+    			},
+    			error : function(e) {
+    				console.log("ERROR: ", e);
+    				
+    			},
+    			done : function(e) {
+    				console.log("DONE");
+    			}
+    		});
+			}); */
 			$("#btnSearch").click(function(e){
 				$.ajax({
 	    			type : "POST",
@@ -122,19 +183,19 @@
 							      +'<dd>Your Address: '+dat[1][i]["Adr"]+'</dd>'
 							      +'</dl>'
 								  +'<div class="btn_wrap"><a href="javascript:" class="btn_post disable_post">Disable Post</a>'
-								  +'<a href="#none" class="btn_post enabl_post">Enable Post</a><a href="#none" class="btn_post edit_post">Edit Post</a>'
+								  +'<a href="javascritp:" class="btn_post enabl_post" rel="'+dat[1][i]["PostingId"]+'" onclick="deleteProduct(this)">Delete Post</a><a href="./edit_product.ads?"'+dat[1][i]["PostingId"]+'"" class="btn_post edit_post" rel="'+dat[1][i]["PostingId"]+'">Edit Post</a>'
 								  +'</div></li>';							
 
 	    				}
 	    				var paging="";
 	    				paging+='<input type="hidden" value="0" id="txtcurrentpage">'
-					       +'<a href="javascript:" class="btn_pag_cntr first" rel="1"><span class="blind">first</span></a><a href="javascript:" class="btn_pag_cntr prev"><span class="blind">previous</span></a>'
+					       +'<a href="javascript:" class="btn_pag_cntr first" rel="1" onclick="clickNextPage(this)"><span class="blind">first</span></a><a href="javascript:" onclick="prePerPage()"  class="btn_pag_cntr prev"><span class="blind">previous</span></a>'
 					       +'<span class="pag_num">'
-	    				   +'<a href="javascript:" class="on indexPage" >1</a>';
-	    				for(var i=2;i<=dat[0];i++){
-	    					       paging+='<a href="javascript:" rel="'+i+'" class="indexPage">'+i+'</a>'	;						
+	    				   ;
+	    				for(var i=1;i<=dat[0];i++){
+	    					       paging+='<a href="javascript:" rel="'+i+'" class="indexPage" onclick="clickNextPage(this)">'+i+'</a>'	;						
 	    				}
-	    				paging+='</span><a href="javascript:" class="btn_pag_cntr next on"><span class="blind">next</span></a><a href="javascript:" class="btn_pag_cntr last on indexPage" rel="'+dat[0]+'"><span class="blind">last</span></a>'
+	    				paging+='</span><a href="javascript:" onclick="nextPerPage()" class="btn_pag_cntr next on"><span class="blind">next</span></a><a href="javascript:" class="btn_pag_cntr last on indexPage" rel="'+dat[0]+'" onclick="clickNextPage(this)"><span class="blind">last</span></a>'
 	    				console.log(paging);
 	    				$("#productList").empty();
 	    				$("#productList").append(html);
@@ -163,7 +224,7 @@
 				$( "#btnSearch" ).trigger( "click" ); 
 			});
 			
-			$(".paging a.indexPage").click(function(e){
+/* 			$(".paging a.indexPage").click(function(e){
 				$("#txtcurrentpage").val($(this).attr("rel"));
 				$.ajax({
 	    			type : "POST",
@@ -185,7 +246,7 @@
 							      +'<dd>Your Address: '+dat[1][i]["Adr"]+'</dd>'
 							      +'</dl>'
 								  +'<div class="btn_wrap"><a href="#none" class="btn_post disable_post">Disable Post</a>'
-								  +'<a href="#none" class="btn_post enabl_post">Enable Post</a><a href="#none" class="btn_post edit_post">Edit Post</a>'
+								  +'<a href="javascript:" class="btn_post enabl_post" rel="'+dat[1][i]["PostingId"]+'">Delete Post</a><a href="./edit_product.ads?"'+dat[1][i]["PostingId"]+'"" class="btn_post edit_post" rel="'+dat[1][i]["PostingId"]+'">Edit Post</a>'
 								  +'</div></li>';							
 
 	    				}
@@ -205,12 +266,14 @@
 	    				console.log("DONE");
 	    			}
 	    		});
-			});
+			}); */
 			
-			$("#pre-page").click(function(e){
+			
+			/* $("#pre-page").click(function(e){
 				if($("#txtcurrentpage").val()==1){
 					return;
 				}
+			
 				$("#txtcurrentpage").val($("#txtcurrentpage").val()-1);
 				$.ajax({
 	    			type : "POST",
@@ -232,7 +295,7 @@
 							      +'<dd>Your Address: '+dat[1][i]["Adr"]+'</dd>'
 							      +'</dl>'
 								  +'<div class="btn_wrap"><a href="#none" class="btn_post disable_post">Disable Post</a>'
-								  +'<a href="#none" class="btn_post enabl_post">Enable Post</a><a href="#none" class="btn_post edit_post">Edit Post</a>'
+								  +'<a href="javascript:" class="btn_post enabl_post" rel="'+dat[1][i]["PostingId"]+'">Enable Post</a><a href="./edit_product.ads?"'+dat[1][i]["PostingId"]+'"" class="btn_post edit_post" rel="'+dat[1][i]["PostingId"]+'">Edit Post</a>'
 								  +'</div></li>';							
 
 	    				}
@@ -251,8 +314,10 @@
 	    			
 	    		});
 
-			});
-			$("#next-page").click(function(e){
+			}); */
+			
+			
+			/* $("#next-page").click(function(e){
 				var total = $("#paging a:last-child").attr("rel");
 				var current=parseInt($("#txtcurrentpage").val())+1;
 				if (total<current) return;
@@ -276,7 +341,7 @@
 							      +'<dd>Your Address: '+dat[1][i]["Adr"]+'</dd>'
 							      +'</dl>'
 								  +'<div class="btn_wrap"><a href="#none" class="btn_post disable_post">Disable Post</a>'
-								  +'<a href="#none" class="btn_post enabl_post">Enable Post</a><a href="#none" class="btn_post edit_post">Edit Post</a>'
+								  +'<a href="javascript:" class="btn_post enabl_post" rel="'+dat[1][i]["PostingId"]+'">delete Post</a><a href="./edit_product.ads?"'+dat[1][i]["PostingId"]+'"" class="btn_post edit_post" rel="'+dat[1][i]["PostingId"]+'">Edit Post</a>'
 								  +'</div></li>';							
 
 	    				}
@@ -293,6 +358,202 @@
 	    				console.log("DONE");
 	    			}
 	    		});
-			});
+			}); */
 		});
+		function deleteProduct(obj){
+			if(!confirm('Do You to Delete Product ID='+$(obj).attr("rel"))){
+				return ;
+			}
+				
+			$.ajax({
+			type : "POST",
+   			url : "${pageContext.request.contextPath }/delete_product.ads",
+			data : "id="+$(obj).attr("rel")+"&txtSearch="+$("#txtSearch").val()+"&cp=1",
+			success : function(dat) {    
+				console.log(dat);
+				if (dat==false){
+					alert("Delete Product Not Successfull");
+					return ;
+				}else{
+					alert("Delete Product successfull");
+				}
+				var html='';
+				for(var i=0;i<dat[1].length;i++){
+					html+='<li>'
+					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["img"]+'" alt=""></a></div>'
+					      +'<dl>'
+					      +'<dt>Product Name:<a href="#none">'+dat[1][i]["ProductName"]+'</a></dt>'
+					      +'<dd>Category Type: '+dat[1][i]["SubCateName"]+'</dd>'
+					      +'<dd><strong>Price: '+dat[1][i]["Price"]+'</strong></dd>'
+					      +'<dd><strong>Discount: '+dat[1][i]["discount"]+'</strong></dd>'
+					      +'<dd>Phone Number: '+dat[1][i]["Phone"]+'</dd>'
+					      +'<dd>Your Address: '+dat[1][i]["Adr"]+'</dd>'
+					      +'</dl>'
+						  +'<div class="btn_wrap"><a href="javascript:" class="btn_post disable_post">Disable Post</a>'
+						  +'<a href="javascript:" class="btn_post enabl_post" rel="'+dat[1][i]["PostingId"]+'" onclick="deleteProduct(this)">Delete Post</a><a href="./edit_product.ads?"'+dat[1][i]["PostingId"]+'"" class="btn_post edit_post" rel="'+dat[1][i]["PostingId"]+'">Edit Post</a>'
+						  +'</div></li>';							
+
+				}
+				var paging="";
+				paging+='<input type="hidden" value="0" id="txtcurrentpage">'
+			       +'<a href="javascript:" class="btn_pag_cntr first" rel="1" onclick="clickNextPage(this)"><span class="blind">first</span></a><a href="javascript:" class="btn_pag_cntr prev" onclick="prePerPage()" ><span class="blind">previous</span></a>'
+			       +'<span class="pag_num">'
+				  ;
+				for(var i=1;i<=dat[0];i++){
+					       paging+='<a href="javascript:" rel="'+i+'" class="indexPage" onclick="clickNextPage(this)">'+i+'</a>'	;						
+				}
+				paging+='</span><a href="javascript:"  class="btn_pag_cntr next on" onclick="nextPerPage()"><span class="blind">next</span></a><a href="javascript:" class="btn_pag_cntr last on indexPage" rel="'+dat[0]+'" onclick="clickNextPage(this)"><span class="blind">last</span></a>'
+				console.log(paging);
+				$("#productList").empty();
+				$("#productList").append(html);
+				$("#paging").empty();
+				$("#paging").append(paging);
+				$("#txtcurrentpage").val('1');
+				
+				
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+				
+			},
+			done : function(e) {
+				console.log("DONE");
+			}
+		});
+		}
+		
+		function nextPerPage(){
+			var total = $("#paging a:last-child").attr("rel");
+			var current=parseInt($("#txtcurrentpage").val())+1;
+			if (total<current) return;
+			$.ajax({
+    			type : "POST",
+       			url : "${pageContext.request.contextPath }/lay_search_myadspages.ads",
+    			data : "txtSearch="+$("#txtSearch").val()+"&cp="+current,
+    			success : function(dat) {    				
+    				console.log(dat);
+    				var html='';
+    				var page='';
+    				for(var i=0;i<dat[1].length;i++){
+    					html+='<li>'
+    					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["img"]+'" alt=""></a></div>'
+    					      +'<dl>'
+    					      +'<dt>Product Name:<a href="#none">'+dat[1][i]["ProductName"]+'</a></dt>'
+    					      +'<dd>Category Type: '+dat[1][i]["SubCateName"]+'</dd>'
+    					      +'<dd><strong>Price: '+dat[1][i]["Price"]+'</strong></dd>'
+    					      +'<dd><strong>Discount: '+dat[1][i]["discount"]+'</strong></dd>'
+    					      +'<dd>Phone Number: '+dat[1][i]["Phone"]+'</dd>'
+						      +'<dd>Your Address: '+dat[1][i]["Adr"]+'</dd>'
+						      +'</dl>'
+							  +'<div class="btn_wrap"><a href="#none" class="btn_post disable_post">Disable Post</a>'
+							  +'<a href="javascript:" class="btn_post enabl_post" rel="'+dat[1][i]["PostingId"]+'" onclick="deleteProduct(this)">delete Post</a><a href="./edit_product.ads?"'+dat[1][i]["PostingId"]+'"" class="btn_post edit_post" rel="'+dat[1][i]["PostingId"]+'">Edit Post</a>'
+							  +'</div></li>';							
+
+    				}
+    				$("#productList").empty();
+    				$("#productList").append(html);
+    				$("#txtcurrentpage").val(current);
+    				
+    			},
+    			error : function(e) {
+    				console.log("ERROR: ", e);
+    				
+    			},
+    			done : function(e) {
+    				console.log("DONE");
+    			}
+    		});
+		
+		}
+		function clickNextPage(obj){
+			$("#txtcurrentpage").val($(obj).attr("rel"));
+			$.ajax({
+    			type : "POST",
+       			url : "${pageContext.request.contextPath }/lay_search_myadspages.ads",
+    			data : "txtSearch="+$("#txtSearch").val()+"&cp="+$(obj).attr("rel"),
+    			success : function(dat) {    				
+    				console.log(dat);
+    				var html='';
+    				var page='';
+    				for(var i=0;i<dat[1].length;i++){
+    					html+='<li>'
+    					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["img"]+'" alt=""></a></div>'
+    					      +'<dl>'
+    					      +'<dt>Product Name:<a href="#none">'+dat[1][i]["ProductName"]+'</a></dt>'
+    					      +'<dd>Category Type: '+dat[1][i]["SubCateName"]+'</dd>'
+    					      +'<dd><strong>Price: '+dat[1][i]["Price"]+'</strong></dd>'
+    					      +'<dd><strong>Discount: '+dat[1][i]["discount"]+'</strong></dd>'
+    					      +'<dd>Phone Number: '+dat[1][i]["Phone"]+'</dd>'
+						      +'<dd>Your Address: '+dat[1][i]["Adr"]+'</dd>'
+						      +'</dl>'
+							  +'<div class="btn_wrap"><a href="#none" class="btn_post disable_post">Disable Post</a>'
+							  +'<a href="javascript:" class="btn_post enabl_post" rel="'+dat[1][i]["PostingId"]+'" onclick="deleteProduct(this)">Delete Post</a><a href="./edit_product.ads?"'+dat[1][i]["PostingId"]+'"" class="btn_post edit_post" rel="'+dat[1][i]["PostingId"]+'">Edit Post</a>'
+							  +'</div></li>';							
+
+    				}
+    				$("#productList").empty();
+    				$("#productList").append(html);
+    				$('.paging a').click(function(e) {
+    					$(this).siblings('a').removeClass('on');
+    					$(this).addClass('on');
+    				});
+    				
+    			},
+    			error : function(e) {
+    				console.log("ERROR: ", e);
+    				
+    			},
+    			done : function(e) {
+    				console.log("DONE");
+    			}
+    		});
+		  
+		}
+		
+		function prePerPage(){
+			if($("#txtcurrentpage").val()==1){
+				return;
+			}
+		
+			$("#txtcurrentpage").val($("#txtcurrentpage").val()-1);
+			$.ajax({
+    			type : "POST",
+       			url : "${pageContext.request.contextPath }/lay_search_myadspages.ads",
+    			data : "txtSearch="+$("#txtSearch").val()+"&cp="+$("#txtcurrentpage").val(),
+    			success : function(dat) {    				
+    				console.log(dat);
+    				var html='';
+    				var page='';
+    				for(var i=0;i<dat[1].length;i++){
+    					html+='<li>'
+    					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["img"]+'" alt=""></a></div>'
+    					      +'<dl>'
+    					      +'<dt>Product Name:<a href="#none">'+dat[1][i]["ProductName"]+'</a></dt>'
+    					      +'<dd>Category Type: '+dat[1][i]["SubCateName"]+'</dd>'
+    					      +'<dd><strong>Price: '+dat[1][i]["Price"]+'</strong></dd>'
+    					      +'<dd><strong>Discount: '+dat[1][i]["discount"]+'</strong></dd>'
+    					      +'<dd>Phone Number: '+dat[1][i]["Phone"]+'</dd>'
+						      +'<dd>Your Address: '+dat[1][i]["Adr"]+'</dd>'
+						      +'</dl>'
+							  +'<div class="btn_wrap"><a href="#none" class="btn_post disable_post">Disable Post</a>'
+							  +'<a href="javascript:" class="btn_post enabl_post" rel="'+dat[1][i]["PostingId"]+'" onclick="deleteProduct(this)">Delete Post</a><a href="./edit_product.ads?"'+dat[1][i]["PostingId"]+'"" class="btn_post edit_post" rel="'+dat[1][i]["PostingId"]+'">Edit Post</a>'
+							  +'</div></li>';							
+
+    				}
+    				$("#productList").empty();
+    				$("#productList").append(html);
+    				
+    				
+    			},
+    			error : function(e) {
+    				console.log("ERROR: ", e);
+    				
+    			},
+    			done : function(e) {
+    				console.log("DONE");
+    			}
+    			
+    		});
+
+		}
     </script>

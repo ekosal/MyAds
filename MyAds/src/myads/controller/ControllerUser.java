@@ -23,6 +23,7 @@ import myads.controller.action.category.ExistFrontMainCategory;
 import myads.controller.action.member.*;
 import myads.controller.action.posting.AddPosting;
 import myads.controller.action.posting.AddPostingAction;
+import myads.controller.action.posting.DeleteProducts;
 import myads.controller.action.posting.MyAdsAction;
 import myads.controller.action.posting.SearchAdsAction;
 import myads.controller.action.posting.details.ViewPostingDetails;
@@ -128,7 +129,26 @@ public class ControllerUser extends HttpServlet {
 				}
 			 
 			 System.out.println(forward.getPath());
-		 }else if (command.equals("/lay_newposting.ads")){
+		 }else if (command.equals("/delete_product.ads")){
+			 action=new DeleteProducts();
+				
+			 try{
+					forward=action.execute(request, response);
+					 if (request.getSession().getAttribute("postingList")!=null){
+						 List<Object> data=new ArrayList<Object>();
+						 data.add(String.valueOf(Pagination.totalpage));
+						 data.add(request.getSession().getAttribute("postingList"));
+						 response.setContentType("application/json");
+						 response.setCharacterEncoding("UTF-8");
+						 response.getWriter().write(new Gson().toJson(data));
+						 return ;
+				    }
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			 
+			 System.out.println(forward.getPath());
+		 } else if (command.equals("/lay_newposting.ads")){
 			 
 			 action=new AddPostingAction();
 			 try{
