@@ -517,6 +517,20 @@ public class PostingDao {
        
 	}
 	
+	public PostingDto getPostingById(int id,int user_id){
+		PostingDto postingDto=new PostingDto();
+		try{
+			String sql="";
+			ps=ds.getConnection().prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.setInt(2, user_id);
+			
+			return postingDto;
+		}catch(Exception e){
+			
+		}
+		return null;
+	}
 	
 
 }

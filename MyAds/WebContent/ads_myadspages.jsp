@@ -56,7 +56,7 @@
 								<div class="btn_wrap">
 									<a href="javascript:" class="btn_post disable_post">Disable Post</a>
 									<a href="javascript:" class="btn_post enabl_post" rel="<%=postinglist.get(i).getPostingId() %>" onclick="deleteProduct(this)">Delete Post</a>
-									<a href="javascript:" class="btn_post edit_post" rel="<%=postinglist.get(i).getPostingId() %>">Edit Post</a>
+									<a href="./edit_product.ads?id=<%=postinglist.get(i).getPostingId() %>" class="btn_post edit_post" rel="<%=postinglist.get(i).getPostingId() %>">Edit Post</a>
 								</div>
 							</li>
 							<%
@@ -183,7 +183,7 @@
 							      +'<dd>Your Address: '+dat[1][i]["Adr"]+'</dd>'
 							      +'</dl>'
 								  +'<div class="btn_wrap"><a href="javascript:" class="btn_post disable_post">Disable Post</a>'
-								  +'<a href="javascritp:" class="btn_post enabl_post" rel="'+dat[1][i]["PostingId"]+'" onclick="deleteProduct(this)">Delete Post</a><a href="./edit_product.ads?"'+dat[1][i]["PostingId"]+'"" class="btn_post edit_post" rel="'+dat[1][i]["PostingId"]+'">Edit Post</a>'
+								  +'<a href="javascritp:" class="btn_post enabl_post" rel="'+dat[1][i]["PostingId"]+'" onclick="deleteProduct(this)">Delete Post</a><a href="./edit_product.ads?id="'+dat[1][i]["PostingId"]+'"" class="btn_post edit_post" rel="'+dat[1][i]["PostingId"]+'">Edit Post</a>'
 								  +'</div></li>';							
 
 	    				}
@@ -390,7 +390,7 @@
 					      +'<dd>Your Address: '+dat[1][i]["Adr"]+'</dd>'
 					      +'</dl>'
 						  +'<div class="btn_wrap"><a href="javascript:" class="btn_post disable_post">Disable Post</a>'
-						  +'<a href="javascript:" class="btn_post enabl_post" rel="'+dat[1][i]["PostingId"]+'" onclick="deleteProduct(this)">Delete Post</a><a href="./edit_product.ads?"'+dat[1][i]["PostingId"]+'"" class="btn_post edit_post" rel="'+dat[1][i]["PostingId"]+'">Edit Post</a>'
+						  +'<a href="javascript:" class="btn_post enabl_post" rel="'+dat[1][i]["PostingId"]+'" onclick="deleteProduct(this)">Delete Post</a><a href="./edit_product.ads?id="'+dat[1][i]["PostingId"]+'"" class="btn_post edit_post" rel="'+dat[1][i]["PostingId"]+'">Edit Post</a>'
 						  +'</div></li>';							
 
 				}
@@ -446,7 +446,7 @@
 						      +'<dd>Your Address: '+dat[1][i]["Adr"]+'</dd>'
 						      +'</dl>'
 							  +'<div class="btn_wrap"><a href="#none" class="btn_post disable_post">Disable Post</a>'
-							  +'<a href="javascript:" class="btn_post enabl_post" rel="'+dat[1][i]["PostingId"]+'" onclick="deleteProduct(this)">delete Post</a><a href="./edit_product.ads?"'+dat[1][i]["PostingId"]+'"" class="btn_post edit_post" rel="'+dat[1][i]["PostingId"]+'">Edit Post</a>'
+							  +'<a href="javascript:" class="btn_post enabl_post" rel="'+dat[1][i]["PostingId"]+'" onclick="deleteProduct(this)">delete Post</a><a href="./edit_product.ads?id="'+dat[1][i]["PostingId"]+'"" class="btn_post edit_post" rel="'+dat[1][i]["PostingId"]+'">Edit Post</a>'
 							  +'</div></li>';							
 
     				}
@@ -487,7 +487,7 @@
 						      +'<dd>Your Address: '+dat[1][i]["Adr"]+'</dd>'
 						      +'</dl>'
 							  +'<div class="btn_wrap"><a href="#none" class="btn_post disable_post">Disable Post</a>'
-							  +'<a href="javascript:" class="btn_post enabl_post" rel="'+dat[1][i]["PostingId"]+'" onclick="deleteProduct(this)">Delete Post</a><a href="./edit_product.ads?"'+dat[1][i]["PostingId"]+'"" class="btn_post edit_post" rel="'+dat[1][i]["PostingId"]+'">Edit Post</a>'
+							  +'<a href="javascript:" class="btn_post enabl_post" rel="'+dat[1][i]["PostingId"]+'" onclick="deleteProduct(this)">Delete Post</a><a href="./edit_product.ads?id="'+dat[1][i]["PostingId"]+'"" class="btn_post edit_post" rel="'+dat[1][i]["PostingId"]+'">Edit Post</a>'
 							  +'</div></li>';							
 
     				}
@@ -536,7 +536,7 @@
 						      +'<dd>Your Address: '+dat[1][i]["Adr"]+'</dd>'
 						      +'</dl>'
 							  +'<div class="btn_wrap"><a href="#none" class="btn_post disable_post">Disable Post</a>'
-							  +'<a href="javascript:" class="btn_post enabl_post" rel="'+dat[1][i]["PostingId"]+'" onclick="deleteProduct(this)">Delete Post</a><a href="./edit_product.ads?"'+dat[1][i]["PostingId"]+'"" class="btn_post edit_post" rel="'+dat[1][i]["PostingId"]+'">Edit Post</a>'
+							  +'<a href="javascript:" class="btn_post enabl_post" rel="'+dat[1][i]["PostingId"]+'" onclick="deleteProduct(this)">Delete Post</a><a href="./edit_product.ads?id="'+dat[1][i]["PostingId"]+'"" class="btn_post edit_post" rel="'+dat[1][i]["PostingId"]+'">Edit Post</a>'
 							  +'</div></li>';							
 
     				}

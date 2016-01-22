@@ -148,7 +148,17 @@ public class ControllerUser extends HttpServlet {
 				}
 			 
 			 System.out.println(forward.getPath());
-		 } else if (command.equals("/lay_newposting.ads")){
+		 }else if (command.equals("/edit_product.ads")){
+			 action=new AddPostingAction();
+			 try{
+					forward=action.execute(request, response);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			 
+			 System.out.println(forward.getPath());
+		 }	 
+		 else if (command.equals("/lay_newposting.ads")){
 			 
 			 action=new AddPostingAction();
 			 try{
