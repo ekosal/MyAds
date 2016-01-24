@@ -16,21 +16,6 @@
 					<!-- mypost header -->
 					<div class="mypost_header">
 						<div class="cboth">
-							<% if(session.getAttribute("membername") == null ){ %>
-							 	<p class="logged" style="position:static;float:left;display:block;">
-									<a href="lay_reg.ads">
-										<img src="img/com/com02.png" alt="" style="text-align:center;">
-									</a>
-								</p>
-							 <% } else {%>
-							 	<p class="logged" style="position:static;float:left;display:block;">
-									<a href="lay_myadsprofile.ads">
-										<img src="img/com/com01.png" alt="" style="text-align:center;">
-										<%= session.getAttribute("membername") %>
-									</a>
-								</p>
-							 <%} %>
-						 
 							<h1 class="f_left"><span style="color:#0174b3;">MyAds's</span> <span style="color:#f7153a;">Account Register</span></h1>
 						</div>
 					</div>
@@ -42,7 +27,21 @@
 							add more company informatoin here
 						</div>
 
-						<div class="register">
+						<div class="register" style="padding-left: 150px;">
+						
+							<!-- photo -->
+							<div class="single_photo">
+								<div class="uploadimage">
+									<a href="#none" class="wrap_img user single">
+										<span class="getphoto">photo</span>
+										<!--<span class="addmore">Add more photos</span>-->
+									</a>
+									<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" multiple required>
+									<span style="display:none" class="storeimg"></span>
+								</div>
+							</div>
+							<!-- //photo -->
+						
 							<form method="post" action="register.ads" name="frmregister" id="frmregister">
 								<table summary="">
 									<caption></caption>
