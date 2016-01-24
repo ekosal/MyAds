@@ -17,7 +17,7 @@ public class ProfileAction implements Action{
 		try{
 			
 			forward.setRedirect(false);
-			forward.setPath("ads_myprofile.jsp");
+			forward.setPath("ads_account_setting.jsp");
 			return forward;
 		}catch(Exception e){
 		}

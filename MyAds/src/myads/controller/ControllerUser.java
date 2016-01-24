@@ -193,6 +193,21 @@ public class ControllerUser extends HttpServlet {
 				}
 			 }
 			 System.out.println(forward.getPath());
+		 }else if (command.equals("/lay_account_setting.ads")){
+			 HttpSession session=request.getSession(true);
+			 if (session.getAttribute("user")==null){
+				 forward.setRedirect(true);
+				 forward.setPath("lay_log.ads");
+				 System.out.println(" Session Null");
+			 }else{
+			 action=new ProfileAction();
+			 try{
+					forward=action.execute(request, response);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			 }
+			 System.out.println(forward.getPath());
 		 }else if (command.equals("/register.ads")){
 			 action=new Register();
 			 try{
