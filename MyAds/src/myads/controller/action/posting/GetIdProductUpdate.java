@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import myads.controller.action.Action;
 import myads.controller.action.ActionForward;
+import myads.model.dao.PostingDao;
+import myads.model.dto.MemberDto;
 import myads.model.dto.PostingDto;
 
 public class GetIdProductUpdate implements Action{
@@ -16,18 +18,18 @@ ActionForward forward=new ActionForward();
 		
 	   PostingDto postingDto=new PostingDto();
 	   String id=request.getParameter("id");
+	   PostingDao postingDao=new PostingDao();
+	   MemberDto memberDto=new MemberDto();
 		
 		try{
 			if (id==null || id==""){
 				forward.setPath("ads_newposting.jsp");
 			}else{
-				
-				
-				
+				memberDto=(MemberDto)request.getSession().getAttribute("user");
+				postingDto=postingDao.getPostingById(Integer.valueOf(id), memberDto.getId());
+				request.getSession().setAttribute("postingDto", postingDto);
 				forward.setPath("ads_editposting.jsp");
 			}
-			
-			
 			forward.setRedirect(false);
 			
 			return forward;

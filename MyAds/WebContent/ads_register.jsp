@@ -2,11 +2,7 @@
 <jsp:directive.include file="ads_header.jsp" />
 	<jsp:directive.include file="ads_help.jsp" />
 
-	<script>
-		function register(){
-			frmregister.submit();
-		}
-	</script>
+	
 
 	<!-- body_section -->
 	<div class="body_section">
@@ -47,7 +43,7 @@
 						</div>
 
 						<div class="register">
-							<form method="post" action="register.ads" name="frmregister">
+							<form method="post" action="register.ads" name="frmregister" id="frmregister">
 								<table summary="">
 									<caption></caption>
 									<colgroup>
@@ -57,18 +53,18 @@
 									<tbody>
 										<tr>
 											<th><div>Username <span class="require">*</span></div></th>
-											<td><div><input type="text" value="" placeholder="Enter your name" name="txt_name" style="width:308px;" required="required"></div></td>
+											<td><div><input type="text" value="" placeholder="Enter your name" name="txt_name" style="width:308px;" data-rule-required="true" data-msg-required="Please enter your user name!"></div></td>
 										</tr>
 										<tr>
 											<th><div>Your full name <span class="require">*</span></div></th>
-											<td><div><input type="text" value="" placeholder="Enter your real name" name="txt_realname" style="width:308px;" required="required"></div></td>
+											<td><div><input type="text" value="" placeholder="Enter your real name" name="txt_realname" style="width:308px;" data-rule-required="true" data-msg-required="Please enter your full name!"></div></td>
 										</tr>
 										<tr>
 											<th><div>Your company name</div></th>
 											<td>
 												<div style="height:60px;">
-													<select style="width:65%;height:40px;" name="txt_companyid" required="required">
-														<option value="0">Choose your company</option>
+													<select style="width:65%;height:40px;" name="txt_companyid" data-rule-required="true" data-msg-required="Please enter your company!">
+														<option value="">Choose your company</option>
 														<%
 															ResultSet rsth=MyComobox.getCompany();
 															while(rsth.next()){
@@ -86,30 +82,30 @@
 											<th><div>Gender <span class="require">*</span></div></th>
 											<td>
 												<div>
-													<label><input type="radio" checked value="Male" name="txt_sex" required="required"> Male</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<label><input type="radio" value="Female" name="txt_sex" required="required"> Female</label>
+													<label><input type="radio" checked value="Male" name="txt_sex" data-rule-required="true" data-msg-required="Please enter your user name!"> Male</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<label><input type="radio" value="Female" name="txt_sex" > Female</label>
 												</div>
 											</td>
 										</tr>
 										<tr>
 											<th><div>Create Password <span class="require">*</span></div></th>
-											<td><div><input type="password" value="" placeholder="Create password" name="txt_pass" style="width:308px;" required="required"></div></td>
+											<td><div><input type="password" value="" placeholder="Create password" name="txt_pass" style="width:308px;" id="txt_pass" data-rule-required="true" data-msg-required="Please enter your password!"></div></td>
 										</tr>
 										<tr>
 											<th><div>Confirm Password <span class="require">*</span></div></th>
-											<td><div><input type="password" value="" placeholder="Confirm password" name="txt_confpass" style="width:308px;" required="required"></div></td>
+											<td><div><input type="password" value="" placeholder="Confirm password" name="txt_confpass" style="width:308px;"  data-rule-equalTo="#txt_pass" data-rule-required="true"  data-msg-required="Please enter your comfirm password!"></div></td>
 										</tr>
 										<tr>
 											<th><div>Email address <span class="require">*</span></div></th>
-											<td><div><input type="text" value="" placeholder="Enter your email address" name="txt_email" style="width:308px;" required="required"></div></td>
+											<td><div><input type="text" value="" placeholder="Enter your email address" name="txt_email" style="width:308px;" data-rule-required="true" data-rule-email="true"  data-msg-required="Please enter your email!"></div></td>
 										</tr>
 										<tr>
 											<th><div>Phone Number <span class="require">*</span></div></th>
-											<td><div><input type="text" value="" placeholder="Enter your phone number" name="txt_phone" style="width:308px;" required="required"></div></td>
+											<td><div><input type="text" value="" placeholder="Enter your phone number" name="txt_phone" style="width:308px;"  data-rule-required="true" data-rule-number="true" data-rule-digits="true"  data-msg-required="Please enter your phone number!"></div></td>
 										</tr>
 										<tr>
 											<th><div>Your Address <span class="require">*</span></div></th>
-											<td><div><textarea style="width:304px;height:70px;" placeholder="Enter your real current address" name="txt_address" required="required"></textarea></div></td>
+											<td><div><textarea style="width:304px;height:70px;" placeholder="Enter your real current address" name="txt_address"  data-rule-required="true" data-msg-required="Please enter your Address!"></textarea></div></td>
 										</tr>
 										<tr>
 											<th colspan="2" class="t_right"><div><!-- <a href="javascript:register()" class="btn_create_acc">Create My Account</a> --><input type="submit" value="Create My Account" class="btn_create_acc"> </div></th>
@@ -130,3 +126,11 @@
 	<!-- //body_section -->
 
 	<jsp:directive.include file="ads_footer.jsp" />
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/additional-methods.js"></script>
+    <script src="js/jquery.validate.js"></script>
+	<script>
+	$(document).ready(function(e){
+		$("#frmregister").validate();
+	});
+	</script>

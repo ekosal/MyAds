@@ -24,6 +24,7 @@ import myads.controller.action.member.*;
 import myads.controller.action.posting.AddPosting;
 import myads.controller.action.posting.AddPostingAction;
 import myads.controller.action.posting.DeleteProducts;
+import myads.controller.action.posting.GetIdProductUpdate;
 import myads.controller.action.posting.MyAdsAction;
 import myads.controller.action.posting.SearchAdsAction;
 import myads.controller.action.posting.details.ViewPostingDetails;
@@ -149,7 +150,7 @@ public class ControllerUser extends HttpServlet {
 			 
 			 System.out.println(forward.getPath());
 		 }else if (command.equals("/edit_product.ads")){
-			 action=new AddPostingAction();
+			 action=new GetIdProductUpdate();
 			 try{
 					forward=action.execute(request, response);
 				}catch(Exception e){

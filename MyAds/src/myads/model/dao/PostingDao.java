@@ -519,12 +519,51 @@ public class PostingDao {
 	
 	public PostingDto getPostingById(int id,int user_id){
 		PostingDto postingDto=new PostingDto();
+		MemberDto memberDto=new MemberDto();
+		SubCategoryDto subcategoryDto=new SubCategoryDto();
+		List<Image> listimage=new ArrayList<>();
+		
 		try{
-			String sql="";
+			String sql="SELECT p.PostingId,p.MemId,p.ProductName,p.KeyNotice,p.SubCateId, "
+					+ "p.Price,p.Phone,p.Address,p.Description,p.Discount from tbl_posting p  "
+					+ "INNER JOIN  tbl_image i on p.PostingId=i.PostingId "
+					+ "where p.PostingId=? and p.MemId=?";
 			ps=ds.getConnection().prepareStatement(sql);
 			ps.setInt(1, id);
 			ps.setInt(2, user_id);
-			
+			rs=ps.executeQuery();
+			while(rs.next()){
+				postingDto.setPostingId(rs.getInt("PostingId"));
+				postingDto.setTitle(rs.getString("ProductName"));
+				postingDto.setKey(rs.getString("KeyNotice"));
+				postingDto.setPrice(rs.getInt("Price"));
+				postingDto.setPhone(rs.getString("Phone"));
+				postingDto.setAdr(rs.getString("Address"));
+				postingDto.setDsc(rs.getString("Description"));
+				postingDto.setDiscount(rs.getString("Discount"));
+				
+				memberDto.setId(rs.getInt("MemId"));
+				
+				subcategoryDto.setSubid(rs.getInt("SubCateId"));
+				
+				postingDto.setMemberDto(memberDto);
+				postingDto.setSubCategory(subcategoryDto);
+				
+				String sql1="SELECT i.ImgId,i.PostingId,i.Image,i.`order`  FROM tbl_image i INNER JOIN "
+						+ " tbl_posting p on i.PostingId=p.PostingId where i.PostingId=? ORDER BY i.`order` ASC";
+				PreparedStatement ps1=ds.getConnection().prepareStatement(sql1);
+				ps1.setInt(1, id);
+				ResultSet rs1=ps1.executeQuery();
+				while(rs1.next()){
+					Image image=new Image();
+					image.setImage_id(rs1.getInt("ImgId"));
+					image.setImage(rs1.getString("Image"));
+					image.setOrder(rs1.getInt("order"));
+					image.setPost_id(rs1.getInt("PostingId"));
+					listimage.add(image);
+				}
+				postingDto.setImageList(listimage);
+			}
 			return postingDto;
 		}catch(Exception e){
 			

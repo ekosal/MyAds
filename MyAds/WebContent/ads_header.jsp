@@ -45,12 +45,20 @@
 <script src="js/jquery.cxslide.js"></script>
 <script src="js/jquery.cxslide.min.js"></script>
 <script src="js/jquery_related.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/additional-methods.js"></script>
+<script src="js/jquery.validate.js"></script>
+
 
 <style type="text/css">
 	.product-views{
 		float:right;
 		display: block;
 		margin: 10px;
+	}
+	.error{
+		color: red;
+		width: 100%;
 	}
 </style>
  

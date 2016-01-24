@@ -41,7 +41,7 @@
 						
 
 						<div class="register" style="width:880px;">
-							<form method="post" action="add_newposting.ads" name="frmregister" id="frmcreatepost" enctype="multipart/form-data">
+							<form method="post" action="add_newposting.ads" novalidate="novalidate" name="frmregister" id="frmcreatepost" enctype="multipart/form-data">
 								<table summary="">
 									<caption></caption>
 									<colgroup>
@@ -56,7 +56,7 @@
 										</tr>
 										<tr>
 											<th scope="row"><div>Your Product Name <span class="require">*</span></div></th>
-											<td><div><input type="text" value="" placeholder="Enter your product title" name="txt_pro_tit" style="width:308px;" required="required"></div></td>
+											<td><div><input type="text" value="" placeholder="Enter your product title" name="txt_pro_tit" style="width:308px;" required="required" ></div></td>
 											<td rowspan="7" style="vertical-align:top;">
 												<div><strong>Photo <span class="require">*</span></strong>
 													<div class="uploadimage" style="margin-bottom:8px;">
@@ -64,7 +64,7 @@
 															<span class="getphoto">Click me to get photos</span>
 															<!--<span class="addmore">Add more photos</span>-->
 														</a>
-														<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" multiple required="required">
+														<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" multiple required="required" accept="image/*">
 														<span style="display:none" class="storeimg"></span>
 													</div>
 												</div>
@@ -74,8 +74,8 @@
 											<th><div>Category Type <span class="require">*</span></div></th>
 											<td>
 												<div style="height:50px;">
-													<select style="width:300px;height:70px;" name="txt_subcatid" required="required">
-														<option value="0" data-modifier="mod">All Categories</option>
+													<select style="width:300px;height:70px;" name="txt_subcatid" id="txt_subcatid" required="required" >
+														<option value="" data-modifier="mod">All Categories</option>
 															<%
 																/* List<MainCategoryDto> rst=CategoryDao.getCategory();
 															    List<SubCategoryDto> rst1=CategoryDao.getSubCategory(); */
@@ -113,18 +113,18 @@
 										</tr>
 										<tr>
 											<th><div>Phone Number <span class="require">*</span></div></th>
-											<td><div><input type="text" value="" placeholder="Enter your phone number" name="txt_phone" style="width:308px;" required="required"></div></td>
+											<td><div><input type="text" value="" placeholder="Enter your phone number" name="txt_phone" style="width:308px;" required="required" ></div></td>
 										</tr>
 										<tr>
 											<th><div>Your Address <span class="require">*</span></div></th>
-											<td><div><textarea style="width:304px;height:50px;" placeholder="Enter your real current address" name="txt_address" required="required"></textarea></div></td>
+											<td><div><textarea style="width:304px;height:50px;" placeholder="Enter your real current address" name="txt_address" required="required" data-rule-required="true" data-msg-required="Please enter your address"></textarea></div></td>
 										</tr>
 										<tr>
 											<th><div>Product Description <span class="require">*</span></div></th>
-											<td><div><textarea style="width:304px;height:160px;" placeholder="Enter your description" name="txt_dsc" required="required"></textarea></div></td>
+											<td><div><textarea style="width:304px;height:160px;" placeholder="Enter your description" name="txt_dsc"  data-rule-required="true" data-msg-required="Please enter your description!"></textarea></div></td>
 										</tr>
 										<tr>
-											<th colspan="3" class="t_right"><div><a href="#none" class="btn_create_acc" id="btn_create_acc">Create My Posting</a><!--<input type="submit" value="Create My Posting" class="btn_create_acc">--> </div></th>
+											<th colspan="3" class="t_right"><div><a href="javascript:" class="btn_create_acc" id="btn_create_acc">Create My Posting</a><input type="submit" value="Create My Posting" class="btn_create_acc"> </div></th>
 										</tr>
 									</tbody>
 								</table>
@@ -143,27 +143,98 @@
     
 	<jsp:directive.include file="ads_footer.jsp" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/additional-methods.js"></script>
+    <script src="js/jquery.validate.js"></script>
+    
 	<script type="text/javascript">
-		$("#btn_create_acc").click(function(e){
-
-	    	
-	    	$("#frmcreatepost").ajaxSubmit({
-				url: "./add_newposting.ads",
-				type: 'POST',
-				success: function(data) { 					
-					/* console.log(data); */
-				        if(data){
-				        	alert('YOU HAVE BEEN INSERTED SUCCESSFULLY.');
-				        	location.href="lay_myadspages.ads";
-				        }else{
-				        	alert('YOU HAVE ERRORS WHEN INSERT UPDATE PROFILE.');
-				        }
-				        //ajaxindicatorstop()
-				        
-				},error:function(data,status,er) { 
-					//ajaxindicatorstop()
-				    console.log("error: "+data+" status: "+status+" er:"+er);
+		$(document).ready(function(e){
+			$("#frmcreatepost").validate({
+				debug: true,
+				rules:{
+					txt_pro_tit:{
+						required:true
+					},
+					txt_subcatid: {
+			               required: function () {
+			                   if ($("#txt_subcatid option[value='0']")) {
+			                       return true;
+			                   } else {
+			                	   alert(1234);
+			                       return false;
+			                   }
+			               }
+			         },
+			         txt_photo: { 
+			        	 required: true, 
+			        	 accept: "png|jpe?g|gif", 
+			        	filesize: 1048576  
+			        },
+			        txt_price:{
+			        	required:true,
+			        	number:true,
+			            digits: true,
+			            range : [0, 1000000]
+			        },
+			        txt_discount:{
+			        	required:true,
+			        	number:true,
+			            digits: true,
+			            range : [0, 100]
+			        },
+			        txt_phone:{
+			        	required:true,
+			        	number:true,
+			            digits: true,
+			        }
+				},
+				messages:{
+					txt_pro_tit:{
+						required:'Input Title Of Product.'
+					},
+					txt_subcatid:{
+						required:'Please Select Sub Category!'
+					},
+					 txt_photo: {
+						 required:"File must be JPG, GIF or PNG, less than 1MB"
+					 },
+					 txt_price:{
+						 required:"Please Your Price of Product!"
+					 },
+					 txt_discount:{
+						 required:"Please Your Price Discount of Product!"
+					 },
+					 txt_phone:{
+						 required:"Please Your Phone Number!"
+					 }
+					
+					
+				},
+				submitHandler: function(form) {
+					$(form).ajaxSubmit({
+						url: "./add_newposting.ads",
+						type: 'POST',
+						success: function(data) { 					
+							
+						        if(data){
+						        	alert('YOU HAVE BEEN INSERTED SUCCESSFULLY.');
+						        	location.href="lay_myadspages.ads";
+						        }else{
+						        	alert('YOU HAVE ERRORS WHEN INSERT UPDATE PROFILE.');
+						        }
+						        //ajaxindicatorstop()
+						        
+						},error:function(data,status,er) { 
+							//ajaxindicatorstop()
+						    console.log("error: "+data+" status: "+status+" er:"+er);
+						}
+					});  
+					
 				}
-			});        	
-	    });
+			});  
+		});
+		
+		
+	
+
 	</script>
