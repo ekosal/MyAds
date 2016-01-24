@@ -840,7 +840,7 @@ a.btn_login, a.btn_create_acc{display:block;height:33px;font-size:15px;color:#ff
 input[type=submit].btn_login, input[type=submit].btn_create_acc{display:block;height:33px;font-size:15px;color:#fff;font-weight:bold;line-height:33px;text-align:center;border-radius:3px;border:0;background:#ff7519;cursor:pointer;}
 input[type=submit].btn_create_acc{display:inline-block;margin-right:4px;padding:0 30px;}
 
-.wrap_func .register{float:left;width:540px;padding:30px;border:1px solid #ddd;border-top:0;}
+.wrap_func .register{position:relative;float:left;width:540px;padding:30px;border:1px solid #ddd;border-top:0;}
 .wrap_func .register table {}
 .wrap_func .register table tr{}
 .wrap_func .register table tr th{text-align:left;}
@@ -848,6 +848,28 @@ input[type=submit].btn_create_acc{display:inline-block;margin-right:4px;padding:
 .wrap_func .register table tr td div input{height:33px;line-height:33px;}
 .wrap_func .register table tr td div textarea{padding:5px 10px;}
 .require{display:inline-block;color:#FF0F13; vertical-align:top;}
+
+.wrap_func .register.change{position:relative;width:700px;padding-left:150px;background-color:#f4f4f4;}
+.wrap_func .register.change table tr th,.wrap_func .register.change table tr td{border-top:1px solid #ddd;}
+.wrap_func .register.change table tr:hover th,.wrap_func .register.change table tr:hover td{background-color:#eee;}
+.wrap_func .register.change table tr:hover th .dis,.wrap_func .register.change table tr:hover td .dis{cursor:pointer !important;background-color:transparent !important;}
+.wrap_func .register.change table tr th div{padding-left:10px;}
+.register.change table tr td a.btn_edit{float:right;display:inline-block;padding-left:20px;margin-top:10px;background-color:transparent;background-image:url(../img/btn/ico_edit_off.png);background-repeat:no-repeat;background-position:0 50%;}
+.register.change table tr:hover{cursor:pointer !important;}
+.register.change table tr:hover td a.btn_edit{text-decoration:underline;background-image:url(../img/btn/ico_edit_on.png);}
+
+.register.change a.btn_edit{float:right;display:inline-block;padding-left:20px;margin-bottom:10px;background-color:transparent;background-image:url(../img/btn/ico_edit_off.png);background-repeat:no-repeat;background-position:0 50%;}
+.register.change a.btn_edit:hover{text-decoration:underline;background-image:url(../img/btn/ico_edit_on.png);}
+
+.register.change table tr td a.btn_save, .register.change table tr td a.btn_cancel{display:inline-block;padding:3px 0 2px 20px;margin-top:10px;margin-bottom:5px;background-color:transparent;background-repeat:no-repeat;background-position:0 50%;}
+.register.change table tr td a.btn_save{background-image:url(../img/btn/btn_save_off.png);}
+.register.change table tr td a.btn_save:hover{text-decoration:underline;background-image:url(../img/btn/btn_save_on.png);}
+.register.change table tr td a.btn_cancel{background-image:url(../img/btn/btn_cancel_off.png);}
+.register.change table tr td a.btn_cancel:hover{text-decoration:underline;background-image:url(../img/btn/btn_cancel_on.png);}
+
+.wrap_func .register .single_photo,.wrap_func .register.change .single_photo{position:absolute;top:20px;left:30px;width:100px;height:130px;}
+.wrap_func .register.change .single_photo .getphoto,.wrap_func .register .single_photo .getphoto{top:50%;left:87px;margin-top:-20px;}
+.wrap_func .register.change .single_photo .disable_photo{position:absolute;top:-3px;left:-3px;display:inline-block;width:105px;height:106px;background-color:transparent;}
 
 /* mypost page */
 .mypost_header{height:61px;border-bottom:2px solid;background-color:#fff;}
@@ -866,11 +888,13 @@ a.btn_create_acc.btn_mypost{height:61px;font-size:20px;line-height:61px;margin-r
 .wrap_img.myicon{background-image:url(../img/ico/ico_photos.png);background-repeat:no-repeat;background-position:50%;}
 .wrap_img.myicon:hover{background-image:url(../img/ico/ico_photos_over.png);}
 
-.wrap_img > img{display:block;width:100%;height:390px;border-radius:5px;}
+.wrap_img > img{display:block;width:100%;height:390px;/*border-radius:5px;*/}
 .wrap_img.user{width:100%;height:390px;}
 .wrap_img.one_imge > img{width:100%;height:390px;}
 .wrap_img.one_imge > span.getphoto{display:none;}
 .wrap_img.one_imge:hover > span.addmore{display:block;}
+.wrap_img.single{height:98px !important;margin-top:-10px;}
+.wrap_img.single > img{height:99px !important;}
 
 .wrap_img.two_images > img{float:left;width:169px;height:200px;margin-top:6px;margin-left:6px;}
 .wrap_img.two_images{height:204px;padding-bottom:8px;}
@@ -918,8 +942,10 @@ a.btn_create_acc.btn_mypost{height:61px;font-size:20px;line-height:61px;margin-r
 
 
 
-/* help */
+/* others */
 .space{padding-left:20px;}
+.dis{color:#bbb !important;background-color:#f4f4f4 !important;}
+.hid_ipt{padding:0 !important;border:0 !important;background-color:transparent !important;}
 
 /* button */
 .btn_gotop{position:absolute;display:block;bottom:30px;right:0;width:42px;height:42px;background:url(../img/btn/btn_goto.png) no-repeat 0 0;}
