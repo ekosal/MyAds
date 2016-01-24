@@ -17,7 +17,7 @@
 					<!-- mypost header -->
 					<div class="mypost_header">
 						<div class="cboth">
-							<h1 class="f_left"><span style="color:#0174b3;">MyAds's</span> <span style="color:#f7153a;">New Posting</span></h1>
+							<h1 class="f_left"><span style="color:#0174b3;">MyAds's</span> <span style="color:#f7153a;">Edit Posting</span></h1>
 						</div>
 					</div>
 					<!-- //mypost header -->
@@ -68,18 +68,77 @@
 												<input type="text" value="<%=postingDto.getTitle() %>" placeholder="Enter your product title" name="txt_pro_tit" style="width:308px;" required="required">
 												
 												</div></td>
-											<td rowspan="7" style="vertical-align:top;">
-												<div><strong>Photo <span class="require">*</span></strong>
-													<div class="uploadimage" style="margin-bottom:8px;">
-														<a href="#none" class="wrap_img myicon user">
-															<span class="getphoto">Click me to get photos</span>
-															<!--<span class="addmore">Add more photos</span>-->
-														</a>
-														<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" multiple required="required">
-														<span style="display:none" class="storeimg"></span>
+											<td rowspan="7" style="vertical-align:top;text-align:right;">
+												<div style="text-align:left;border:1px solid #eee;"><strong>Photo <span class="require">*</span></strong>
+													<!-- photo_wrap -->
+													<div class="photo_wrap" style="max-height:420px;overflow:scroll;">
+														<div class="t_right">
+															<a href="#none" class="btn_remove">Remove</a>
+															<ul class="multi_photo">
+																<li>
+																	<!-- photo -->
+																	<div class="uploadimage" style="width:100px;float:left;">
+																		<a href="#none" class="wrap_img user single">
+																			<span class="getphoto">Brow</span>
+																			<!--<span class="addmore">Add more photos</span>-->
+																		</a>
+																		<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" multiple required="required">
+																		<span style="display:none" class="storeimg"></span>
+																	</div>
+																	<a href="#none" class="btn_edit" style="margin-top:10px;">Edit</a>
+																	<!--  display(none/block) -->
+																	<span class="disable_photo" style="display:none;"><span class="blind">disable photo</span> </span>
+																	<!--  //display(none/block) -->
+																	<!-- //photo -->
+																</li>
+															</ul>
+														</div>
+														<div class="t_right">
+															<a href="#none" class="btn_remove">Remove</a>
+															<ul class="multi_photo">
+																<li>
+																	<!-- photo -->
+																	<div class="uploadimage" style="width:100px;float:left;">
+																		<a href="#none" class="wrap_img user single">
+																			<span class="getphoto">Brow</span>
+																			<!--<span class="addmore">Add more photos</span>-->
+																		</a>
+																		<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" multiple required="required">
+																		<span style="display:none" class="storeimg"></span>
+																	</div>
+																	<a href="#none" class="btn_edit" style="margin-top:10px;">Edit</a>
+																	<!--  display(none/block) -->
+																	<span class="disable_photo" style="display:block;"><span class="blind">disable photo</span> </span>
+																	<!--  //display(none/block) -->
+																	<!-- //photo -->
+																</li>
+															</ul>
+														</div>
+														<div class="t_right">
+															<a href="#none" class="btn_remove">Remove</a>
+															<ul class="multi_photo">
+																<li>
+																	<!-- photo -->
+																	<div class="uploadimage" style="width:100px;float:left;">
+																		<a href="#none" class="wrap_img user single">
+																			<span class="getphoto">Brow</span>
+																			<!--<span class="addmore">Add more photos</span>-->
+																		</a>
+																		<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" multiple required="required">
+																		<span style="display:none" class="storeimg"></span>
+																	</div>
+																	<a href="#none" class="btn_edit" style="margin-top:10px;">Edit</a>
+																	<!--  display(none/block) -->
+																	<span class="disable_photo" style="display:block;"><span class="blind">disable photo</span> </span>
+																	<!--  //display(none/block) -->
+																	<!-- //photo -->
+																</li>
+															</ul>
+														</div>
 													</div>
-													
+													<!-- //photo_wrap -->
 												</div>
+												<a href="#none" class="btn_create_acc mgt10">Save All Photos</a><!--<input type="submit" value="Create My Posting" class="btn_create_acc">-->
 											</td>
 										</tr>
 										<tr>
@@ -144,7 +203,7 @@
 											</textarea></div></td>
 										</tr>
 										<tr>
-											<th colspan="3" class="t_right"><div><a href="#none" class="btn_create_acc" id="btn_create_acc">Create My Posting</a><!--<input type="submit" value="Create My Posting" class="btn_create_acc">--> </div></th>
+											<th colspan="3" class="t_right"><div><a href="#none" class="btn_create_acc" id="btn_create_acc">Save My Posting</a><!--<input type="submit" value="Create My Posting" class="btn_create_acc">--> </div></th>
 										</tr>
 									</tbody>
 								</table>

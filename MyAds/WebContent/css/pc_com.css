@@ -915,6 +915,19 @@ a.btn_create_acc.btn_mypost{height:61px;font-size:20px;line-height:61px;margin-r
 .wrap_img > span.addmore{display:none;}
 .wrap_img:hover > span.getphoto{font-weight:bold;color:#5161bb;}
 
+
+.multi_photo{position:relative;border-top:1px solid #eee;overflow:hidden;}
+.multi_photo:first-child{border-top:0 !important;}
+.multi_photo .wrap_img.user > img{width:100px !important;}
+.multi_photo .wrap_img span.getphoto{top:30px;left:90px;}
+.multi_photo .btn_edit{float:right;display:inline-block;padding-left:20px;margin-bottom:10px;background-color:transparent;background-image:url(../img/btn/ico_edit_off.png);background-repeat:no-repeat;background-position:0 50%;}
+.multi_photo .btn_edit:hover{text-decoration:underline;background-image:url(../img/btn/ico_edit_on.png);}
+.multi_photo .disable_photo{position:absolute;top:-2;left:-3px;display:inline-block;width:106px;height:106px;background-color:transparent;}
+.btn_remove{display:inline-block;padding:3px 0 3px 15px;background-color:transparent;background-image:url(../img/btn/ico_del_on.png);background-repeat:no-repeat;background-position:0 50%;}
+.btn_remove:hover{text-decoration:underline;}
+
+
+
 .wrap_func .f_right h1.tit{padding:0 15px;line-height:50px;border-bottom:3px solid;background-color:#98b4d0;}
 .wrap_func .f_right .mypolicy{padding:20px;border:1px solid #ddd;}
 .wrap_func .f_right .mypolicy ol li{line-height:25px;}
