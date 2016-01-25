@@ -135,4 +135,61 @@ static ResultSet rs;
 		}
 		return false;
 	}
+	
+	public boolean editMemberWithPassword(MemberDto memberDto){
+		try{
+			String sql="UPDATE tbl_member m SET m.`Name`=?,m.RealName=?,m.Sex=?,m.ComId=?,m.Phone=?,m.Address=?,m.Email=?,m.Password=? WHERE m.MemId=?";
+			ps=ds.getConnection().prepareStatement(sql);
+			ps.setString(1, memberDto.getName());
+			ps.setString(2, memberDto.getRealName());
+			ps.setString(3, memberDto.getSex());
+			ps.setInt(4, memberDto.getComid());
+			ps.setString(5, memberDto.getPhone());
+			ps.setString(6, memberDto.getAddress());
+			ps.setString(7, memberDto.getEmail());
+			ps.setString(8, memberDto.getPassword());
+			ps.setInt(9, memberDto.getId());
+			int i=ps.executeUpdate();
+			if (i>0) return true;
+
+			
+		}catch(Exception e){
+			
+		}
+		return false;
+	}
+	
+	public int getMemberCheckPassword(int mem_id,String password){
+		int count=0;
+		try{
+			String sql="SELECT COUNT(*) Total FROM tbl_member WHERE MemId=? and `Password`=?";
+			ps=ds.getConnection().prepareStatement(sql);
+			ps.setInt(1, mem_id);
+			ps.setString(2, password);
+			rs=ps.executeQuery();
+			while(rs.next()){
+				count=rs.getInt("Total");
+			}
+			return count;
+		}catch(Exception e){
+			
+		}
+		return count;
+	}
+	
+	public boolean saveChangeImage(int id,String image){
+		String sql="UPDATE tbl_member m SET m.Photo=? WHERE m.MemId=?";
+		try{
+			ps=ds.getConnection().prepareStatement(sql);
+			ps.setString(1, image);
+			ps.setInt(2, id);
+			int i=ps.executeUpdate();
+			if (i>0){
+				return true;
+			}
+		}catch(Exception e){
+			
+		}
+		return false;
+	}
 }

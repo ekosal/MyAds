@@ -227,7 +227,26 @@ public class ControllerUser extends HttpServlet {
 					e.printStackTrace();
 				}
 			 }
-		 }	 
+		 }else if (command.equals("/edit_image_account_setting.ads")){
+			 if (request.getSession().getAttribute("user")==null){
+				 forward.setRedirect(true);
+				 forward.setPath("lay_log.ads");
+				 //System.out.println(" Session Null");
+			 }else{
+			 action=new EditImageMember();
+			 try{
+					forward=action.execute(request, response);
+				     String result=(String) request.getSession().getAttribute("result");
+					 response.setContentType("application/json");
+					 response.setCharacterEncoding("UTF-8");
+					 response.getWriter().write(new Gson().toJson(result));
+					 return ;
+
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			 }
+		 }
 		 else if (command.equals("/register.ads")){
 			 action=new Register();
 			 try{
