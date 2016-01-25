@@ -13,8 +13,8 @@ public class ProfileAction implements Action{
 		// TODO Auto-generated method stub
 
 		ActionForward forward=new ActionForward();
-		
 		try{
+		
 			
 			forward.setRedirect(false);
 			forward.setPath("ads_account_setting.jsp");

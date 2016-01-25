@@ -69,6 +69,10 @@
 					<!-- Paging wrap -->
 					<div class="paging_wrap mgt30">
 						<!-- pagination -->
+						<%
+							if (countPage>0){						
+							
+						%>
 						<div class="paging" id="paging"><!-- ë¹íì±ìíë on class ì ê±° -->
 						    <input type="hidden" value="1" id="txtcurrentpage">
 							<a href="javascript:" class="btn_pag_cntr first indexPage" rel="1" onclick="clickNextPage(this)"><span class="blind">first</span></a><a href="javascript:" class="btn_pag_cntr prev" id="pre-page" onclick="prePerPage()"><span class="blind">previous</span></a>
@@ -85,7 +89,9 @@
 							<a href="javascript:" class="btn_pag_cntr next on" id="next-page" onclick="nextPerPage()"><span class="blind">next</span></a><a href="javascript:" class="btn_pag_cntr last on indexPage" rel="<%=countPage %>" onclick="clickNextPage(this)"><span class="blind">last</span></a>
 						</div> 
 						<!-- //pagination -->
-						
+						<%
+							}
+						%>
 					</div>
 					<!-- //Paging wrap -->
 					

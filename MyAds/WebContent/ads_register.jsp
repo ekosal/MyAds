@@ -28,21 +28,19 @@
 						</div>
 
 						<div class="register" style="padding-left: 150px;">
-						
-							<!-- photo -->
-							<div class="single_photo">
-								<div class="uploadimage">
-									<a href="#none" class="wrap_img user single">
-										<span class="getphoto">photo</span>
-										<!--<span class="addmore">Add more photos</span>-->
-									</a>
-									<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" multiple required>
-									<span style="display:none" class="storeimg"></span>
+						<form method="post" action="register.ads" name="frmregister" id="frmregister" enctype="multipart/form-data">
+								<!-- photo -->
+								<div class="single_photo">
+									<div class="uploadimage">
+										<a href="#none" class="wrap_img user single">
+											<span class="getphoto">photo</span>
+											<!--<span class="addmore">Add more photos</span>-->
+										</a>
+										<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" required>
+										<span style="display:none" class="storeimg"></span>
+									</div>
 								</div>
-							</div>
-							<!-- //photo -->
-						
-							<form method="post" action="register.ads" name="frmregister" id="frmregister">
+								<!-- //photo -->					
 								<table summary="">
 									<caption></caption>
 									<colgroup>

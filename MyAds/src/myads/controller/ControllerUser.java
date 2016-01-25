@@ -135,7 +135,7 @@ public class ControllerUser extends HttpServlet {
 				
 			 try{
 					forward=action.execute(request, response);
-					 if (request.getSession().getAttribute("postingList")!=null){
+					if (request.getSession().getAttribute("postingList")!=null){
 						 List<Object> data=new ArrayList<Object>();
 						 data.add(String.valueOf(Pagination.totalpage));
 						 data.add(request.getSession().getAttribute("postingList"));
@@ -194,8 +194,8 @@ public class ControllerUser extends HttpServlet {
 			 }
 			 System.out.println(forward.getPath());
 		 }else if (command.equals("/lay_account_setting.ads")){
-			 HttpSession session=request.getSession(true);
-			 if (session.getAttribute("user")==null){
+			 /*HttpSession session=request.getSession(true);*/
+			 if (request.getSession().getAttribute("user")==null){
 				 forward.setRedirect(true);
 				 forward.setPath("lay_log.ads");
 				 System.out.println(" Session Null");
@@ -208,7 +208,27 @@ public class ControllerUser extends HttpServlet {
 				}
 			 }
 			 System.out.println(forward.getPath());
-		 }else if (command.equals("/register.ads")){
+		 }else if (command.equals("/lay_editaccount_setting.ads")){
+			 if (request.getSession().getAttribute("user")==null){
+				 forward.setRedirect(true);
+				 forward.setPath("lay_log.ads");
+				 System.out.println(" Session Null");
+			 }else{
+			 action=new EditMember();
+			 try{
+					forward=action.execute(request, response);
+				     String result=(String) request.getSession().getAttribute("result");
+					 response.setContentType("application/json");
+					 response.setCharacterEncoding("UTF-8");
+					 response.getWriter().write(new Gson().toJson(result));
+					 return ;
+
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			 }
+		 }	 
+		 else if (command.equals("/register.ads")){
 			 action=new Register();
 			 try{
 					forward=action.execute(request, response);

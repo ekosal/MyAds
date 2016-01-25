@@ -26,23 +26,35 @@
 						</div>
 
 						<div class="register change">
-							<form method="post" action="">
+							
 								<!-- photo -->
 								<div class="single_photo">
 									<div class="uploadimage">
-										<a href="#none" class="wrap_img user single">
-											<span class="getphoto">photo</span>
+										<a href="javascript:" class="wrap_img user single">
+											<!-- <span class="getphoto">photo</span> -->
 											<!--<span class="addmore">Add more photos</span>-->
+											<%
+												if (member.getPhoto()!=""){
+											%>
+												<img alt="" src="profile/<%=member.getPhoto() %>">
+											<%
+												}else{
+											%>
+												<img alt="" src="profile/defauls.jpg">
+											<%
+												}
+											%>
 										</a>
+										
 										<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" multiple required="required">
 										<span style="display:none" class="storeimg"></span>
 									</div>
-									<a href="#none" class="btn_edit" style="margin-top:10px;">Edit</a>
+									<a href="javascript:" class="btn_edit" style="margin-top:10px;">Edit</a>
 									<span class="disable_photo" style="display:block;"><span class="blind">disable photo</span> </span>
 								</div>
 								<!-- //photo -->
-								
-								<a href="#none" class="btn_edit">Edit All</a>
+							<form method="post" action="" id="eidtposting" >	
+								<a href="javascript:" class="btn_edit" id="btn-edit-all">Edit All</a>
 								<table summary="">
 									<caption></caption>
 									<colgroup>
@@ -54,17 +66,18 @@
 											<th><div>Username</div></th>
 											<td>
 												<!-- default read -->
-												<div class="dis" style="display:none;">
-													<input type="text" value="Senghong" style="width:400px;" disabled="disabled" class="dis hid_ipt">
-													<a href="#none" class="btn_edit">Edit</a>
+												<div class="dis" style="display:block;">
+													<input type="text" value="<%=member.getName() %>" style="width:400px;" disabled="disabled" class="dis hid_ipt txt-control-show">
+													<a href="javascript:" class="btn_edit">Edit</a>
 												</div>
 												<!--// default read -->
 
 												<!-- display edit -->
-												<div style="display:block;">
-													<input type="text" value="Senghong" placeholder="Enter your name" name="txt_name" style="width:463px;" required="required"><br>
-													<a href="#none" class="btn_save">Save</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<a href="#none" class="btn_cancel">Cancel</a>
+												<div class="hide" style="display:none;">
+													<input type="text" class="txt-control-hide" value="<%=member.getName() %>" placeholder="Enter your name" name="txt_name" style="width:463px;" required="required" data-rule-required="true" data-msg-required="Please enter your username!"><br>
+													<input type="hidden" value="<%=member.getId() %>" placeholder="Enter your name" name="txt_id" style="width:463px;" required="required">
+													<a href="javascript:" class="btn_save">Save</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<a href="javascript:" class="btn_cancel">Cancel</a>
 												</div>
 												<!-- //display edit -->
 											</td>
@@ -74,16 +87,16 @@
 											<td>
 												<!-- default read -->
 												<div class="dis" style="display:block;">
-													<input type="text" value="Nob Senghong" style="width:400px;" disabled="disabled" class="dis hid_ipt">
-													<a href="#none" class="btn_edit">Edit</a>
+													<input type="text" value="<%=member.getRealName() %>" style="width:400px;" disabled="disabled" class="dis hid_ipt txt-control-show">
+													<a href="javascript:" class="btn_edit">Edit</a>
 												</div>
 												<!--// default read -->
 
 												<!-- display edit -->
-												<div style="display:none;">
-													<input type="text" value="Nob Senghong" placeholder="Enter your real name" name="txt_realname" style="width:463px;" required="required"><br>
-													<a href="#none" class="btn_save">Save</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<a href="#none" class="btn_cancel">Cancel</a>
+												<div class="hide" style="display:none;">
+													<input type="text" class="txt-control-hide" value="<%=member.getRealName() %>" placeholder="Enter your real name" name="txt_realname" style="width:463px;" required="required" data-rule-required="true" data-msg-required="Please enter your full name!"><br>
+													<a href="javascript:" class="btn_save">Save</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<a href="javascript:" class="btn_cancel">Cancel</a>
 												</div>
 												<!-- //display edit -->
 											</td>
@@ -93,29 +106,33 @@
 											<td>
 												<!-- default read -->
 												<div class="dis" style="display:block;">
-													<input type="text" value="Men's Collection" style="width:400px;" disabled="disabled" class="dis hid_ipt">
-													<a href="#none" class="btn_edit">Edit</a>
+													<input type="text" value="<%=member.getCompanyDto().getComname() %>" style="width:400px;" disabled="disabled" class="dis hid_ipt">
+													<a href="javascript:" class="btn_edit">Edit</a>
 												</div>
 												<!--// default read -->
 												
 												<!-- display edit -->
-												<div style="display:none;padding:0;">
+												<div class="hide" style="display:none;padding:0;">
 													<div style="height:60px;">
 														<select style="width:350px;height:40px;" name="txt_companyid" required="required">
-															<option value="0">Choose your company</option>
+															
 															<%
-																ResultSet rsth=MyComobox.getCompany();
+															  //out.println("Com +"+member.getCompanyDto().getComid());
+															  ResultSet rsth=MyComobox.getCompany();
 																while(rsth.next()){
+																	//out.println(rsth.getString("ComId"));
 															%>
-															<option value="<%= rsth.getString("ComId") %>"><%= rsth.getString("ComName") %></option>
+															<option value="<%= rsth.getString("ComId") %>"
+															    <% if(member.getCompanyDto().getComid()==Integer.valueOf(rsth.getString("ComId"))) { %> selected="selected" <%} %>
+															><%= rsth.getString("ComName") %></option>
 															<%
 																}
 															%>
 														</select>
 														<a href="lay_com.ads" class="btn_create_acc" style="padding-left:10px;padding-right:10px;">Add New</a>
 													</div>
-													<a href="#none" class="btn_save">Save</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<a href="#none" class="btn_cancel">Cancel</a>
+													<a href="javascript:" class="btn_save">Save</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<a href="javascript:" class="btn_cancel">Cancel</a>
 												</div>
 												<!-- //display edit -->
 											</td>
@@ -125,17 +142,17 @@
 											<td>
 												<!-- default read -->
 												<div class="dis" style="display:block;">
-													<input type="text" value="M" style="width:400px;" disabled="disabled" class="dis hid_ipt">
-													<a href="#none" class="btn_edit">Edit</a>
+													<input type="text" value="<%=member.getSex() %>" style="width:400px;" disabled="disabled" class="dis hid_ipt">
+													<a href="javascript:" class="btn_edit">Edit</a>
 												</div>
 												<!--// default read -->
 												
 												<!-- display edit -->
-												<div style="display:none;">
-													<label><input type="radio" checked value="Male" name="txt_sex" required="required"> Male</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<label><input type="radio" value="Female" name="txt_sex" required="required"> Female</label><br>
-													<a href="#none" class="btn_save">Save</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<a href="#none" class="btn_cancel">Cancel</a>
+												<div class="hide" style="display:none;">
+													<label><input type="radio" <% if(member.getSex().equals("Male")){ %> checked  <% } %> value="Male" name="txt_sex" required="required"> Male</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<label><input type="radio" <% if(member.getSex()=="Female"){ %> checked  <% } %> value="Female" name="txt_sex" required="required"> Female</label><br>
+													<a href="javascript:" class="btn_save">Save</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<a href="javascript:" class="btn_cancel">Cancel</a>
 												</div>
 												<!-- //display edit -->
 											</td>
@@ -145,18 +162,18 @@
 											<td>
 												<!-- default read -->
 												<div class="dis" style="display:block;">
-													<input type="password" value="123" style="width:400px;" disabled="disabled" class="dis hid_ipt">
-													<a href="#none" class="btn_edit">Edit</a>
+													<input type="password" value="<%=member.getPassword() %>" style="width:400px;" disabled="disabled" class="dis hid_ipt">
+													<a href="javascript:" class="btn_edit">Edit</a>
 												</div>
 												<!--// default read -->
 												
 												<!-- display edit -->
-												<div style="display:none;padding:0;">
-													<div><p>Current</p><input type="password" value="" placeholder="Current password" name="txt_pass" style="width:463px;" required="required"></div>
-													<div><p>New</p><input type="password" value="" placeholder="New password" name="txt_nex_pass" style="width:463px;" required="required"></div>
-													<div><p>Re-Type New</p><input type="password" value="" placeholder="Re-type new password" name="txt_pass" style="width:463px;" required="required"></div>
-													<a href="#none" class="btn_save">Save</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<a href="#none" class="btn_cancel">Cancel</a>
+												<div class="hide" style="display:none;padding:0;">
+													<div><p>Current</p><input type="password" value="" placeholder="Current password" name="txt_pass" style="width:463px;" data-rule-required="true" data-msg-required="Please enter your old password!"></div>
+													<div><p>New</p><input type="password" value="" placeholder="New password" name="txt_nex_pass" id="txt_nex_pass" style="width:463px;" required="required" data-rule-required="true" data-msg-required="Please enter your new password!"></div>
+													<div><p>Re-Type New</p><input type="password" value="" placeholder="Re-type new password" name="txt_pass_comfirm" style="width:463px;" required="required" data-rule-required="true" data-rule-equalTo="#txt_nex_pass" data-msg-required="Please enter your comfirm password!"></div>
+													<a href="javascript:" class="btn_save_password">Save</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<a href="javascript:" class="btn_cancel">Cancel</a>
 												</div>
 												<!-- //display edit -->
 											</td>
@@ -166,16 +183,16 @@
 											<td>
 												<!-- default read -->
 												<div class="dis" style="display:block;">
-													<input type="text" value="senghong@gmail.com" style="width:400px;" disabled="disabled" class="dis hid_ipt">
-													<a href="#none" class="btn_edit">Edit</a>
+													<input type="text" value="<%=member.getEmail() %>" style="width:400px;" disabled="disabled" class="dis hid_ipt txt-control-show">
+													<a href="javascript:" class="btn_edit">Edit</a>
 												</div>
 												<!--// default read -->
 												
 												<!-- display edit -->
-												<div style="display:none;">
-													<input type="text" value="sengong@gmail.com" placeholder="Enter your email address" name="txt_email" style="width:463px;" required="required"><br>
-													<a href="#none" class="btn_save">Save</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<a href="#none" class="btn_cancel">Cancel</a>
+												<div class="hide" style="display:none;">
+													<input type="text" class="txt-control-hide" value="<%=member.getEmail() %>" placeholder="Enter your email address" name="txt_email" style="width:463px;" required="required"><br>
+													<a href="javascript:" class="btn_save">Save</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<a href="javascript:" class="btn_cancel">Cancel</a>
 												</div>
 												<!-- //display edit -->
 											</td>
@@ -185,16 +202,16 @@
 											<td>
 												<!-- default read -->
 												<div class="dis" style="display:block;">
-													<input type="text" value="070372639" style="width:400px;" disabled="disabled" class="dis hid_ipt">
-													<a href="#none" class="btn_edit">Edit</a>
+													<input type="text" value="<%=member.getPhone() %>" style="width:400px;" disabled="disabled" class="dis hid_ipt txt-control-show">
+													<a href="javascript:" class="btn_edit">Edit</a>
 												</div>
 												<!--// default read -->
 												
 												<!-- display edit -->
-												<div style="display:none;">
-													<input type="text" value="070372639" placeholder="Enter your phone number" name="txt_phone" style="width:463px;" required="required"><br>
-													<a href="#none" class="btn_save">Save</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<a href="#none" class="btn_cancel">Cancel</a>
+												<div class="hide" style="display:none;">
+													<input type="text" class="txt-control-hide" value="<%=member.getPhone() %>" placeholder="Enter your phone number" name="txt_phone" style="width:463px;" required="required" data-rule-required="true" data-rule-number="true" data-rule-digits="true" data-msg-required="Please enter your phone number!"><br>
+													<a href="javascript:" class="btn_save">Save</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<a href="javascript:" class="btn_cancel">Cancel</a>
 												</div>
 												<!-- //display edit -->
 											</td>
@@ -203,17 +220,17 @@
 											<th><div>Your Address</div></th>
 											<td>
 												<!-- default read -->
-												<div class="dis" style="display:none;">
-													<textarea style="width:420px;height:70px;" disabled="disabled" class="dis hid_ipt">St 34444 PP</textarea>
-													<a href="#none" class="btn_edit">Edit</a>
+												<div class="dis" style="display:block;">
+													<textarea  style="width:420px;height:70px;display:inline-block; " disabled="disabled" class="dis hid_ipt txt-control-show"><%=member.getAddress() %></textarea>
+													<a href="javascript:" class="btn_edit">Edit</a>
 												</div>
 												<!--// default read -->
 												
 												<!-- display edit -->
-												<div style="display:block;">
-													<textarea style="width:459px;height:70px;" placeholder="Enter your real current address" name="txt_address" required="required">St 34444 PP</textarea><br>
-													<a href="#none" class="btn_save">Save</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<a href="#none" class="btn_cancel">Cancel</a>
+												<div class="hide" style="display:none;">
+													<textarea style="width:459px;height:70px;" class="txt-control-hide" placeholder="Enter your real current address" name="txt_address" required="required" data-rule-required="true" data-msg-required="Please enter your description!"><%=member.getAddress() %></textarea><br>
+													<a href="javascript:" class="btn_save">Save</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<a href="javascript:" class="btn_cancel">Cancel</a>
 												</div>
 												<!-- //display edit -->
 											</td>
@@ -237,3 +254,93 @@
 	<!-- //body_section -->
 
 	<jsp:directive.include file="ads_footer.jsp" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/additional-methods.js"></script>
+    <script src="js/jquery.validate.js"></script>
+	<script>
+		$(document).ready(function(e){
+			$(".register table tbody td .dis .btn_edit").click(function(e){
+				$(this).parent(".dis").hide();
+				$(this).parent(".dis").parent("td").find(".hide").show();
+			});
+			$(".register table tbody td .hide .btn_cancel").click(function(e){
+				var txt=$(this).parent(".hide").parent("td").find(".dis").find(".txt-control-show").val();
+				//alert(txt);
+				$(this).parent(".hide").parent("td").find(".hide").find(".txt-control-hide").val(txt);				
+				$(this).parent(".hide").parent("td").find(".dis").show();
+				$(this).parent(".hide").parent("td").find(".hide").hide();
+				
+			});
+			
+			$("#btn-edit-all").click(function(e){
+				$(".dis").hide();
+				$(".hide").show();
+				$(".btn_save").hide();
+				$(".btn_cancel").hide();
+				$(".btn_save_password").hide();
+		    });
+			
+			$(".register table tbody td .hide .btn_save").click(function(e){
+				 var obj=$(this);
+				 if($('#eidtposting').valid()){  //call valid for form2 and show the errors
+		              // alert('submit form');  //only if the form is valid submit the form
+					 $('#eidtposting').ajaxSubmit({
+							url: "./lay_editaccount_setting.ads",
+							type: 'POST',
+							success: function(data) { 			
+							        if(data){
+							        	alert('YOU HAVE BEEN INSERTED SUCCESSFULLY.')
+							        	var txt=obj.parent(".hide").parent("td").find(".hide").find(".txt-control-hide").val();
+							        	obj.parent(".hide").parent("td").find(".dis").find(".txt-control-show").val(txt);
+										//alert(txt);
+										//obj.parent(".hide").parent("td").find(".hide").find(".txt-control-hide").val(txt);				
+										obj.parent(".hide").parent("td").find(".dis").show();
+										obj.parent(".hide").parent("td").find(".hide").hide();
+							        	//location.href="lay_account_setting.ads";
+							        }else{
+							        	alert('YOU HAVE ERRORS WHEN INSERT UPDATE PROFILE.');
+							        }
+							        //ajaxindicatorstop()
+							        
+							},error:function(data,status,er) { 
+								//ajaxindicatorstop()
+							    console.log("error: "+data+" status: "+status+" er:"+er);
+							}
+						}); 
+		         }
+
+			});
+			
+			$(".register table tbody td .hide .btn_save_password").click(function(e){
+				 var obj=$(this);
+				 if($('#eidtposting').valid()){  //call valid for form2 and show the errors
+		              // alert('submit form');  //only if the form is valid submit the form
+					 $('#eidtposting').ajaxSubmit({
+							url: "./lay_editaccount_setting.ads",
+							type: 'POST',
+							success: function(data) { 			
+							        if(data){
+							        	alert('YOU HAVE BEEN INSERTED SUCCESSFULLY.')
+							        	var txt=obj.parent(".hide").parent("td").find(".hide").find(".txt-control-hide").val();
+							        	obj.parent(".hide").parent("td").find(".dis").find(".txt-control-show").val(txt);
+										//alert(txt);
+										//obj.parent(".hide").parent("td").find(".hide").find(".txt-control-hide").val(txt);				
+										obj.parent(".hide").parent("td").find(".dis").show();
+										obj.parent(".hide").parent("td").find(".hide").hide();
+							        	//location.href="lay_account_setting.ads";
+							        }else{
+							        	alert('YOU HAVE ERRORS WHEN INSERT UPDATE PROFILE.');
+							        }
+							        //ajaxindicatorstop()
+							        
+							},error:function(data,status,er) { 
+								//ajaxindicatorstop()
+							    console.log("error: "+data+" status: "+status+" er:"+er);
+							}
+						}); 
+		         }
+			}); 
+		});
+		
+	</script>

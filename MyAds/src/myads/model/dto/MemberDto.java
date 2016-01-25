@@ -12,6 +12,8 @@ public class MemberDto {
 	private String phone;
 	private String address;
 	private int active;
+	private String photo;
+	private CompanyDto companyDto;
 	
 	public boolean valid;
 
@@ -89,4 +91,18 @@ public class MemberDto {
 	public void setComid(int comid) {
 		this.comid = comid;
 	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	public CompanyDto getCompanyDto() {
+		return companyDto;
+	}
+	public void setCompanyDto(CompanyDto companyDto) {
+		this.companyDto = companyDto;
+	}
+	
+	
 }

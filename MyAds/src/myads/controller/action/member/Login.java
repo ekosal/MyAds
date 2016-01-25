@@ -10,7 +10,9 @@ import javax.servlet.http.HttpSession;
 
 import myads.controller.action.Action;
 import myads.controller.action.ActionForward;
+import myads.controller.action.category.CompanyAction;
 import myads.model.dao.MemberDao;
+import myads.model.dto.CompanyDto;
 import myads.model.dto.MemberDto;
 
 public class Login implements Action{
@@ -44,7 +46,17 @@ public class Login implements Action{
 				 member.setRealName(rs.getString("RealName"));
 				 member.setSex(rs.getString("Sex"));
 				 member.setDate(rs.getString("Date"));
-				 member.setRealName(rs.getString("Email"));
+				 member.setEmail(rs.getString("Email"));
+				 member.setPhone(rs.getString("Phone"));
+				 member.setAddress(rs.getString("Address"));
+				 member.setPhoto(rs.getString("Photo"));
+				 
+				 CompanyDto company=new CompanyDto();
+				 company.setComid(rs.getInt("ComId"));
+				 company.setComname(rs.getString("ComName"));
+				 System.out.println("Com "+rs.getInt("ComId"));
+				 
+				 member.setCompanyDto(company);
 	
 				 session.setAttribute("user", member);
 				 
