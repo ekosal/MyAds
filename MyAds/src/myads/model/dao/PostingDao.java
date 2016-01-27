@@ -526,7 +526,6 @@ public class PostingDao {
 		try{
 			String sql="SELECT p.PostingId,p.MemId,p.ProductName,p.KeyNotice,p.SubCateId, "
 					+ "p.Price,p.Phone,p.Address,p.Description,p.Discount from tbl_posting p  "
-					+ "INNER JOIN  tbl_image i on p.PostingId=i.PostingId "
 					+ "where p.PostingId=? and p.MemId=?";
 			ps=ds.getConnection().prepareStatement(sql);
 			ps.setInt(1, id);
@@ -562,6 +561,7 @@ public class PostingDao {
 					image.setPost_id(rs1.getInt("PostingId"));
 					listimage.add(image);
 				}
+				System.out.println("List Size "+listimage.size());
 				postingDto.setImageList(listimage);
 			}
 			return postingDto;

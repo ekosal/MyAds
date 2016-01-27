@@ -44,7 +44,7 @@
 						
 
 						<div class="register" style="width:880px;">
-							<form method="post" action="add_newposting.ads" name="frmregister" id="frmcreatepost" enctype="multipart/form-data">
+							<form method="post" action="add_editposting.ads" name="frmregister" id="frmcreatepost" enctype="multipart/form-data">
 								<table summary="">
 									<caption></caption>
 									<colgroup>
@@ -71,74 +71,40 @@
 											<td rowspan="7" style="vertical-align:top;text-align:right;">
 												<div style="text-align:left;border:1px solid #eee;"><strong>Photo <span class="require">*</span></strong>
 													<!-- photo_wrap -->
+														
 													<div class="photo_wrap" style="max-height:420px;overflow:scroll;">
+														<%
+														    //out.println(postingDto.getImageList().size());
+															for(int i=0;i<postingDto.getImageList().size();i++){
+														%>
 														<div class="t_right">
-															<a href="#none" class="btn_remove">Remove</a>
+															<a href="javascript:" class="btn_remove">Remove</a>
 															<ul class="multi_photo">
 																<li>
 																	<!-- photo -->
-																	<div class="uploadimage" style="width:100px;float:left;">
-																		<a href="#none" class="wrap_img user single">
-																			<span class="getphoto">Brow</span>
+																	<div style="width:100px;float:left;">
+																		<a href="javascript:" class="wrap_img user single">
+																			<!-- <span class="getphoto">Brow</span> -->
 																			<!--<span class="addmore">Add more photos</span>-->
+																		    <img alt="" src="uploads/<%=postingDto.getImageList().get(i).getImage() %>">
+																			
 																		</a>
-																		<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" multiple required="required">
-																		<span style="display:none" class="storeimg"></span>
+																		<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" required="required">
+																		<!-- <span style="display:none" class="storeimg"></span> -->
 																	</div>
-																	<a href="#none" class="btn_edit" style="margin-top:10px;">Edit</a>
+																	<a href="javascript:" class="btn_edit" style="margin-top:10px;">Edit</a>
 																	<!--  display(none/block) -->
-																	<span class="disable_photo" style="display:none;"><span class="blind">disable photo</span> </span>
+																	<!-- <span class="disable_photo" style="display:none;"><span class="blind">disable photo</span> </span> -->
 																	<!--  //display(none/block) -->
 																	<!-- //photo -->
 																</li>
 															</ul>
 														</div>
-														<div class="t_right">
-															<a href="#none" class="btn_remove">Remove</a>
-															<ul class="multi_photo">
-																<li>
-																	<!-- photo -->
-																	<div class="uploadimage" style="width:100px;float:left;">
-																		<a href="#none" class="wrap_img user single">
-																			<span class="getphoto">Brow</span>
-																			<!--<span class="addmore">Add more photos</span>-->
-																		</a>
-																		<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" multiple required="required">
-																		<span style="display:none" class="storeimg"></span>
-																	</div>
-																	<a href="#none" class="btn_edit" style="margin-top:10px;">Edit</a>
-																	<!--  display(none/block) -->
-																	<span class="disable_photo" style="display:block;"><span class="blind">disable photo</span> </span>
-																	<!--  //display(none/block) -->
-																	<!-- //photo -->
-																</li>
-															</ul>
-														</div>
-														<div class="t_right">
-															<a href="#none" class="btn_remove">Remove</a>
-															<ul class="multi_photo">
-																<li>
-																	<!-- photo -->
-																	<div class="uploadimage" style="width:100px;float:left;">
-																		<a href="#none" class="wrap_img user single">
-																			<span class="getphoto">Brow</span>
-																			<!--<span class="addmore">Add more photos</span>-->
-																		</a>
-																		<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" multiple required="required">
-																		<span style="display:none" class="storeimg"></span>
-																	</div>
-																	<a href="#none" class="btn_edit" style="margin-top:10px;">Edit</a>
-																	<!--  display(none/block) -->
-																	<span class="disable_photo" style="display:block;"><span class="blind">disable photo</span> </span>
-																	<!--  //display(none/block) -->
-																	<!-- //photo -->
-																</li>
-															</ul>
-														</div>
+														<% } %>													
 													</div>
 													<!-- //photo_wrap -->
 												</div>
-												<a href="#none" class="btn_create_acc mgt10">Save All Photos</a><!--<input type="submit" value="Create My Posting" class="btn_create_acc">-->
+												<a href="javascript:" class="btn_create_acc mgt10">Save All Photos</a><!--<input type="submit" value="Create My Posting" class="btn_create_acc">-->
 											</td>
 										</tr>
 										<tr>
@@ -203,7 +169,7 @@
 											</textarea></div></td>
 										</tr>
 										<tr>
-											<th colspan="3" class="t_right"><div><a href="#none" class="btn_create_acc" id="btn_create_acc">Save My Posting</a><!--<input type="submit" value="Create My Posting" class="btn_create_acc">--> </div></th>
+											<th colspan="3" class="t_right"><div><a href="javascript:" class="btn_create_acc" id="btn_create_acc">Save My Posting</a><!--<input type="submit" value="Create My Posting" class="btn_create_acc">--> </div></th>
 										</tr>
 									</tbody>
 								</table>
@@ -222,27 +188,35 @@
     
 	<jsp:directive.include file="ads_footer.jsp" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/additional-methods.js"></script>
+    <script src="js/jquery.validate.js"></script>
 	<script type="text/javascript">
 		$("#btn_create_acc").click(function(e){
-
-	    	
-	    	$("#frmcreatepost").ajaxSubmit({
-				url: "./add_newposting.ads",
-				type: 'POST',
-				success: function(data) { 					
-					/* console.log(data); */
-				        if(data){
-				        	alert('YOU HAVE BEEN INSERTED SUCCESSFULLY.');
-				        	location.href="lay_myadspages.ads";
-				        }else{
-				        	alert('YOU HAVE ERRORS WHEN INSERT UPDATE PROFILE.');
-				        }
-				        //ajaxindicatorstop()
-				        
-				},error:function(data,status,er) { 
-					//ajaxindicatorstop()
-				    console.log("error: "+data+" status: "+status+" er:"+er);
-				}
-			});        	
+			if($('#eidtposting').valid()){  //call valid for form2 and show the errors
+	              // alert('submit form');  //only if the form is valid submit the form
+				 $('#eidtposting').ajaxSubmit({
+						url: "./lay_editaccount_setting.ads",
+						type: 'POST',
+						success: function(data) { 			
+						        if(data){
+						        	alert('YOU HAVE BEEN INSERTED SUCCESSFULLY.')
+						        	$(".dis").show();
+									$(".hide").hide();
+									$(".btn_save").show();
+									$(".btn_cancel").show();								
+									$(".btn_save_password").show();
+									$(".btn_cancel_password").show();
+						        }else{
+						        	alert('YOU HAVE ERRORS WHEN INSERT UPDATE PROFILE.');
+						        }
+						        //ajaxindicatorstop()
+						        
+						},error:function(data,status,er) { 
+							//ajaxindicatorstop()
+						    console.log("error: "+data+" status: "+status+" er:"+er);
+						}
+					}); 
+	         }
 	    });
 	</script>
