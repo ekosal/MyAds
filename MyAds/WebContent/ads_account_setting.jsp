@@ -56,6 +56,7 @@
 							</form>
 							<form method="post" action="" id="eidtposting" >	
 								<a href="javascript:" class="btn_edit" id="btn-edit-all">Edit All</a>
+								<a href="javascript:" class="btn_cancel">Cancel</a>
 								<table summary="">
 									<caption></caption>
 									<colgroup>

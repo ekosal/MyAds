@@ -866,6 +866,8 @@ input[type=submit].btn_create_acc{display:inline-block;margin-right:4px;padding:
 .register.change table tr td a.btn_save:hover{text-decoration:underline;background-image:url(../img/btn/btn_save_on.png);}
 .register.change table tr td a.btn_cancel{background-image:url(../img/btn/btn_cancel_off.png);}
 .register.change table tr td a.btn_cancel:hover{text-decoration:underline;background-image:url(../img/btn/btn_cancel_on.png);}
+.register.change form > a.btn_cancel{float:right;display:inline-block;padding:3px 0 2px 20px;margin-right:20px;margin-top:-2px;background-image:url(../img/btn/btn_cancel_off.png);background-color:transparent;background-repeat:no-repeat;background-position:0 50%;}
+.register.change form > a.btn_cancel:hover{text-decoration:underline;background-image:url(../img/btn/btn_cancel_on.png);}
 
 .wrap_func .register .single_photo,.wrap_func .register.change .single_photo{position:absolute;top:20px;left:30px;width:100px;height:130px;}
 .wrap_func .register.change .single_photo .getphoto,.wrap_func .register .single_photo .getphoto{top:50%;left:87px;margin-top:-20px;}

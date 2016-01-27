@@ -72,7 +72,7 @@
 												<div style="text-align:left;border:1px solid #eee;"><strong>Photo <span class="require">*</span></strong>
 													<!-- photo_wrap -->
 														
-													<div class="photo_wrap" style="max-height:420px;overflow:scroll;">
+													<div class="photo_wrap" style="max-height:420px;overflow:scroll;overflow-x:hidden; ">
 														<%
 														    //out.println(postingDto.getImageList().size());
 															for(int i=0;i<postingDto.getImageList().size();i++){
