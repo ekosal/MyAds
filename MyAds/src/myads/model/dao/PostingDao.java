@@ -45,9 +45,9 @@ public class PostingDao {
 	public boolean insertPosting(PostingDto dto) throws SQLException{
 		
 		Date dt = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyhhmmss");
 		
-		String sql = "insert into tbl_posting values(?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into tbl_posting values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		String sqlimage="insert into tbl_image values(?,?,?,?)";
 		try{
 			ds.getConnection().setAutoCommit(false);
@@ -65,6 +65,7 @@ public class PostingDao {
 			ps.setInt(10, dto.getActive());
 			ps.setString(11,sdf.format(dt));
 			ps.setString(12, dto.getDiscount());
+			ps.setString(13, dto.getView());
 			ps.executeUpdate();
 			
 			for(int i=0;i<dto.getPhoto().size();i++){

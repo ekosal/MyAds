@@ -112,6 +112,7 @@ public class AddPosting implements Action{
 			dto.setActive(0);
 			dto.setPhoto(imagelist);
 			dto.setDiscount(dis);
+			dto.setView("0");
 			
 			if (dao.insertPosting(dto)){
 				request.setAttribute("message", "true");

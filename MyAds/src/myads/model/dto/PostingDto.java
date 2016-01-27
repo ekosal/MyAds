@@ -25,6 +25,7 @@ public class PostingDto {
 	private SubCategoryDto subCategory;
 	private String discount;
 	private MemberDto memberDto;
+	private String view;
 	
 	
 	
@@ -165,6 +166,12 @@ public class PostingDto {
 	}
 	public void setPostingId_security(String postingId_security) {
 		this.postingId_security = postingId_security;
+	}
+	public String getView() {
+		return view;
+	}
+	public void setView(String view) {
+		this.view = view;
 	}
 	
 

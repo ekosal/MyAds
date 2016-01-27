@@ -25,7 +25,7 @@ public class MyAdsAction implements Action{
 			MemberDto memberDto=new MemberDto();
 			memberDto=(MemberDto)request.getSession().getAttribute("user");
 		    PostingDao postingDao=new PostingDao();	
-		    Pagination.startpage=1;
+		    Pagination.startpage=0;
 			if (current=="" || current==null){
 				Pagination.currentpage=1;
 			}else{
