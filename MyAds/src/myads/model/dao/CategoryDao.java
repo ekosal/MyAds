@@ -358,7 +358,55 @@ public class CategoryDao {
 					+ "INNER JOIN tbl_sub_category sc on c.CateId=sc.CateId INNER JOIN "
 					+ "tbl_posting p on p.SubCateId=sc.SubCateId INNER JOIN tbl_image i "
 					+ "on p.PostingId=i.PostingId "
-					+ "where  i.order=1 And p.Active='1' and p.PostDate DESC limit 0,15" ;
+					+ "where  i.order=1 And p.Active='1' ORDER BY p.PostDate DESC limit 0,10" ;
+					 	PreparedStatement psBody=ds.getConnection().prepareStatement(sql);
+						ResultSet rsBody=null;
+						rsBody=psBody.executeQuery();
+						while(rsBody.next()){
+								PostingDto postingDto=new PostingDto();
+								
+								Image image=new Image();
+								image.setImage(rsBody.getString("Image"));
+								 
+								MainCategoryDto mainCategory=new MainCategoryDto();
+								mainCategory.setId(rsBody.getInt("CateId"));
+								mainCategory.setId_security(EncryptionUtil.encode(rsBody.getString("CateId")));
+								
+								SubCategoryDto subcategoryDto=new SubCategoryDto();
+								subcategoryDto.setSubid(rsBody.getInt("SubCateId"));
+								subcategoryDto.setSubid_security(EncryptionUtil.encode(rsBody.getString("SubCateId")));
+									
+								postingDto.setPostingId(rsBody.getInt("PostingId"));
+								postingDto.setPostingId_security(EncryptionUtil.encode(rsBody.getString("PostingId")));
+								postingDto.setTitle(rsBody.getString("ProductName"));
+								postingDto.setKey(rsBody.getString("KeyNotice"));
+							   						  
+								postingDto.setImage(image);
+								postingDto.setMainCategory(mainCategory);
+								postingDto.setSubCategory(subcategoryDto);;
+								ContentBody.add(postingDto);
+								
+					
+										
+				}
+			}catch(Exception e){
+				
+			}finally{
+				if (SqlConnection.getConnection()!=null) try{ SqlConnection.getConnection().close();}catch(SQLException e){}
+			}
+			//System.out.println("Body : "+ContentBody.size());
+			return ContentBody;
+		}
+		
+		
+		public List<PostingDto> getPopularPosting(){
+			List<PostingDto> ContentBody=new ArrayList<>();
+			try{
+			    String sql="SELECT sc.SubCateId,c.CateId,p.PostingId,p.ProductName,p.KeyNotice,i.Image FROM tbl_category c "
+					+ "INNER JOIN tbl_sub_category sc on c.CateId=sc.CateId INNER JOIN "
+					+ "tbl_posting p on p.SubCateId=sc.SubCateId INNER JOIN tbl_image i "
+					+ "on p.PostingId=i.PostingId "
+					+ "where  i.order=1 And p.Active='1' ORDER BY p.view DESC limit 0,10" ;
 					 	PreparedStatement psBody=ds.getConnection().prepareStatement(sql);
 						ResultSet rsBody=null;
 						rsBody=psBody.executeQuery();

@@ -408,11 +408,17 @@ public class PostingDao {
 				image.setImage(rs.getString("Image"));
 				posting.setTitle(rs.getString("ProductName"));
 				posting.setPostingId(rs.getInt("PostingId"));
+				posting.setPostingId_security(EncryptionUtil.encode(rs.getString("PostingId")));
 				posting.setPrice(rs.getInt("Price"));
 				posting.setKey(rs.getString("KeyNotice"));
 				posting.setDiscount(rs.getString("Discount"));
+				
 				mainCategory.setId(rs.getInt("CateId"));
+				mainCategory.setId_security(EncryptionUtil.encode(rs.getString("CateId")));
+				
 				subcategory.setId(rs.getInt("SubCateId"));
+				subcategory.setSubid_security(EncryptionUtil.encode(rs.getString("SubCateId")));
+				
 				posting.setMainCategory(mainCategory);
 				posting.setSubCategory(subcategory);
 				posting.setImage(image);
@@ -429,7 +435,7 @@ public class PostingDao {
 	public PostingDto readProductByCategoryAndSubCategory(String category_id,String subCategoryId,String productId){
 		PostingDto posting=new PostingDto();	
 		try{
-			String sql="select p.PostingId,p.ProductName,p.Price,p.Discount,p.KeyNotice,p.Description,"
+			String sql="select p.PostingId,p.view,p.ProductName,p.Price,p.Discount,p.KeyNotice,p.Description,"
 					+ "m.`Name`,m.Phone,m.Email,m.Address,c.CateId,c.`Name` as cateName,sc.SubCateId,sc.`Name` as subcateName from tbl_posting "
 					+ "p INNER JOIN tbl_sub_category sc on p.SubCateId=sc.SubCateId "
 					+ "INNER JOIN tbl_category c on c.CateId=sc.CateId INNER JOIN tbl_member m on p.MemId=m.MemId "
@@ -437,6 +443,9 @@ public class PostingDao {
 			String sql1 = "select i.image from tbl_image i INNER JOIN tbl_posting p "
 					+ "on i.PostingId=p.PostingId where "
 					+ "p.PostingId=? ORDER BY i.`order`";
+			
+			
+			
 			ps=ds.getConnection().prepareStatement(sql);
 			ps.setInt(1,Integer.valueOf(category_id));
 			ps.setInt(2,Integer.valueOf(subCategoryId));
@@ -484,6 +493,12 @@ public class PostingDao {
 				posting.setMainCategory(mainCategory);
 				posting.setMemberDto(memberDto);
 				posting.setImageList(imageList);
+				
+				String sql2 = "UPDATE tbl_posting SET `view`=? WHERE PostingId=?";
+				PreparedStatement ps2=ds.getConnection().prepareStatement(sql2);
+				ps2.setInt(1, (rs.getInt("view")+1));
+				ps2.setInt(2,Integer.valueOf(productId));
+				ps2.executeUpdate();
 				
 			}
 			return posting;
@@ -572,5 +587,4 @@ public class PostingDao {
 		return null;
 	}
 	
-
 }

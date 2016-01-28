@@ -39,7 +39,9 @@ public class ViewPostingDetails implements Action {
 			request.getSession().setAttribute("listRelativeProduct", listRelativeProduct);
 			
 			postingDto=postingDao.readProductByCategoryAndSubCategory(EncryptionUtil.decode(categoryId),EncryptionUtil.decode(subCateryId) ,EncryptionUtil.decode(proId) );
-			System.out.println("Category : "+postingDto.getMainCategory().getId());
+			
+			
+			
 			request.getSession().setAttribute("productDto", postingDto);
 	
 			forward.setRedirect(false);

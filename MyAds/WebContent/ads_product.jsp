@@ -219,7 +219,7 @@
 															
 													%>
 														<div class="item_related">
-															<a href="#none">
+															<a href="product_details.ads?id=<%=listRelativeProduct.get(i).getMainCategory().getId_security() %>&subid=<%=listRelativeProduct.get(i).getSubCategory().getSubid_security() %>&proid=<%=listRelativeProduct.get(i).getPostingId_security() %>">
 																<span><img src="img/com/lorempixel.jpg" alt="" class="img-responsive"></span>
 																<dl>
 																	<dt><%=listRelativeProduct.get(i).getTitle() %></dt>

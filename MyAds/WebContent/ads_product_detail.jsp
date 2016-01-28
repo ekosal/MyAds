@@ -314,7 +314,7 @@
 													       for(int i=0;i<listRelativeProduct.size();i++){
 													    %>
 														 	<div class="item_related">
-																<a href="#none">
+																<a href="product_details.ads?id=<%=listRelativeProduct.get(i).getMainCategory().getId_security() %>&subid=<%=listRelativeProduct.get(i).getSubCategory().getSubid_security() %>&proid=<%=listRelativeProduct.get(i).getPostingId_security() %>">
 																	<span><img src="uploads/<%=listRelativeProduct.get(i).getImage().getImage() %>" alt="" class="img-responsive"></span>
 																	<dl>
 																		<dt><%=listRelativeProduct.get(i).getTitle() %></dt>
