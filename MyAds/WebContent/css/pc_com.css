@@ -48,7 +48,7 @@
 .btn_user, .btn_user > span{display:inline-block;vertical-align:top;background-image:url(../img/ico/ico_btn_prosetting.png;);}
 .btn_user, .btn_user > span{color:#128609 !important;}
 .btn_user{height:23px;margin-right:-1px !important;padding:0 30px 0 0;background-position:100% 0;}
-.btn_user > span{height:23px;padding:0 0 0 28px;line-height:23px;}
+.btn_user > span{height:23px;min-width:100px;padding:0 0 0 28px;line-height:23px;}
 .profile_setting{position:absolute;top:23px;left:-1px;width:100%;display:block; height:auto !important;border:1px solid #eee;}
 .profile_setting.on{display:block !important;}
 .profile_setting ol{padding:10px;background-color:#fff;}
@@ -390,36 +390,22 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 /* table myproducts_wrap */
 .tbl_myproducts_wrap{display:block;overflow:hidden;}
 
-.tbl_popular{display:block;}
-.tbl_popular table{}
-.tbl_popular table tr{}
-.tbl_popular table tr td{border:1px solid #eee;border-top:0;}
-.tbl_popular table tr td div{padding:5px;}
+.tbl_popular{display:block;height:436px;overflow:hidden;}
 .tbl_popular h2.poplar{padding:5px 0 5px 20px;border-bottom:2px solid #133488;}
 .tbl_popular h2.poplar a.btn_view_more span.count_items{float:right;display:block;padding:3px 25px 3px 0;font-size:14px;font-weight:normal;background:url(../img/ico/ico_more.png) no-repeat 100% -3px;}
 .tbl_popular h2.poplar a.btn_view_more:hover span.count_items{background:url(../img/ico/ico_more_over.png) no-repeat 100% -3px;}
-.tbl_popular table tr td div p{padding:10px 5px;text-align:center;border:1px solid #eee;}
-.tbl_popular table tr td div p:hover{color:#f44949;font-weight:bold;border:1px solid #f44949;}
 
-/* tbl_allcollection */
-.tbl_allcollection{display:block;padding-right:330px;overflow:hidden;}
-.tbl_allcollection .tbl_cnt_collection{height:386px;border-top:2px solid #121b32;}
-.tbl_allcollection .tbl_cnt_collection h2.title{padding:10px 20px;border-bottom:1px solid #eee;}
-.tbl_allcollection .tbl_cnt_collection table{}
-.tbl_allcollection .tbl_cnt_collection table tr{}
-.tbl_allcollection .tbl_cnt_collection table tr td{border:1px solid #eee;border-top:0;}
-.tbl_allcollection .tbl_cnt_collection table tr:firs-child td:first-child{border:0;}
-.tbl_allcollection .tbl_cnt_collection table tr td div{text-align:center;}
+.tbl_popular .mypopular{display:block;padding-left:293px;border:1px solid #eee;border-top:0;overflow:hidden;}
+.tbl_popular .mypopular .cover{float:left;width:283px;height:402px;margin-left:-293px;border-right:1px solid #eee;}
+.tbl_popular .mypopular .items_wrap{display:block;}
 
-.tbl_allcollection .last_post{float:right;width:300px;height:386px;margin-right:-330px;border-top:2px solid #121b32;}
-.tbl_allcollection .last_post h2.today_post{padding:10px 0 10px 20px;border-bottom:1px solid #eee;}
-.tbl_allcollection .last_post h2.today_post a.btn_view_more span.count_items{float:right;display:block;padding:3px 25px 3px 0;font-size:14px;font-weight:normal;background:url(../img/ico/ico_more.png) no-repeat 100% -3px;}
-.tbl_allcollection .last_post h2.today_post a.btn_view_more:hover span.count_items{background:url(../img/ico/ico_more_over.png) no-repeat 100% -3px;}
-.tbl_allcollection .last_post .img{padding-bottom:20px;text-align:center;}
-.tbl_allcollection .last_post .img h4{padding:10px 0 10px 40px;font-size:16px;font-weight:normal;text-transform:capitalize;text-align:left;}
-.tbl_allcollection .last_post .img dl{}
-.tbl_allcollection .last_post .img dt{padding:10px 0 5px 40px;font-size:18px;text-align:left;}
-.tbl_allcollection .last_post .img dd{padding:5px 0 10px 40px;font-size:13px;color:#aaa;text-align:left;}
+.tbl_popular .mypopular .items_wrap ul{overflow:hidden;}
+.tbl_popular .mypopular .items_wrap ul li{float:left;width:180px;height:200px;border:1px solid #eee;border-right:0;border-bottom:0;}
+
+.tbl_popular .mypopular .items_wrap ul li p{margin-top:8px;padding:0 5px;}
+.tbl_popular .mypopular .items_wrap ul li p a{display:block;padding:10px 5px;font-size:14px;text-transform:capitalize;border:1px solid #eee;}
+.tbl_popular .mypopular .items_wrap ul li:hover{cursor:pointer;}
+.tbl_popular .mypopular .items_wrap ul li:hover p a{border:1px solid #fd510e;color:#fd510e;font-weight:bold;}
 
 /* table myproducts */
 .tbl_myproducts{display:block;padding:0 0 50px 200px;overflow:hidden;}

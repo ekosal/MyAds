@@ -202,236 +202,127 @@
 						<div class="tbl_myproducts_wrap">
 							<!-- tbl_popular -->
 							<div class="tbl_popular">
-								<h2 class="poplar">Popular Products<a href="#none" class="btn_view_more"><span class="count_items"><span class="txt_r"><strong>550</strong></span> items</span></a></h2>
-								<table summary="">
-									<colgroup>
-									<col>
-									<col>
-									<col>
-									<col>
-									<col>
-									</colgroup>
-									<tbody>
-										<tr>
-											<td rowspan="2">
-												<div>
-													<a href="#none"><img src="img/popular/cover/1.png" width="188" height="270" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/1.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/2.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/3.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/4.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/6.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/7.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/8.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/9.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/1.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/1.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
+								<h2 class="poplar">Popular Products<a href="#none" class="btn_view_more"><span class="count_items"><span class="txt_r"><strong>550</strong></span> Products</span></a></h2>
+								<div class="mypopular">
+									<!-- cover -->
+									<div class="cover">
+										<img src="img/popular/1.png" alt="" style="width:283px;height:402px;">
+									</div>
+									<!-- //cover -->
+
+									<!-- items -->
+									<div class="items_wrap">
+										<ul>
+											<li>
+												<img src="img/popular/1.png" alt="" style="width:180px;height:150px;">
+												<p><a href="#none">Title</a></p>
+											</li>
+											<li>
+												<img src="img/popular/1.png" alt="" style="width:180px;height:150px;">
+												<p><a href="#none">Title</a></p>
+											</li>
+											<li>
+												<img src="img/popular/1.png" alt="" style="width:180px;height:150px;">
+												<p><a href="#none">Title</a></p>
+											</li>
+											<li>
+												<img src="img/popular/1.png" alt="" style="width:180px;height:150px;">
+												<p><a href="#none">Title</a></p>
+											</li>
+											<li>
+												<img src="img/popular/1.png" alt="" style="width:180px;height:150px;">
+												<p><a href="#none">Title</a></p>
+											</li>
+											<li>
+												<img src="img/popular/1.png" alt="" style="width:180px;height:150px;">
+												<p><a href="#none">Title</a></p>
+											</li>
+											<li>
+												<img src="img/popular/1.png" alt="" style="width:180px;height:150px;">
+												<p><a href="#none">Title</a></p>
+											</li>
+											<li>
+												<img src="img/popular/1.png" alt="" style="width:180px;height:150px;">
+												<p><a href="#none">Title</a></p>
+											</li>
+											<li>
+												<img src="img/popular/1.png" alt="" style="width:180px;height:150px;">
+												<p><a href="#none">Title</a></p>
+											</li>
+											<li>
+												<img src="img/popular/1.png" alt="" style="width:180px;height:150px;">
+												<p><a href="#none">Title</a></p>
+											</li>
+										</ul>
+									</div>
+									<!-- //items -->
+								</div>
 							</div>
 							<!-- //tbl_popular -->
-							
-							<!-- tbl_popular -->
+
+							<!-- //tbl_last post -->
 							<div class="tbl_popular mgt20">
-								<h2 class="poplar">Latest Posts<a href="#none" class="btn_view_more"><span class="count_items"><span class="txt_r"><strong>550</strong></span> items</span></a></h2>
-								<table summary="">
-									<colgroup>
-									<col>
-									<col>
-									<col>
-									<col>
-									<col>
-									</colgroup>
-									<tbody>
-										<tr>
-											<td rowspan="3">
-												<div>
-													<a href="#none"><img src="img/popular/cover/1.png" width="188" height="270" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/1.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/2.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/3.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/4.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/6.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/7.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/8.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/9.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/1.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/1.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/7.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/8.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/9.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/1.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-											<td>
-												<div>
-													<a href="#none"><img src="img/popular/1.png" width="189" height="110" alt="">
-														<p>Feeature Brand</p>
-													</a>
-												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
+								<h2 class="poplar">Last Postings<a href="#none" class="btn_view_more"><span class="count_items"><span class="txt_r"><strong>550</strong></span> Products</span></a></h2>
+								<div class="mypopular">
+									<!-- cover -->
+									<div class="cover">
+										<img src="img/popular/1.png" alt="" style="width:283px;height:402px;">
+									</div>
+									<!-- //cover -->
+
+									<!-- items -->
+									<div class="items_wrap">
+										<ul>
+											<li>
+												<img src="img/popular/1.png" alt="" style="width:180px;height:150px;">
+												<p><a href="#none">Title</a></p>
+											</li>
+											<li>
+												<img src="img/popular/1.png" alt="" style="width:180px;height:150px;">
+												<p><a href="#none">Title</a></p>
+											</li>
+											<li>
+												<img src="img/popular/1.png" alt="" style="width:180px;height:150px;">
+												<p><a href="#none">Title</a></p>
+											</li>
+											<li>
+												<img src="img/popular/1.png" alt="" style="width:180px;height:150px;">
+												<p><a href="#none">Title</a></p>
+											</li>
+											<li>
+												<img src="img/popular/1.png" alt="" style="width:180px;height:150px;">
+												<p><a href="#none">Title</a></p>
+											</li>
+											<li>
+												<img src="img/popular/1.png" alt="" style="width:180px;height:150px;">
+												<p><a href="#none">Title</a></p>
+											</li>
+											<li>
+												<img src="img/popular/1.png" alt="" style="width:180px;height:150px;">
+												<p><a href="#none">Title</a></p>
+											</li>
+											<li>
+												<img src="img/popular/1.png" alt="" style="width:180px;height:150px;">
+												<p><a href="#none">Title</a></p>
+											</li>
+											<li>
+												<img src="img/popular/1.png" alt="" style="width:180px;height:150px;">
+												<p><a href="#none">Title</a></p>
+											</li>
+											<li>
+												<img src="img/popular/1.png" alt="" style="width:180px;height:150px;">
+												<p><a href="#none">Title</a></p>
+											</li>
+										</ul>
+									</div>
+									<!-- //items -->
+								</div>
 							</div>
-							<!-- //tbl_popular -->
+							<!-- //tbl_last post -->
+
+
+
+
 							
 							<%
 					        	
