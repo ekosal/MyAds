@@ -29,7 +29,7 @@
 							  <form action="" id="form-image-change" method="post" enctype="multipart/form-data">
 								<!-- photo -->
 								<div class="single_photo">
-									<div class="uploadimage"  >
+									<div class="uploadimage" >
 										 <a href="javascript:" class="wrap_img user single" id="edit-image" style="cursor: pointer;">
 											<!-- <span class="getphoto">photo</span> -->
 											<!--<span class="addmore">Add more photos</span>-->

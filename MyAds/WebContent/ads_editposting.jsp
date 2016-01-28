@@ -43,137 +43,140 @@
 
 						
 
-						<div class="register" style="width:880px;">
-							<form method="post" action="add_editposting.ads" name="frmregister" id="frmcreatepost" enctype="multipart/form-data">
-								<table summary="">
-									<caption></caption>
-									<colgroup>
-									<col style="width:125px;">
-									<col>
-									<col>
-									</colgroup>
-									<tbody>
-										<tr style="display:;">
-											<th scope="row"><div>Member ID <span class="require">*</span></div></th>
-											<td><div>
-												<input type="text" value="<%= postingDto.getMemberDto().getId() %>" name="txt_memid">
-												<input type="text" value="<%= postingDto.getPostingId() %>"  name="txt_pro_id" style="width:308px;" required="required">
-												
-											</div></td>
-											
-										</tr>
-										<tr>
-											<th scope="row"><div>Your Product Name <span class="require">*</span></div></th>
-											<td><div>
-												<input type="text" value="<%=postingDto.getTitle() %>" placeholder="Enter your product title" name="txt_pro_tit" style="width:308px;" required="required">
-												
-												</div></td>
-											<td rowspan="7" style="vertical-align:top;text-align:right;">
-												<div style="text-align:left;border:1px solid #eee;"><strong>Photo <span class="require">*</span></strong>
-													<!-- photo_wrap -->
-														
-													<div class="photo_wrap" style="max-height:420px;overflow:scroll;overflow-x:hidden; ">
-														<%
-														    //out.println(postingDto.getImageList().size());
-															for(int i=0;i<postingDto.getImageList().size();i++){
-														%>
-														<div class="t_right">
-															<a href="javascript:" class="btn_remove">Remove</a>
-															<ul class="multi_photo">
-																<li>
-																	<!-- photo -->
-																	<div style="width:100px;float:left;">
-																		<a href="javascript:" class="wrap_img user single">
-																			<!-- <span class="getphoto">Brow</span> -->
-																			<!--<span class="addmore">Add more photos</span>-->
-																		    <img alt="" src="uploads/<%=postingDto.getImageList().get(i).getImage() %>">
-																			
-																		</a>
-																		<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" required="required">
-																		<!-- <span style="display:none" class="storeimg"></span> -->
-																	</div>
-																	<a href="javascript:" class="btn_edit" style="margin-top:10px;">Edit</a>
-																	<!--  display(none/block) -->
-																	<!-- <span class="disable_photo" style="display:none;"><span class="blind">disable photo</span> </span> -->
-																	<!--  //display(none/block) -->
-																	<!-- //photo -->
-																</li>
-															</ul>
+						<div class="register change cboth" style="width:510px;padding-left:20px;padding-right:370px;">
+							<!-- update image -->
+							<div class="update_img">
+								<form method="post" action="" name="frmregister" id="frmcreatepost" enctype="multipart/form-data">
+									<div style="text-align:left;padding:5px;border:1px solid #eee;"><strong>Photo <span class="require">*</span></strong>
+										<!-- photo_wrap -->
+										<div class="photo_wrap" style="height:531px;padding:0 10px;overflow:scroll;overflow-x:hidden; ">
+											<%
+											    //out.println(postingDto.getImageList().size());
+												for(int i=0;i<postingDto.getImageList().size();i++){
+											%>
+											<div class="t_right">
+												<a href="javascript:" class="btn_remove">Remove</a>
+												<ul class="multi_photo">
+													<li>
+														<!-- photo -->
+														<div style="width:100px;float:left;">
+															<a href="javascript:" class="wrap_img user single">
+																<!-- <span class="getphoto">Brow</span> -->
+																<!--<span class="addmore">Add more photos</span>-->
+															    <img alt="" src="uploads/<%=postingDto.getImageList().get(i).getImage() %>">
+																
+															</a>
+															<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" required="required">
+															<!-- <span style="display:none" class="storeimg"></span> -->
 														</div>
-														<% } %>													
+														<a href="javascript:" class="btn_edit ico_save" style="margin-top:10px;margin-left:15px;">Save</a>
+														<a href="javascript:" class="btn_edit" style="margin-top:10px;">Edit</a>
+														<!--  display(none/block) -->
+														<!-- <span class="disable_photo" style="display:none;"><span class="blind">disable photo</span> </span> -->
+														<!--  //display(none/block) -->
+														<!-- //photo -->
+													</li>
+												</ul>
+											</div>
+											<% } %>													
+										</div>
+										<!-- //photo_wrap -->
+									</div>
+									<a href="javascript:" class="btn_create_acc mgt10" id="btn_create_acc">Save All Photos</a>
+								</form>
+							</div>
+							<!-- //update image -->
+						
+						
+							<!-- //text update -->
+							<div class="update_text">
+								<form method="post" action="add_editposting.ads" name="frmregister" id="frmcreatepost" enctype="multipart/form-data">
+									<table summary="" style="text-align:left;">
+										<caption></caption>
+										<colgroup>
+										<col style="width:140px;">
+										<col>
+										</colgroup>
+										<tbody>
+											<tr style="display:;">
+												<th scope="row"><div>Member ID <span class="require">*</span></div></th>
+												<td>
+													<div>
+														<input type="text" value="<%= postingDto.getMemberDto().getId() %>" name="txt_memid">
+														<input type="text" value="<%= postingDto.getPostingId() %>"  name="txt_pro_id" required="required">
 													</div>
-													<!-- //photo_wrap -->
-												</div>
-												<a href="javascript:" class="btn_create_acc mgt10">Save All Photos</a><!--<input type="submit" value="Create My Posting" class="btn_create_acc">-->
-											</td>
-										</tr>
-										<tr>
-											<th><div>Category Type <span class="require">*</span></div></th>
-											<td>
-												<div style="height:50px;">
-													<select style="width:300px;height:70px;" name="txt_subcatid" required="required">
-														<option value="0" data-modifier="mod">All Categories</option>
-															<%
-																/* List<MainCategoryDto> rst=CategoryDao.getCategory();
-															    List<SubCategoryDto> rst1=CategoryDao.getSubCategory(); */
-																for(int j=0;j<rst.size();j++){
-															%>
-															<optgroup label="<%= rst.get(j).getName() %>">
-																		<%
-														                	for(int i=0;i<rst1.size();i++)  {  
-														                		if (rst.get(j).getId()==rst1.get(i).getId()){
-																		%>
-																				<option value="<%= rst1.get(i).getSubid() %>" 
-																				   <% if (postingDto.getSubCategory().getSubid()==rst1.get(i).getSubid()){ %>
-																				   		selected="selected"
-																				   <% } %>																				
-																				><%= rst1.get(i).getName() %></option>
-																		<%
-																		     }
-														                	}
-																		 %>
-															</optgroup>
-															<%
-															     }
-															%>
-													</select>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<th><div>Key Notice <span class="require">*</span></div></th>
-											<td><div><input type="text" value="<%=postingDto.getKey() %>" placeholder="Enter key notice" name="txt_keynotice" style="width:308px;" required="required"></div></td>
-										</tr>
-										<tr>
-											<th><div>Price <span class="require">*</span></div></th>
-											<td><div><input type="text" value="<%=postingDto.getPrice() %>" placeholder="Enter price" name="txt_price" style="width:308px;" required="required"></div></td>
-										</tr>
-										<tr>
-											<th><div>Discount <span class="require">*</span></div></th>
-											<td><div><input type="text" value="<%=postingDto.getDiscount() %>" placeholder="Enter discount price" name="txt_discount" style="width:308px;" required="required"></div></td>
-										</tr>
-										<tr>
-											<th><div>Phone Number <span class="require">*</span></div></th>
-											<td><div><input type="text" value="<%=postingDto.getPhone() %>" placeholder="Enter your phone number" name="txt_phone" style="width:308px;" required="required"></div></td>
-										</tr>
-										<tr>
-											<th><div>Your Address <span class="require">*</span></div></th>
-											<td><div><textarea style="width:304px;height:50px;" placeholder="Enter your real current address" name="txt_address" required="required">
-													<%=postingDto.getAdr() %>
-											</textarea></div></td>
-										</tr>
-										<tr>
-											<th><div>Product Description <span class="require">*</span></div></th>
-											<td><div><textarea style="width:304px;height:160px;" placeholder="Enter your description" name="txt_dsc" required="required">
-												<%=postingDto.getDsc() %>
-											</textarea></div></td>
-										</tr>
-										<tr>
-											<th colspan="3" class="t_right"><div><a href="javascript:" class="btn_create_acc" id="btn_create_acc">Save My Posting</a><!--<input type="submit" value="Create My Posting" class="btn_create_acc">--> </div></th>
-										</tr>
-									</tbody>
-								</table>
-							</form>
+												</td>
+											</tr>
+											<tr>
+												<th><div>Category Type <span class="require">*</span></div></th>
+												<td>
+													<div style="height:50px;">
+														<select style="width:300px;height:70px;" name="txt_subcatid" required="required">
+															<option value="0" data-modifier="mod">All Categories</option>
+																<%
+																	/* List<MainCategoryDto> rst=CategoryDao.getCategory();
+																    List<SubCategoryDto> rst1=CategoryDao.getSubCategory(); */
+																	for(int j=0;j<rst.size();j++){
+																%>
+																<optgroup label="<%= rst.get(j).getName() %>">
+																			<%
+															                	for(int i=0;i<rst1.size();i++)  {  
+															                		if (rst.get(j).getId()==rst1.get(i).getId()){
+																			%>
+																					<option value="<%= rst1.get(i).getSubid() %>" 
+																					   <% if (postingDto.getSubCategory().getSubid()==rst1.get(i).getSubid()){ %>
+																					   		selected="selected"
+																					   <% } %>																				
+																					><%= rst1.get(i).getName() %></option>
+																			<%
+																			     }
+															                	}
+																			 %>
+																</optgroup>
+																<%
+																     }
+																%>
+														</select>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<th><div>Key Notice <span class="require">*</span></div></th>
+												<td><div><input type="text" value="<%=postingDto.getKey() %>" placeholder="Enter key notice" name="txt_keynotice" style="width:308px;" required="required"></div></td>
+											</tr>
+											<tr>
+												<th><div>Price <span class="require">*</span></div></th>
+												<td><div><input type="text" value="<%=postingDto.getPrice() %>" placeholder="Enter price" name="txt_price" style="width:308px;" required="required"></div></td>
+											</tr>
+											<tr>
+												<th><div>Discount <span class="require">*</span></div></th>
+												<td><div><input type="text" value="<%=postingDto.getDiscount() %>" placeholder="Enter discount price" name="txt_discount" style="width:308px;" required="required"></div></td>
+											</tr>
+											<tr>
+												<th><div>Phone Number <span class="require">*</span></div></th>
+												<td><div><input type="text" value="<%=postingDto.getPhone() %>" placeholder="Enter your phone number" name="txt_phone" style="width:308px;" required="required"></div></td>
+											</tr>
+											<tr>
+												<th><div>Your Address <span class="require">*</span></div></th>
+												<td><div><textarea style="width:304px;height:50px;" placeholder="Enter your real current address" name="txt_address" required="required">
+														<%=postingDto.getAdr() %>
+												</textarea></div></td>
+											</tr>
+											<tr>
+												<th><div>Product Description <span class="require">*</span></div></th>
+												<td><div><textarea style="width:304px;height:160px;" placeholder="Enter your description" name="txt_dsc" required="required">
+													<%=postingDto.getDsc() %>
+												</textarea></div></td>
+											</tr>
+											<tr style="display:none;">
+												<th colspan="2" class="t_right"><div><a href="javascript:" class="btn_create_acc" id="btn_create_acc">Save My Posting</a><!--<input type="submit" value="Create My Posting" class="btn_create_acc">--> </div></th>
+											</tr>
+										</tbody>
+									</table>
+									<a href="javascript:" class="btn_create_acc mgt10" id="btn_create_acc" style="margin-right:34px;">Save My Posting</a>
+								</form>
+							</div>
+							<!-- //text update -->
 						</div>
 					</div>
 					<!-- //wrap_function -->
