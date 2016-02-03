@@ -124,7 +124,7 @@
 											<td><div><textarea style="width:304px;height:160px;" placeholder="Enter your description" name="txt_dsc"  data-rule-required="true" data-msg-required="Please enter your description!"></textarea></div></td>
 										</tr>
 										<tr>
-											<th colspan="3" class="t_right"><div><a href="javascript:" class="btn_create_acc" id="btn_create_acc">Create My Posting</a><input type="submit" value="Create My Posting" class="btn_create_acc"> </div></th>
+											<th colspan="3" class="t_right"><div><!-- <a href="javascript:" class="btn_create_acc" id="btn_create_acc">Create My Posting</a> --><input type="submit" value="Create My Posting" class="btn_create_acc"> </div></th>
 										</tr>
 									</tbody>
 								</table>

@@ -57,9 +57,11 @@ public class Login implements Action{
 				 System.out.println("Com "+rs.getInt("ComId"));
 				 
 				 member.setCompanyDto(company);
-	
-				 session.setAttribute("user", member);
 				 
+				 int time=24*60*60;
+				 session.setMaxInactiveInterval(time);
+				 session.setAttribute("user", member);
+				
 				 /*System.out.println("Login is OK");
 				 session.setAttribute("membername", request.getParameter("txt_username"));
 				 session.setAttribute("id", rs.getInt(1));*/

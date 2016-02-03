@@ -45,13 +45,14 @@
 												}
 											%>
 										</a>
-										<input type="hidden" value="<%=member.getId() %>" placeholder="Enter your name" name="txt_id" style="width:463px;" required="required">
+										
 										<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" required="required">
 										<!-- <span style="display:none" class="storeimg"></span> -->
 									</div>
 									<a href="javascript:" class="btn_edit" id="btn_save_change_image" style="margin-top:10px;">Save</a>
 									<!-- <span class="disable_photo" style="display:block;"><span class="blind">disable photo</span> </span> -->
 								</div>
+								<input type="hidden" value="<%=member.getId() %>" placeholder="Enter your name" name="txt_id" style="width:463px;" required="required">
 								<!-- //photo -->
 							</form>
 							<form method="post" action="" id="eidtposting" >	

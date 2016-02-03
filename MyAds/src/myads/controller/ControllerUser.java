@@ -105,12 +105,12 @@ public class ControllerUser extends HttpServlet {
 				 forward.setPath("lay_log.ads");
 				 System.out.println(" Session Null");
 			 }else{
-			 action=new MyAdsAction();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+				 action=new MyAdsAction();
+				 try{
+						forward=action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
 			 }
 			 System.out.println(forward.getPath());
 		 }else if (command.equals("/lay_search_myadspages.ads")){
@@ -153,20 +153,18 @@ public class ControllerUser extends HttpServlet {
 			 
 			 System.out.println(forward.getPath());
 		 }else if (command.equals("/edit_product.ads")){
-			 HttpSession session=request.getSession(true);
-			 if (session.getAttribute("user")==null){
-				 forward.setRedirect(true);
+			 if (request.getSession().getAttribute("user")==null){
+				 forward.setRedirect(false);
 				 forward.setPath("lay_log.ads");
 				 System.out.println(" Session Null");
-			 }
-			 action=new GetIdProductUpdate();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
+			 }else{
+				 action=new GetIdProductUpdate();
+				 try{
+						forward=action.execute(request, response);
+				 }catch(Exception e){
 					e.printStackTrace();
-				}
-			 
-			 System.out.println(forward.getPath());
+				 }
+			 }
 		 }	 
 		 else if (command.equals("/lay_newposting.ads")){
 			 
@@ -207,22 +205,28 @@ public class ControllerUser extends HttpServlet {
 					e.printStackTrace();
 				}
 			 
-			 System.out.println(forward.getPath());
+			 //System.out.println(forward.getPath());
 		 }else if (command.equals("/lay_removepostingphoto.ads")){
 			 HttpSession session=request.getSession(true);
 			 if (session.getAttribute("user")==null){
 				 forward.setRedirect(true);
 				 forward.setPath("lay_log.ads");
-				 System.out.println(" Session Null");
+				// System.out.println(" Session Null");
+			 }else{
+				 action=new RemovePhoto();
+				 try{
+						forward=action.execute(request, response);
+						 String result=(String) request.getSession().getAttribute("result");
+						 response.setContentType("application/json");
+						 response.setCharacterEncoding("UTF-8");
+						 response.getWriter().write(new Gson().toJson(result));
+						 return ;
+						
+					}catch(Exception e){
+						e.printStackTrace();
+					}
 			 }
-			 action=new RemovePhoto();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
-			 
-			 System.out.println(forward.getPath());
+			
 		 }else if (command.equals("/add_newposting.ads")){
 			 action=new AddPosting();
 			 try{
@@ -324,10 +328,9 @@ public class ControllerUser extends HttpServlet {
 				 HttpSession session=request.getSession(true);
 				 /*session.removeAttribute("membername");
 				 session.removeAttribute("id");*/
-				 session.removeAttribute("user");
-				 
-					forward.setRedirect(true);
-					forward.setPath("lay_log.ads");
+				 session.removeAttribute("user");				 
+				forward.setRedirect(true);
+				forward.setPath("lay_log.ads");
 					
 				}catch(Exception e){
 					e.printStackTrace();

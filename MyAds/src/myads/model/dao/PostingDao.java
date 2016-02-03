@@ -45,7 +45,7 @@ public class PostingDao {
 	public boolean insertPosting(PostingDto dto) throws SQLException{
 		
 		Date dt = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyhhmmss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
 		
 		String sql = "insert into tbl_posting values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		String sqlimage="insert into tbl_image values(?,?,?,?)";
@@ -625,7 +625,7 @@ public class PostingDao {
 	}
 	
 	public boolean getUpdateImage(Image dto){
-		String sql="UPDATE tbl_image SET Image=? WHERE ImageId=? AND PostingId=?";
+		String sql="UPDATE tbl_image SET Image=? WHERE ImgId=? AND PostingId=?";
 		try{
 			ps=ds.getConnection().prepareStatement(sql);
 			ps.setString(1, dto.getImage());
@@ -644,11 +644,11 @@ public class PostingDao {
 		return false;
 	}
 	
-	public boolean getDeleteImage(Image dto){
+	public boolean getDeleteImage(int pro_id){
 		String sql="DELETE FROM tbl_image WHERE PostingId=?";
 		try{
 			ps=ds.getConnection().prepareStatement(sql);
-			ps.setInt(3, dto.getPost_id());
+			ps.setInt(1, pro_id);
 			
 			int i = ps.executeUpdate();
 			if (i>0){
@@ -661,20 +661,45 @@ public class PostingDao {
 		
 		return false;
 	}
+	public boolean getDeleteImage(int pro_id,int image_id){
+		String sql="DELETE FROM tbl_image WHERE PostingId=? AND ImgId=?";
+		try{
+			System.out.println("  "+pro_id+"  "+image_id);
+			ps=ds.getConnection().prepareStatement(sql);
+			ps.setInt(1, pro_id);
+			ps.setInt(2,image_id);			
+			int result = ps.executeUpdate();
+			
+			if (result>0){
+				return true;
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 	
-	public List<Image> getListImage(){
+	public List<Image> getListImage(int pro_id){
 		List<Image> listImage=new ArrayList<>();
 		
-		String sql="SELECT ImageId,PostingId,Image,Order FROM tbl_image";
+		String sql="SELECT i.ImgId,i.PostingId,i.Image,i.`order` FROM tbl_image i WHERE i.PostingId=?";
 		try{
+			
+			 
 			ps=ds.getConnection().prepareStatement(sql);
+			ps.setInt(1, pro_id);
 			rs= ps.executeQuery();
+		
 			while(rs.next()){
+				System.out.println("Posting Id "+pro_id);
 				Image img=new Image();
-				img.setImage_id(rs.getInt("ImageId"));
+				img.setImage_id(rs.getInt("ImgId"));
 				img.setPost_id(rs.getInt("PostingId"));
 				img.setImage(rs.getString("Image"));
-				img.setOrder(rs.getInt("Order"));
+				img.setOrder(rs.getInt("order"));
+				
 				
 				listImage.add(img);
 			}
@@ -685,22 +710,23 @@ public class PostingDao {
 		return listImage;
 	}
 	
-	public void getInsertImage(List<Image> listiamge){
-		
+	public void getInsertImage(List<Image> listimage){
+		System.out.println("Hello");
 		String sql="insert into tbl_image values(?,?,?,?)";
 		try{
 			ps=ds.getConnection().prepareStatement(sql);			
-			for(int i=1;i<=listiamge.size();i++){
-				ps.setInt(1, listiamge.get(i).getImage_id());
-				ps.setInt(2, listiamge.get(i).getPost_id());
-				ps.setString(3, listiamge.get(i).getImage());
-				ps.setInt(4, i);
+			for(int i=0;i<listimage.size();i++){
+				System.out.println("Hello");
+				ps.setInt(1, i+1);
+				ps.setInt(2, listimage.get(i).getPost_id());
+				ps.setString(3, listimage.get(i).getImage());
+				ps.setInt(4, i+1);
 				ps.executeUpdate();
 			}
 			
 			
 		}catch(Exception e){
-			
+			e.printStackTrace();
 		}
 	}
 	

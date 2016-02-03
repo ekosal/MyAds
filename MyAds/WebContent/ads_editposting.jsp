@@ -73,8 +73,8 @@
 														</div>
 														<a href="javascript:" class="btn_edit ico_save" style="margin-top:10px;margin-left:15px;">Save</a>
 														<a href="javascript:" class="btn_edit" style="margin-top:10px;">Edit</a>
-														<input type="text" value="<%= postingDto.getPostingId() %>"  name="txt_pro_id" class="txt_pro_id" required="required">
-														<input type="text" value="<%=postingDto.getImageList().get(i).getImage_id() %>" name="txt_id"  class="txt_id" required="required">
+														<input type="hidden" value="<%= postingDto.getPostingId() %>"  name="txt_pro_id" class="txt_pro_id" required="required">
+														<input type="hidden" value="<%=postingDto.getImageList().get(i).getImage_id() %>" name="txt_id"  class="txt_id" required="required">
 														<!--  display(none/block) -->
 														<!-- <span class="disable_photo" style="display:none;"><span class="blind">disable photo</span> </span> -->
 														<!--  //display(none/block) -->
@@ -83,7 +83,8 @@
 												</ul>
 												</form>
 											</div>
-											<% } %>													
+											<% } %>	
+											<a href="javascript:" class="btn_edit" style="margin-top:10px;">Add</a>												
 										</div>
 										<!-- //photo_wrap -->
 									</div>
@@ -256,7 +257,6 @@
 				alert("Please attach your image!!");	
 				return;
 			}
-
 			$(form).ajaxSubmit({
 				url: "./lay_editpostingphoto.ads",
 				type: 'POST',
@@ -278,17 +278,17 @@
 		});
 		
 		$(".photo_wrap .t_right .btn_remove").click(function(e){
-			var form='#frmeditphoto'+$(this).parent(".t_right").find("ul").find("li").find(".txt_id").val();
-			var pro_id   =$(this).parents(".t_right").find("ul").find("li").find(".txt_pro_id").val();
-			var image_id =$(this).parents(".t_right").find("ul").find("li").find(".txt_id").val();
-			
+			var obj=$(this);
+			var form='#frmeditphoto'+$(this).parents(".t_right").find("ul").find("li").find(".txt_id").val();
 			$(form).ajaxSubmit({
 				url: "./lay_removepostingphoto.ads",
 				type: 'POST',
-				success: function(data) { 			
-				        if(data){
+				success: function(data) { 
+					    console.log(data);
+				        if(data=="true"){
 				        	alert('YOU HAVE BEEN INSERTED SUCCESSFULLY.')
-				        	
+				        	obj.parents(".t_right").fadeOut("3000");
+				        	obj.parents(".t_right").remove();
 				        }else{
 				        	alert('YOU HAVE ERRORS WHEN INSERT UPDATE PROFILE.');
 				        }
