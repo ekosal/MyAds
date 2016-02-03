@@ -46,7 +46,7 @@
 						<div class="register change cboth" style="width:510px;padding-left:20px;padding-right:370px;">
 							<!-- update image -->
 							<div class="update_img">
-								<form method="post" action="" name="frmregister" id="frmcreatepost" enctype="multipart/form-data">
+								
 									<div style="text-align:left;padding:5px;border:1px solid #eee;"><strong>Photo <span class="require">*</span></strong>
 										<!-- photo_wrap -->
 										<div class="photo_wrap" style="height:531px;padding:0 10px;overflow:scroll;overflow-x:hidden; ">
@@ -54,7 +54,9 @@
 											    //out.println(postingDto.getImageList().size());
 												for(int i=0;i<postingDto.getImageList().size();i++){
 											%>
+											
 											<div class="t_right">
+											    <form method="post" action="" name="frmregister" id="frmeditphoto<%=postingDto.getImageList().get(i).getImage_id() %>" enctype="multipart/form-data">
 												<a href="javascript:" class="btn_remove">Remove</a>
 												<ul class="multi_photo">
 													<li>
@@ -63,7 +65,7 @@
 															<a href="javascript:" class="wrap_img user single">
 																<!-- <span class="getphoto">Brow</span> -->
 																<!--<span class="addmore">Add more photos</span>-->
-															    <img alt="" src="uploads/<%=postingDto.getImageList().get(i).getImage() %>">
+															    <img alt="" src="uploads/<%=postingDto.getImageList().get(i).getImage() %>" >
 																
 															</a>
 															<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" required="required">
@@ -71,26 +73,30 @@
 														</div>
 														<a href="javascript:" class="btn_edit ico_save" style="margin-top:10px;margin-left:15px;">Save</a>
 														<a href="javascript:" class="btn_edit" style="margin-top:10px;">Edit</a>
+														<input type="text" value="<%= postingDto.getPostingId() %>"  name="txt_pro_id" class="txt_pro_id" required="required">
+														<input type="text" value="<%=postingDto.getImageList().get(i).getImage_id() %>" name="txt_id"  class="txt_id" required="required">
 														<!--  display(none/block) -->
 														<!-- <span class="disable_photo" style="display:none;"><span class="blind">disable photo</span> </span> -->
 														<!--  //display(none/block) -->
 														<!-- //photo -->
 													</li>
 												</ul>
+												</form>
 											</div>
 											<% } %>													
 										</div>
 										<!-- //photo_wrap -->
 									</div>
-									<a href="javascript:" class="btn_create_acc mgt10" id="btn_create_acc">Save All Photos</a>
-								</form>
+									
+									<!-- <a href="javascript:" class="btn_create_acc mgt10" id="btn_create_photo">Save All Photos</a> -->
+								
 							</div>
 							<!-- //update image -->
 						
 						
 							<!-- //text update -->
 							<div class="update_text">
-								<form method="post" action="add_editposting.ads" name="frmregister" id="frmcreatepost" enctype="multipart/form-data">
+								<form method="post"  name="frmregister" id="eidtposting" >
 									<table summary="" style="text-align:left;">
 										<caption></caption>
 										<colgroup>
@@ -141,6 +147,10 @@
 												</td>
 											</tr>
 											<tr>
+												<th><div>Product Name <span class="require">*</span></div></th>
+												<td><div><input type="text" value="<%=postingDto.getTitle() %>" placeholder="Enter key notice" name="txt_pro_tit" style="width:308px;" required="required"></div></td>
+											</tr>
+											<tr>
 												<th><div>Key Notice <span class="require">*</span></div></th>
 												<td><div><input type="text" value="<%=postingDto.getKey() %>" placeholder="Enter key notice" name="txt_keynotice" style="width:308px;" required="required"></div></td>
 											</tr>
@@ -169,11 +179,11 @@
 												</textarea></div></td>
 											</tr>
 											<tr style="display:none;">
-												<th colspan="2" class="t_right"><div><a href="javascript:" class="btn_create_acc" id="btn_create_acc">Save My Posting</a><!--<input type="submit" value="Create My Posting" class="btn_create_acc">--> </div></th>
+												<!-- <th colspan="2" class="t_right"><div><a href="javascript:" class="btn_create_acc" id="btn_create_acc">Save My Posting</a> --><!--<input type="submit" value="Create My Posting" class="btn_create_acc">--> </div></th>
 											</tr>
 										</tbody>
 									</table>
-									<a href="javascript:" class="btn_create_acc mgt10" id="btn_create_acc" style="margin-right:34px;">Save My Posting</a>
+									 <a href="javascript:" class="btn_create_acc mgt10" id="btn_create_acc" style="margin-right:34px;">Save My Posting</a> 
 								</form>
 							</div>
 							<!-- //text update -->
@@ -194,22 +204,18 @@
 	<script src="js/jquery.validate.min.js"></script>
 	<script src="js/additional-methods.js"></script>
     <script src="js/jquery.validate.js"></script>
-	<script type="text/javascript">
+	<script>
+	  $(document).ready(function(e){
 		$("#btn_create_acc").click(function(e){
 			if($('#eidtposting').valid()){  //call valid for form2 and show the errors
 	              // alert('submit form');  //only if the form is valid submit the form
 				 $('#eidtposting').ajaxSubmit({
-						url: "./lay_editaccount_setting.ads",
+						url: "./lay_editposting.ads",
 						type: 'POST',
 						success: function(data) { 			
 						        if(data){
 						        	alert('YOU HAVE BEEN INSERTED SUCCESSFULLY.')
-						        	$(".dis").show();
-									$(".hide").hide();
-									$(".btn_save").show();
-									$(".btn_cancel").show();								
-									$(".btn_save_password").show();
-									$(".btn_cancel_password").show();
+						        	
 						        }else{
 						        	alert('YOU HAVE ERRORS WHEN INSERT UPDATE PROFILE.');
 						        }
@@ -222,4 +228,81 @@
 					}); 
 	         }
 	    });
+		
+		$("#btn_create_photo").click(function(e){
+			 /* $('#frmeditphoto').ajaxSubmit({
+					url: "./lay_editpostingphoto.ads",
+					type: 'POST',
+					success: function(data) { 			
+					        if(data){
+					        	alert('YOU HAVE BEEN INSERTED SUCCESSFULLY.')
+					        	
+					        }else{
+					        	alert('YOU HAVE ERRORS WHEN INSERT UPDATE PROFILE.');
+					        }
+					        //ajaxindicatorstop()
+					        
+					},error:function(data,status,er) { 
+						//ajaxindicatorstop()
+					    console.log("error: "+data+" status: "+status+" er:"+er);
+					}
+				});  */
+				
+			
+		});
+		$(".photo_wrap .t_right .multi_photo a.ico_save").click(function(e){
+			var form='#frmeditphoto'+$(this).parent('li').find(".txt_id").val();
+			if ($(this).parent('li').find("#btn_uploadimg").val()==null || $(this).parent('li').find("#btn_uploadimg").val()==""){
+				alert("Please attach your image!!");	
+				return;
+			}
+
+			$(form).ajaxSubmit({
+				url: "./lay_editpostingphoto.ads",
+				type: 'POST',
+				success: function(data) { 			
+				        if(data){
+				        	alert('YOU HAVE BEEN INSERTED SUCCESSFULLY.')
+				        	
+				        }else{
+				        	alert('YOU HAVE ERRORS WHEN INSERT UPDATE PROFILE.');
+				        }
+				        //ajaxindicatorstop()
+				        
+				},error:function(data,status,er) { 
+					//ajaxindicatorstop()
+				    console.log("error: "+data+" status: "+status+" er:"+er);
+				}
+			}); 
+
+		});
+		
+		$(".photo_wrap .t_right .btn_remove").click(function(e){
+			var form='#frmeditphoto'+$(this).parent(".t_right").find("ul").find("li").find(".txt_id").val();
+			var pro_id   =$(this).parents(".t_right").find("ul").find("li").find(".txt_pro_id").val();
+			var image_id =$(this).parents(".t_right").find("ul").find("li").find(".txt_id").val();
+			
+			$(form).ajaxSubmit({
+				url: "./lay_removepostingphoto.ads",
+				type: 'POST',
+				success: function(data) { 			
+				        if(data){
+				        	alert('YOU HAVE BEEN INSERTED SUCCESSFULLY.')
+				        	
+				        }else{
+				        	alert('YOU HAVE ERRORS WHEN INSERT UPDATE PROFILE.');
+				        }
+				        //ajaxindicatorstop()
+				        
+				},error:function(data,status,er) { 
+					//ajaxindicatorstop()
+				    console.log("error: "+data+" status: "+status+" er:"+er);
+				}
+			}); 
+			
+			
+		});
+		
+	});
+		
 	</script>

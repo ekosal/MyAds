@@ -587,4 +587,123 @@ public class PostingDao {
 		return null;
 	}
 	
+	
+	public boolean getEditPosting(PostingDto dto){
+		
+		String sql="UPDATE tbl_posting "
+				+ "SET ProductName=?,"
+				+ "KeyNotice=?,"
+				+ "SubCateId=?,"
+				+ "Price=?,"
+				+ "Phone=?,"
+				+ "Address=?,"
+				+ "Description=?,"
+				+ "Discount=? "
+				+ "WHERE PostingId=? AND MemId=?";
+		try{
+			System.out.println("Posting "+dto.getPostingId()+ " "+dto.getMemId());
+			ps=ds.getConnection().prepareStatement(sql);
+			ps.setString(1, dto.getTitle());
+			ps.setString(2, dto.getKey());
+			ps.setInt(3, dto.getSubCateId());
+			ps.setInt(4, dto.getPrice());
+			ps.setString(5, dto.getPhone());
+			ps.setString(6, dto.getAdr());
+			ps.setString(7, dto.getDsc());
+			ps.setString(8, dto.getDiscount());
+			ps.setInt(9, dto.getPostingId());
+			ps.setInt(10, dto.getMemId());
+			int i=ps.executeUpdate();
+			if (i>0){
+				return true;
+			}
+		}catch(Exception e){
+			
+		}
+		
+		return false;
+	}
+	
+	public boolean getUpdateImage(Image dto){
+		String sql="UPDATE tbl_image SET Image=? WHERE ImageId=? AND PostingId=?";
+		try{
+			ps=ds.getConnection().prepareStatement(sql);
+			ps.setString(1, dto.getImage());
+			ps.setInt(2, dto.getImage_id());
+			ps.setInt(3, dto.getPost_id());
+			
+			int i = ps.executeUpdate();
+			if (i>0){
+				return true;
+			}
+			
+		}catch(Exception e){
+			
+		}
+		
+		return false;
+	}
+	
+	public boolean getDeleteImage(Image dto){
+		String sql="DELETE FROM tbl_image WHERE PostingId=?";
+		try{
+			ps=ds.getConnection().prepareStatement(sql);
+			ps.setInt(3, dto.getPost_id());
+			
+			int i = ps.executeUpdate();
+			if (i>0){
+				return true;
+			}
+			
+		}catch(Exception e){
+			
+		}
+		
+		return false;
+	}
+	
+	public List<Image> getListImage(){
+		List<Image> listImage=new ArrayList<>();
+		
+		String sql="SELECT ImageId,PostingId,Image,Order FROM tbl_image";
+		try{
+			ps=ds.getConnection().prepareStatement(sql);
+			rs= ps.executeQuery();
+			while(rs.next()){
+				Image img=new Image();
+				img.setImage_id(rs.getInt("ImageId"));
+				img.setPost_id(rs.getInt("PostingId"));
+				img.setImage(rs.getString("Image"));
+				img.setOrder(rs.getInt("Order"));
+				
+				listImage.add(img);
+			}
+		}catch(Exception e){
+			
+		}
+		
+		return listImage;
+	}
+	
+	public void getInsertImage(List<Image> listiamge){
+		
+		String sql="insert into tbl_image values(?,?,?,?)";
+		try{
+			ps=ds.getConnection().prepareStatement(sql);			
+			for(int i=1;i<=listiamge.size();i++){
+				ps.setInt(1, listiamge.get(i).getImage_id());
+				ps.setInt(2, listiamge.get(i).getPost_id());
+				ps.setString(3, listiamge.get(i).getImage());
+				ps.setInt(4, i);
+				ps.executeUpdate();
+			}
+			
+			
+		}catch(Exception e){
+			
+		}
+	}
+	
 }
+
+

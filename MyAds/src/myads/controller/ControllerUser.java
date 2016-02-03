@@ -24,8 +24,11 @@ import myads.controller.action.member.*;
 import myads.controller.action.posting.AddPosting;
 import myads.controller.action.posting.AddPostingAction;
 import myads.controller.action.posting.DeleteProducts;
+import myads.controller.action.posting.EditPhotoAction;
+import myads.controller.action.posting.EditPosting;
 import myads.controller.action.posting.GetIdProductUpdate;
 import myads.controller.action.posting.MyAdsAction;
+import myads.controller.action.posting.RemovePhoto;
 import myads.controller.action.posting.SearchAdsAction;
 import myads.controller.action.posting.details.ViewPostingDetails;
 import myads.controller.action.profile.ProfileAction;
@@ -150,6 +153,12 @@ public class ControllerUser extends HttpServlet {
 			 
 			 System.out.println(forward.getPath());
 		 }else if (command.equals("/edit_product.ads")){
+			 HttpSession session=request.getSession(true);
+			 if (session.getAttribute("user")==null){
+				 forward.setRedirect(true);
+				 forward.setPath("lay_log.ads");
+				 System.out.println(" Session Null");
+			 }
 			 action=new GetIdProductUpdate();
 			 try{
 					forward=action.execute(request, response);
@@ -162,6 +171,51 @@ public class ControllerUser extends HttpServlet {
 		 else if (command.equals("/lay_newposting.ads")){
 			 
 			 action=new AddPostingAction();
+			 try{
+					forward=action.execute(request, response);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			 
+			 System.out.println(forward.getPath());
+		 }else if (command.equals("/lay_editposting.ads")){
+			 HttpSession session=request.getSession(true);
+			 if (session.getAttribute("user")==null){
+				 forward.setRedirect(true);
+				 forward.setPath("lay_log.ads");
+				 System.out.println(" Session Null");
+			 }
+			 action=new EditPosting();
+			 try{
+					forward=action.execute(request, response);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			 
+			 System.out.println(forward.getPath());
+		 }else if (command.equals("/lay_editpostingphoto.ads")){
+			 HttpSession session=request.getSession(true);
+			 if (session.getAttribute("user")==null){
+				 forward.setRedirect(true);
+				 forward.setPath("lay_log.ads");
+				 System.out.println(" Session Null");
+			 }
+			 action=new EditPhotoAction();
+			 try{
+					forward=action.execute(request, response);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			 
+			 System.out.println(forward.getPath());
+		 }else if (command.equals("/lay_removepostingphoto.ads")){
+			 HttpSession session=request.getSession(true);
+			 if (session.getAttribute("user")==null){
+				 forward.setRedirect(true);
+				 forward.setPath("lay_log.ads");
+				 System.out.println(" Session Null");
+			 }
+			 action=new RemovePhoto();
 			 try{
 					forward=action.execute(request, response);
 				}catch(Exception e){

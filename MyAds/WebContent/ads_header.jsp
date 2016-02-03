@@ -181,7 +181,7 @@
 							 	<strong style="display:inline-block;padding:3px 0 0;font-size:16px;font-weight:bold;">Hi</strong> <a href="#none" class="btn_user" ><span><%= member.getName() %></span></a>
 							 	<div class="profile_setting" style="display:block;">
 							 		<ol>
-							 			<li><a href="#none" class="btn_name"><img src="img/ico/user_img.png"  alt=""> <%= member.getName() %></a></li>
+							 			<li><a href="javascript:" class="btn_name"><img src="profile/<%=member.getPhoto() %>"  alt=""> <%= member.getName() %></a></li>
 							 			<li><a href="lay_account_setting.ads?mem_id=<%=member.getId() %>" class="btn_acc_setting">Account settings</a></li>
 							 			<li><a href="logout.ads" class="btn_logout" style="color:#f91339;">Log out</a></li>
 							 		</ol>
