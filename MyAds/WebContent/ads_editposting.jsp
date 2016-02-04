@@ -49,7 +49,7 @@
 								
 									<div style="text-align:left;padding:5px;border:1px solid #eee;"><strong>Photo <span class="require">*</span></strong>
 										<!-- photo_wrap -->
-										<div class="photo_wrap" style="height:531px;padding:0 10px;overflow:scroll;overflow-x:hidden; ">
+										<div class="photo_wrap" style="height:auto;padding:0 10px; ">
 											<%
 											    //out.println(postingDto.getImageList().size());
 												for(int i=0;i<postingDto.getImageList().size();i++){
@@ -57,7 +57,7 @@
 											
 											<div class="t_right">
 											    <form method="post" action="" name="frmregister" id="frmeditphoto<%=postingDto.getImageList().get(i).getImage_id() %>" enctype="multipart/form-data">
-												<a href="javascript:" class="btn_remove">Remove</a>
+												<a href="javascript:" class="btn_remove" onclick="removeImage(this)">Remove</a>
 												<ul class="multi_photo">
 													<li>
 														<!-- photo -->
@@ -71,7 +71,7 @@
 															<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" required="required">
 															<!-- <span style="display:none" class="storeimg"></span> -->
 														</div>
-														<a href="javascript:" class="btn_edit ico_save" style="margin-top:10px;margin-left:15px;">Save</a>
+														<a href="javascript:" class="btn_edit ico_save" style="margin-top:10px;margin-left:15px;" onclick="addimageMore(this)">Save</a>
 														<a href="javascript:" class="btn_edit" style="margin-top:10px;">Edit</a>
 														<input type="hidden" value="<%= postingDto.getPostingId() %>"  name="txt_pro_id" class="txt_pro_id" required="required">
 														<input type="hidden" value="<%=postingDto.getImageList().get(i).getImage_id() %>" name="txt_id"  class="txt_id" required="required">
@@ -84,7 +84,7 @@
 												</form>
 											</div>
 											<% } %>	
-											<a href="javascript:" class="btn_edit" style="margin-top:10px;">Add</a>												
+											<a href="javascript:" class="btn_edit" id="add_image_more" onclick="addmoreimage(this,<%=postingDto.getPostingId() %>)" style="margin-top:10px;">Add Image More</a>												
 										</div>
 										<!-- //photo_wrap -->
 									</div>
@@ -199,7 +199,7 @@
 		<!-- //cnt_wraps -->
 	</div>
 	<!-- //body_section -->
-    
+
 	<jsp:directive.include file="ads_footer.jsp" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
 	<script src="js/jquery.validate.min.js"></script>
@@ -230,28 +230,7 @@
 	         }
 	    });
 		
-		$("#btn_create_photo").click(function(e){
-			 /* $('#frmeditphoto').ajaxSubmit({
-					url: "./lay_editpostingphoto.ads",
-					type: 'POST',
-					success: function(data) { 			
-					        if(data){
-					        	alert('YOU HAVE BEEN INSERTED SUCCESSFULLY.')
-					        	
-					        }else{
-					        	alert('YOU HAVE ERRORS WHEN INSERT UPDATE PROFILE.');
-					        }
-					        //ajaxindicatorstop()
-					        
-					},error:function(data,status,er) { 
-						//ajaxindicatorstop()
-					    console.log("error: "+data+" status: "+status+" er:"+er);
-					}
-				});  */
-				
-			
-		});
-		$(".photo_wrap .t_right .multi_photo a.ico_save").click(function(e){
+/* 		$(".photo_wrap .t_right .multi_photo a.ico_save").click(function(e){
 			var form='#frmeditphoto'+$(this).parent('li').find(".txt_id").val();
 			if ($(this).parent('li').find("#btn_uploadimg").val()==null || $(this).parent('li').find("#btn_uploadimg").val()==""){
 				alert("Please attach your image!!");	
@@ -301,8 +280,126 @@
 			}); 
 			
 			
-		});
+		}); */
 		
 	});
-		
+	function addmoreimage(obj,id){
+		$.ajax({
+			type : "POST",
+   			url : "${pageContext.request.contextPath }/lay_addMoreImage.ads",
+			data : "pro_id="+id,
+			success : function(dat) { 
+				console.log(dat);
+				var html='<div class="t_right">'+		    
+				             '<form method="post" action="" name="frmregister" id="frmeditphoto'+dat+'" enctype="multipart/form-data">'+
+					         '<a href="javascript:" onclick="removeImage(this)" class="btn_remove">Remove</a>' +
+						     ' 	<ul class="multi_photo">'+
+								'<li>'+
+									'<!-- photo -->'+
+									'<div style="width:100px;float:left;">'+
+										'<a href="javascript:" class="wrap_img user single">'+
+										    '<img alt="" src="img/ico/user_img.png" >'+				
+										'</a>'+
+										'<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" required="required">'+
+									'</div>'+
+									'<a href="javascript:" class="btn_edit ico_save" onclick="addimageMore(this)" style="margin-top:10px;margin-left:15px;">Save</a>'+
+									'<a href="javascript:" class="btn_edit" style="margin-top:10px;">Edit</a>'+
+									'<input type="hidden" value="'+id+'"  name="txt_pro_id" class="txt_pro_id" required="required">'+
+									'<input type="hidden" value="'+dat+'" name="txt_id"  class="txt_id" required="required">'+
+								'</li>'+
+							  '</ul>'+
+							'</form>'+
+						'</div>'+
+						'<a href="javascript:" style="display:none;" class="btn_edit" id="add_image_more" onclick="addmoreimage(this,'+id+')" style="margin-top:10px;">Add Image More</a>';
+					$(".photo_wrap").append(html);
+					obj.remove();
+			},error : function(e) {
+				console.log("ERROR: ", e);
+				
+			},
+			done : function(e) {
+				console.log("DONE");
+			}
+   			
+   		});
+				
+		}
+	
+	    function removeImage(obj){	    	
+			var form='#frmeditphoto'+$(obj).parents(".t_right").find("ul").find("li").find(".txt_id").val();
+			$(form).ajaxSubmit({
+				url: "./lay_removepostingphoto.ads",
+				type: 'POST',
+				success: function(data) { 
+					    console.log(data);
+				        if(data=="true"){
+				        	alert('YOU HAVE BEEN INSERTED SUCCESSFULLY.')
+				        	$(obj).parents(".photo_wrap").find("#add_image_more").css("display","block");
+				        	$(obj).parents(".t_right").fadeOut("3000");
+				        	$(obj).parents(".t_right").remove();
+				        	
+				        }else{
+				        	alert('YOU HAVE ERRORS WHEN INSERT UPDATE PROFILE.');
+				        }
+				        //ajaxindicatorstop()
+				        
+				},error:function(data,status,er) { 
+					//ajaxindicatorstop()
+				    console.log("error: "+data+" status: "+status+" er:"+er);
+				}
+			}); 
+	    }
+	    
+	    function addimageMore(obj){
+	    	var form='#frmeditphoto'+$(obj).parent('li').find(".txt_id").val();
+			if ($(obj).parent('li').find("#btn_uploadimg").val()==null || $(obj).parent('li').find("#btn_uploadimg").val()==""){
+				alert("Please attach your image!!");	
+				return;
+			}
+			$(form).ajaxSubmit({
+				url: "./lay_addMorepostingphoto.ads",
+				type: 'POST',
+				success: function(data) { 
+					    console.log(data[1]);
+				        if(data[0]=="true"){
+				        	alert('YOU HAVE BEEN INSERTED SUCCESSFULLY.')
+				        	var html="";
+				        	$(".photo_wrap").empty();
+				        	for (var i=0;i<data[1].length;i++){
+				        		 html+='<div class="t_right">'+		    
+						             '<form method="post" action="" name="frmregister" id="frmeditphoto'+data[1][i]["image_id"]+'" enctype="multipart/form-data">'+
+							         '<a href="javascript:" onclick="removeImage(this)" class="btn_remove">Remove</a>' +
+								     ' 	<ul class="multi_photo">'+
+										'<li>'+
+											'<!-- photo -->'+
+											'<div style="width:100px;float:left;">'+
+												'<a href="javascript:" class="wrap_img user single">'+
+												    '<img alt="" src="uploads/'+data[1][i]["image"]+'" >'+				
+												'</a>'+
+												'<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" required="required">'+
+											'</div>'+
+											'<a href="javascript:" class="btn_edit ico_save" onclick="addimageMore(this)" style="margin-top:10px;margin-left:15px;">Save</a>'+
+											'<a href="javascript:" class="btn_edit" style="margin-top:10px;">Edit</a>'+
+											'<input type="hidden" value="'+data[1][i]["post_id"]+'"  name="txt_pro_id" class="txt_pro_id" required="required">'+
+											'<input type="hidden" value="'+data[1][i]["image_id"]+'" name="txt_id"  class="txt_id" required="required">'+
+										'</li>'+
+									  '</ul>'+
+									'</form>'+
+								'</div>';					
+				        	}				        	
+				        	html +='<a href="javascript:" style="display:block;" class="btn_edit" id="add_image_more" onclick="addmoreimage(this,'+data[1][0]["post_id"]+')" style="margin-top:10px;">Add Image More</a>';
+				        	//alert(html);
+				        	$(".photo_wrap").append(html);
+				        }else{
+				        	alert('YOU HAVE ERRORS WHEN INSERT UPDATE PROFILE.');
+				        }
+				        //ajaxindicatorstop()
+				        
+				},error:function(data,status,er) { 
+					//ajaxindicatorstop()
+				    console.log("error: "+data+" status: "+status+" er:"+er);
+				}
+			}); 
+
+	    }
 	</script>

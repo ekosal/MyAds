@@ -668,17 +668,13 @@ public class PostingDao {
 			ps=ds.getConnection().prepareStatement(sql);
 			ps.setInt(1, pro_id);
 			ps.setInt(2,image_id);			
-			int result = ps.executeUpdate();
-			
-			if (result>0){
-				return true;
-			}
-			
+			ps.executeUpdate();		
+			return true;			
 		}catch(Exception e){
-			e.printStackTrace();
+			return false;
 		}
 		
-		return false;
+		
 	}
 	
 	public List<Image> getListImage(int pro_id){
@@ -728,6 +724,42 @@ public class PostingDao {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+	
+	public int getImageId(int pro_id){
+		int max=0;
+		String sql ="SELECT max(ImgId) as imgid FROM tbl_image WHERE PostingId=?";
+		try{
+			ps=ds.getConnection().prepareStatement(sql);
+			ps.setInt(1, pro_id);
+			rs=ps.executeQuery();
+			while(rs.next()){
+				max=rs.getInt("imgid");
+			}
+		}catch(Exception e){
+			
+		}
+		return max;
+	}
+	
+	public boolean saveImageMore(Image dto){
+		String sql="insert into tbl_image values(?,?,?,?)";
+		try{
+			System.out.println("Hello  "+dto.getImage_id()+"  "+dto.getPost_id());
+			ps=ds.getConnection().prepareStatement(sql);
+			ps.setInt(1, dto.getImage_id());
+			ps.setInt(2, dto.getPost_id());
+			ps.setString(3, dto.getImage());
+			ps.setInt(4, dto.getOrder());
+			int i= ps.executeUpdate();
+			if (i>0){
+				return true;
+			}
+		}catch(Exception e){
+			//e.printStackTrace();
+		}
+		
+		return false;
 	}
 	
 }

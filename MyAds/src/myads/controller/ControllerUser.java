@@ -21,6 +21,7 @@ import myads.controller.action.category.AddCompany;
 import myads.controller.action.category.CompanyAction;
 import myads.controller.action.category.ExistFrontMainCategory;
 import myads.controller.action.member.*;
+import myads.controller.action.posting.AddImageMore;
 import myads.controller.action.posting.AddPosting;
 import myads.controller.action.posting.AddPostingAction;
 import myads.controller.action.posting.DeleteProducts;
@@ -29,6 +30,7 @@ import myads.controller.action.posting.EditPosting;
 import myads.controller.action.posting.GetIdProductUpdate;
 import myads.controller.action.posting.MyAdsAction;
 import myads.controller.action.posting.RemovePhoto;
+import myads.controller.action.posting.SaveImageMore;
 import myads.controller.action.posting.SearchAdsAction;
 import myads.controller.action.posting.details.ViewPostingDetails;
 import myads.controller.action.profile.ProfileAction;
@@ -114,10 +116,13 @@ public class ControllerUser extends HttpServlet {
 			 }
 			 System.out.println(forward.getPath());
 		 }else if (command.equals("/lay_search_myadspages.ads")){
-			
-			 action=new SearchAdsAction();
-		
-			 try{
+			 if (request.getSession().getAttribute("user")==null){
+				 forward.setRedirect(false);
+				 forward.setPath("lay_log.ads");
+				 System.out.println(" Session Null");
+			 }else{
+				 action=new SearchAdsAction();			
+				 try{
 					forward=action.execute(request, response);
 					 if (request.getSession().getAttribute("postingList")!=null){
 						 List<Object> data=new ArrayList<Object>();
@@ -131,12 +136,16 @@ public class ControllerUser extends HttpServlet {
 				}catch(Exception e){
 					e.printStackTrace();
 				}
-			 
-			 System.out.println(forward.getPath());
+			 }
+			// System.out.println(forward.getPath());
 		 }else if (command.equals("/delete_product.ads")){
-			 action=new DeleteProducts();
-				
-			 try{
+			 if (request.getSession().getAttribute("user")==null){
+				 forward.setRedirect(false);
+				 forward.setPath("lay_log.ads");
+				 System.out.println(" Session Null");
+			 }else{
+				 action=new DeleteProducts();	
+				 try{
 					forward=action.execute(request, response);
 					if (request.getSession().getAttribute("postingList")!=null){
 						 List<Object> data=new ArrayList<Object>();
@@ -150,8 +159,8 @@ public class ControllerUser extends HttpServlet {
 				}catch(Exception e){
 					e.printStackTrace();
 				}
-			 
-			 System.out.println(forward.getPath());
+			 }
+			 //System.out.println(forward.getPath());
 		 }else if (command.equals("/edit_product.ads")){
 			 if (request.getSession().getAttribute("user")==null){
 				 forward.setRedirect(false);
@@ -167,36 +176,79 @@ public class ControllerUser extends HttpServlet {
 			 }
 		 }	 
 		 else if (command.equals("/lay_newposting.ads")){
-			 
-			 action=new AddPostingAction();
-			 try{
+			 HttpSession session=request.getSession(true);
+			 if (session.getAttribute("user")==null){
+				 forward.setRedirect(true);
+				 forward.setPath("lay_log.ads");
+				// System.out.println(" Session Null");
+			 }else{
+				 action=new AddPostingAction();
+				 try{
 					forward=action.execute(request, response);
 				}catch(Exception e){
 					e.printStackTrace();
 				}
-			 
-			 System.out.println(forward.getPath());
+			 }
+			 //System.out.println(forward.getPath());
 		 }else if (command.equals("/lay_editposting.ads")){
 			 HttpSession session=request.getSession(true);
 			 if (session.getAttribute("user")==null){
 				 forward.setRedirect(true);
 				 forward.setPath("lay_log.ads");
-				 System.out.println(" Session Null");
-			 }
-			 action=new EditPosting();
-			 try{
+				// System.out.println(" Session Null");
+			 }else{
+				 action=new EditPosting();
+				 try{
 					forward=action.execute(request, response);
 				}catch(Exception e){
 					e.printStackTrace();
 				}
-			 
-			 System.out.println(forward.getPath());
+			 }
+			 //System.out.println(forward.getPath());
 		 }else if (command.equals("/lay_editpostingphoto.ads")){
 			 HttpSession session=request.getSession(true);
 			 if (session.getAttribute("user")==null){
 				 forward.setRedirect(true);
 				 forward.setPath("lay_log.ads");
-				 System.out.println(" Session Null");
+				 //System.out.println(" Session Null");
+			 }else{
+				 action=new EditPhotoAction();
+				 try{
+					forward=action.execute(request, response);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			 }
+			 //System.out.println(forward.getPath());
+		 }else if (command.equals("/lay_addMorepostingphoto.ads")){
+			 HttpSession session=request.getSession(true);
+			 if (session.getAttribute("user")==null){
+				 forward.setRedirect(false);
+				 forward.setPath("lay_log.ads");
+				 //System.out.println(" Session Null");
+			 }else{
+				 action=new SaveImageMore();
+				 try{
+					forward=action.execute(request, response);
+					 String result=(String) request.getSession().getAttribute("result");
+					 List<Object> data=new ArrayList<Object>();
+					 data.add(result);
+					 data.add(request.getSession().getAttribute("imagelist"));
+					 response.setContentType("application/json");
+					 response.setCharacterEncoding("UTF-8");
+					 response.getWriter().write(new Gson().toJson(data));
+					 return ;
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			 }
+			 //System.out.println(forward.getPath());
+		 }else if (command.equals("/lay_editpostingphoto.ads")){
+			 HttpSession session=request.getSession(true);
+			 if (session.getAttribute("user")==null){
+				 forward.setRedirect(true);
+				 forward.setPath("lay_log.ads");
+				 //System.out.println(" Session Null");
 			 }
 			 action=new EditPhotoAction();
 			 try{
@@ -227,39 +279,66 @@ public class ControllerUser extends HttpServlet {
 					}
 			 }
 			
-		 }else if (command.equals("/add_newposting.ads")){
-			 action=new AddPosting();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
-			 
-			 System.out.println(forward.getPath());
-		 }else if (command.equals("/lay_myadsprofile.ads")){
+		 }else if (command.equals("/lay_addMoreImage.ads")){
 			 HttpSession session=request.getSession(true);
 			 if (session.getAttribute("user")==null){
 				 forward.setRedirect(true);
 				 forward.setPath("lay_log.ads");
-				 System.out.println(" Session Null");
+				// System.out.println(" Session Null");
 			 }else{
-			 action=new ProfileAction();
-			 try{
+				 action=new AddImageMore();
+				 try{
+						forward=action.execute(request, response);
+						 String result=(String) request.getSession().getAttribute("max");
+						 response.setContentType("application/json");
+						 response.setCharacterEncoding("UTF-8");
+						 response.getWriter().write(new Gson().toJson(result));
+						 return ;
+						
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+			 }
+			
+		 }else if (command.equals("/add_newposting.ads")){
+			 HttpSession session=request.getSession(true);
+			 if (session.getAttribute("user")==null){
+				 forward.setRedirect(true);
+				 forward.setPath("lay_log.ads");
+				 //System.out.println(" Session Null");
+			 }else{
+				 action=new AddPosting();
+				 try{
 					forward=action.execute(request, response);
 				}catch(Exception e){
 					e.printStackTrace();
 				}
 			 }
-			 System.out.println(forward.getPath());
+			 //System.out.println(forward.getPath());
+		 }else if (command.equals("/lay_myadsprofile.ads")){
+			 HttpSession session=request.getSession(true);
+			 if (session.getAttribute("user")==null){
+				 forward.setRedirect(true);
+				 forward.setPath("lay_log.ads");
+				 //System.out.println(" Session Null");
+			 }else{
+				 action=new ProfileAction();
+				 try{
+					forward=action.execute(request, response);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			 }
+			 //System.out.println(forward.getPath());
 		 }else if (command.equals("/lay_account_setting.ads")){
 			 /*HttpSession session=request.getSession(true);*/
 			 if (request.getSession().getAttribute("user")==null){
 				 forward.setRedirect(true);
 				 forward.setPath("lay_log.ads");
-				 System.out.println(" Session Null");
+				 //System.out.println(" Session Null");
 			 }else{
-			 action=new ProfileAction();
-			 try{
+				 action=new ProfileAction();
+				 try{
 					forward=action.execute(request, response);
 				}catch(Exception e){
 					e.printStackTrace();
@@ -270,10 +349,10 @@ public class ControllerUser extends HttpServlet {
 			 if (request.getSession().getAttribute("user")==null){
 				 forward.setRedirect(true);
 				 forward.setPath("lay_log.ads");
-				 System.out.println(" Session Null");
+				// System.out.println(" Session Null");
 			 }else{
-			 action=new EditMember();
-			 try{
+				 action=new EditMember();
+				 try{
 					forward=action.execute(request, response);
 				     String result=(String) request.getSession().getAttribute("result");
 					 response.setContentType("application/json");
@@ -291,8 +370,8 @@ public class ControllerUser extends HttpServlet {
 				 forward.setPath("lay_log.ads");
 				 //System.out.println(" Session Null");
 			 }else{
-			 action=new EditImageMember();
-			 try{
+				 action=new EditImageMember();
+				 try{
 					forward=action.execute(request, response);
 				     String result=(String) request.getSession().getAttribute("result");
 					 response.setContentType("application/json");

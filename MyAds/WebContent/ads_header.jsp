@@ -60,6 +60,12 @@
 		color: red;
 		width: 100%;
 	}
+	.show{
+		display: block;
+	}
+	.hide{
+		display: none;
+	}
 </style>
  
  <script>
@@ -83,7 +89,17 @@
 				width         : "359px"
 			});
 		});
-		
+		$(document).ready(function(e){
+			$("#profile_setting").click(function(e){				
+				if ($(this).parents(".welcomebox").find("div").hasClass("show")){					
+					$(this).parents(".welcomebox").find("div").addClass("hide");
+					$(this).parents(".welcomebox").find("div").removeClass("show");
+				}else{
+					$(this).parents(".welcomebox").find("div").removeClass("hide");
+					$(this).parents(".welcomebox").find("div").addClass("show");
+				}
+			});
+		});
 	</script>
 
 <script src="js/comon.js"></script>
@@ -178,10 +194,11 @@
 					 		<% if(session.getAttribute("user") == null ){ %>
 								<span class="welcome"></span>
 							 <% } else {%>
-							 	<strong style="display:inline-block;padding:3px 0 0;font-size:16px;font-weight:bold;">Hi</strong> <a href="#none" class="btn_user" ><span><%= member.getName() %></span></a>
-							 	<div class="profile_setting" style="display:block;">
+							 	<strong style="display:inline-block;padding:3px 0 0;font-size:16px;font-weight:bold;">Hi</strong> 
+							 	<a href="javascript:" id="profile_setting"  class="btn_user" ><span><%= member.getName() %></span></a>
+							 	<div class='profile_setting hide'>
 							 		<ol>
-							 			<li><a href="javascript:" class="btn_name"><img src="profile/<%=member.getPhoto() %>"  alt=""> <%= member.getName() %></a></li>
+							 			<li><a href="javascript:" class="btn_name"><img src="profile/<%=member.getPhoto() %>"  alt=""/> <%= member.getName() %></a></li>
 							 			<li><a href="lay_account_setting.ads?mem_id=<%=member.getId() %>" class="btn_acc_setting">Account settings</a></li>
 							 			<li><a href="logout.ads" class="btn_logout" style="color:#f91339;">Log out</a></li>
 							 		</ol>
