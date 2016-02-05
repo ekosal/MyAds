@@ -25,7 +25,7 @@ public class ExistFrontMainCategory implements Action {
 		String categoryId= request.getParameter("id");
 		String subCateryId=  request.getParameter("subid");
 		String cp=request.getParameter("cp");
-		System.out.println("Encript : "+subCateryId);
+		//System.out.println("Encript : "+subCateryId);
 		try{
 			
 			if (subCateryId == null || subCateryId=="") subCateryId="";

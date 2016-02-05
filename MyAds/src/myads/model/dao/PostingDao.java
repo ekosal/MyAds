@@ -227,6 +227,55 @@ public class PostingDao {
 		}
 		return 0;
 	}
+	
+	public int readSearchCountPage(String txt_name,String location){
+		int count=0;
+		System.out.println("Search "+txt_name +  "    "+location);
+		try{
+			String sql="select count(*) as total from tbl_posting "
+					+ "p INNER JOIN tbl_sub_category sc on p.SubCateId=sc.SubCateId "
+					+ "INNER JOIN tbl_category c on c.CateId=sc.CateId INNER JOIN tbl_image "
+					+ "i on p.PostingId=i.PostingId WHERE (p.ProductName like ? or p.Address LIKE ? ) and p.Active=1 and i.order=1";
+		
+			ps=ds.getConnection().prepareStatement(sql);
+			ps.setString(1,"%"+txt_name+"%");
+			ps.setString(2,"%"+ location+"%");
+			rs=ps.executeQuery();
+			while(rs.next()){
+				count=rs.getInt("total");
+			}
+			return count;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public int readSearchCountPage(String txt_name,String location,int subCategoryId){
+		int count=0;
+		System.out.println("Search "+txt_name +  "    "+location);
+		try{
+			String sql="select count(*) as total from tbl_posting "
+					+ "p INNER JOIN tbl_sub_category sc on p.SubCateId=sc.SubCateId "
+					+ "INNER JOIN tbl_category c on c.CateId=sc.CateId INNER JOIN tbl_image "
+					+ "i on p.PostingId=i.PostingId WHERE (p.ProductName like ? and p.Address LIKE ? )"
+					+ "and sc.SubCateId=? and p.Active=1 and i.order=1";
+		
+			ps=ds.getConnection().prepareStatement(sql);
+			ps.setString(1,"%"+txt_name+"%");
+			ps.setString(2,"%"+ location+"%");
+			ps.setInt(3, subCategoryId);
+			rs=ps.executeQuery();
+			while(rs.next()){
+				count=rs.getInt("total");
+			}
+			return count;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
 	public int readCountPage(String category_id,String subcategory){
 		int count=0;
 		try{
@@ -261,6 +310,106 @@ public class PostingDao {
 			ps.setInt(1,Integer.valueOf(category_id));
 			ps.setInt(2, start);
 			ps.setInt(3, end);
+			rs=ps.executeQuery();
+			while(rs.next()){
+				PostingDto posting=new PostingDto();
+				Image image=new Image();
+				MainCategoryDto mainCategory=new MainCategoryDto();
+				SubCategoryDto subcategory=new SubCategoryDto();
+				
+				image.setImage(rs.getString("Image"));	
+				
+				posting.setTitle(rs.getString("ProductName"));
+				posting.setKey(rs.getString("KeyNotice"));
+				posting.setPostingId(rs.getInt("PostingId"));
+				posting.setPostingId_security(EncryptionUtil.encode(rs.getString("PostingId")));				
+				posting.setPrice(rs.getInt("Price"));
+				posting.setDiscount(rs.getString("Discount"));
+				
+				mainCategory.setId(rs.getInt("CateId"));
+				mainCategory.setId_security(EncryptionUtil.encode(rs.getString("CateId")));
+				
+				subcategory.setSubid(rs.getInt("SubCateId"));
+				subcategory.setSubid_security(EncryptionUtil.encode(rs.getString("SubCateId")));
+				
+				posting.setMainCategory(mainCategory);
+				posting.setSubCategory(subcategory);
+				posting.setImage(image);
+				productList.add(posting);
+			}
+			System.out.println("Category ID "+productList);
+			return productList;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	public List<PostingDto> readSearchProductByCategory(String txt_name,String location,int start,int end){
+		List<PostingDto> productList=new ArrayList<>();
+		System.out.println("Search "+txt_name +  "    "+location);
+		try{			
+			String sql="select sc.SubCateId,c.CateId,i.Image,p.PostingId,p.ProductName,p.Price,p.Discount,p.KeyNotice from tbl_posting "
+					+ "p INNER JOIN tbl_sub_category sc on p.SubCateId=sc.SubCateId "
+					+ "INNER JOIN tbl_category c on c.CateId=sc.CateId INNER JOIN tbl_image "
+					+ "i on p.PostingId=i.PostingId WHERE (p.ProductName LIKE ? or p.Address LIKE ? ) and p.Active=1 and i.order=1 ORDER BY p.PostDate DESC  LIMIT ?,?";
+			
+			ps=ds.getConnection().prepareStatement(sql);
+			ps.setString(1,"%"+txt_name+"%");
+			ps.setString(2,"%"+ location+"%");
+			ps.setInt(3, start);
+			ps.setInt(4, end);
+			rs=ps.executeQuery();
+			while(rs.next()){
+				PostingDto posting=new PostingDto();
+				Image image=new Image();
+				MainCategoryDto mainCategory=new MainCategoryDto();
+				SubCategoryDto subcategory=new SubCategoryDto();
+				
+				image.setImage(rs.getString("Image"));	
+				
+				posting.setTitle(rs.getString("ProductName"));
+				posting.setKey(rs.getString("KeyNotice"));
+				posting.setPostingId(rs.getInt("PostingId"));
+				posting.setPostingId_security(EncryptionUtil.encode(rs.getString("PostingId")));				
+				posting.setPrice(rs.getInt("Price"));
+				posting.setDiscount(rs.getString("Discount"));
+				
+				mainCategory.setId(rs.getInt("CateId"));
+				mainCategory.setId_security(EncryptionUtil.encode(rs.getString("CateId")));
+				
+				subcategory.setSubid(rs.getInt("SubCateId"));
+				subcategory.setSubid_security(EncryptionUtil.encode(rs.getString("SubCateId")));
+				
+				posting.setMainCategory(mainCategory);
+				posting.setSubCategory(subcategory);
+				posting.setImage(image);
+				productList.add(posting);
+			}
+			System.out.println("Category ID "+productList);
+			return productList;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public List<PostingDto> readSearchProductByCategory(String txt_name,String location,int subcategoryid,int start,int end){
+		List<PostingDto> productList=new ArrayList<>();
+		System.out.println("Search "+txt_name +  "    "+location);
+		try{			
+			String sql="select sc.SubCateId,c.CateId,i.Image,p.PostingId,p.ProductName,p.Price,p.Discount,p.KeyNotice from tbl_posting "
+					+ "p INNER JOIN tbl_sub_category sc on p.SubCateId=sc.SubCateId "
+					+ "INNER JOIN tbl_category c on c.CateId=sc.CateId INNER JOIN tbl_image "
+					+ "i on p.PostingId=i.PostingId WHERE (p.ProductName LIKE ? or p.Address LIKE ? or sc.SubCateId = ?) and p.Active=1 and i.order=1 ORDER BY p.PostDate DESC  LIMIT ?,?";
+			
+			ps=ds.getConnection().prepareStatement(sql);
+			ps.setString(1,"%"+txt_name+"%");
+			ps.setString(2,"%"+ location+"%");
+			ps.setInt(3, subcategoryid);
+			ps.setInt(4, start);
+			ps.setInt(5, end);
 			rs=ps.executeQuery();
 			while(rs.next()){
 				PostingDto posting=new PostingDto();

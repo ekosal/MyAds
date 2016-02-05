@@ -3,13 +3,13 @@
 <%@page import="myads.model.util.EncryptionUtil"%>
 <%@page import="myads.model.util.Pagination"%>
 <%@page import="myads.model.dto.PostingDto"%>
-<jsp:directive.include file="ads_header.jsp" />
+<jsp:directive.include file="ads_searchheader.jsp" />
 	<jsp:directive.include file="ads_help2.jsp" />
 	<%
-		List<PostingDto> listProdict=(List<PostingDto>) request.getSession().getAttribute("productByCategory");
+		List<PostingDto> listProdict=(List<PostingDto>) request.getSession().getAttribute("listSearchProduct");
 		List<MainCategoryDto> listSubCategory=(List<MainCategoryDto>) request.getSession().getAttribute("CategoryList");
-		List<PostingDto> listRelativeProduct=(List<PostingDto>) request.getSession().getAttribute("listRelative");
-	%>
+		//List<PostingDto> listRelativeProduct=(List<PostingDto>) request.getSession().getAttribute("listRelative");
+	%> 
 	<!-- body_section -->
 	<div class="body_section">
 		<!-- cnt_wrap -->
@@ -34,7 +34,7 @@
 				<!-- container -->
 				<div class="container">
 					<div class="step">
-						<span><a href="./">Home</a> > </span>
+					<span><a href="./">Home</a> > </span>
 						<span><a href="./mycategory.ads?id=<%=Pagination.category %>"><%=listSubCategory.get(0).getName() %></a> > </span>
 						<%
 							for (int i=0;i<listSubCategory.size();i++){
@@ -47,7 +47,7 @@
 						<%
 							}
 						 }
-						%>
+						%> 
 					</div>
 					<!-- cnt -->
 					<div class="cnt cboth" style="padding-left:220px;padding-right:200px;">
@@ -107,7 +107,7 @@
 												%>
 											</ul>
 										</dd>
-									</dl>
+									</dl> 
 								</div>
 							</div>
 							<!-- //navigation -->
@@ -155,7 +155,7 @@
 									</li>
 									<%
 										}
-									%>
+									%> 
 								</ul>
 								<!------------------------------------------- close ----------------------------------------------------------------------------- -->
 							
@@ -213,7 +213,7 @@
 											<div id="container-slider-carousel-2" class="container">
 												<div id="content-silder-carousel-2"	class="content">
 													<div class="wrapper-itens">
-													<%
+													<%-- <%
 													    
 														for(int i=0;i<listRelativeProduct.size();i++){
 															
@@ -231,7 +231,7 @@
 														
 													<%
 														}
-													%>														
+													%>		 --%>												
 													</div>
 												</div>
 											</div>
@@ -255,19 +255,20 @@
 	<!-- //body_section -->
 	<script>
 		$(document).ready(function(e){
-			$("#btn_Click").click(function(e){
-				var txt_search=$(this).parent(".opt").find("#txt_search").val();
-				var cate	  =$(this).parent(".opt").find("#demo-select_1").val();
-				var location  =$(this).parent(".opt").find("#demo-select_2").val();
-				var url       =cate+"&product="+txt_search+"&location="+location+"&cp=1";
-				if (cate==null || cate==""){
-					url="id=&subid="+"&product="+txt_search+"&location="+location+"&cp=1";
-				}
-				//alert(url);
-				window.location.href = "${pageContext.request.contextPath }/search_myproducts.ads?"+url;
-				//window.location.href = "${pageContext.request.contextPath }/search_myproducts.ads?"+url;
+			$(document).ready(function(e){
+				$("#btn_Click").click(function(e){
+					var txt_search=$(this).parent(".opt").find("#txt_search").val();
+					var cate	  =$(this).parent(".opt").find("#demo-select_1").val();
+					var location  =$(this).parent(".opt").find("#demo-select_2").val();
+					var url       =cate+"&product="+txt_search+"&location="+location+"&cp=1";
+					if (cate==null || cate==""){
+						url="id=&subid="+"&product="+txt_search+"&location="+location+"&cp=1";
+					}
+					//alert(url);
+					window.location.href = "${pageContext.request.contextPath }/search_myproducts.ads?"+url;
+					//window.location.href = "${pageContext.request.contextPath }/search_myproducts.ads?"+url;
+				});
 			});
-			
 			$("#subCategoryList ul li a").click(function(e){
 				var categoryId=$(this).parents("dd").prev("dt").find("a").attr("role");
 				var subcategoryId=$(this).attr("role");

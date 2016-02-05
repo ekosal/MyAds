@@ -98,13 +98,18 @@
 					$(this).parents(".welcomebox").find("div").removeClass("hide");
 					$(this).parents(".welcomebox").find("div").addClass("show");
 				}
-			});			
+			});
 		});
 	</script>
 
 <script src="js/comon.js"></script>
-</head>
 
+</head>
+    <%
+    	String location=(String) request.getSession().getAttribute("location");
+        String txt_name=(String) request.getSession().getAttribute("txt_name");
+        String cateId  =(String) request.getSession().getAttribute("categoryId");
+    %>
 
 	<!-- head_section -->
 	<div class="head_section">
@@ -119,7 +124,7 @@
 				<div class="opt cboth">
 					<ul>
 						<li>
-							<div class="search"><input type="text" id="txt_search" placeholder="I'm looking for..."></div>
+							<div class="search"><input type="text" id="txt_search" value="<%=txt_name %>" placeholder="I'm looking for..."></div>
 						</li>
 						<li>
 							<div class="myselect">
@@ -138,7 +143,7 @@
 											                	for(int i=0;i<rst1.size();i++)  {  
 											                		if (rst.get(j).getId()==rst1.get(i).getId()){
 															%>
-															   <option value="id=<%=rst.get(j).getId_security() %>&subid=<%= rst1.get(i).getSubid_security() %>"><%= rst1.get(i).getName() %></option>
+															        <option value="id=<%=rst.get(j).getId_security() %>&subid=<%= rst1.get(i).getSubid_security() %>"   <% if (rst1.get(i).getSubid_security().trim().equals(cateId.trim())){ %> selected="selected"  <%} %>><%= rst1.get(i).getName() %></option>
 															<%
 															     }
 											                	}
@@ -159,12 +164,12 @@
 								<form action="">
 									<div class="example_1">
 										<select name="" id="demo-select_2" style="width:100%;height:37px;cursor:pointer;border:0;">
-												<option value="" data-modifier="mod">All Locations</option>
+												<option value="0" data-modifier="mod">All Locations</option>
 												<%
 													ResultSet rs=MyComobox.getProvince();
 													while(rs.next()){
 												%>
-												<option value="<%= rs.getString("ProvName") %>"><%= rs.getString("ProvName") %></option>
+												<option value="<%= rs.getString("ProvName") %>"  <% if (rs.getString("ProvName").trim().equals(location.trim())) { %> selected="selected" <% } %> ><%= rs.getString("ProvName") %></option>
 												<%
 													}
 												%>

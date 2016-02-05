@@ -32,6 +32,7 @@ import myads.controller.action.posting.MyAdsAction;
 import myads.controller.action.posting.RemovePhoto;
 import myads.controller.action.posting.SaveImageMore;
 import myads.controller.action.posting.SearchAdsAction;
+import myads.controller.action.posting.SearchPostingAction;
 import myads.controller.action.posting.details.ViewPostingDetails;
 import myads.controller.action.profile.ProfileAction;
 import myads.controller.action.user.LoginUser;
@@ -427,6 +428,15 @@ public class ControllerUser extends HttpServlet {
 			 System.out.println(forward.getPath());
 		 }else if (command.equals("/addnew_com.ads")){
 			 action=new AddCompany();
+			 try{
+					forward=action.execute(request, response);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			 
+			 System.out.println(forward.getPath());
+		 }else if (command.equals("/search_myproducts.ads")){
+			 action=new SearchPostingAction();
 			 try{
 					forward=action.execute(request, response);
 				}catch(Exception e){

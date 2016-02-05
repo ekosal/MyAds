@@ -14,7 +14,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
-
+<%@ page isErrorPage="true" import="java.io.*" %>
      <jsp:directive.include file="ads_header.jsp" />
      
 	<!-- body_section -->
@@ -373,3 +373,18 @@
 	<!-- //body_section -->
 
 	<jsp:directive.include file="ads_footer.jsp" />
+	<script type="text/javascript">
+		$(document).ready(function(e){
+			$("#btn_Click").click(function(e){
+				var txt_search=$(this).parent(".opt").find("#txt_search").val();
+				var cate	  =$(this).parent(".opt").find("#demo-select_1").val();
+				var location  =$(this).parent(".opt").find("#demo-select_2").val();
+				var url       =cate+"&product="+txt_search+"&location="+location+"&cp=1";
+				if (cate==null || cate==""){
+					url="id=&subid="+"&product="+txt_search+"&location="+location+"&cp=1";
+				}
+				//alert(url);
+				window.location.href = "${pageContext.request.contextPath }/search_myproducts.ads?"+url;
+			});
+		}); 
+</script>
