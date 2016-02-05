@@ -164,7 +164,7 @@
 								<form action="">
 									<div class="example_1">
 										<select name="" id="demo-select_2" style="width:100%;height:37px;cursor:pointer;border:0;">
-												<option value="0" data-modifier="mod">All Locations</option>
+												<option value="" data-modifier="mod">All Locations</option>
 												<%
 													ResultSet rs=MyComobox.getProvince();
 													while(rs.next()){

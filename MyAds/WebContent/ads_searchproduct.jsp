@@ -167,8 +167,8 @@
 								<!-- pagination -->
 								<div class="paging" id="paging"><!-- 비활성상태는 on class 제거 -->
 								    <input type="hidden" value="1" id="txtcurrentpage">
-								    <input type="hidden" value="<%=Pagination.category %>" id="url-catetory">
-								    <input type="hidden" value="<%=Pagination.subcategory %>" id="url-subcatetory">
+								   <%--  <input type="hidden" value="<%=Pagination.category %>" id="url-catetory">
+								    <input type="hidden" value="<%=Pagination.subcategory %>" id="url-subcatetory"> --%>
 									<a href="javascript:" class="btn_pag_cntr first pagingIndex" rel="1"><span class="blind">first</span></a><a href="javascript:" class="btn_pag_cntr prev" id="Pre-page"><span class="blind">previous</span></a>
 									<span class="pag_num">
 									    <a href="javascript:" class="on pagingIndex" rel="1">1<input type="hidden" value="1" class="index"></a>
@@ -275,11 +275,19 @@
 			});
 			
 			$(".paging a.pagingIndex").click(function(e){				
- 				$("#txtcurrentpage").val($(this).attr("rel")); 		
+ 				$("#txtcurrentpage").val($(this).attr("rel")); 	
+ 				var txt_search=$("#txt_search").val();
+ 				var cate      =$("#demo-select_1").val();
+ 				var location  =$("#demo-select_2").val();
+ 				var url       =cate+"&product="+txt_search+"&location="+location+"&cp=1";
+				if (cate==null || cate==""){
+					url="id=&subid="+"&product="+txt_search+"&location="+location+"&cp="+$(this).attr("rel");
+				}
+				alert(url);
 				$.ajax({
 	    			type : "POST",
-	       			url : "${pageContext.request.contextPath }/paging_mycategory.ads",
-	    			data :"id="+$("#url-catetory").val()+"&subid="+$("#url-subcatetory").val()+"&cp="+$(this).attr("rel"),
+	       			url : "${pageContext.request.contextPath }/search_myproducts.ads?",
+	    			data :url,
 	    			success : function(dat) {    				
 	    				console.log(dat);
 	    				var html='';
