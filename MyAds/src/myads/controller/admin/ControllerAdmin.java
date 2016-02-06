@@ -27,6 +27,7 @@ import myads.controller.action.category.SaveSubCategory;
 import myads.controller.action.category.ViewMainCategory;
 import myads.controller.action.category.ViewProvince;
 import myads.controller.action.category.ViewSubCategory;
+import myads.controller.action.posting.AllPostingAction;
 import myads.controller.action.user.AddNewPosition;
 import myads.controller.action.user.AddNewRole;
 import myads.controller.action.user.AddNewUsers;
@@ -319,6 +320,15 @@ public class ControllerAdmin extends HttpServlet {
 			 System.out.println(forward.getPath());
 		 }else if (command.equals("/step2/save_province.adm")){
 			 action=new SaveProvince();
+			 try{
+					forward=action.execute(request, response);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			 
+			 System.out.println(forward.getPath());
+		 }else if (command.equals("/step2/all_posting.adm")){
+			 action=new AllPostingAction();
 			 try{
 					forward=action.execute(request, response);
 				}catch(Exception e){

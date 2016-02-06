@@ -57,7 +57,7 @@
 						</div>
 						<div class="profile_info">
 							<span>Welcome,</span>
-							<h2>Admin</h2>
+							<h2>Name Admin</h2>
 						</div>
 					</div>
 					<!-- /menu prile quick info -->
@@ -79,7 +79,7 @@
 								</li>
 								<li><a href="#none"><i class="fa fa-table"></i>Postings <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
-										<li><a href="#none">New Posts</a></li>
+										<li><a href="all_posting.adm">All New Posts</a></li>
 										<li><a href="#none">Privilege Posts </a></li>
 										<li><a href="#none">New Orders</a></li>
 									</ul>
@@ -171,7 +171,7 @@
 						<ul class="nav navbar-nav navbar-right">
 							<li class="">
 								<a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-									<img src="images/img.jpg" alt="">John Doe
+									<img src="images/img.jpg" alt="">Name Admin
 									<span class=" fa fa-angle-down"></span>
 								</a>
 
@@ -197,39 +197,60 @@
 									<li>
 										<a href="#none">
 											<span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-											<span><span>John Smith</span><span class="time">3 mins ago</span></span>
-											<span class="message">Film festivals used to be do-or-die moments for movie makers. They were where... </span>
+											<span><span>Name Poster</span><span class="time">Date Posting</span></span>
+											<span class="message">Product name </span>
 										</a>
 									</li>
 									<li>
 										<a href="#none">
 											<span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-											<span><span>John Smith</span><span class="time">3 mins ago</span></span>
-											<span class="message">Film festivals used to be do-or-die moments for movie makers. They were where... </span>
+											<span><span>Name Poster</span><span class="time">Date Posting</span></span>
+											<span class="message">Product name </span>
 										</a>
 									</li>
 									<li>
 										<a href="#none">
 											<span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-											<span><span>John Smith</span><span class="time">3 mins ago</span></span>
-											<span class="message">Film festivals used to be do-or-die moments for movie makers. They were where... </span>
+											<span><span>Name Poster</span><span class="time">Date Posting</span></span>
+											<span class="message">Product name </span>
 										</a>
 									</li>
 									<li>
 										<a href="#none">
 											<span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-											<span><span>John Smith</span><span class="time">3 mins ago</span></span>
-											<span class="message">Film festivals used to be do-or-die moments for movie makers. They were where... </span>
+											<span><span>Name Poster</span><span class="time">Date Posting</span></span>
+											<span class="message">Product name </span>
 										</a>
 									</li>
 									<li>
-										<div class="text-center">
-											<a href="#none">
-												<strong><a href="inbox.html">See All Alerts</strong>
-												<i class="fa fa-angle-right"></i>
-											</a>
-										</div>
+										<a href="#none">
+											<span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+											<span><span>Name Poster</span><span class="time">Date Posting</span></span>
+											<span class="message">Product name </span>
+										</a>
 									</li>
+									<li>
+										<a href="#none">
+											<span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+											<span><span>Name Poster</span><span class="time">Date Posting</span></span>
+											<span class="message">Product name </span>
+										</a>
+									</li>
+									<li>
+										<a href="#none">
+											<span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+											<span><span>Name Poster</span><span class="time">Date Posting</span></span>
+											<span class="message">Product name </span>
+										</a>
+									</li>
+									<li>
+										<a href="#none">
+											<span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+											<span><span>Name Poster</span><span class="time">Date Posting</span></span>
+											<span class="message">Product name </span>
+										</a>
+									</li>
+									
 								</ul>
 							</li>
 						</ul>
