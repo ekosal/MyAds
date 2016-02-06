@@ -33,10 +33,11 @@
 					<div class="all_posts">
 						<ul>
 							<li>
+								<h4>Poster's Name</h4>
 								<dl>
 									<dt><img src="images/picture.jpg" alt="" style="width:230px;height:240px;"></dt>
 									<dd>
-										<h4>Name poster</h4>
+										<h4>Product title</h4>
 										<p>Category</p>
 										<p>Key Notice</p>
 										<p><strong>100 $</strong>/Price</p>
@@ -45,7 +46,7 @@
 										<p>Address</p>
 									</dd>
 								</dl>
-								<a href="#none" class="btn_moreimg">See All Photos</a>
+								<a href="#none" class="btn_moreimg on">See All Photos</a>
 								<a href="#none" class="btn_approve">Approve Now</a>
 								<!-- layer all images -->
 								<div class="layer cboth" style="display:block;">
@@ -59,10 +60,11 @@
 								<!-- //layer all images -->
 							</li>
 							<li>
+								<h4>Poster's Name</h4>
 								<dl>
 									<dt><img src="images/picture.jpg" alt="" style="width:230px;height:240px;"></dt>
 									<dd>
-										<h4>Name poster</h4>
+										<h4>Product Title</h4>
 										<p>Category</p>
 										<p>Key Notice</p>
 										<p><strong>120 $</strong>/Price</p>
@@ -71,7 +73,7 @@
 										<p>Address</p>
 									</dd>
 								</dl>
-								<a href="#none" class="btn_moreimg on">See All Photos</a>
+								<a href="#none" class="btn_moreimg">See All Photos</a>
 								<a href="#none" class="btn_approve">Approve Now</a>
 								<!-- layer all images -->
 								<div class="layer cboth" style="display:none;">
