@@ -34,23 +34,37 @@
 						<ul>
 							<li>
 								<a href="#none">
-									<h4>Name poster</h4>
 									<dl>
-										<dt>Title Product</dt>
-										<dd>Product dsc</dd>
+										<dt><img src="images/picture.jpg" alt=""></dt>
+										<dd>
+											<h4>Name poster</h4>
+											<p>Category</p>
+											<p>Key Notice</p>
+											<p>Price</p>
+											<p>Discount</p>
+											<p>Phone</p>
+											<p>Address</p>
+										</dd>
 									</dl>
 								</a>
-								<a href="#none">Approve Now</a>
+								<a href="#none" class="btn_approve">Approve Now</a>
 							</li>
 							<li>
 								<a href="#none">
-									<h4>Name poster</h4>
 									<dl>
-										<dt>Title Product</dt>
-										<dd>Product dsc</dd>
+										<dt><img src="images/picture.jpg" alt=""></dt>
+										<dd>
+											<h4>Name poster</h4>
+											<p>Category</p>
+											<p>Key Notice</p>
+											<p>Price</p>
+											<p>Discount</p>
+											<p>Phone</p>
+											<p>Address</p>
+										</dd>
 									</dl>
 								</a>
-								<a href="#none">Approve Now</a>
+								<a href="#none" class="btn_approve">Approve Now</a>
 							</li>
 						</ul>
 					</div>

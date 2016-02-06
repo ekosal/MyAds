@@ -70,6 +70,17 @@ input[type=submit].btn_create:hover{text-decoration:underline;}
 .wrap_img.user{width:140px;height:140px;}
 .wrap_img.user > img{width:140px;height:140px;}
 
+/* all_posts */
+.all_posts{}
+.all_posts li{margin-bottom:20px; border-bottom:1px solid #ddd;}
+.all_posts li dl{padding-left:240px;overflow:hidden;}
+.all_posts li dl dt{float:left;width:230px;margin-left:-240px;}
+.all_posts li dl dd h4{font-size:18px;}
+.all_posts li dl dd{float:left;width:100%;}
+.all_posts li a{display:block;}
+.all_posts li a.btn_approve{display:inline-block !important;margin-bottom:20px;padding:10px 20px;border:1px solid #ddd;}
+
+
 .myfooter{position:fixed;bottom:0;left:0;right:0;height:35px;background-color:#172d44;}
 .myfooter p{color:#fff;}
 .myfooter p span{color:#fff;}
