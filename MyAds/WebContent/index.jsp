@@ -219,7 +219,7 @@
 											%>
 											<li>
 												<img src="uploads/<%=popularPosting.get(i).getImage().getImage() %>" alt="" style="width:180px;height:150px;">
-												<p><a href="product_details.ads?id=<%=popularPosting.get(i).getMainCategory().getId_security() %>&subid=<%=popularPosting.get(i).getSubCategory().getSubid_security() %>&proid=<%=popularPosting.get(i).getPostingId_security() %>">
+												<p><a href="product_details.ads?id=<%=popularPosting.get(i).getMainCategory().getId_security() %>&subid=<%=popularPosting.get(i).getSubCategory().getSubid_security() %>&proid=<%=popularPosting.get(i).getPostingId_security() %>" target="_blank" >
 													<%=popularPosting.get(i).getTitle() %>													
 												</a></p>
 											</li>
@@ -252,7 +252,7 @@
 										    %>
 											<li>
 												<img src="uploads/<%=lastPosting.get(i).getImage().getImage() %>" alt="" style="width:180px;height:150px;">
-												<p><a href="product_details.ads?id=<%=lastPosting.get(i).getMainCategory().getId_security() %>&subid=<%=lastPosting.get(i).getSubCategory().getSubid_security() %>&proid=<%=lastPosting.get(i).getPostingId_security() %>">
+												<p><a href="product_details.ads?id=<%=lastPosting.get(i).getMainCategory().getId_security() %>&subid=<%=lastPosting.get(i).getSubCategory().getSubid_security() %>&proid=<%=lastPosting.get(i).getPostingId_security() %>" target="_blank">
 													<%=lastPosting.get(i).getTitle() %>
 												</a></p>
 											</li>
