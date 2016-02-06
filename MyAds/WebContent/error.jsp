@@ -8,7 +8,7 @@
 </head>
 <body>
 	
-	Erro 404
+	Error 404
 	
 	<%=response.getStatus() %>
 </body>
