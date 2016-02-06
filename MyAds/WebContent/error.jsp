@@ -7,9 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
 	Error 404
-	
 	<%=response.getStatus() %>
 </body>
 </html>
