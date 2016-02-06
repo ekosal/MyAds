@@ -263,6 +263,17 @@
     <script src="js/jquery.validate.js"></script>
 	<script>
 		$(document).ready(function(e){
+			//$(".hide").css("display","none");
+			$("#profile_setting").click(function(e){
+				if ($(this).parents(".welcomebox").find("div").hasClass("show")){					
+					$(this).parents(".welcomebox").find("div").addClass("hide");
+					$(this).parents(".welcomebox").find("div").removeClass("show");
+				}else{
+					$(this).parents(".welcomebox").find("div").removeClass("hide");
+					$(this).parents(".welcomebox").find("div").addClass("show");
+				}
+			});	
+			
 			$(".register table tbody td .dis .btn_edit").click(function(e){
 				$(this).parent(".dis").hide();
 				$(this).parent(".dis").parent("td").find(".hide").show();

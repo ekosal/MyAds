@@ -386,5 +386,14 @@
 				//alert(url);
 				window.location.href = "${pageContext.request.contextPath }/search_myproducts.ads?"+url;
 			});
+			$("#profile_setting").click(function(e){				
+				if ($(this).parents(".welcomebox").find("div").hasClass("show")){					
+					$(this).parents(".welcomebox").find("div").addClass("hide");
+					$(this).parents(".welcomebox").find("div").removeClass("show");
+				}else{
+					$(this).parents(".welcomebox").find("div").removeClass("hide");
+					$(this).parents(".welcomebox").find("div").addClass("show");
+				}
+			});	
 		}); 
 </script>

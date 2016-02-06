@@ -949,7 +949,12 @@ a.btn_create_acc.btn_mypost{height:61px;font-size:20px;line-height:61px;margin-r
 .mypost_cnt ul li a.btn_post.disable_post{margin-left:0;color:red;}
 .mypost_cnt ul li a.btn_post.enabl_post{color:green;}
 
-
+.show{
+	display: block;
+}
+.hide{
+	display: none;
+}
 
 /* others */
 .space{padding-left:20px;}

@@ -207,6 +207,15 @@
     <script src="js/jquery.validate.js"></script>
 	<script>
 	  $(document).ready(function(e){
+	  $("#profile_setting").click(function(e){				
+			if ($(this).parents(".welcomebox").find("div").hasClass("show")){					
+				$(this).parents(".welcomebox").find("div").addClass("hide");
+				$(this).parents(".welcomebox").find("div").removeClass("show");
+			}else{
+				$(this).parents(".welcomebox").find("div").removeClass("hide");
+				$(this).parents(".welcomebox").find("div").addClass("show");
+			}
+		});	
 		$("#btn_create_acc").click(function(e){
 			if($('#eidtposting').valid()){  //call valid for form2 and show the errors
 	              // alert('submit form');  //only if the form is valid submit the form

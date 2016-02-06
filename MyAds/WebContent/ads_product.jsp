@@ -255,6 +255,15 @@
 	<!-- //body_section -->
 	<script>
 		$(document).ready(function(e){
+			$("#profile_setting").click(function(e){				
+				if ($(this).parents(".welcomebox").find("div").hasClass("show")){					
+					$(this).parents(".welcomebox").find("div").addClass("hide");
+					$(this).parents(".welcomebox").find("div").removeClass("show");
+				}else{
+					$(this).parents(".welcomebox").find("div").removeClass("hide");
+					$(this).parents(".welcomebox").find("div").addClass("show");
+				}
+			});	
 			$("#btn_Click").click(function(e){
 				var txt_search=$(this).parent(".opt").find("#txt_search").val();
 				var cate	  =$(this).parent(".opt").find("#demo-select_1").val();

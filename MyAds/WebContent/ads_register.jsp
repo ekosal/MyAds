@@ -129,5 +129,14 @@
 	<script>
 	$(document).ready(function(e){
 		$("#frmregister").validate();
+		$("#profile_setting").click(function(e){				
+			if ($(this).parents(".welcomebox").find("div").hasClass("show")){					
+				$(this).parents(".welcomebox").find("div").addClass("hide");
+				$(this).parents(".welcomebox").find("div").removeClass("show");
+			}else{
+				$(this).parents(".welcomebox").find("div").removeClass("hide");
+				$(this).parents(".welcomebox").find("div").addClass("show");
+			}
+		});	
 	});
 	</script>

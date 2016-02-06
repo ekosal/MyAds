@@ -130,7 +130,7 @@
 							<div class="myselect">
 								<form action="">
 									<div class="example_1">
-										<select name="" id="demo-select_1" style="width:100%;height:37px;cursor:pointer;border:0;">
+										<select name="" id="demo-select_1" class="demo-select_1" style="width:100%;height:37px;cursor:pointer;border:0;">
 											<option value="" data-modifier="mod">All Categories</option>
 												<%
 												    CategoryDao category=new CategoryDao();
@@ -163,7 +163,7 @@
 							<div class="myselect">
 								<form action="">
 									<div class="example_1">
-										<select name="" id="demo-select_2" style="width:100%;height:37px;cursor:pointer;border:0;">
+										<select name="" id="demo-select_2" class="demo-select_1" style="width:100%;height:37px;cursor:pointer;border:0;">
 												<option value="" data-modifier="mod">All Locations</option>
 												<%
 													ResultSet rs=MyComobox.getProvince();

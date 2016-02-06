@@ -60,12 +60,7 @@
 		color: red;
 		width: 100%;
 	}
-	.show{
-		display: block;
-	}
-	.hide{
-		display: none;
-	}
+	
 </style>
  
  <script>
@@ -90,15 +85,7 @@
 			});
 		});
 		$(document).ready(function(e){
-			$("#profile_setting").click(function(e){				
-				if ($(this).parents(".welcomebox").find("div").hasClass("show")){					
-					$(this).parents(".welcomebox").find("div").addClass("hide");
-					$(this).parents(".welcomebox").find("div").removeClass("show");
-				}else{
-					$(this).parents(".welcomebox").find("div").removeClass("hide");
-					$(this).parents(".welcomebox").find("div").addClass("show");
-				}
-			});			
+					
 		});
 	</script>
 

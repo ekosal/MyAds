@@ -11,6 +11,7 @@ import myads.controller.action.Action;
 import myads.controller.action.ActionForward;
 import myads.model.dao.PostingDao;
 import myads.model.dto.MemberDto;
+import myads.model.dto.PostingDto;
 import myads.model.dto.PostingListDto;
 import myads.model.util.Pagination;
 
@@ -21,7 +22,7 @@ public class SearchAdsAction implements Action{
 		// TODO Auto-generated method stub
 		
 		ActionForward forward=new ActionForward();
-		List<PostingListDto> postinList=new ArrayList<PostingListDto>();
+		List<PostingDto> postinList=new ArrayList<PostingDto>();
 		MemberDto memberDto=new MemberDto();
 		PostingDao postingDao=new PostingDao();
 		String search=request.getParameter("txtSearch");
