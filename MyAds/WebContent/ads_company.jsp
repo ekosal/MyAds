@@ -94,3 +94,11 @@
 	<!-- //body_section -->
 
 	<jsp:directive.include file="ads_footer.jsp" />
+	
+	<script>
+		$(document).ready(function(e){
+			$("#AddOro")
+			
+		});
+		
+	</script>

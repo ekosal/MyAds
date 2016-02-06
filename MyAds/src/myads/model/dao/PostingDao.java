@@ -157,17 +157,17 @@ public class PostingDao {
 		return 0;
 	}
 	
-	public List<PostingListDto> getSearchPostingList(MemberDto memberDto,String search,int start,int row){
+	public List<PostingDto> getSearchPostingList(MemberDto memberDto,String search,int start,int row){
 		ResultSet rs=null;
 		String sql="select p.PostingId,p.MemId,p.ProductName,p.Price,p.Phone,"+
-		"p.Address,p.Description,p.Discount ,i.Image,sc.Name from tbl_posting p INNER JOIN tbl_image i "+
+		"p.Address,p.Description,p.Discount ,i.Image,sc.Name,sc.CateId,sc.SubCateId from tbl_posting p INNER JOIN tbl_image i "+
 		"on p.PostingId=i.PostingId INNER JOIN tbl_sub_category sc "+
 		"on p.SubCateId=sc.SubCateId where i.order=1 and p.MemId=? "
 		+ "and (p.ProductName like ? or p.Price like ? OR "
 		+ "p.phone like ? OR p.Address like ? OR p.Description like ?) "		
 		+ "GROUP BY p.PostingId ORDER BY p.PostDate DESC LIMIT ?,?";
  
-		List<PostingListDto> postinglist=new ArrayList<>();
+		List<PostingDto> postinglist=new ArrayList<>();
 		
 		try {
 			System.out.println(" Start : "+start + "end : "+ memberDto.getId());
@@ -184,17 +184,32 @@ public class PostingDao {
 			rs=ps.executeQuery();
 		    while(rs.next()){
 		    	
-		    	PostingListDto posintdto=new PostingListDto();
+		    	MainCategoryDto catedto=new MainCategoryDto();
+		    	SubCategoryDto  subcatedto=new SubCategoryDto();
+		    	Image image=new Image();
+		    	
+		    	PostingDto posintdto=new PostingDto();
 		    	posintdto.setPostingId(rs.getInt("PostingId"));
+		    	posintdto.setPostingId_security(EncryptionUtil.encode(rs.getString("PostingId")));
 		    	posintdto.setMemId(rs.getInt("MemId"));
-		    	posintdto.setProductName(rs.getString("ProductName"));
+		    	posintdto.setTitle(rs.getString("ProductName"));
 		    	posintdto.setPrice(rs.getInt("Price"));
 		    	posintdto.setPhone(rs.getString("Phone"));
 		    	posintdto.setAdr(rs.getString("Address"));
 		    	posintdto.setDsc(rs.getString("Description"));
 		    	posintdto.setDiscount(rs.getString("Discount"));
-		    	posintdto.setImg(rs.getString("Image"));
-		    	posintdto.setSubCateName(rs.getString("Name"));
+		    	
+		    	catedto.setId_security(EncryptionUtil.encode(rs.getString("CateId")));
+		    	
+		    	subcatedto.setSubid_security(EncryptionUtil.encode(rs.getString("SubCateId")));
+		    	subcatedto.setName(rs.getString("Name"));
+		    	
+		    	image.setImage(rs.getString("Image"));
+		    	
+		    	posintdto.setImage(image);
+		    	posintdto.setSubCategory(subcatedto);
+		    	posintdto.setMainCategory(catedto);
+		    	
 		    	postinglist.add(posintdto);
 		    }
 			
@@ -905,7 +920,7 @@ public class PostingDao {
 				return true;
 			}
 		}catch(Exception e){
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		return false;

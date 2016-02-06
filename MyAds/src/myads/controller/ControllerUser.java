@@ -479,13 +479,19 @@ public class ControllerUser extends HttpServlet {
 			 
 			 System.out.println(forward.getPath());
 		 }else if (command.equals("/step2/myregister.ads")){
-			 action=new ViewUsers();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
-			 System.out.println(forward.getPath());
+			 if (request.getSession().getAttribute("membername")==null){
+				 forward.setRedirect(true);
+				 forward.setPath("/step2/index.jsp");
+			 }else{
+				 action=new ViewUsers();
+				 try{
+						forward=action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				 System.out.println(forward.getPath());
+			 }
+			
 		 }else if (command.equals("/product_details.ads")){
 			 action=new ViewPostingDetails();
 			 try{

@@ -71,7 +71,7 @@
 															<input type="file" class="btn_upload" id="btn_uploadimg" name="txt_photo" style="display:none;" required="required">
 															<!-- <span style="display:none" class="storeimg"></span> -->
 														</div>
-														<a href="javascript:" class="btn_edit ico_save" style="margin-top:10px;margin-left:15px;" onclick="addimageMore(this)">Save</a>
+														<a href="javascript:" class="btn_edit ico_save" style="margin-top:10px;margin-left:15px;" >Save</a>
 														<a href="javascript:" class="btn_edit" style="margin-top:10px;">Edit</a>
 														<input type="hidden" value="<%= postingDto.getPostingId() %>"  name="txt_pro_id" class="txt_pro_id" required="required">
 														<input type="hidden" value="<%=postingDto.getImageList().get(i).getImage_id() %>" name="txt_id"  class="txt_id" required="required">
@@ -230,7 +230,7 @@
 	         }
 	    });
 		
-/* 		$(".photo_wrap .t_right .multi_photo a.ico_save").click(function(e){
+ 		$(".photo_wrap .t_right .multi_photo a.ico_save").click(function(e){
 			var form='#frmeditphoto'+$(this).parent('li').find(".txt_id").val();
 			if ($(this).parent('li').find("#btn_uploadimg").val()==null || $(this).parent('li').find("#btn_uploadimg").val()==""){
 				alert("Please attach your image!!");	
@@ -280,7 +280,7 @@
 			}); 
 			
 			
-		}); */
+		}); 
 		
 	});
 	function addmoreimage(obj,id){

@@ -279,11 +279,11 @@
  				var txt_search=$("#txt_search").val();
  				var cate      =$("#demo-select_1").val();
  				var location  =$("#demo-select_2").val();
- 				var url       =cate+"&product="+txt_search+"&location="+location+"&cp=1";
+ 				var url       =cate+"&product="+txt_search+"&location="+location+"&cp="+$(this).attr("rel");
 				if (cate==null || cate==""){
 					url="id=&subid="+"&product="+txt_search+"&location="+location+"&cp="+$(this).attr("rel");
 				}
-				alert(url);
+				//alert(url);
 				$.ajax({
 	    			type : "POST",
 	       			url : "${pageContext.request.contextPath }/search_myproducts.ads?",
@@ -322,10 +322,17 @@
 				var total = $("#paging a:last-child").attr("rel");
 				var current=parseInt($("#txtcurrentpage").val())+1;
 				if (total<current) return;
+				var txt_search=$("#txt_search").val();
+ 				var cate      =$("#demo-select_1").val();
+ 				var location  =$("#demo-select_2").val();
+ 				var url       =cate+"&product="+txt_search+"&location="+location+"&cp="+current;
+				if (cate==null || cate==""){
+					url="id=&subid="+"&product="+txt_search+"&location="+location+"&cp="+current;
+				}
 				$.ajax({
 	    			type : "POST",
-	       			url : "${pageContext.request.contextPath }/paging_mycategory.ads",
-	    			data : "id="+$("#url-catetory").val()+"&subid="+$("#url-subcatetory").val()+"&cp="+current,
+	       			url : "${pageContext.request.contextPath }/search_myproducts.ads?",
+	    			data : url,
 	    			success : function(dat) {    				
 	    				console.log(dat);
 	    				var html='';
@@ -359,11 +366,22 @@
 				if($("#txtcurrentpage").val()==1){
 					return;
 				}
+				
 				$("#txtcurrentpage").val($("#txtcurrentpage").val()-1);
+				
+				var txt_search=$("#txt_search").val();
+ 				var cate      =$("#demo-select_1").val();
+ 				var location  =$("#demo-select_2").val();
+ 				var url       =cate+"&product="+txt_search+"&location="+location+"&cp="+$("#txtcurrentpage").val();
+				if (cate==null || cate==""){
+					url="id=&subid="+"&product="+txt_search+"&location="+location+"&cp="+$("#txtcurrentpage").val();
+				}
+				
+				
 				$.ajax({
 	    			type : "POST",
-	       			url : "${pageContext.request.contextPath }/paging_mycategory.ads",
-	    			data : "id="+$("#url-catetory").val()+"&subid="+$("#url-subcatetory").val()+"&cp="+$("#txtcurrentpage").val(),
+	       			url : "${pageContext.request.contextPath }/search_myproducts.ads?",
+	    			data : url,
 	    			success : function(dat) {    				
 	    				console.log(dat);
 	    				var html='';

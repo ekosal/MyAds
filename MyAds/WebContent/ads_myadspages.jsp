@@ -1,4 +1,5 @@
 	
+<%@page import="myads.model.dto.PostingDto"%>
 <%@page import="myads.model.util.Pagination"%>
 <%@page import="myads.model.dao.PostingDao"%>
 <%@page import="myads.model.dto.PostingListDto"%>
@@ -39,15 +40,16 @@
 						
 							<%
 							    int countPage=Pagination.totalpage;
-								List<PostingListDto> postinglist=(List<PostingListDto>)request.getSession().getAttribute("postingList");
+								List<PostingDto> postinglist=(List<PostingDto>)request.getSession().getAttribute("postingList");
 								for(int i=0;i<postinglist.size();i++){
 							    
 							%>
 							<li>
-								<div class="img"><a href="#none"><img src="uploads/<%=postinglist.get(i).getImg() %>" alt=""></a></div>
+								<div class="img"><a href="#none"><img src="uploads/<%=postinglist.get(i).getImage().getImage() %>" alt=""></a></div>
 								<dl>
-									<dt>Product Name:<a href="#none"><%=postinglist.get(i).getProductName() %></a></dt>
-									<dd>Category Type: <%=postinglist.get(i).getSubCateName() %></dd>
+									<dt>Product Name:<a href="product_details.ads?id=<%=postinglist.get(i).getMainCategory().getId_security() %>&subid=<%=postinglist.get(i).getSubCategory().getSubid_security() %>&proid=<%=postinglist.get(i).getPostingId_security() %>">
+									<%=postinglist.get(i).getTitle() %></a></dt>
+									<dd>Category Type: <%=postinglist.get(i).getSubCategory().getName() %></dd>
 									<dd><strong>Price: <%=postinglist.get(i).getPrice() %></strong></dd>
 									<dd><strong>Discount: <%=postinglist.get(i).getDiscount() %></strong></dd>
 									<dd>Phone Number: <%=postinglist.get(i).getPhone() %></dd>

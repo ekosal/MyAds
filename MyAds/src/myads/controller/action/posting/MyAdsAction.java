@@ -9,6 +9,7 @@ import myads.controller.action.Action;
 import myads.controller.action.ActionForward;
 import myads.model.dao.PostingDao;
 import myads.model.dto.MemberDto;
+import myads.model.dto.PostingDto;
 import myads.model.dto.PostingListDto;
 import myads.model.util.Pagination;
 
@@ -33,7 +34,7 @@ public class MyAdsAction implements Action{
 			}
 			if (search==null) search="";
 			
-			List<PostingListDto> postinglist=postingDao.getSearchPostingList(memberDto, search, Pagination.startpage, Pagination.rowperpage);			
+			List<PostingDto> postinglist=postingDao.getSearchPostingList(memberDto, search, Pagination.startpage, Pagination.rowperpage);			
 			Pagination.countPage(postingDao.countPostingByUser(memberDto,search));	
 			request.getSession().setAttribute("postingList", postinglist);
 			
