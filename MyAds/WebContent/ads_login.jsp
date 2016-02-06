@@ -40,11 +40,11 @@
 										<p><input type="text" value="" placeholder="Enter Username or Email address" name="txt_username" style="width:308px;" required="required"></p>
 									</li>
 									<li>
-										<p>Password <a href="#none" class="btn_forgot_pass">Forgot Password?</a></p>
+										<p>Password <!-- <a href="#none" class="btn_forgot_pass">Forgot Password?</a> --></p>
 										<p><input type="password" value="" placeholder="Password" name="txt_password" style="width:308px;" required="required"></p>
 									</li>
 									<li><!-- <a href="javascript:login()" class="btn_login">Login</a>--><input type="submit" value="Login" class="btn_login" style="width:100%;"> </li>
-									<li><p class="f_right">Login with: <a href="#none"><img src="" alt="facebook">Facebook</a>&nbsp;&nbsp; or &nbsp;&nbsp;<a href="lay_reg.ads">Create My Account</a></p></li>
+									<li><p class="f_right"><!-- Login with: <a href="#none"><img src="" alt="facebook">Facebook</a>&nbsp;&nbsp; or &nbsp;&nbsp; --><a href="lay_reg.ads">Create My Account</a></p></li>
 								</ul>
 							</form>
 						</div>
