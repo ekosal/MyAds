@@ -47,7 +47,7 @@
 						</div>
 
 						<div class="register">
-							<form method="post" action="addnew_com.ads" name="frmcompany">
+							<form method="post" action="addnew_com.ads" id="frmAddCompany" name="frmcompany">
 								<table summary="">
 									<caption></caption>
 									<colgroup>
@@ -76,7 +76,7 @@
 											<td><div><textarea style="width:304px;height:70px;" placeholder="Enter your real current address" name="txt_address" required="required"></textarea></div></td>
 										</tr>
 										<tr>
-											<th colspan="2" class="t_right"><div><!-- <a href="javascript:register()" class="btn_create_acc">Create My Company</a> --><input type="submit" value="Create My Company" class="btn_create_acc"> </div></th>
+											<th colspan="2" class="t_right"><div><a href="javascript:" id="addCompany" class="btn_create_acc">Create My Company</a> <!-- <input type="submit" value="Create My Company" class="btn_create_acc"> --> </div></th>
 										</tr>
 									</tbody>
 								</table>
@@ -94,10 +94,33 @@
 	<!-- //body_section -->
 
 	<jsp:directive.include file="ads_footer.jsp" />
-	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/additional-methods.js"></script>
+    <script src="js/jquery.validate.js"></script>
 	<script>
 		$(document).ready(function(e){
-			$("#AddOro")
+			$("#addCompany").click(function(e){
+				if($('#frmAddCompany').valid()){ 
+					$('#frmAddCompany').ajaxSubmit({
+						url: "./addnew_com.ads",
+						type: 'POST',
+						success: function(data) { 			
+						        if(data){
+						        	alert('YOU HAVE BEEN INSERTED SUCCESSFULLY.')
+						        	window.location.href="./lay_reg.ads";
+						        }else{
+						        	alert('YOU HAVE ERRORS WHEN INSERT UPDATE PROFILE.');
+						        }
+						        //ajaxindicatorstop()
+						        
+						},error:function(data,status,er) { 
+							//ajaxindicatorstop()
+						    console.log("error: "+data+" status: "+status+" er:"+er);
+						}
+					}); 
+				}
+			});
 			
 		});
 		
