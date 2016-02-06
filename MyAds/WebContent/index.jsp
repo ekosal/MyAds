@@ -202,7 +202,7 @@
 						<div class="tbl_myproducts_wrap">
 							<!-- tbl_popular -->
 							<div class="tbl_popular">
-								<h2 class="poplar">Popular Products<a href="#none" class="btn_view_more"><span class="count_items"><span class="txt_r"><strong>550</strong></span> Products</span></a></h2>
+								<h2 class="poplar">Popular Products<!-- <a href="#none" class="btn_view_more"><span class="count_items"><span class="txt_r"><strong>550</strong></span> Products</span></a> --></h2>
 								<div class="mypopular">
 									<!-- cover -->
 									<div class="cover">
@@ -235,7 +235,7 @@
 
 							<!-- //tbl_last post -->
 							<div class="tbl_popular mgt20">
-								<h2 class="poplar">Last Postings<a href="#none" class="btn_view_more"><span class="count_items"><span class="txt_r"><strong>550</strong></span> Products</span></a></h2>
+								<h2 class="poplar">Last Postings<!-- <a href="#none" class="btn_view_more"><span class="count_items"><span class="txt_r"><strong>550</strong></span> Products</span></a> --></h2>
 								<div class="mypopular">
 									<!-- cover -->
 									<div class="cover">
@@ -355,8 +355,8 @@
 						<!-- //tbl_myproducts_wrap -->
 
 						<!-- more content -->
-						<div class="">
-							more content
+						<div class="more_content">
+							More Content
 						</div>
 						<!-- //more content -->
 						

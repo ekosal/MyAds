@@ -20,21 +20,6 @@
 					<!-- mypost header -->
 					<div class="mypost_header">
 						<div class="cboth">
-							<% if(session.getAttribute("membername") == null ){ %>
-							 	<p class="logged" style="position:static;float:left;display:block;">
-									<a href="lay_reg.ads">
-										<img src="img/com/com02.png" alt="" style="text-align:center;">
-									</a>
-								</p>
-							 <% } else {%>
-							 	<p class="logged" style="position:static;float:left;display:block;">
-									<a href="lay_myadsprofile.ads">
-										<img src="img/com/com01.png" alt="" style="text-align:center;">
-										<%= session.getAttribute("membername") %>
-									</a>
-								</p>
-							 <%} %>
-						 
 							<h1 class="f_left"><span style="color:#0174b3;">MyAds's</span> <span style="color:#f7153a;">Company Register</span></h1>
 						</div>
 					</div>
