@@ -129,6 +129,17 @@
 	<script>
 	$(document).ready(function(e){
 		$("#frmregister").validate();
+		$("#btn_Click").click(function(e){
+			var txt_search=$(this).parent(".opt").find("#txt_search").val();
+			var cate	  =$(this).parent(".opt").find("#demo-select_1").val();
+			var location  =$(this).parent(".opt").find("#demo-select_2").val();
+			var url       =cate+"&product="+txt_search+"&location="+location+"&cp=1";
+			if (cate==null || cate==""){
+				url="id=&subid="+"&product="+txt_search+"&location="+location+"&cp=1";
+			}
+			//alert(url);
+			window.location.href = "${pageContext.request.contextPath }/search_myproducts.ads?"+url;
+		});
 		$("#profile_setting").click(function(e){				
 			if ($(this).parents(".welcomebox").find("div").hasClass("show")){					
 				$(this).parents(".welcomebox").find("div").addClass("hide");
