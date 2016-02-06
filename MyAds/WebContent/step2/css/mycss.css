@@ -75,11 +75,17 @@ input[type=submit].btn_create:hover{text-decoration:underline;}
 .all_posts li{margin-bottom:20px; border-bottom:1px solid #ddd;}
 .all_posts li dl{padding-left:240px;overflow:hidden;}
 .all_posts li dl dt{float:left;width:230px;margin-left:-240px;}
-.all_posts li dl dd h4{font-size:18px;}
+.all_posts li dl dd h4{font-size:18px;color:#ff7519;font-weight:bold;}
 .all_posts li dl dd{float:left;width:100%;}
+.all_posts li dl dd p strong{font-size:18px;color:red;}
 .all_posts li a{display:block;}
-.all_posts li a.btn_approve{display:inline-block !important;margin-bottom:20px;padding:10px 20px;border:1px solid #ddd;}
+.all_posts li a.btn_approve, .all_posts li a.btn_moreimg{display:inline-block !important;margin-bottom:20px;padding:10px 20px;border:1px solid #ddd;font-size:14px;background-color:transparent;background-repeat:no-repeat;background-position:0 0;}
 
+.all_posts li .layer ul li{float:left;margin-left:5px;width:250px;height:240px;border:0;text-align:center;background:#eee;}
+
+.all_posts li a.btn_approve{padding-left:35px;background-image:url(ico/ico_tick.png);background-position:10px 50%;}
+.all_posts li a.btn_moreimg{padding-right:35px;background-image:url(ico/ico_down.png);background-position:120px 50%;}
+.all_posts li a.btn_moreimg.on{background-image:url(ico/ico_up.png);}
 
 .myfooter{position:fixed;bottom:0;left:0;right:0;height:35px;background-color:#172d44;}
 .myfooter p{color:#fff;}

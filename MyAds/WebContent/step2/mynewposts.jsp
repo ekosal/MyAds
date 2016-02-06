@@ -33,38 +33,56 @@
 					<div class="all_posts">
 						<ul>
 							<li>
-								<a href="#none">
-									<dl>
-										<dt><img src="images/picture.jpg" alt=""></dt>
-										<dd>
-											<h4>Name poster</h4>
-											<p>Category</p>
-											<p>Key Notice</p>
-											<p>Price</p>
-											<p>Discount</p>
-											<p>Phone</p>
-											<p>Address</p>
-										</dd>
-									</dl>
-								</a>
+								<dl>
+									<dt><img src="images/picture.jpg" alt="" style="width:230px;height:240px;"></dt>
+									<dd>
+										<h4>Name poster</h4>
+										<p>Category</p>
+										<p>Key Notice</p>
+										<p><strong>100 $</strong>/Price</p>
+										<p>Discount</p>
+										<p>Phone</p>
+										<p>Address</p>
+									</dd>
+								</dl>
+								<a href="#none" class="btn_moreimg">See All Photos</a>
 								<a href="#none" class="btn_approve">Approve Now</a>
+								<!-- layer all images -->
+								<div class="layer cboth" style="display:block;">
+									<ul>
+										<li><img src="images/picture.jpg" alt="" style="width:250px;height:240px;"></li>
+										<li><img src="images/picture.jpg" alt="" style="width:250px;height:240px;"></li>
+										<li><img src="images/picture.jpg" alt="" style="width:250px;height:240px;"></li>
+										<li><img src="images/picture.jpg" alt="" style="width:250px;height:240px;"></li>
+									</ul>
+								</div>
+								<!-- //layer all images -->
 							</li>
 							<li>
-								<a href="#none">
-									<dl>
-										<dt><img src="images/picture.jpg" alt=""></dt>
-										<dd>
-											<h4>Name poster</h4>
-											<p>Category</p>
-											<p>Key Notice</p>
-											<p>Price</p>
-											<p>Discount</p>
-											<p>Phone</p>
-											<p>Address</p>
-										</dd>
-									</dl>
-								</a>
+								<dl>
+									<dt><img src="images/picture.jpg" alt="" style="width:230px;height:240px;"></dt>
+									<dd>
+										<h4>Name poster</h4>
+										<p>Category</p>
+										<p>Key Notice</p>
+										<p><strong>120 $</strong>/Price</p>
+										<p>Discount</p>
+										<p>Phone</p>
+										<p>Address</p>
+									</dd>
+								</dl>
+								<a href="#none" class="btn_moreimg on">See All Photos</a>
 								<a href="#none" class="btn_approve">Approve Now</a>
+								<!-- layer all images -->
+								<div class="layer cboth" style="display:none;">
+									<ul>
+										<li><img src="images/picture.jpg" alt="" style="width:250px;height:240px;"></li>
+										<li><img src="images/picture.jpg" alt="" style="width:250px;height:240px;"></li>
+										<li><img src="images/picture.jpg" alt="" style="width:250px;height:240px;"></li>
+										<li><img src="images/picture.jpg" alt="" style="width:250px;height:240px;"></li>
+									</ul>
+								</div>
+								<!-- //layer all images -->
 							</li>
 						</ul>
 					</div>
