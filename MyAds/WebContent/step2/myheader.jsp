@@ -79,9 +79,9 @@
 								</li>
 								<li><a href="#none"><i class="fa fa-table"></i>Postings <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
-										<li><a href="all_posting.adm">All New Posts &nbsp;&nbsp;&nbsp;<strong style="color:#ff7519;">[10]</strong></a></li>
-										<li><a href="#none">All Posts &nbsp;&nbsp;&nbsp;<strong style="color:#ff7519;">[500]</strong></a></li>
-										<li><a href="#none">New Orders &nbsp;&nbsp;&nbsp;<strong style="color:#ff7519;">[20]</strong></a></li>
+										<li><a href="new_posting.adm">All New Posts &nbsp;&nbsp;&nbsp;<strong style="color:#ff7519;">[10]</strong></a></li>
+										<li><a href="all_posting.adm">All Posts &nbsp;&nbsp;&nbsp;<strong style="color:#ff7519;">[500]</strong></a></li>
+										<li><a href="new_order.adm">New Orders &nbsp;&nbsp;&nbsp;<strong style="color:#ff7519;">[20]</strong></a></li>
 									</ul>
 								</li>
 								<li><a href="#none"><i class="fa fa-table"></i> All Products <span class="fa fa-chevron-down"></span></a>
