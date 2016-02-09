@@ -68,11 +68,12 @@ public class ControllerUser extends HttpServlet {
 		 ActionForward forward=new ActionForward();
 		 Action action=null;
 		 
-		 if (command.equals("/")){
-			 
-		 }
 		 
-		 if (command.equals("/home.ads") || command.equals("/")){
+		 
+		if (request.getSession().getAttribute("user")==null){			 
+			forward.setRedirect(true);
+			forward.setPath("lay_log.ads");					
+		 }else if (command.equals("/home.ads") || command.equals("/")){
 			 try{
 					forward.setPath("index.jsp");
 				}catch(Exception e){
@@ -405,10 +406,8 @@ public class ControllerUser extends HttpServlet {
 			 System.out.println(forward.getPath());
 		 }else if (command.equals("/logout.ads")){
 			 try{
-				 HttpSession session=request.getSession(true);
-				 /*session.removeAttribute("membername");
-				 session.removeAttribute("id");*/
-				 session.removeAttribute("user");				 
+				HttpSession session=request.getSession(true);
+				session.removeAttribute("user");				 
 				forward.setRedirect(true);
 				forward.setPath("lay_log.ads");
 					
