@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import myads.controller.action.Action;
 import myads.controller.action.ActionForward;
 import myads.model.dao.UserDao;
+import myads.model.dto.UserDto;
 
 public class LoginUser implements Action{
 
@@ -37,9 +38,20 @@ ActionForward forward=new ActionForward();
 			 
 			 if(rs.next()){
 				 
-				 System.out.println("Login is OK");
-				 session.setAttribute("membername", request.getParameter("txt_username"));
-				 session.setAttribute("id", rs.getInt(1));
+				 
+				 UserDto user=new UserDto();
+				 user.setId(rs.getInt("Id"));
+				 user.setName(rs.getString("Name"));
+				 user.setSex(rs.getString("Sex"));
+				 user.setPhoto(rs.getString("Photo"));
+				 user.setPhone(rs.getString("Phone"));
+				 user.setEmail(rs.getString("Email"));
+				 user.setDob(rs.getString("Dob"));
+				 user.setAddress(rs.getString("Address"));
+				 
+				 session.setAttribute("user", user);
+				 session.setMaxInactiveInterval(24*60*60);
+				// session.setAttribute("id", rs.getInt(1));
 				 
 				 forward.setRedirect(false);
 				 forward.setPath("/step2/myadm.jsp");
@@ -47,8 +59,8 @@ ActionForward forward=new ActionForward();
 			 }else{
 				 
 				 System.out.println("Login fail");
-				 session.removeAttribute("membername");
-				 session.removeAttribute("id");
+				 session.removeAttribute("user");
+				// session.removeAttribute("id");
 				 session.setAttribute("fail", "fail");
 				 
 				 forward.setRedirect(true);

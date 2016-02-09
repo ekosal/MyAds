@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import myads.controller.action.Action;
 import myads.controller.action.ActionForward;
+import myads.model.dao.AdminPostingDao;
 
 public class AllPostingAction implements Action {
 
@@ -12,8 +13,11 @@ public class AllPostingAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ActionForward forward=new ActionForward();
+		AdminPostingDao dao=new AdminPostingDao();
 
 		try{
+			
+			request.getSession().setAttribute("listAllPosting", dao.listAllPosting());			
 			
 			forward.setRedirect(false);
 			forward.setPath("mynewposts.jsp");

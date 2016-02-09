@@ -96,3 +96,4 @@ $(document).ready(function() {
 </script>
 
 <jsp:directive.include file="myfooter.jsp" />
+<script src="js/logout.js"></script>

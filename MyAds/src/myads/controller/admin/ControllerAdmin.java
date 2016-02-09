@@ -1,6 +1,8 @@
 package myads.controller.admin;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
 
 import myads.controller.action.Action;
 import myads.controller.action.ActionForward;
@@ -40,6 +44,9 @@ import myads.controller.action.user.ExistUser;
 import myads.controller.action.user.SaveRole;
 import myads.controller.action.user.ViewPosition;
 import myads.controller.action.user.ViewUsers;
+import myads.controller.admin.posting.AprovePositng;
+import myads.controller.admin.posting.CountNewPosting;
+import myads.model.util.Pagination;
 import myads.controller.action.user.ViewRole;
 
 /**
@@ -66,7 +73,17 @@ public class ControllerAdmin extends HttpServlet {
 		 ActionForward forward=new ActionForward();
 		 Action action=null;
 		 
-		 if (command.equals("/step2/myadm_acc.adm")){
+		if (request.getSession().getAttribute("user")==null){
+			 request.getSession().removeAttribute("user");				 
+			 forward.setRedirect(true);
+			 forward.setPath("../step2/index.jsp");
+		 }else if (command.equals("/step2/logout_admin.adm")){
+			 request.getSession().removeAttribute("user");		
+			 response.setContentType("application/json");
+			 response.setCharacterEncoding("UTF-8");
+			 response.getWriter().write(new Gson().toJson("true"));
+			 return ;
+		 }else if (command.equals("/step2/myadm_acc.adm")){
 			 action=new ViewUsers();
 			 try{
 					forward=action.execute(request, response);
@@ -157,185 +174,274 @@ public class ControllerAdmin extends HttpServlet {
 			 
 			 System.out.println(forward.getPath());
 		 }else if (command.equals("/step2/layad_postion.adm")){
-			 action=new AddNewPosition();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
 			 
-			 System.out.println(forward.getPath());
+				 action=new AddNewPosition();
+				 try{
+						forward=action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				 
+				 System.out.println(forward.getPath());
+			 
+			 
 		 }else if (command.equals("/step2/addposition.adm")){
-			 action=new AddPosition();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
 			 
+				 action=new AddPosition();
+				 try{
+						forward=action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				 
 			 System.out.println(forward.getPath());
+			 
+			 
 		 }else if (command.equals("/step2/layexist_position.adm")){
-			 action=new ExistPosition();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
-			 
-			 System.out.println(forward.getPath());
+
+				 action=new ExistPosition();
+				 try{
+						forward=action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				 
+				 System.out.println(forward.getPath());
+			
+			
 		 }else if (command.equals("/step2/maincate.adm")){
-			 action=new ViewMainCategory();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+			
+				 action=new ViewMainCategory();
+				 try{
+						forward=action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				 
+				 //System.out.println(forward.getPath());
 			 
-			 System.out.println(forward.getPath());
+			
 		 }else if (command.equals("/step2/layad_maincate.adm")){
-			 action=new AddNewMainCategory();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
 			 
-			 System.out.println(forward.getPath());
+				 action=new AddNewMainCategory();
+				 try{
+						forward=action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				 
+				 //System.out.println(forward.getPath());
+			
+			 
+			 
 		 }else if (command.equals("/step2/layexit_maincate.adm")){
-			 action=new ExistMainCategory();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+
+				 action=new ExistMainCategory();
+				 try{
+						forward=action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				 
+				 //System.out.println(forward.getPath());
+			
 			 
-			 System.out.println(forward.getPath());
 		 }else if (command.equals("/step2/save_maincate.adm")){
-			 action=new SaveMainCategory();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+			
+				 action=new SaveMainCategory();
+				 try{
+						forward=action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				 
+				 //System.out.println(forward.getPath());
+			
 			 
-			 System.out.println(forward.getPath());
 		 }else if (command.equals("/step2/maincate_delete.adm")){
-			 action=new DeleteMainCategoryAction();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+			
+				 action=new DeleteMainCategoryAction();
+				 try{
+						forward=action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				 
+				// System.out.println(forward.getPath());
 			 
-			 System.out.println(forward.getPath());
+			 
 		 }else if (command.equals("/step2/subcate.adm")){
-			 action=new ViewSubCategory();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
 			 
-			 System.out.println(forward.getPath());
+				 action=new ViewSubCategory();
+				 try{
+						forward=action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				 
+				 //System.out.println(forward.getPath());
+			 
+			
 		 }else if (command.equals("/step2/layad_subcate.adm")){
-			 action=new AddNewSubCategory();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
 			 
-			 System.out.println(forward.getPath());
+				 action=new AddNewSubCategory();
+				 try{
+						forward=action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				 
+				// System.out.println(forward.getPath());
+			 
+			
 		 }else if (command.equals("/step2/addcate.adm")){
-			 action=new AddCategory();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+			  
+					 action=new AddCategory();
+					 try{
+							forward=action.execute(request, response);
+						}catch(Exception e){
+							e.printStackTrace();
+						}
+					 
+					// System.out.println(forward.getPath());
+				 
 			 
-			 System.out.println(forward.getPath());
 		 }else if (command.equals("/step2/addsubcate.adm")){
-			 action=new AddSubCategory();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+			  
+				 action=new AddSubCategory();
+				 try{
+						forward=action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				 
+				 //System.out.println(forward.getPath());
 			 
-			 System.out.println(forward.getPath());
+			
 		 }else if (command.equals("/step2/layexit_subcate.adm")){
-			 action=new ExistSubCategory();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
 			 
-			 System.out.println(forward.getPath());
+				 action=new ExistSubCategory();
+				 try{
+						forward=action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				 
+				// System.out.println(forward.getPath());
+			 
+			
 		 }else if (command.equals("/step2/myprovince.adm")){
-			 action=new ViewProvince();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+			
+				 action=new ViewProvince();
+				 try{
+						forward=action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				 
+				 //System.out.println(forward.getPath());
 			 
-			 System.out.println(forward.getPath());
+			 
 		 }else if (command.equals("/step2/layad_province.adm")){
-			 action=new AddNewProvince();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+			
+				 action=new AddNewProvince();
+				 try{
+						forward=action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				 
+				 System.out.println(forward.getPath());
 			 
-			 System.out.println(forward.getPath());
+			
 		 }else if (command.equals("/step2/save_subcate.adm")){
-			 action=new SaveSubCategory();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
 			 
-			 System.out.println(forward.getPath());
+				 action=new SaveSubCategory();
+				 try{
+						forward=action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				 
+				 //System.out.println(forward.getPath());
+			 
+			
 		 }else if (command.equals("/step2/addprovince.adm")){
-			 action=new AddProvince();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+			
+				 action=new AddProvince();
+				 try{
+						forward=action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				 
+				// System.out.println(forward.getPath());
 			 
-			 System.out.println(forward.getPath());
+			
 		 }else if (command.equals("/step2/layexist_province.adm")){
-			 action=new ExistProvince();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
 			 
-			 System.out.println(forward.getPath());
+				 action=new ExistProvince();
+				 try{
+						forward=action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				 
+				 //System.out.println(forward.getPath());
+			 
+			 
 		 }else if (command.equals("/step2/save_province.adm")){
-			 action=new SaveProvince();
+			
+				 	action=new SaveProvince();
+				 	try{
+						forward=action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				 
+				// System.out.println(forward.getPath());
+			 
+			 
+		 }else if (command.equals("/step2/new_posting.adm")){
+			 
+				 action=new AllPostingAction();
+				 try{
+						forward=action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+			 
+			 //System.out.println(forward.getPath());
+			 
+		 }else if (command.equals("/step2/count_newPosting.adm")){
+			 
+			 action=new CountNewPosting();
 			 try{
-					forward=action.execute(request, response);
+					 forward=action.execute(request, response);
+					 response.setContentType("application/json");
+					 response.setCharacterEncoding("UTF-8");
+					 response.getWriter().write(new Gson().toJson(request.getSession().getAttribute("result")));
+					 return;
 				}catch(Exception e){
 					e.printStackTrace();
 				}
+		 
+		 //System.out.println(forward.getPath());
+		 
+	  }else if (command.equals("/step2/approve_posting.adm")){
+			 		 
+				 action=new AprovePositng();
+				 try{
+						forward=action.execute(request, response);
+							 response.getWriter().write(new Gson().toJson(request.getSession().getAttribute("result")));
+							 return ;
+
+					}catch(Exception e){
+						e.printStackTrace();
+					}
 			 
-			 System.out.println(forward.getPath());
-		 }else if (command.equals("/step2/all_posting.adm")){
-			 action=new AllPostingAction();
-			 try{
-					forward=action.execute(request, response);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+			 //System.out.println(forward.getPath());
 			 
-			 System.out.println(forward.getPath());
 		 }
 		 
 

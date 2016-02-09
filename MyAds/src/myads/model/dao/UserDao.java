@@ -13,7 +13,7 @@ static ResultSet rs;
 
 	public ResultSet login(String uname, String password){
 		
-		String sql="select * from tbl_user where Name=? AND Password=?";
+		String sql="select Id,Name,Sex,Photo,Dob,Email,Phone,Address from tbl_user where Name=? AND Password=?";
 		try {
 			
 			ps=SqlConnection.getConnection().prepareStatement(sql);

@@ -30,6 +30,7 @@
 	<script src="js/nprogress.js"></script>
 	<script>
 		NProgress.start();
+		
 	</script>
 </head>
 
@@ -77,9 +78,9 @@
 										<li><a href="#none">Policies</a></li>
 									</ul>
 								</li>
-								<li><a href="#none"><i class="fa fa-table"></i>Postings <span class="fa fa-chevron-down"></span></a>
+								<li><a href="javascript:" id="post_view"><i class="fa fa-table"></i>Postings <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
-										<li><a href="new_posting.adm">All New Posts &nbsp;&nbsp;&nbsp;<strong style="color:#ff7519;">[10]</strong></a></li>
+										<li><a href="new_posting.adm">All New Posts &nbsp;&nbsp;&nbsp;<strong style="color:#ff7519;" id="countNewPosting">[0]</strong></a></li>
 										<li><a href="all_posting.adm">All Posts &nbsp;&nbsp;&nbsp;<strong style="color:#ff7519;">[500]</strong></a></li>
 										<li><a href="new_order.adm">New Orders &nbsp;&nbsp;&nbsp;<strong style="color:#ff7519;">[20]</strong></a></li>
 									</ul>
@@ -89,7 +90,7 @@
 										<li><a href="maincate.adm">Main Categories</a></li>
 										<li><a href="subcate.adm">Sub Categories</a></li>
 										<li><a href="myprovince.adm">Provinces</a></li>
-										<li><a href="company.ads">Companies</a></li>
+										<li><a href="company.adm">Companies</a></li>
 									</ul>
 								</li>
 								<li><a href="#none"><i class="fa fa-edit"></i> Animations <span class="fa fa-chevron-down"></span></a>
@@ -184,7 +185,7 @@
 										</a>
 									</li>
 									<li><a href="javascript:;">Help</a></li>
-									<li><a href="index.jsp"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+									<li><a href="javascript:" id="btn_logOut"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
 								</ul>
 							</li>
 							<li role="presentation" class="dropdown">
