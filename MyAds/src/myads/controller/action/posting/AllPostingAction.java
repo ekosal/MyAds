@@ -17,7 +17,8 @@ public class AllPostingAction implements Action {
 
 		try{
 			
-			request.getSession().setAttribute("listAllPosting", dao.listAllPosting());			
+			request.getSession().setAttribute("listAllPosting", dao.listAllPosting());		
+			System.out.println("Hello");
 			forward.setRedirect(false);
 			forward.setPath("mynewposts.jsp");
 			return forward;
