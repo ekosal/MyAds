@@ -70,10 +70,7 @@ public class ControllerUser extends HttpServlet {
 		 
 		 
 		 
-		if (request.getSession().getAttribute("user")==null){			 
-			forward.setRedirect(true);
-			forward.setPath("lay_log.ads");					
-		 }else if (command.equals("/home.ads") || command.equals("/")){
+		 if (command.equals("/home.ads") || command.equals("/")){
 			 try{
 					forward.setPath("index.jsp");
 				}catch(Exception e){
