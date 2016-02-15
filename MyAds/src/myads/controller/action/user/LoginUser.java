@@ -49,7 +49,7 @@ ActionForward forward=new ActionForward();
 				 user.setDob(rs.getString("Dob"));
 				 user.setAddress(rs.getString("Address"));
 				 
-				 session.setAttribute("user", user);
+				 session.setAttribute("userinfo", user);
 				 session.setMaxInactiveInterval(24*60*60);
 				// session.setAttribute("id", rs.getInt(1));
 				 

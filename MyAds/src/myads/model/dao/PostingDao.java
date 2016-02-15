@@ -368,7 +368,7 @@ public class PostingDao {
 			String sql="select sc.SubCateId,c.CateId,i.Image,p.PostingId,p.ProductName,p.Price,p.Discount,p.KeyNotice from tbl_posting "
 					+ "p INNER JOIN tbl_sub_category sc on p.SubCateId=sc.SubCateId "
 					+ "INNER JOIN tbl_category c on c.CateId=sc.CateId INNER JOIN tbl_image "
-					+ "i on p.PostingId=i.PostingId WHERE (p.ProductName LIKE ? or p.Address LIKE ? ) and p.Active=1 and i.order=1 ORDER BY p.PostDate DESC  LIMIT ?,?";
+					+ "i on p.PostingId=i.PostingId WHERE (p.ProductName LIKE ? AND p.Address LIKE ? ) and p.Active=1 and i.order=1 ORDER BY p.PostDate DESC  LIMIT ?,?";
 			
 			ps=ds.getConnection().prepareStatement(sql);
 			ps.setString(1,"%"+txt_name+"%");
@@ -417,7 +417,7 @@ public class PostingDao {
 			String sql="select sc.SubCateId,c.CateId,i.Image,p.PostingId,p.ProductName,p.Price,p.Discount,p.KeyNotice from tbl_posting "
 					+ "p INNER JOIN tbl_sub_category sc on p.SubCateId=sc.SubCateId "
 					+ "INNER JOIN tbl_category c on c.CateId=sc.CateId INNER JOIN tbl_image "
-					+ "i on p.PostingId=i.PostingId WHERE (p.ProductName LIKE ? or p.Address LIKE ? or sc.SubCateId = ?) and p.Active=1 and i.order=1 ORDER BY p.PostDate DESC  LIMIT ?,?";
+					+ "i on p.PostingId=i.PostingId WHERE (p.ProductName LIKE ? AND p.Address LIKE ? AND sc.SubCateId = ?) and p.Active=1 and i.order=1 ORDER BY p.PostDate DESC  LIMIT ?,?";
 			
 			ps=ds.getConnection().prepareStatement(sql);
 			ps.setString(1,"%"+txt_name+"%");

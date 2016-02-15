@@ -73,8 +73,8 @@ public class ControllerAdmin extends HttpServlet {
 		 ActionForward forward=new ActionForward();
 		 Action action=null;
 		 
-		if (request.getSession().getAttribute("user")==null){
-			 request.getSession().removeAttribute("user");				 
+		if (request.getSession().getAttribute("userinfo")==null){
+			 request.getSession().removeAttribute("userinfo");				 
 			 forward.setRedirect(true);
 			 forward.setPath("../step2/index.jsp");
 		 }else if (command.equals("/step2/logout_admin.adm")){

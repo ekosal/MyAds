@@ -264,7 +264,8 @@
 					$(this).parents(".welcomebox").find("div").addClass("show");
 				}
 			});	
-				$("#btn_Click").click(function(e){
+			$("#btn_Click").click(function(e){
+					
 					var txt_search=$(this).parent(".opt").find("#txt_search").val();
 					var cate	  =$(this).parent(".opt").find("#demo-select_1").val();
 					var location  =$(this).parent(".opt").find("#demo-select_2").val();
@@ -275,7 +276,7 @@
 					//alert(url);
 					window.location.href = "${pageContext.request.contextPath }/search_myproducts.ads?"+url;
 					//window.location.href = "${pageContext.request.contextPath }/search_myproducts.ads?"+url;
-				});
+				
 			});
 			$("#subCategoryList ul li a").click(function(e){
 				var categoryId=$(this).parents("dd").prev("dt").find("a").attr("role");
