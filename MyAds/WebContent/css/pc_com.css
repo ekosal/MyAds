@@ -390,7 +390,7 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 /* table myproducts_wrap */
 .tbl_myproducts_wrap{display:block;overflow:hidden;}
 
-.tbl_popular{display:block;height:436px;overflow:hidden;}
+.tbl_popular{display:block;/*height:436px;*/overflow:hidden;}
 .tbl_popular h2.poplar{padding:5px 0 5px 20px;border-bottom:2px solid #133488;}
 .tbl_popular h2.poplar a.btn_view_more span.count_items{float:right;display:block;padding:3px 25px 3px 0;font-size:14px;font-weight:normal;background:url(../img/ico/ico_more.png) no-repeat 100% -3px;}
 .tbl_popular h2.poplar a.btn_view_more:hover span.count_items{background:url(../img/ico/ico_more_over.png) no-repeat 100% -3px;}
