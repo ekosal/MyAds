@@ -155,13 +155,14 @@
 
 									<!-- sub_cnt -->
 									<div class="sub_cnt">
-										<p class="dsc"><%=postingDto.getTitle() %></p>
-										<!-- <p>
+										<p class="dsc" style="text-transform:capitalize;"><%=postingDto.getTitle() %></p>
+										<p><%=postingDto.getKey() %></p>
+										 <!-- <p>
 											<span class="fav"s><a href="#none"></a><a href="#none"></a><a href="#none"></a><a href="#none"></a><a href="#none"></a></span>
 											<span><strong>100.0%</strong> of buyers enjoyed this products (2 votes) &nbsp;&nbsp; | &nbsp;&nbsp; <strong>50</strong> orders</span>
 										</p> -->
 
-										<div class="mode" style="border:1px solid #eee;">
+										<div class="mode" style="margin-top:10px;border:1px solid #eee;">
 											<!-- <h2>Key notice</h2> -->
 											<div id="cxslide_fade" class="cxslide_fade" style="background-color:#fff;">
 												<div class="box" style="height:320px;">
@@ -270,8 +271,8 @@
 										for(int i=0;i<postingDto.getImageList().size();i++){
 										
 									%>
-									<div class="img" style="max-width:670px;height:auto;">
-										<img src="uploads/<%=postingDto.getImageList().get(i).getImage() %>" alt="">
+									<div class="img" style="width:670px;height:auto;">
+										<img src="uploads/<%=postingDto.getImageList().get(i).getImage() %>" alt="" style="width:auto;max-width:670px;height:auto;margin-bottom:10px;">
 									</div>
 									<%
 										}
