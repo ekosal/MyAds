@@ -74,6 +74,7 @@ public class AdminPostingDao {
 				subcategory.setName(rs.getString("subcateName"));
 								
 				MemberDto memberDto=new MemberDto();
+				memberDto.setName(rs.getString("Name"));
 				memberDto.setId(rs.getInt("MemId"));
 
 				
