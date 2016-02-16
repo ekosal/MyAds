@@ -603,7 +603,7 @@ public class PostingDao {
 					+ "m.`Name`,m.Phone,m.Email,m.Address,c.CateId,c.`Name` as cateName,sc.SubCateId,sc.`Name` as subcateName from tbl_posting "
 					+ "p INNER JOIN tbl_sub_category sc on p.SubCateId=sc.SubCateId "
 					+ "INNER JOIN tbl_category c on c.CateId=sc.CateId INNER JOIN tbl_member m on p.MemId=m.MemId "
-					+ " WHERE c.CateId=? and p.Active=1 and sc.SubCateId=? and p.PostingId=?";
+					+ " WHERE c.CateId=? and sc.SubCateId=? and p.PostingId=?";
 			String sql1 = "select i.image from tbl_image i INNER JOIN tbl_posting p "
 					+ "on i.PostingId=p.PostingId where "
 					+ "p.PostingId=? ORDER BY i.`order`";
@@ -634,12 +634,14 @@ public class PostingDao {
 				}
 				
 				MainCategoryDto mainCategory=new MainCategoryDto();
+				mainCategory.setId_security(rs.getString("CateId"));
 				mainCategory.setId(rs.getInt("CateId"));
 				mainCategory.setName(rs.getString("cateName"));
 				
 				SubCategoryDto subcategory=new SubCategoryDto();
 				subcategory.setSubid(rs.getInt("SubCateId"));
 				subcategory.setName(rs.getString("subcateName"));
+				subcategory.setSubid_security("SubCateId");
 								
 				MemberDto memberDto=new MemberDto();
 				memberDto.setName(rs.getString("Name"));
@@ -649,6 +651,7 @@ public class PostingDao {
 				
 				posting.setTitle(rs.getString("ProductName"));
 				posting.setPostingId(rs.getInt("PostingId"));
+				posting.setPostingId_security(rs.getString("PostingId"));
 				posting.setPrice(rs.getInt("Price"));
 				posting.setKey(rs.getString("KeyNotice"));
 				posting.setDiscount(rs.getString("Discount"));

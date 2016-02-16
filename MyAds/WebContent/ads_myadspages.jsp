@@ -193,8 +193,8 @@
 	    					html+='<li>'
 	    					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["image"].image+'" alt=""></a></div>'
 	    					      +'<dl>'
-	    					      +'<dt>Product Name:<a href="#none">'+dat[1][i]["ProductName"]+'</a></dt>'
-	    					      +'<dd>Category Type: '+dat[1][i]["SubCateName"]+'</dd>'
+	    					      +'<dt>Product Name:<a href="product_details.ads?id='+dat[1][i]["mainCategory"].id_security+'&subid='+dat[1][i]["subCategory"].subid_security+'&proid='+dat[1][i]["postingId_security"]+'">'+dat[1][i]["Title"]+'</a></dt>'
+	    					      +'<dd>Category Type: '+dat[1][i]["subCategory"].name+'</dd>'
 	    					      +'<dd><strong>Price: '+dat[1][i]["Price"]+'</strong></dd>'
 	    					      +'<dd><strong>Discount: '+dat[1][i]["discount"]+'</strong></dd>'
 	    					      +'<dd>Phone Number: '+dat[1][i]["Phone"]+'</dd>'
@@ -400,8 +400,8 @@
 					html+='<li>'
 					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["image"].image+'" alt=""></a></div>'
 					      +'<dl>'
-					      +'<dt>Product Name:<a href="#none">'+dat[1][i]["ProductName"]+'</a></dt>'
-					      +'<dd>Category Type: '+dat[1][i]["SubCateName"]+'</dd>'
+					      +'<dt>Product Name:<a href="product_details.ads?id='+dat[1][i]["mainCategory"].id_security+'&subid='+dat[1][i]["subCategory"].subid_security+'&proid='+dat[1][i]["postingId_security"]+'">'+dat[1][i]["Title"]+'</a></dt>'
+					      +'<dd>Category Type: '+dat[1][i]["subCategory"].name+'</dd>'
 					      +'<dd><strong>Price: '+dat[1][i]["Price"]+'</strong></dd>'
 					      +'<dd><strong>Discount: '+dat[1][i]["discount"]+'</strong></dd>'
 					      +'<dd>Phone Number: '+dat[1][i]["Phone"]+'</dd>'
@@ -456,7 +456,8 @@
     					html+='<li>'
     					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["image"].image+'" alt=""></a></div>'
     					      +'<dl>'
-    					      +'<dt>Product Name:<a href="#none">'+dat[1][i]["Title"]+'</a></dt>'
+    					      +'<dt>Product Name:<a href="product_details.ads?id='+dat[1][i]["mainCategory"].id_security+'&subid='+dat[1][i]["subCategory"].subid_security+'&proid='+dat[1][i]["postingId_security"]+'">'+
+    					      dat[1][i]["Title"]+'</a></dt>'
     					      +'<dd>Category Type: '+dat[1][i]["subCategory"].name+'</dd>'
     					      +'<dd><strong>Price: '+dat[1][i]["Price"]+'</strong></dd>'
     					      +'<dd><strong>Discount: '+dat[1][i]["discount"]+'</strong></dd>'
@@ -498,7 +499,7 @@
     					html+='<li>'
     					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["image"].image+'" alt=""></a></div>'
     					      +'<dl>'
-    					      +'<dt>Product Name:<a href="#none">'+dat[1][i]["Title"]+'</a></dt>'
+    					      +'<dt>Product Name:<a href="product_details.ads?id='+dat[1][i]["mainCategory"].id_security+'&subid='+dat[1][i]["subCategory"].subid_security+'&proid='+dat[1][i]["postingId_security"]+'">'+dat[1][i]["Title"]+'</a></dt>'
     					      +'<dd>Category Type: '+dat[1][i]["subCategory"].name+'</dd>'
     					      +'<dd><strong>Price: '+dat[1][i]["Price"]+'</strong></dd>'
     					      +'<dd><strong>Discount: '+dat[1][i]["discount"]+'</strong></dd>'
@@ -532,8 +533,7 @@
 		function prePerPage(){
 			if($("#txtcurrentpage").val()==1){
 				return;
-			}
-		
+			}		
 			$("#txtcurrentpage").val($("#txtcurrentpage").val()-1);
 			$.ajax({
     			type : "POST",
@@ -547,7 +547,7 @@
     					html+='<li>'
     					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["image"].image+'" alt=""></a></div>'
     					      +'<dl>'
-    					      +'<dt>Product Name:<a href="#none">'+dat[1][i]["Title"]+'</a></dt>'
+    					      +'<dt>Product Name:<a href="product_details.ads?id='+dat[1][i]["mainCategory"].id_security+'&subid='+dat[1][i]["subCategory"].subid_security+'&proid='+dat[1][i]["postingId_security"]+'">'+dat[1][i]["Title"]+'</a></dt>'
     					      +'<dd>Category Type: '+dat[1][i]["subCategory"].name+'</dd>'
     					      +'<dd><strong>Price: '+dat[1][i]["Price"]+'</strong></dd>'
     					      +'<dd><strong>Discount: '+dat[1][i]["discount"]+'</strong></dd>'
