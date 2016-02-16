@@ -191,7 +191,7 @@
 	    				var html='';
 	    				for(var i=0;i<dat[1].length;i++){
 	    					html+='<li>'
-	    					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["img"]+'" alt=""></a></div>'
+	    					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["image"].image+'" alt=""></a></div>'
 	    					      +'<dl>'
 	    					      +'<dt>Product Name:<a href="#none">'+dat[1][i]["ProductName"]+'</a></dt>'
 	    					      +'<dd>Category Type: '+dat[1][i]["SubCateName"]+'</dd>'
@@ -398,7 +398,7 @@
 				var html='';
 				for(var i=0;i<dat[1].length;i++){
 					html+='<li>'
-					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["img"]+'" alt=""></a></div>'
+					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["image"].image+'" alt=""></a></div>'
 					      +'<dl>'
 					      +'<dt>Product Name:<a href="#none">'+dat[1][i]["ProductName"]+'</a></dt>'
 					      +'<dd>Category Type: '+dat[1][i]["SubCateName"]+'</dd>'
@@ -454,7 +454,7 @@
     				var page='';
     				for(var i=0;i<dat[1].length;i++){
     					html+='<li>'
-    					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["img"]+'" alt=""></a></div>'
+    					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["image"].image+'" alt=""></a></div>'
     					      +'<dl>'
     					      +'<dt>Product Name:<a href="#none">'+dat[1][i]["Title"]+'</a></dt>'
     					      +'<dd>Category Type: '+dat[1][i]["subCategory"].name+'</dd>'
@@ -496,7 +496,7 @@
     				var page='';
     				for(var i=0;i<dat[1].length;i++){
     					html+='<li>'
-    					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["img"]+'" alt=""></a></div>'
+    					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["image"].image+'" alt=""></a></div>'
     					      +'<dl>'
     					      +'<dt>Product Name:<a href="#none">'+dat[1][i]["Title"]+'</a></dt>'
     					      +'<dd>Category Type: '+dat[1][i]["subCategory"].name+'</dd>'
@@ -545,7 +545,7 @@
     				var page='';
     				for(var i=0;i<dat[1].length;i++){
     					html+='<li>'
-    					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["img"]+'" alt=""></a></div>'
+    					      +'<div class="img"><a href="#none"><img src="uploads/'+dat[1][i]["image"].image+'" alt=""></a></div>'
     					      +'<dl>'
     					      +'<dt>Product Name:<a href="#none">'+dat[1][i]["Title"]+'</a></dt>'
     					      +'<dd>Category Type: '+dat[1][i]["subCategory"].name+'</dd>'
