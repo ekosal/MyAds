@@ -155,14 +155,14 @@
 
 									<!-- sub_cnt -->
 									<div class="sub_cnt">
-										<p class="dsc" style="text-transform:capitalize;"><%=postingDto.getTitle() %></p>
+										<p class="dsc"><%=postingDto.getTitle() %></p>
 										<p><%=postingDto.getKey() %></p>
 										 <!-- <p>
 											<span class="fav"s><a href="#none"></a><a href="#none"></a><a href="#none"></a><a href="#none"></a><a href="#none"></a></span>
 											<span><strong>100.0%</strong> of buyers enjoyed this products (2 votes) &nbsp;&nbsp; | &nbsp;&nbsp; <strong>50</strong> orders</span>
 										</p> -->
 
-										<div class="mode" style="margin-top:10px;border:1px solid #eee;">
+										<div class="mode" style="padding:0;border:1px solid #eee;">
 											<!-- <h2>Key notice</h2> -->
 											<div id="cxslide_fade" class="cxslide_fade" style="background-color:#fff;">
 												<div class="box" style="height:320px;">
@@ -174,7 +174,7 @@
 													    %>
 																<li style="width:535px;height:320px;background-color:#fff;">
 																	<a href="#none">
-																		<img src="uploads/<%=postingDto.getImageList().get(i).getImage() %>" style="width:auto;height:320px;">
+																		<img src="uploads/<%=postingDto.getImageList().get(i).getImage() %>" style="width:auto;height:auto;max-height:320px;">
 																		<!-- can add more text here -->
 																	</a>
 																</li>
@@ -185,7 +185,7 @@
 														%>
 															<li style="width:535px;height:320px;background-color:#fff;">
 																	<a href="#none">
-																		<img src="uploads/<%=postingDto.getImageList().get(i).getImage() %>" style="width:auto;height:320px;">
+																		<img src="uploads/<%=postingDto.getImageList().get(i).getImage() %>" style="width:auto;height:auto;max-height:320px;">
 																		<!-- can add more text here -->
 																	</a>
 															</li>
