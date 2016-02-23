@@ -145,13 +145,13 @@
 									%>
 									<li>
 										<a href="product_details.ads?id=<%=listProdict.get(i).getMainCategory().getId_security() %>&subid=<%=listProdict.get(i).getSubCategory().getSubid_security() %>&proid=<%=listProdict.get(i).getPostingId_security() %>" target="_blank">
-											<img src="uploads/<%=listProdict.get(i).getImage().getImage() %>" alt="" style="width:236px;height:250px;">
+											<img src="uploads/<%=listProdict.get(i).getImage().getImage() %>" alt="" style="width:auto;max-width:237px;height:250px;">
 											<p class="title"><%=listProdict.get(i).getTitle() %></p>
 											<p><%=listProdict.get(i).getKey() %></p>
+											<dl>
+												<dd><strong>US $<%=listProdict.get(i).getPrice() %></strong>/price</dd>
+											</dl>
 										</a>
-										<dl>
-											<dd><strong>US $<%=listProdict.get(i).getPrice() %></strong>/price</dd>
-										</dl>
 									</li>
 									<%
 										}
