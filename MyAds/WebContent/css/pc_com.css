@@ -396,7 +396,7 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_popular h2.poplar a.btn_view_more:hover span.count_items{background:url(../img/ico/ico_more_over.png) no-repeat 100% -3px;}
 
 .tbl_popular .mypopular{display:block;padding-left:293px;border:1px solid #eee;border-top:0;overflow:hidden;}
-.tbl_popular .mypopular .cover{float:left;width:283px;height:100%;margin-left:-293px;border-right:1px solid #eee;}
+.tbl_popular .mypopular .cover{float:left;width:283px;height:422px;margin-left:-293px;border-right:1px solid #eee;}
 .tbl_popular .mypopular .items_wrap{display:block;}
 
 .tbl_popular .mypopular .items_wrap ul{overflow:hidden;}
