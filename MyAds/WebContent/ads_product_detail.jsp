@@ -39,7 +39,7 @@
 						<span><a href="javascript:"><%=postingDto.getTitle() %></a></span>
 					</div>
 					<!-- cnt -->
-					<div class="cnt cboth" style="padding-left:220px;padding-right:0;">
+					<div class="cnt womenclothes cboth" style="padding-left:220px;padding-right:0;"><!-- <div class="cnt (switch class) cboth" style="padding-left:220px;padding-right:0;"> -->
 
 						<!-- lbn_cnt -->
 						<div class="lbn_cnt">

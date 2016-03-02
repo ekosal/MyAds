@@ -170,7 +170,7 @@
 	.container > .cnt.realestates .lbn_cnt .nav .item dd ul li a{color:#4CAF50;}
 
 	
-	/* apply for subcategories */
+	/* apply for subcategories page2 & page 3 */
 	.container > .cnt.womenclothes .tbl_product3 ul li a p.title{color:#e72c01;}
 	.container > .cnt.womenclothes .tbl_product3 ul li:hover{border:1px solid #e72c01;}
 	.container > .cnt.womenclothes .tbl_product3 ul li a:hover p.title{color:#e72c01;}
@@ -218,6 +218,21 @@
 	.container > .cnt.realestates .tbl_product3 ul li a p.title{color:#4CAF50;}
 	.container > .cnt.realestates .tbl_product3 ul li:hover{border:1px solid #4CAF50;}
 	.container > .cnt.realestates .tbl_product3 ul li a:hover p.title{color:#4CAF50;}
+	
+	/* apply for title page 3 */
+	.container > .cnt.womenclothes p.dsc{color:#e72c01;}
+	.container > .cnt.computeroffice p.dsc{color:#1571b3;}
+	.container > .cnt.telephone p.dsc{color:#534873;}
+	.container > .cnt.consummerelectronic p.dsc{color:#1da2a9;}
+	.container > .cnt.jewelery p.dsc{color:#673AB7;}
+	.container > .cnt.bagsandshoes p.dsc{color:#1970aa;}
+	.container > .cnt.healthbeauty p.dsc{color:#9a199d;}
+	.container > .cnt.toykidbaby p.dsc{color:#00bcd4;}
+	.container > .cnt.sportoudoor p.dsc{color:#0224af;}
+	.container > .cnt.homeimproment p.dsc{color:#47322a;}
+	.container > .cnt.automobile p.dsc{color:#f91f63;}
+	.container > .cnt.realestates p.dsc{color:#4CAF50;}
+	
 
 
 /* left adv */
