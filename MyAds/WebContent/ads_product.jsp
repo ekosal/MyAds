@@ -50,7 +50,7 @@
 						%>
 					</div>
 					<!-- cnt -->
-					<div class="cnt cboth" style="padding-left:220px;padding-right:200px;">
+					<div class="cnt womenclothes cboth" style="padding-left:220px;padding-right:200px;"><!-- <div class="cnt (switch class) cboth" style="padding-left:220px;padding-right:200px;"> -->
 						<!-- lbn_cnt -->
 						<div class="lbn_cnt">
 							<!-- navigation -->
@@ -143,7 +143,7 @@
 									<%
 										for(int i=0;i<listProdict.size();i++){
 									%>
-									<li>
+									<li style="text-align:center;">
 										<a href="product_details.ads?id=<%=listProdict.get(i).getMainCategory().getId_security() %>&subid=<%=listProdict.get(i).getSubCategory().getSubid_security() %>&proid=<%=listProdict.get(i).getPostingId_security() %>" target="_blank">
 											<img src="uploads/<%=listProdict.get(i).getImage().getImage() %>" alt="" style="width:auto;max-width:237px;height:250px;">
 											<p class="title"><%=listProdict.get(i).getTitle() %></p>

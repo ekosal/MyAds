@@ -206,7 +206,7 @@
 								<div class="mypopular">
 									<!-- cover -->
 									<div class="cover">
-										<img src="img/popular/1.png" alt="" style="width:283px;height:402px;">
+										<img src="img/popular/1.png" alt="" style="width:auto;max-width:283px;height:402px;">
 									</div>
 									<!-- //cover -->
 
@@ -217,9 +217,9 @@
 												List<PostingDto> popularPosting=category.getPopularPosting();
 												for(int i=0;i<popularPosting.size();i++){
 											%>
-											<li>
+											<li style="text-align: center;">
 												<img src="uploads/<%=popularPosting.get(i).getImage().getImage() %>" alt="" style="width:auto;max-width:170px;height:150px;">
-												<p><a href="product_details.ads?id=<%=popularPosting.get(i).getMainCategory().getId_security() %>&subid=<%=popularPosting.get(i).getSubCategory().getSubid_security() %>&proid=<%=popularPosting.get(i).getPostingId_security() %>" target="_blank" >
+												<p><a href="product_details.ads?id=<%=popularPosting.get(i).getMainCategory().getId_security() %>&subid=<%=popularPosting.get(i).getSubCategory().getSubid_security() %>&proid=<%=popularPosting.get(i).getPostingId_security() %>" target="_blank">
 													<%=popularPosting.get(i).getTitle() %>													
 												</a></p>
 											</li>
@@ -239,7 +239,7 @@
 								<div class="mypopular">
 									<!-- cover -->
 									<div class="cover">
-										<img src="img/popular/1.png" alt="" style="width:283px;height:402px;">
+										<img src="img/popular/1.png" alt="" style="width:auto;max-width:283px;height:402px;">
 									</div>
 									<!-- //cover -->
 
@@ -250,7 +250,7 @@
 										         List<PostingDto> lastPosting= category.getLastPosting();
 										    	 for(int i=0;i<lastPosting.size();i++){
 										    %>
-											<li>
+											<li style="text-align: center;">
 												<img src="uploads/<%=lastPosting.get(i).getImage().getImage() %>" alt="" style="width:auto;max-width:170px;height:150px;">
 												<p><a href="product_details.ads?id=<%=lastPosting.get(i).getMainCategory().getId_security() %>&subid=<%=lastPosting.get(i).getSubCategory().getSubid_security() %>&proid=<%=lastPosting.get(i).getPostingId_security() %>" target="_blank">
 													<%=lastPosting.get(i).getTitle() %>
@@ -322,11 +322,11 @@
 												for(int index=0;index<content.size();index++){
 													if (rst.get(j).getId()==content.get(index).getMainCategory().getId()){
 											%>
-											<li>
+											<li style="text-align:center;">
 												<a href="product_details.ads?id=<%=rst.get(j).getId_security() %>&subid=<%=content.get(index).getSubCategory().getSubid_security() %>&proid=<%=content.get(index).getPostingId_security() %>" target="_blank">
 													<img src="uploads/<%=content.get(index).getImage().getImage() %>" alt="" style="width:auto;max-width:204px;height:207px;">
 													<dl>
-													<dt style="white-space:nowrap;overflow:hidden;" ><%=content.get(index).getTitle() %>
+													<dt style="white-space:nowrap;overflow:hidden;"><%=content.get(index).getTitle() %>
 													</dt>
 													<dd style="text-overflow: ellipsis;white-space:nowrap;overflow:hidden;"><%=content.get(index).getKey() %></dd>
 													</dl>

@@ -122,7 +122,44 @@
 .body_cnt{display:block;padding-top:30px;padding-bottom:50px;}
 .container{position:relative;width:1200px;margin:0 auto;}
 
+
+
+/* apply for all pages */
 .container > .cnt{display:block;padding:20px 0;}
+
+
+
+
+/* apply only for page2 (category types) */
+.container > .cnt/*(change category class)*/{}
+	/* apply for subcategories */
+	.container > .cnt.womenclothes .lbn_cnt .nav .item dt a{color:#e72c01;}
+	.container > .cnt.womenclothes .lbn_cnt .nav .item dd ul li a{color:#e72c01;}
+	
+	.container > .cnt.computeroffice .lbn_cnt .nav .item dt a{color:#1571b3;}
+	.container > .cnt.computeroffice .lbn_cnt .nav .item dd ul li a{color:#1571b3;}
+	
+	.container > .cnt.telephone .lbn_cnt .nav .item dt a{color:#534873;}
+	.container > .cnt.telephone .lbn_cnt .nav .item dd ul li a{color:#534873;}
+					/*add more css...............*/
+	
+	/* apply for subcategories */
+	.container > .cnt.womenclothes .tbl_product3 ul li a p.title{color:#e72c01;}
+	.container > .cnt.womenclothes .tbl_product3 ul li:hover{border:1px solid #e72c01;}
+	.container > .cnt.womenclothes .tbl_product3 ul li a:hover p.title{color:#e72c01;}
+	
+	.container > .cnt.computeroffice .tbl_product3 ul li a p.title{color:#1571b3;}
+	.container > .cnt.computeroffice .tbl_product3 ul li:hover{border:1px solid #1571b3;}
+	.container > .cnt.computeroffice .tbl_product3 ul li a:hover p.title{color:#1571b3;}
+	
+	.container > .cnt.telephone .tbl_product3 ul li a p.title{color:#534873;}
+	.container > .cnt.telephone .tbl_product3 ul li:hover{border:1px solid #534873;}
+	.container > .cnt.telephone .tbl_product3 ul li a:hover p.title{color:#534873;}
+					/*add more css...............*/
+	
+	
+	
+	
 
 /* left adv */
 .lbn_cnt{float:left;width:220px;margin-left:-220px;}
@@ -424,17 +461,17 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_myproducts.womenclothes .sub_cat ul li{}
 .tbl_myproducts.womenclothes .sub_cat ul li a{display:block;padding:25px 0 25px 50px;color:#e72c01;}
 .tbl_myproducts.womenclothes .sub_cat ul li a:hover{color:#ff5722;font-weight:bold;}
-
 .tbl_myproducts.womenclothes .sub_cat ul li a.men{background:url(../img/ico/ico_men.png) no-repeat 20px center;}
 .tbl_myproducts.womenclothes .sub_cat ul li a.men:hover{background:url(../img/ico/ico_men_over.png) no-repeat 20px center;}
 .tbl_myproducts.womenclothes .sub_cat ul li a.femal{background:url(../img/ico/ico_female.png) no-repeat 20px center;}
 .tbl_myproducts.womenclothes .sub_cat ul li a.femal:hover{background:url(../img/ico/ico_female_over.png) no-repeat 20px center;}
 .tbl_myproducts.womenclothes .sub_cat ul li a.baby{background:url(../img/ico/ico_baby.png) no-repeat 20px center;}
 .tbl_myproducts.womenclothes .sub_cat ul li a.baby:hover{background:url(../img/ico/ico_baby_over.png) no-repeat 20px center;}
-
 .tbl_myproducts.womenclothes:hover{border-top:2px solid #ff5722;}
 .tbl_myproducts.womenclothes:hover h2.title a{color:#ff5722;background:url(../img/ico/ico_shoping_over.png) no-repeat 0 center;}
-
+/* for six products dt color */
+.tbl_myproducts.womenclothes .six_products ul li:hover{border:1px solid #ff5722;}
+.tbl_myproducts.womenclothes .six_products dt{color:#e72c01;}
 
 /* computer office */
 .tbl_myproducts .computeroffice{float:left;display:block;width:200px;margin-left:-200px;}
@@ -446,7 +483,6 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_myproducts.computeroffice .sub_cat ul li{}
 .tbl_myproducts.computeroffice .sub_cat ul li a{display:block;padding:25px 0 25px 50px;color:#1571b3;}
 .tbl_myproducts.computeroffice .sub_cat ul li a:hover{color:#1f7cbf;font-weight:bold;}
-
 .tbl_myproducts.computeroffice .sub_cat ul li a.labtop{background:url(../img/ico/ico_laptop.png) no-repeat 20px center;}
 .tbl_myproducts.computeroffice .sub_cat ul li a.labtop:hover{background:url(../img/ico/ico_laptop_over.png) no-repeat 20px center;}
 .tbl_myproducts.computeroffice .sub_cat ul li a.desktop{background:url(../img/ico/ico_desktop.png) no-repeat 20px center;}
@@ -455,9 +491,11 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_myproducts.computeroffice .sub_cat ul li a.accessary:hover{background:url(../img/ico/ico_accessary_over.png) no-repeat 20px center;}
 .tbl_myproducts.computeroffice .sub_cat ul li a.storage{background:url(../img/ico/ico_storage.png) no-repeat 20px center;}
 .tbl_myproducts.computeroffice .sub_cat ul li a.storage:hover{background:url(../img/ico/ico_storage_over.png) no-repeat 20px center;}
-
 .tbl_myproducts.computeroffice:hover{border-top:2px solid #1f7cbf;}
 .tbl_myproducts.computeroffice:hover h2.title a{color:#1f7cbf;background:url(../img/ico/ico_computer_over.png) no-repeat 0 center;}
+/* for six products dt color */
+.tbl_myproducts.computeroffice .six_products ul li:hover{border:1px solid #1f7cbf;}
+.tbl_myproducts.computeroffice .six_products dt{color:#1571b3;}
 
 /* phone & accessaries */
 .tbl_myproducts .telephone{float:left;display:block;width:200px;margin-left:-200px;}
@@ -469,17 +507,17 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_myproducts.telephone .sub_cat ul li{}
 .tbl_myproducts.telephone .sub_cat ul li a{display:block;padding:25px 0 25px 50px;color:#534873;}
 .tbl_myproducts.telephone .sub_cat ul li a:hover{color:#5f6db7;font-weight:bold;}
-
 .tbl_myproducts.telephone .sub_cat ul li a.mobile{background:url(../img/ico/ico_mobile.png) no-repeat 20px center;}
 .tbl_myproducts.telephone .sub_cat ul li a.mobile:hover{background:url(../img/ico/ico_mobile_over.png) no-repeat 20px center;}
 .tbl_myproducts.telephone .sub_cat ul li a.tablet{background:url(../img/ico/ico_tablet.png) no-repeat 20px center;}
 .tbl_myproducts.telephone .sub_cat ul li a.tablet:hover{background:url(../img/ico/ico_tablet_over.png) no-repeat 20px center;}
 .tbl_myproducts.telephone .sub_cat ul li a.phone_acc{background:url(../img/ico/ico_phone_acc.png) no-repeat 20px center;}
 .tbl_myproducts.telephone .sub_cat ul li a.phone_acc:hover{background:url(../img/ico/ico_phone_acc_over.png) no-repeat 20px center;}
-
 .tbl_myproducts.telephone:hover{border-top:2px solid #5f6db7;}
 .tbl_myproducts.telephone:hover h2.title a{color:#5f6db7;background:url(../img/ico/ico_phone_over.png) no-repeat 0 center;}
-
+/* for six products dt color */
+.tbl_myproducts.telephone .six_products ul li:hover{border:1px solid #5f6db7;}
+.tbl_myproducts.telephone .six_products dt{color:#534873;}
 
 /* electronic */
 .tbl_myproducts .consummerelectronic{float:left;display:block;width:200px;margin-left:-200px;}
@@ -491,7 +529,6 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_myproducts.consummerelectronic .sub_cat ul li{}
 .tbl_myproducts.consummerelectronic .sub_cat ul li a{display:block;padding:25px 0 25px 50px;color:#1da2a9;}
 .tbl_myproducts.consummerelectronic .sub_cat ul li a:hover{color:#06817d;font-weight:bold;}
-
 .tbl_myproducts.consummerelectronic .sub_cat ul li a.office_elec{background:url(../img/ico/ico_office_elec.png) no-repeat 20px center;}
 .tbl_myproducts.consummerelectronic .sub_cat ul li a.office_elec:hover{background:url(../img/ico/ico_office_elec_over.png) no-repeat 20px center;}
 .tbl_myproducts.consummerelectronic .sub_cat ul li a.accessary_elec{background:url(../img/ico/ico_elec_acc.png) no-repeat 20px center;}
@@ -502,9 +539,11 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_myproducts.consummerelectronic .sub_cat ul li a.music_dev:hover{background:url(../img/ico/ico_music_over.png) no-repeat 20px center;}
 .tbl_myproducts.consummerelectronic .sub_cat ul li a.hom_sec{background:url(../img/ico/ico_home_sec.png) no-repeat 20px center;}
 .tbl_myproducts.consummerelectronic .sub_cat ul li a.hom_sec:hover{background:url(../img/ico/ico_home_sec_over.png) no-repeat 20px center;}
-
 .tbl_myproducts.consummerelectronic:hover{border-top:2px solid #06817d;}
 .tbl_myproducts.consummerelectronic:hover h2.title a{color:#06817d;background:url(../img/ico/ico_electronic_over.png) no-repeat 0 center;}
+/* for six products dt color */
+.tbl_myproducts.consummerelectronic .six_products ul li:hover{border:1px solid #06817d;}
+.tbl_myproducts.consummerelectronic .six_products dt{color:#1da2a9;}
 
 /* jewelries & watches */
 .tbl_myproducts .jewelery{float:left;display:block;width:200px;margin-left:-200px;}
@@ -516,14 +555,15 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_myproducts.jewelery .sub_cat ul li{}
 .tbl_myproducts.jewelery .sub_cat ul li a{display:block;padding:25px 0 25px 50px;color:#673ab7;}
 .tbl_myproducts.jewelery .sub_cat ul li a:hover{color:#3F51B5;font-weight:bold;}
-
 .tbl_myproducts.jewelery .sub_cat ul li a.jewelry{background:url(../img/ico/ico_jewelry.png) no-repeat 20px center;}
 .tbl_myproducts.jewelery .sub_cat ul li a.jewelry:hover{background:url(../img/ico/ico_jewelry_over.png) no-repeat 20px center;}
 .tbl_myproducts.jewelery .sub_cat ul li a.watch{background:url(../img/ico/ico_watch.png) no-repeat 20px center;}
 .tbl_myproducts.jewelery .sub_cat ul li a.watch:hover{background:url(../img/ico/ico_watch_over.png) no-repeat 20px center;}
-
 .tbl_myproducts.jewelery:hover{border-top:2px solid #3F51B5;}
 .tbl_myproducts.jewelery:hover h2.title a{color:#3F51B5;background:url(../img/ico/ico_jewelry_watch_over.png) no-repeat 0 center;}
+/* for six products dt color */
+.tbl_myproducts.jewelery .six_products ul li:hover{border:1px solid #3F51B5;}
+.tbl_myproducts.jewelery .six_products dt{color:#673AB7;}
 
 /* bags & shoes */
 .tbl_myproducts .bagsandshoes{float:left;display:block;width:200px;margin-left:-200px;}
@@ -535,7 +575,6 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_myproducts.bagsandshoes .sub_cat ul li{}
 .tbl_myproducts.bagsandshoes .sub_cat ul li a{display:block;padding:25px 0 25px 50px;color:#196ea7;}
 .tbl_myproducts.bagsandshoes .sub_cat ul li a:hover{color:#0098fe;font-weight:bold;}
-
 .tbl_myproducts.bagsandshoes .sub_cat ul li a.women_bag{background:url(../img/ico/ico_women_bag.png) no-repeat 20px center;}
 .tbl_myproducts.bagsandshoes .sub_cat ul li a.women_bag:hover{background:url(../img/ico/ico_women_bag_over.png) no-repeat 20px center;}
 .tbl_myproducts.bagsandshoes .sub_cat ul li a.men_bag{background:url(../img/ico/ico_men_bag.png) no-repeat 20px center;}
@@ -546,10 +585,11 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_myproducts.bagsandshoes .sub_cat ul li a.women_shoes:hover{background:url(../img/ico/ico_women_shoe_over.png) no-repeat 20px center;}
 .tbl_myproducts.bagsandshoes .sub_cat ul li a.men_shoes{background:url(../img/ico/ico_men_shoe.png) no-repeat 20px center;}
 .tbl_myproducts.bagsandshoes .sub_cat ul li a.men_shoes:hover{background:url(../img/ico/ico_men_shoe_over.png) no-repeat 20px center;}
-
 .tbl_myproducts.bagsandshoes:hover{border-top:2px solid #0098fe;}
 .tbl_myproducts.bagsandshoes:hover h2.title a{color:#0098fe;background:url(../img/ico/ico_bags_over.png) no-repeat 0 center;}
-
+/* for six products dt color */
+.tbl_myproducts.bagsandshoes .six_products ul li:hover{border:1px solid #0098fe;}
+.tbl_myproducts.bagsandshoes .six_products dt{color:#1970aa;}
 
 /* health & beauty */
 .tbl_myproducts .healthbeauty{float:left;display:block;width:200px;margin-left:-200px;}
@@ -561,7 +601,6 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_myproducts.healthbeauty .sub_cat ul li{}
 .tbl_myproducts.healthbeauty .sub_cat ul li a{display:block;padding:25px 0 25px 50px;color:#9a199d;}
 .tbl_myproducts.healthbeauty .sub_cat ul li a:hover{color:#b705c0;font-weight:bold;}
-
 .tbl_myproducts.healthbeauty .sub_cat ul li a.makeup{background:url(../img/ico/ico_makup.png) no-repeat 20px center;}
 .tbl_myproducts.healthbeauty .sub_cat ul li a.makeup:hover{background:url(../img/ico/ico_makup_over.png) no-repeat 20px center;}
 .tbl_myproducts.healthbeauty .sub_cat ul li a.hair_acc{background:url(../img/ico/ico_hair_acc.png) no-repeat 20px center;}
@@ -570,9 +609,11 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_myproducts.healthbeauty .sub_cat ul li a.skin_care:hover{background:url(../img/ico/ico_skin_care_over.png) no-repeat 20px center;}
 .tbl_myproducts.healthbeauty .sub_cat ul li a.nail_tool{background:url(../img/ico/ico_nail.png) no-repeat 20px center;}
 .tbl_myproducts.healthbeauty .sub_cat ul li a.nail_tool:hover{background:url(../img/ico/ico_nail_over.png) no-repeat 20px center;}
-
 .tbl_myproducts.healthbeauty:hover{border-top:2px solid #b705c0;}
 .tbl_myproducts.healthbeauty:hover h2.title a{color:#b705c0;background:url(../img/ico/ico_health_beauty_over.png) no-repeat 0 center;}
+/* for six products dt color */
+.tbl_myproducts.healthbeauty .six_products ul li:hover{border:1px solid #b705c0;}
+.tbl_myproducts.healthbeauty .six_products dt{color:#9a199d;}
 
 /* toys,kid & baby */
 .tbl_myproducts .toykidbaby{float:left;display:block;width:200px;margin-left:-200px;}
@@ -584,16 +625,17 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_myproducts.toykidbaby .sub_cat ul li{}
 .tbl_myproducts.toykidbaby .sub_cat ul li a{display:block;padding:25px 0 25px 50px;color:#00bcd4;}
 .tbl_myproducts.toykidbaby .sub_cat ul li a:hover{color:#4caf50;font-weight:bold;}
-
 .tbl_myproducts.toykidbaby .sub_cat ul li a.toy_boy{background:url(../img/ico/ico_toy_boy.png) no-repeat 20px center;}
 .tbl_myproducts.toykidbaby .sub_cat ul li a.toy_boy:hover{background:url(../img/ico/ico_toy_boy_over.png) no-repeat 20px center;}
 .tbl_myproducts.toykidbaby .sub_cat ul li a.toy_girl{background:url(../img/ico/ico_toy_girl.png) no-repeat 20px center;}
 .tbl_myproducts.toykidbaby .sub_cat ul li a.toy_girl:hover{background:url(../img/ico/ico_toy_girl_over.png) no-repeat 20px center;}
 .tbl_myproducts.toykidbaby .sub_cat ul li a.baby_care{background:url(../img/ico/ico_baby_care.png) no-repeat 20px center;}
 .tbl_myproducts.toykidbaby .sub_cat ul li a.baby_care:hover{background:url(../img/ico/ico_baby_care_over.png) no-repeat 20px center;}
-
 .tbl_myproducts.toykidbaby:hover{border-top:2px solid #4caf50;}
 .tbl_myproducts.toykidbaby:hover h2.title a{color:#4caf50;background:url(../img/ico/ico_toy_kid_baby_over.png) no-repeat 0 center;}
+/* for six products dt color */
+.tbl_myproducts.toykidbaby .six_products ul li:hover{border:1px solid #4caf50;}
+.tbl_myproducts.toykidbaby .six_products dt{color:#00bcd4;}
 
 /* sports & outdoors */
 .tbl_myproducts .sportoudoor{float:left;display:block;width:200px;margin-left:-200px;}
@@ -605,16 +647,17 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_myproducts.sportoudoor .sub_cat ul li{}
 .tbl_myproducts.sportoudoor .sub_cat ul li a{display:block;padding:25px 0 25px 50px;color:#0224af;}
 .tbl_myproducts.sportoudoor .sub_cat ul li a:hover{color:#1e49af;font-weight:bold;}
-
 .tbl_myproducts.sportoudoor .sub_cat ul li a.sport_clothes{background:url(../img/ico/ico_sport_clothes.png) no-repeat 20px center;}
 .tbl_myproducts.sportoudoor .sub_cat ul li a.sport_clothes:hover{background:url(../img/ico/ico_sport_clothes_over.png) no-repeat 20px center;}
 .tbl_myproducts.sportoudoor .sub_cat ul li a.outdoor_sport{background:url(../img/ico/ico_outdoor_sport.png) no-repeat 20px center;}
 .tbl_myproducts.sportoudoor .sub_cat ul li a.outdoor_sport:hover{background:url(../img/ico/ico_outdoor_sport_over.png) no-repeat 20px center;}
 .tbl_myproducts.sportoudoor .sub_cat ul li a.sport_care{background:url(../img/ico/ico_sport_care.png) no-repeat 20px center;}
 .tbl_myproducts.sportoudoor .sub_cat ul li a.sport_care:hover{background:url(../img/ico/ico_sport_care_over.png) no-repeat 20px center;}
-
 .tbl_myproducts.sportoudoor:hover{border-top:2px solid #1e49af;}
 .tbl_myproducts.sportoudoor:hover h2.title a{color:#1e49af;background:url(../img/ico/ico_sport_outdoor_over.png) no-repeat 0 center;}
+/* for six products dt color */
+.tbl_myproducts.sportoudoor .six_products ul li:hover{border:1px solid #1e49af;}
+.tbl_myproducts.sportoudoor .six_products dt{color:#0224af;}
 
 /* home & equipment */
 .tbl_myproducts .homeimproment{float:left;display:block;width:200px;margin-left:-200px;}
@@ -626,7 +669,6 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_myproducts.homeimproment .sub_cat ul li{}
 .tbl_myproducts.homeimproment .sub_cat ul li a{display:block;padding:25px 0 25px 50px;color:#47322a;}
 .tbl_myproducts.homeimproment .sub_cat ul li a:hover{color:#783441;font-weight:bold;}
-
 .tbl_myproducts.homeimproment .sub_cat ul li a.hom_suplier{background:url(../img/ico/ico_hom_supplier_ver.png) no-repeat 20px center;}
 .tbl_myproducts.homeimproment .sub_cat ul li a.hom_suplier:hover{background:url(../img/ico/ico_hom_supplier_ver.png) no-repeat 20px center;}
 .tbl_myproducts.homeimproment .sub_cat ul li a.lighting{background:url(../img/ico/ico_lighting.png) no-repeat 20px center;}
@@ -635,10 +677,11 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_myproducts.homeimproment .sub_cat ul li a.sec_protection:hover{background:url(../img/ico/ico_security_over.png) no-repeat 20px center;}
 .tbl_myproducts.homeimproment .sub_cat ul li a.equipment{background:url(../img/ico/ico_equipment.png) no-repeat 20px center;}
 .tbl_myproducts.homeimproment .sub_cat ul li a.equipment:hover{background:url(../img/ico/ico_equipment_over.png) no-repeat 20px center;}
-
-
 .tbl_myproducts.homeimproment:hover{border-top:2px solid #783441;}
 .tbl_myproducts.homeimproment:hover h2.title a{color:#783441;background:url(../img/ico/ico_home_equipment_over.png) no-repeat 0 center;}
+/* for six products dt color */
+.tbl_myproducts.homeimproment .six_products ul li:hover{border:1px solid #783441;}
+.tbl_myproducts.homeimproment .six_products dt{color:#47322a;}
 
 /* cars,motobikes,bycicle */
 .tbl_myproducts .automobile{float:left;display:block;width:200px;margin-left:-200px;}
@@ -650,7 +693,6 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_myproducts.automobile .sub_cat ul li{}
 .tbl_myproducts.automobile .sub_cat ul li a{display:block;padding:25px 0 25px 50px;color:#f91f63;}
 .tbl_myproducts.automobile .sub_cat ul li a:hover{color:#ff0008;font-weight:bold;}
-
 .tbl_myproducts.automobile .sub_cat ul li a.car{background:url(../img/ico/ico_cars.png) no-repeat 20px center;}
 .tbl_myproducts.automobile .sub_cat ul li a.car:hover{background:url(../img/ico/ico_cars_over.png) no-repeat 20px center;}
 .tbl_myproducts.automobile .sub_cat ul li a.motor{background:url(../img/ico/ico_moto.png) no-repeat 20px center;}
@@ -659,10 +701,11 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_myproducts.automobile .sub_cat ul li a.bike:hover{background:url(../img/ico/ico_bike_over.png) no-repeat 20px center;}
 .tbl_myproducts.automobile .sub_cat ul li a.tools{background:url(../img/ico/ico_tools_motor.png) no-repeat 20px center;}
 .tbl_myproducts.automobile .sub_cat ul li a.tools:hover{background:url(../img/ico/ico_tools_motor_over.png) no-repeat 20px center;}
-
-
 .tbl_myproducts.automobile:hover{border-top:2px solid #ff0008;}
 .tbl_myproducts.automobile:hover h2.title a{color:#ff0008;background:url(../img/ico/ico_care_motor_over.png) no-repeat 0 center;}
+/* for six products dt color */
+.tbl_myproducts.automobile .six_products ul li:hover{border:1px solid #ff0008;}
+.tbl_myproducts.automobile .six_products dt{color:#f91f63;}
 
 /* real eastate */
 .tbl_myproducts .realestates{float:left;display:block;width:200px;margin-left:-200px;}
@@ -674,7 +717,6 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_myproducts.realestates .sub_cat ul li{}
 .tbl_myproducts.realestates .sub_cat ul li a{display:block;padding:25px 0 25px 50px;color:#4CAF50;}
 .tbl_myproducts.realestates .sub_cat ul li a:hover{color:#1CB317;font-weight:bold;}
-
 .tbl_myproducts.realestates .sub_cat ul li a.office{background:url(../img/ico/ico_office.png) no-repeat 20px center;}
 .tbl_myproducts.realestates .sub_cat ul li a.office:hover{background:url(../img/ico/ico_office_over.png) no-repeat 20px center;}
 .tbl_myproducts.realestates .sub_cat ul li a.appartment {background:url(../img/ico/ico_appartment.png) no-repeat 20px center;}
@@ -685,12 +727,11 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_myproducts.realestates .sub_cat ul li a.villas:hover{background:url(../img/ico/ico_villas_over.png) no-repeat 20px center;}
 .tbl_myproducts.realestates .sub_cat ul li a.land{background:url(../img/ico/ico_land.png) no-repeat 20px center;}
 .tbl_myproducts.realestates .sub_cat ul li a.land:hover{background:url(../img/ico/ico_land_over.png) no-repeat 20px center;}
-
 .tbl_myproducts.realestates:hover{border-top:2px solid #1CB317;}
 .tbl_myproducts.realestates:hover h2.title a{color:#1CB317;background:url(../img/ico/ico_realeastate_over.png) no-repeat 0 center;}
-
-
-
+/* for six products dt color */
+.tbl_myproducts.realestates .six_products ul li:hover{border:1px solid #1CB317;}
+.tbl_myproducts.realestates .six_products dt{color:#4CAF50;}
 
 /* product content */
 .tbl_product_content{display:block;}
@@ -711,11 +752,11 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_product_content .six_products{padding-top:5px;padding-left:1px;}
 .tbl_product_content .six_products ul{overflow:hidden;}
 .tbl_product_content .six_products ul li{float:left;width:204px;margin:5px;margin-right:0;margin-top:0;border:1px solid #eee;}
-.tbl_product_content .six_products ul li:hover{border:1px solid #ea4621;}
+/*.tbl_product_content .six_products ul li:hover{border:1px solid #ea4621;}*/
 .tbl_product_content .six_products ul li a{display:block;height:249px;padding-bottom:4px;text-align:center;}
 .tbl_product_content .six_products ul li a dl{}
 .tbl_product_content .six_products ul li a dl dt{padding:2px 5px 0 5px;font-size:16px;white-space:nowrap;overflow:hidden;}
-.tbl_product_content .six_products ul li a:hover dl dt{color:#ea4621;font-weight:bold;text-decoration:underline;}
+.tbl_product_content .six_products ul li a:hover dl dt{/*color:#ea4621;*/font-weight:bold;text-decoration:underline;}
 .tbl_product_content .six_products ul li:hover a dl dt{text-overflow: ellipsis;}
 .tbl_product_content .six_products ul li a dl dd{padding:2px 5px 0 5px;font-size:13px;line-height:20px;}
 
@@ -727,15 +768,12 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .tbl_product3 ul li a{display:block;height:375px;font-family:dawning-of-a-new-day;font-size:15px;color:#133488;line-height:20px;font-weight:normal;}
 .tbl_product3 ul li a:hover{color:#ea4621 !important;}
 .tbl_product3 ul li a p.title{padding:10px 5px 5px 5px;font-size:18px !important;}
-.tbl_product3 ul li a:hover p.title{color:#ea4621 !important;font-weight:bold;}
-.tbl_product3 ul li a p{padding:5px;text-overflow: ellipsis;white-space:nowrap;overflow:hidden;}
+.tbl_product3 ul li a:hover p.title{font-weight:bold;}
+.tbl_product3 ul li a p{padding:5px;text-transform:capitalize;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;}
 .tbl_product3 ul li a:hover p{text-decoration:underline;}
 .tbl_product3 ul li dl{}
 .tbl_product3 ul li dl dd{padding:10px 5px 20px 5px;font-size:14px !important;color:#133488 !important;font-weight:normal;}
 .tbl_product3 ul li dl dd strong{font-size:22px;color:#f26202;font-weight:bold;}
-
-
-
 
 /* paging */
 .paging_wrap{position:relative;clear:both;margin-top:15px;/*height:70px;*/}
@@ -802,6 +840,10 @@ span.fav > a:first-child, p span.fav > a:first-child{margin:0;}
 .container .lbn_cnt .nav .item dd ul li a{display:block;padding:5px 0 5px 25px;}
 .container .lbn_cnt .adv, .container .lbn_cnt .adv img{width:218px;height:240px;}
 .container .lbn_cnt .adv{border:1px solid #ddd;}
+
+/* page2 and page 3 the same cbn_cnt */
+.container .cbn_cnt{}
+
 
 .frm_order{padding:0 15px 15px 15px;height:398px;font-size:14px;background:#f8ce94;}
 .frm_order table{border-top:5px solid #fb031b;}
@@ -923,8 +965,6 @@ a.btn_create_acc.btn_mypost{height:61px;font-size:20px;line-height:61px;margin-r
 .multi_photo .disable_photo{position:absolute;top:-2;left:-3px;display:inline-block;width:106px;height:106px;background-color:transparent;}
 .btn_remove{display:inline-block;padding:3px 0 3px 15px;background-color:transparent;background-image:url(../img/btn/ico_del_on.png);background-repeat:no-repeat;background-position:0 50%;}
 .btn_remove:hover{text-decoration:underline;}
-
-
 
 .wrap_func .f_right h1.tit{padding:0 15px;line-height:50px;border-bottom:3px solid;background-color:#98b4d0;}
 .wrap_func .f_right .mypolicy{padding:20px;border:1px solid #ddd;}
